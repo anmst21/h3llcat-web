@@ -1,0 +1,23 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "K9KW8P4K65.com.h3llcat.app",
+                "paths": [
+                    "/records/*"
+                ]
+            }
+        ]
+    },
+    "activitycontinuation": {
+        "apps": [
+            "K9KW8P4K65.com.h3llcat.app"
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "K9KW8P4K65.com.h3llcat.app"
+        ]
+    }
+}
