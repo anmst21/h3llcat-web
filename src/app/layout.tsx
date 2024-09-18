@@ -1,3 +1,5 @@
+// import "./fonts/coinbase-mono/stylesheet.css";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";

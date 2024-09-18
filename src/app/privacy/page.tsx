@@ -1,10 +1,31 @@
+import { Globe, ChevDown } from "@/components/icon";
+
 export default function Privacy() {
   return (
-    <div>
-      <p>H3LLCAT Privacy Policy</p>
-      <p>
-        <em>Last Updated: September 13, 2024</em>
-      </p>
+    <div className="privacy">
+      <div className="privacy__navigation">
+        <div className="privacy__navigation__icon" />
+        <span className="privacy__navigation__team">
+          N3XUS
+          <span>Team</span>
+        </span>
+        <div className="privacy__navigation__language">
+          <span>Language</span>
+          <div className="privacy__navigation__language__select">
+            <span>Eng</span>
+            <ChevDown />
+          </div>
+        </div>
+      </div>
+      <div className="privacy__header__container">
+        <span className="privacy__header">H3LLCAT Privacy Policy</span>
+        <span className="privacy__updated">
+          Last Updated: September 13, 2024
+        </span>
+        <div className="privacy__globe">
+          <Globe />
+        </div>
+      </div>
       <p>
         This Privacy Policy describes Our (&quot;N3XUS&quot;, &quot;team
         Nexus&quot;, &quot;Nexus Team&quot;, &quot;we&quot;, &quot;us&quot;)
