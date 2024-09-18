@@ -8,10 +8,10 @@ export default function Privacy() {
           <div className="privacy__navigation__icon" />
           <span className="privacy__navigation__team">
             N3XUS
-            <span>Team</span>
+            <span className="privacy__navigation__responsive">Team</span>
           </span>
           <div className="privacy__navigation__language">
-            <span>Language</span>
+            <span className="privacy__navigation__responsive">Language</span>
             <div className="privacy__navigation__language__select">
               <span>Eng</span>
               <ChevDown />

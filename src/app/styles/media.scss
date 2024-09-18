@@ -1,0 +1,31 @@
+$breakpoint-small: 576px;
+$breakpoint-medium: 740px;
+$breakpoint-large: 1000px;
+$breakpoint-xlarge: 1300px;
+
+
+@mixin respond-to-phone($breakpoint) {
+    @if $breakpoint ==small {
+        @media (max-width: $breakpoint-small) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==medium {
+        @media (max-width: $breakpoint-medium) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==large {
+        @media (max-width: $breakpoint-large) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==xlarge {
+        @media (max-width: $breakpoint-xlarge) {
+            @content;
+        }
+    }
+}

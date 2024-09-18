@@ -107,7 +107,21 @@ b {
         padding: 0 44px;
         border-radius: 20px;
 
+        @include respond-to-phone(medium) {
+            padding: 0 20px;
+        }
+
+
+        &__responsive {
+            @include respond-to-phone(medium) {
+                display: none;
+            }
+        }
+
+
+
         &__language {
+
             width: 214px;
             display: flex;
             justify-content: space-between;
@@ -117,6 +131,10 @@ b {
             align-items: center;
             padding: 0 16px;
             margin-left: auto;
+
+            @include respond-to-phone(medium) {
+                width: auto;
+            }
 
             &__select {
                 display: flex;
@@ -175,12 +193,16 @@ b {
 
     &__header {
 
-
+        display: flex;
         font-size: 48px;
         font-weight: 700;
         letter-spacing: 1.44px;
         font-style: normal;
         line-height: normal;
+
+        @include respond-to-phone(medium) {
+            font-size: 24px;
+        }
 
         &__container {
             gap: 40px;
