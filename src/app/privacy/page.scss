@@ -1,12 +1,103 @@
+ul {
+    list-style-position: inside;
+}
+
+p {
+    text-align: justify;
+}
+
+li {
+    text-align: justify;
+}
+
+b {
+    font-weight: 400;
+}
+
 .privacy {
+
     font-family: 'Coinbase Mono';
     color: #000000;
     background-color: white;
-    gap: 40px;
     display: flex;
-    flex-direction: column;
     padding: 40px 20px;
     font-size: 17px;
+    align-items: center;
+    flex-direction: column;
+
+
+    &__ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    &__email {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        color: #DF5555;
+        margin-left: 8px;
+    }
+
+    &__h3 {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    &__section {
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    &__h2 {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    &__h1 {
+        margin: 40px 0;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+
+
+
+        &__container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+
+            &__black {
+                svg {
+                    color: #000000 !important;
+
+                }
+            }
+
+            svg {
+                color: #DF5555;
+
+            }
+        }
+    }
+
+    &__container {
+        max-width: 1102px;
+        gap: 40px;
+        display: flex;
+        flex-direction: column;
+    }
 
     &__navigation {
         display: flex;

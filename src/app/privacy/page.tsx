@@ -1,467 +1,568 @@
-import { Globe, ChevDown } from "@/components/icon";
+import { Globe, ChevDown, Bullet } from "@/components/icon";
 
 export default function Privacy() {
   return (
     <div className="privacy">
-      <div className="privacy__navigation">
-        <div className="privacy__navigation__icon" />
-        <span className="privacy__navigation__team">
-          N3XUS
-          <span>Team</span>
-        </span>
-        <div className="privacy__navigation__language">
-          <span>Language</span>
-          <div className="privacy__navigation__language__select">
-            <span>Eng</span>
-            <ChevDown />
+      <div className="privacy__container">
+        <div className="privacy__navigation">
+          <div className="privacy__navigation__icon" />
+          <span className="privacy__navigation__team">
+            N3XUS
+            <span>Team</span>
+          </span>
+          <div className="privacy__navigation__language">
+            <span>Language</span>
+            <div className="privacy__navigation__language__select">
+              <span>Eng</span>
+              <ChevDown />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="privacy__header__container">
-        <span className="privacy__header">H3LLCAT Privacy Policy</span>
-        <span className="privacy__updated">
-          Last Updated: September 13, 2024
-        </span>
-        <div className="privacy__globe">
-          <Globe />
+        <div className="privacy__header__container">
+          <span className="privacy__header">H3LLCAT Privacy Policy</span>
+          <span className="privacy__updated">
+            Last Updated: September 13, 2024
+          </span>
+          <div className="privacy__globe">
+            <Globe />
+          </div>
+        </div>
+        <p>
+          This Privacy Policy describes Our (&quot;N3XUS&quot;, &quot;team
+          Nexus&quot;, &quot;Nexus Team&quot;, &quot;we&quot;, &quot;us&quot;)
+          policies and procedures on the collection, use and disclosure of Your
+          information (&quot;User information&quot;) when You (&quot;User&quot;
+          or &quot;you&quot;) use H3LLCAT (&quot;the service&quot;) and tells
+          You about Your privacy rights and how the law protects You.
+        </p>
+        <p>
+          We use Your Personal data to provide and improve the Service. By using
+          the Service, You agree to the collection and use of information in
+          accordance with this Privacy Policy.
+        </p>
+        <div className="privacy__h1__container">
+          <Bullet />
+          <h1 className="privacy__h1">Interpretation and Definitions</h1>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Interpretation</h2>
+          </div>
+          <p>
+            The words of which the initial letter is capitalized have meanings
+            defined under the following conditions. The following definitions
+            shall have the same meaning regardless of whether they appear in
+            singular or in plural.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Definitions</h2>
+          </div>
+          <p>For the purposes of this Privacy Policy:</p>
+          <ul className="privacy__ul">
+            <li>
+              <b>Account</b> means a unique account created for You to access
+              our Service or parts of our Service.
+            </li>
+            <li>
+              <b>Affiliate</b> means an entity that controls, is controlled by
+              or is under common control with a party, where &quot;control&quot;
+              means ownership of 50% or more of the shares, equity interest or
+              other securities entitled to vote for election of directors or
+              other managing authority.
+            </li>
+            <li>
+              <b>Application</b> refers to H3LLCAT, the software program
+              provided by the Company.
+            </li>
+            <li>
+              <b>Company</b> (referred to as either &quot;the Company&quot;,
+              &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this
+              Agreement) refers to N3XUS Team, 99 Hudson St, New York, NY 10013,
+              USA.
+            </li>
+            <li>
+              <b>Country</b> refers to: New York, United States
+            </li>
+            <li>
+              <b>Device</b> means any device that can access the Service such as
+              a computer, a cellphone or a digital tablet.
+            </li>
+            <li>
+              <b>Personal Data</b> is any information that relates to an
+              identified or identifiable individual.
+            </li>
+            <li>
+              <b>Service</b> refers to the Application.
+            </li>
+            <li>
+              <b>Service Provider</b> means any natural or legal person who
+              processes the data on behalf of the Company. It refers to
+              third-party companies or individuals employed by the Company to
+              facilitate the Service, to provide the Service on behalf of the
+              Company, to perform services related to the Service or to assist
+              the Company in analyzing how the Service is used.
+            </li>
+            <li>
+              <b>Usage Data</b> refers to data collected automatically, either
+              generated by the use of the Service or from the Service
+              infrastructure itself (for example, the duration of a page visit).
+            </li>
+            <li>
+              <b>You</b> means the individual accessing or using the Service, or
+              the company, or other legal entity on behalf of which such
+              individual is accessing or using the Service, as applicable.
+            </li>
+          </ul>
+        </div>
+        <div className="privacy__h1__container">
+          <Bullet />
+          <h1 className="privacy__h1">
+            Collecting and Using Your Personal Data
+          </h1>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Types of Data Collected</h2>
+          </div>
+
+          <h3 className="privacy__h3">Personal Data</h3>
+
+          <p>
+            While using Our Service, We may ask You to provide Us with certain
+            personally identifiable information that can be used to contact or
+            identify You. Personally identifiable information may include, but
+            is not limited to:
+          </p>
+          <ul className="privacy__ul">
+            <li>Usage Data</li>
+            <li>User Logs (User Action Logs)</li>
+          </ul>
+          <h3 className="privacy__h3">Usage Data</h3>
+          <ul>
+            <li>
+              Usage Data is collected automatically when using the Service.
+            </li>
+            <li>
+              Usage Data may include information such as Your Device&apos;s
+              Internet Protocol address (e.g. IP address), browser type, browser
+              version, the pages of our Service that You visit, the time and
+              date of Your visit, the time spent on those pages, unique device
+              identifiers and other diagnostic data.
+            </li>
+            <li>
+              When You access the Service by or through a mobile device, We may
+              collect certain information automatically, including, but not
+              limited to, the type of mobile device You use, Your mobile device
+              unique ID, the IP address of Your mobile device, Your mobile
+              operating system, the type of mobile Internet browser You use,
+              unique device identifiers and other diagnostic data.
+            </li>
+            <li>
+              We may also collect information that Your browser sends whenever
+              You visit our Service or when You access the Service by or through
+              a mobile device.
+            </li>
+          </ul>
+          <h3 className="privacy__h3">Usage Logs</h3>
+          <p>
+            We collect logs about user actions for further analysis and to
+            maintain a historical record of user interactions with our platform.
+            These logs may include details such as:
+          </p>
+          <ul className="privacy__ul">
+            <li>Interactions with smart contracts</li>
+            <li>Wallet transactions</li>
+            <li>Time and date of actions</li>
+            <li>Browser and device information</li>
+            <li>
+              Any other relevant data linked to the actions taken within our
+              platform
+            </li>
+          </ul>
+          <p>
+            This information is collected to help us improve our services,
+            ensure the security and integrity of the platform, and troubleshoot
+            any potential issues.
+          </p>
+          <p>
+            In the future, we will integrate Sentry or a similar tool to log all
+            user actions in real-time. This will allow us to capture
+            comprehensive user activity data, including errors, performance
+            issues, and usage patterns, helping us optimize the user experience
+            and detect potential risks proactively.
+          </p>
+          <p>
+            By using our platform, you consent to the collection and processing
+            of user action logs as outlined above. We take appropriate security
+            measures to protect this data and ensure it is used only for the
+            purposes described in this Privacy Policy.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Wallet Usage & Payments</h2>
+          </div>
+          <p>
+            We enable payments through an embedded wallet within our platform to
+            facilitate secure and efficient transactions. When you interact with
+            the wallet, we do not collect or store your private keys or
+            sensitive financial information. All transactions are conducted
+            directly on the blockchain network, ensuring transparency and
+            security.
+          </p>
+          <p>
+            However, we may log metadata related to your transactions, such as
+            wallet addresses, transaction amounts, and time stamps, for auditing
+            purposes, transaction history, and fraud prevention. By using the
+            embedded wallet, you acknowledge and agree to the processing of such
+            metadata as part of your interaction with our platform.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">
+              Wallet Integration & Third-Party Services
+            </h2>
+          </div>
+          <p>
+            Our platform integrates with third-party services, such as the
+            <b> Coinbase Wallet Mobile SDK,</b> to provide enhanced
+            functionality and ease of use for our users. When you use the
+            Coinbase Wallet through our platform, the Coinbase Wallet Mobile SDK
+            gives us access to certain wallet-related information, including:
+          </p>
+          <ul className="privacy__ul">
+            <li>
+              <b>Wallet Address:</b> The unique identifier associated with your
+              wallet.
+            </li>
+            <li>
+              <b>Wallet Balance:</b> The current balance of cryptocurrencies or
+              tokens held in your wallet.
+            </li>
+          </ul>
+          <p>
+            This information is used to enable wallet-related features on our
+            platform, such as facilitating payments, displaying your balance,
+            and verifying transactions. We do not have access to your private
+            keys or the ability to directly manage your wallet.
+          </p>
+          <p>
+            By using our platform and connecting via the Coinbase Wallet Mobile
+            SDK, you consent to the collection and use of your wallet address
+            and balance for the purposes outlined in this Privacy Policy.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Use of Your Personal Data</h2>
+          </div>
+          <h3 className="privacy__h3">
+            The Company may use Personal Data for the following purposes:
+          </h3>
+          <ul className="privacy__ul">
+            <li>
+              <b>To provide and maintain our Service</b>, including to monitor
+              the usage of our Service.
+            </li>
+            <li>
+              <b>To manage Your Account:</b> to manage Your registration as a
+              user of the Service. The Personal Data You provide can give You
+              access to different functionalities of the Service that are
+              available to You as a registered user.
+            </li>
+            <li>
+              <b>For the performance of a contract:</b> the development,
+              compliance, and undertaking of the purchase contract for the
+              products, items, or services You have purchased or of any other
+              contract with Us through the Service.
+            </li>
+            <li>
+              <b>To contact You:</b> To contact You by email, telephone calls,
+              SMS, or other equivalent forms of electronic communication, such
+              as a mobile application&apos;s push notifications regarding
+              updates or informative communications related to the
+              functionalities, products, or contracted services, including the
+              security updates when necessary or reasonable for their
+              implementation.
+            </li>
+            <li>
+              <b>To provide You</b> with news, special offers, and general
+              information about other goods, services, and events which we offer
+              that are similar to those that you have already purchased or
+              enquired about unless You have opted not to receive such
+              information.
+            </li>
+            <li>
+              <b>To manage Your requests:</b> To attend and manage Your requests
+              to Us.
+            </li>
+            <li>
+              <b>For business transfers:</b> We may use Your information to
+              evaluate or conduct a merger, divestiture, restructuring,
+              reorganization, dissolution, or other sale or transfer of some or
+              all of Our assets, whether as a going concern or as part of
+              bankruptcy, liquidation, or similar proceeding, in which Personal
+              Data held by Us about our Service users is among the assets
+              transferred.
+            </li>
+            <li>
+              <b>For other purposes:</b> We may use Your information for other
+              purposes, such as data analysis, identifying usage trends,
+              determining the effectiveness of our promotional campaigns, and
+              evaluating and improving our Service, products, services,
+              marketing, and your experience.
+            </li>
+          </ul>
+          <h3 className="privacy__h3">
+            We may share Your personal information in the following situations:
+          </h3>
+          <ul className="privacy__ul">
+            <li>
+              <b>With Service Providers:</b> We may share Your personal
+              information with Service Providers to monitor and analyze the use
+              of our Service, to contact You.
+            </li>
+            <li>
+              <b>For business transfers:</b> We may share or transfer Your
+              personal information in connection with, or during negotiations
+              of, any merger, sale of Company assets, financing, or acquisition
+              of all or a portion of Our business to another company.
+            </li>
+            <li>
+              <b>With Affiliates:</b> We may share Your information with Our
+              affiliates, in which case we will require those affiliates to
+              honor this Privacy Policy. Affiliates include Our parent company
+              and any other subsidiaries, joint venture partners, or other
+              companies that We control or that are under common control with
+              Us.
+            </li>
+            <li>
+              <b>With business partners:</b> We may share Your information with
+              Our business partners to offer You certain products, services, or
+              promotions.
+            </li>
+            <li>
+              <b>With other users:</b> when You share personal information or
+              otherwise interact in the public areas with other users, such
+              information may be viewed by all users and may be publicly
+              distributed outside.
+            </li>
+            <li>
+              <b>With Your consent:</b> We may disclose Your personal
+              information for any other purpose with Your consent.
+            </li>
+          </ul>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Retention of Your Personal Data</h2>
+          </div>
+          <p>
+            The Company will retain Your Personal Data only for as long as is
+            necessary for the purposes set out in this Privacy Policy. We will
+            retain and use Your Personal Data to the extent necessary to comply
+            with our legal obligations (for example, if we are required to
+            retain your data to comply with applicable laws), resolve disputes,
+            and enforce our legal agreements and policies.
+          </p>
+          <p>
+            The Company will also retain Usage Data for internal analysis
+            purposes. Usage Data is generally retained for a shorter period of
+            time, except when this data is used to strengthen the security or
+            improve the functionality of Our Service, or We are legally
+            obligated to retain this data for longer time periods.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Transfer of Your Personal Data</h2>
+          </div>
+          <p>
+            Your information, including Personal Data, is processed at the
+            Company&apos;s operating offices and in any other places where the
+            parties involved in the processing are located. It means that this
+            information may be transferred to — and maintained on — computers
+            located outside of Your state, province, country, or other
+            governmental jurisdiction where the data protection laws may differ
+            from those of Your jurisdiction.
+          </p>
+          <p>
+            Your consent to this Privacy Policy followed by Your submission of
+            such information represents Your agreement to that transfer.
+          </p>
+          <p>
+            The Company will take all steps reasonably necessary to ensure that
+            Your data is treated securely and in accordance with this Privacy
+            Policy and no transfer of Your Personal Data will take place to an
+            organization or a country unless there are adequate controls in
+            place including the security of Your data and other personal
+            information.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Delete Your Personal Data</h2>
+          </div>
+          <p>
+            You have the right to delete or request that We assist in deleting
+            the Personal Data that We have collected about You.
+          </p>
+          <p>
+            Our Service may give You the ability to delete certain information
+            about You from within the Service.
+          </p>
+          <p>
+            You may update, amend, or delete Your information at any time by
+            signing in to Your Account, if you have one, and visiting the
+            account settings section that allows you to manage Your personal
+            information. You may also contact Us to request access to, correct,
+            or delete any personal information that You have provided to Us.
+          </p>
+          <p>
+            Please note, however, that We may need to retain certain information
+            when we have a legal obligation or lawful basis to do so.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Disclosure of Your Personal Data</h2>
+          </div>
+          <h3 className="privacy__h3">Business Transactions</h3>
+          <p>
+            If the Company is involved in a merger, acquisition, or asset sale,
+            Your Personal Data may be transferred. We will provide notice before
+            Your Personal Data is transferred and becomes subject to a different
+            Privacy Policy.
+          </p>
+          <h3 className="privacy__h3">Law Enforcement</h3>
+          <p>
+            Under certain circumstances, the Company may be required to disclose
+            Your Personal Data if required to do so by law or in response to
+            valid requests by public authorities (e.g., a court or a government
+            agency).
+          </p>
+          <h3 className="privacy__h3">Other Legal Requirements</h3>
+          <p>
+            The Company may disclose Your Personal Data in the good faith belief
+            that such action is necessary to:
+          </p>
+          <ul className="privacy__ul">
+            <li>Comply with a legal obligation</li>
+            <li>Protect and defend the rights or property of the Company</li>
+            <li>
+              Prevent or investigate possible wrongdoing in connection with the
+              Service
+            </li>
+            <li>
+              Protect the personal safety of Users of the Service or the public
+            </li>
+            <li>Protect against legal liability</li>
+          </ul>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Security of Your Personal Data</h2>
+          </div>
+          <p>
+            The security of Your Personal Data is important to Us, but remember
+            that no method of transmission over the Internet, or method of
+            electronic storage is 100% secure. While We strive to use
+            commercially acceptable means to protect Your Personal Data, We
+            cannot guarantee its absolute security.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Children&apos;s Privacy</h2>
+          </div>
+          <p>
+            Our Service does not address anyone under the age of 13. We do not
+            knowingly collect personally identifiable information from anyone
+            under the age of 13. If You are a parent or guardian and You are
+            aware that Your child has provided Us with Personal Data, please
+            contact Us. If We become aware that We have collected Personal Data
+            from anyone under the age of 13 without verification of parental
+            consent, We take steps to remove that information from Our servers.
+          </p>
+          <p>
+            If We need to rely on consent as a legal basis for processing Your
+            information and Your country requires consent from a parent, We may
+            require Your parent&apos;s consent before We collect and use that
+            information.
+          </p>
+        </div>
+
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Links to Other Websites</h2>
+          </div>
+          <p>
+            Our Service may contain links to other websites that are not
+            operated by Us. If You click on a third party link, You will be
+            directed to that third party&apos;s site. We strongly advise You to
+            review the Privacy Policy of every site You visit.
+          </p>
+          <p>
+            We have no control over and assume no responsibility for the
+            content, privacy policies or practices of any third party sites or
+            services.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Changes to this Privacy Policy</h2>
+          </div>
+          <p>
+            We may update Our Privacy Policy from time to time. We will notify
+            You of any changes by posting the new Privacy Policy on this page.
+          </p>
+          <p>
+            We will let You know via email and/or a prominent notice on Our
+            Service, prior to the change becoming effective and update the
+            &quot;Last updated&quot; date at the top of this Privacy Policy.
+          </p>
+          <p>
+            You are advised to review this Privacy Policy periodically for any
+            changes. Changes to this Privacy Policy are effective when they are
+            posted on this page.
+          </p>
+        </div>
+        <div className="privacy__section">
+          <div className="privacy__h1__container__black privacy__h1__container">
+            <Bullet />
+            <h2 className="privacy__h2">Contact Us</h2>
+          </div>
+          <p>
+            If you have any questions about this Privacy Policy, You can contact
+            us at:
+          </p>
+
+          <span>
+            E-mail:
+            <a className="privacy__email" href="mailto:support@h3llcat.app">
+              support@h3llcat.app
+            </a>
+          </span>
+          <p className="privacy__updated">H3LLCAT &#169;</p>
         </div>
       </div>
-      <p>
-        This Privacy Policy describes Our (&quot;N3XUS&quot;, &quot;team
-        Nexus&quot;, &quot;Nexus Team&quot;, &quot;we&quot;, &quot;us&quot;)
-        policies and procedures on the collection, use and disclosure of Your
-        information (&quot;User information&quot;) when You (&quot;User&quot; or
-        &quot;you&quot;) use H3LLCAT (&quot;the service&quot;) and tells You
-        about Your privacy rights and how the law protects You.
-      </p>
-      <p>
-        We use Your Personal data to provide and improve the Service. By using
-        the Service, You agree to the collection and use of information in
-        accordance with this Privacy Policy.
-      </p>
-      <h1>Interpretation and Definitions</h1>
-      <h2>Interpretation</h2>
-      <p>
-        The words of which the initial letter is capitalized have meanings
-        defined under the following conditions. The following definitions shall
-        have the same meaning regardless of whether they appear in singular or
-        in plural.
-      </p>
-      <h2>Definitions</h2>
-      <p>For the purposes of this Privacy Policy:</p>
-      <ul>
-        <li>
-          <b>Account</b> means a unique account created for You to access our
-          Service or parts of our Service.
-        </li>
-        <li>
-          <b>Affiliate</b> means an entity that controls, is controlled by or is
-          under common control with a party, where &quot;control&quot; means
-          ownership of 50% or more of the shares, equity interest or other
-          securities entitled to vote for election of directors or other
-          managing authority.
-        </li>
-        <li>
-          <b>Application</b> refers to H3LLCAT, the software program provided by
-          the Company.
-        </li>
-        <li>
-          <b>Company</b> (referred to as either &quot;the Company&quot;,
-          &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
-          refers to N3XUS Team, 99 Hudson St, New York, NY 10013, USA.
-        </li>
-        <li>
-          <b>Country</b> refers to: New York, United States
-        </li>
-        <li>
-          <b>Device</b> means any device that can access the Service such as a
-          computer, a cellphone or a digital tablet.
-        </li>
-        <li>
-          <b>Personal Data</b> is any information that relates to an identified
-          or identifiable individual.
-        </li>
-        <li>
-          <b>Service</b> refers to the Application.
-        </li>
-        <li>
-          <b>Service Provider</b> means any natural or legal person who
-          processes the data on behalf of the Company. It refers to third-party
-          companies or individuals employed by the Company to facilitate the
-          Service, to provide the Service on behalf of the Company, to perform
-          services related to the Service or to assist the Company in analyzing
-          how the Service is used.
-        </li>
-        <li>
-          <b>Usage Data</b> refers to data collected automatically, either
-          generated by the use of the Service or from the Service infrastructure
-          itself (for example, the duration of a page visit).
-        </li>
-        <li>
-          <b>You</b> means the individual accessing or using the Service, or the
-          company, or other legal entity on behalf of which such individual is
-          accessing or using the Service, as applicable.
-        </li>
-      </ul>
-      <h1>Collecting and Using Your Personal Data</h1>
-      <h2>Types of Data Collected</h2>
-      <h3>
-        <i>Personal Data</i>
-      </h3>
-      <p>
-        While using Our Service, We may ask You to provide Us with certain
-        personally identifiable information that can be used to contact or
-        identify You. Personally identifiable information may include, but is
-        not limited to:
-      </p>
-      <ul>
-        <li>Usage Data</li>
-        <li>User Logs (User Action Logs)</li>
-      </ul>
-      <h3>
-        <i>Usage Data</i>
-      </h3>
-      <p>Usage Data is collected automatically when using the Service.</p>
-      <p>
-        Usage Data may include information such as Your Device&apos;s Internet
-        Protocol address (e.g. IP address), browser type, browser version, the
-        pages of our Service that You visit, the time and date of Your visit,
-        the time spent on those pages, unique device identifiers and other
-        diagnostic data.
-      </p>
-      <p>
-        When You access the Service by or through a mobile device, We may
-        collect certain information automatically, including, but not limited
-        to, the type of mobile device You use, Your mobile device unique ID, the
-        IP address of Your mobile device, Your mobile operating system, the type
-        of mobile Internet browser You use, unique device identifiers and other
-        diagnostic data.
-      </p>
-      <p>
-        We may also collect information that Your browser sends whenever You
-        visit our Service or when You access the Service by or through a mobile
-        device.
-      </p>
-      <h3>
-        <i>Usage Logs</i>
-      </h3>
-      <p>
-        We collect logs about user actions for further analysis and to maintain
-        a historical record of user interactions with our platform. These logs
-        may include details such as:
-      </p>
-      <ul>
-        <li>Interactions with smart contracts</li>
-        <li>Wallet transactions</li>
-        <li>Time and date of actions</li>
-        <li>Browser and device information</li>
-        <li>
-          Any other relevant data linked to the actions taken within our
-          platform
-        </li>
-      </ul>
-      <p>
-        This information is collected to help us improve our services, ensure
-        the security and integrity of the platform, and troubleshoot any
-        potential issues.
-      </p>
-      <p>
-        In the future, we will integrate <b>Sentry</b> or a similar tool to log
-        all user actions in real-time. This will allow us to capture
-        comprehensive user activity data, including errors, performance issues,
-        and usage patterns, helping us optimize the user experience and detect
-        potential risks proactively.
-      </p>
-      <p>
-        By using our platform, you consent to the collection and processing of
-        user action logs as outlined above. We take appropriate security
-        measures to protect this data and ensure it is used only for the
-        purposes described in this Privacy Policy.
-      </p>
-      <h2>Wallet Usage & Payments</h2>
-      <p>
-        We enable payments through an embedded wallet within our platform to
-        facilitate secure and efficient transactions. When you interact with the
-        wallet, we do not collect or store your private keys or sensitive
-        financial information. All transactions are conducted directly on the
-        blockchain network, ensuring transparency and security.
-      </p>
-      <p>
-        However, we may log metadata related to your transactions, such as
-        wallet addresses, transaction amounts, and time stamps, for auditing
-        purposes, transaction history, and fraud prevention. By using the
-        embedded wallet, you acknowledge and agree to the processing of such
-        metadata as part of your interaction with our platform.
-      </p>
-      <h2>Wallet Integration & Third-Party Services</h2>
-      <p>
-        Our platform integrates with third-party services, such as the
-        <b>Coinbase Wallet Mobile SDK,</b> to provide enhanced functionality and
-        ease of use for our users. When you use the Coinbase Wallet through our
-        platform, the Coinbase Wallet Mobile SDK gives us access to certain
-        wallet-related information, including:
-      </p>
-      <ul>
-        <li>
-          <b>Wallet Address:</b> The unique identifier associated with your
-          wallet.
-        </li>
-        <li>
-          <b>Wallet Balance:</b> The current balance of cryptocurrencies or
-          tokens held in your wallet.
-        </li>
-      </ul>
-      <p>
-        This information is used to enable wallet-related features on our
-        platform, such as facilitating payments, displaying your balance, and
-        verifying transactions. We do not have access to your private keys or
-        the ability to directly manage your wallet.
-      </p>
-      <p>
-        By using our platform and connecting via the Coinbase Wallet Mobile SDK,
-        you consent to the collection and use of your wallet address and balance
-        for the purposes outlined in this Privacy Policy.
-      </p>
-      <h2>Use of Your Personal Data</h2>
-      <p>The Company may use Personal Data for the following purposes:</p>
-      <ul>
-        <li>
-          <b>To provide and maintain our Service</b>, including to monitor the
-          usage of our Service.
-        </li>
-        <li>
-          <b>To manage Your Account:</b> to manage Your registration as a user
-          of the Service. The Personal Data You provide can give You access to
-          different functionalities of the Service that are available to You as
-          a registered user.
-        </li>
-        <li>
-          <b>For the performance of a contract:</b> the development, compliance,
-          and undertaking of the purchase contract for the products, items, or
-          services You have purchased or of any other contract with Us through
-          the Service.
-        </li>
-        <li>
-          <b>To contact You:</b> To contact You by email, telephone calls, SMS,
-          or other equivalent forms of electronic communication, such as a
-          mobile application&apos;s push notifications regarding updates or
-          informative communications related to the functionalities, products,
-          or contracted services, including the security updates when necessary
-          or reasonable for their implementation.
-        </li>
-        <li>
-          <b>To provide You</b> with news, special offers, and general
-          information about other goods, services, and events which we offer
-          that are similar to those that you have already purchased or enquired
-          about unless You have opted not to receive such information.
-        </li>
-        <li>
-          <b>To manage Your requests:</b> To attend and manage Your requests to
-          Us.
-        </li>
-        <li>
-          <b>For business transfers:</b> We may use Your information to evaluate
-          or conduct a merger, divestiture, restructuring, reorganization,
-          dissolution, or other sale or transfer of some or all of Our assets,
-          whether as a going concern or as part of bankruptcy, liquidation, or
-          similar proceeding, in which Personal Data held by Us about our
-          Service users is among the assets transferred.
-        </li>
-        <li>
-          <b>For other purposes:</b> We may use Your information for other
-          purposes, such as data analysis, identifying usage trends, determining
-          the effectiveness of our promotional campaigns, and evaluating and
-          improving our Service, products, services, marketing, and your
-          experience.
-        </li>
-      </ul>
-      <p>We may share Your personal information in the following situations:</p>
-      <ul>
-        <li>
-          <b>With Service Providers:</b> We may share Your personal information
-          with Service Providers to monitor and analyze the use of our Service,
-          to contact You.
-        </li>
-        <li>
-          <b>For business transfers:</b> We may share or transfer Your personal
-          information in connection with, or during negotiations of, any merger,
-          sale of Company assets, financing, or acquisition of all or a portion
-          of Our business to another company.
-        </li>
-        <li>
-          <b>With Affiliates:</b> We may share Your information with Our
-          affiliates, in which case we will require those affiliates to honor
-          this Privacy Policy. Affiliates include Our parent company and any
-          other subsidiaries, joint venture partners, or other companies that We
-          control or that are under common control with Us.
-        </li>
-        <li>
-          <b>With business partners:</b> We may share Your information with Our
-          business partners to offer You certain products, services, or
-          promotions.
-        </li>
-        <li>
-          <b>With other users:</b> when You share personal information or
-          otherwise interact in the public areas with other users, such
-          information may be viewed by all users and may be publicly distributed
-          outside.
-        </li>
-        <li>
-          <b>With Your consent:</b> We may disclose Your personal information
-          for any other purpose with Your consent.
-        </li>
-      </ul>
-      <h2>Retention of Your Personal Data</h2>
-      <p>
-        The Company will retain Your Personal Data only for as long as is
-        necessary for the purposes set out in this Privacy Policy. We will
-        retain and use Your Personal Data to the extent necessary to comply with
-        our legal obligations (for example, if we are required to retain your
-        data to comply with applicable laws), resolve disputes, and enforce our
-        legal agreements and policies.
-      </p>
-      <p>
-        The Company will also retain Usage Data for internal analysis purposes.
-        Usage Data is generally retained for a shorter period of time, except
-        when this data is used to strengthen the security or improve the
-        functionality of Our Service, or We are legally obligated to retain this
-        data for longer time periods.
-      </p>
-      <h2>Transfer of Your Personal Data</h2>
-      <p>
-        Your information, including Personal Data, is processed at the
-        Company&apos;s operating offices and in any other places where the
-        parties involved in the processing are located. It means that this
-        information may be transferred to — and maintained on — computers
-        located outside of Your state, province, country, or other governmental
-        jurisdiction where the data protection laws may differ from those of
-        Your jurisdiction.
-      </p>
-      <p>
-        Your consent to this Privacy Policy followed by Your submission of such
-        information represents Your agreement to that transfer.
-      </p>
-      <p>
-        The Company will take all steps reasonably necessary to ensure that Your
-        data is treated securely and in accordance with this Privacy Policy and
-        no transfer of Your Personal Data will take place to an organization or
-        a country unless there are adequate controls in place including the
-        security of Your data and other personal information.
-      </p>
-      <h2>Delete Your Personal Data</h2>
-      <p>
-        You have the right to delete or request that We assist in deleting the
-        Personal Data that We have collected about You.
-      </p>
-      <p>
-        Our Service may give You the ability to delete certain information about
-        You from within the Service.
-      </p>
-      <p>
-        You may update, amend, or delete Your information at any time by signing
-        in to Your Account, if you have one, and visiting the account settings
-        section that allows you to manage Your personal information. You may
-        also contact Us to request access to, correct, or delete any personal
-        information that You have provided to Us.
-      </p>
-      <p>
-        Please note, however, that We may need to retain certain information
-        when we have a legal obligation or lawful basis to do so.
-      </p>
-      <h2>Disclosure of Your Personal Data</h2>
-      <h3>
-        <i>Business Transactions</i>
-      </h3>
-      <p>
-        If the Company is involved in a merger, acquisition, or asset sale, Your
-        Personal Data may be transferred. We will provide notice before Your
-        Personal Data is transferred and becomes subject to a different Privacy
-        Policy.
-      </p>
-      <h3>
-        <i>Law Enforcement</i>
-      </h3>
-      <p>
-        Under certain circumstances, the Company may be required to disclose
-        Your Personal Data if required to do so by law or in response to valid
-        requests by public authorities (e.g., a court or a government agency).
-      </p>
-      <h3>
-        <i>Other Legal Requirements</i>
-      </h3>
-      <p>
-        The Company may disclose Your Personal Data in the good faith belief
-        that such action is necessary to:
-      </p>
-      <ul>
-        <li>Comply with a legal obligation</li>
-        <li>Protect and defend the rights or property of the Company</li>
-        <li>
-          Prevent or investigate possible wrongdoing in connection with the
-          Service
-        </li>
-        <li>
-          Protect the personal safety of Users of the Service or the public
-        </li>
-        <li>Protect against legal liability</li>
-      </ul>
-      <h2>Security of Your Personal Data</h2>
-      <p>
-        The security of Your Personal Data is important to Us, but remember that
-        no method of transmission over the Internet, or method of electronic
-        storage is 100% secure. While We strive to use commercially acceptable
-        means to protect Your Personal Data, We cannot guarantee its absolute
-        security.
-      </p>
-      <h2>Children&apos;s Privacy</h2>
-      <p>
-        Our Service does not address anyone under the age of 13. We do not
-        knowingly collect personally identifiable information from anyone under
-        the age of 13. If You are a parent or guardian and You are aware that
-        Your child has provided Us with Personal Data, please contact Us. If We
-        become aware that We have collected Personal Data from anyone under the
-        age of 13 without verification of parental consent, We take steps to
-        remove that information from Our servers.
-      </p>
-      <p>
-        If We need to rely on consent as a legal basis for processing Your
-        information and Your country requires consent from a parent, We may
-        require Your parent&apos;s consent before We collect and use that
-        information.
-      </p>
-      <h2>Links to Other Websites</h2>
-      <p>
-        Our Service may contain links to other websites that are not operated by
-        Us. If You click on a third party link, You will be directed to that
-        third party&apos;s site. We strongly advise You to review the Privacy
-        Policy of every site You visit.
-      </p>
-      <p>
-        We have no control over and assume no responsibility for the content,
-        privacy policies or practices of any third party sites or services.
-      </p>
-      <h2>Changes to this Privacy Policy</h2>
-      <p>
-        We may update Our Privacy Policy from time to time. We will notify You
-        of any changes by posting the new Privacy Policy on this page.
-      </p>
-      <p>
-        We will let You know via email and/or a prominent notice on Our Service,
-        prior to the change becoming effective and update the &quot;Last
-        updated&quot; date at the top of this Privacy Policy.
-      </p>
-      <p>
-        You are advised to review this Privacy Policy periodically for any
-        changes. Changes to this Privacy Policy are effective when they are
-        posted on this page.
-      </p>
-      <h2>Contact Us</h2>
-      <p>
-        If you have any questions about this Privacy Policy, You can contact us
-        at:
-      </p>
-      <p>N3XUS Team</p>
-      <p>E-mail: synapseflux@gmail.com</p>
     </div>
   );
 }
