@@ -1,11 +1,11 @@
-import { Globe, ChevDown, Bullet } from "@/components/icon";
+import { Globe, ChevDown, Bullet, Nexus } from "@/components/icon";
 
 export default function Privacy() {
   return (
     <div className="privacy">
       <div className="privacy__container">
         <div className="privacy__navigation">
-          <div className="privacy__navigation__icon" />
+          <Nexus />
           <span className="privacy__navigation__team">
             N3XUS
             <span className="privacy__navigation__responsive">Team</span>
