@@ -7,7 +7,7 @@ export default function Privacy() {
         <div className="privacy__navigation">
           <Nexus />
           <span className="privacy__navigation__team">
-            KEK
+            H3LLCAT
             <span className="privacy__navigation__responsive">Team</span>
           </span>
           <div className="privacy__navigation__language">
