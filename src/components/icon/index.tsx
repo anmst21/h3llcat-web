@@ -7,8 +7,10 @@ import CollectionLock from "./CollectionLock";
 import CollectionContract from "./CollectionContract";
 import CollectionId from "./CollectionId";
 import CollectionStandard from "./CollectionStandard";
+import HeaderLogo from "./HeaderLogo";
 
 export {
+  HeaderLogo,
   Globe,
   ChevDown,
   Bullet,

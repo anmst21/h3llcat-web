@@ -1,0 +1,28 @@
+.header {
+    padding: 20px;
+    gap: 10px;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &__btn {
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 590;
+        line-height: 24px;
+        /* 114.286% */
+        font-variant: all-small-caps;
+        letter-spacing: 0.4px;
+        font-family: var(--font-sf-pro);
+        color: black;
+        display: flex;
+        padding: 0px 9px 2px 9px;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

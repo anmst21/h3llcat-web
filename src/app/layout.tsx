@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
+import Header from "@/components/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,6 +14,36 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+const sfPro = localFont({
+  src: [
+    {
+      path: "./fonts/SFPro.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/SFPro-Semibold.ttf",
+      weight: "590",
+      style: "normal",
+    },
+    {
+      path: "./fonts/SFPro-Medium.ttf",
+      weight: "510",
+      style: "normal",
+    },
+    {
+      path: "./fonts/SFPro-SemiboldItalic.ttf",
+      weight: "590",
+      style: "italic",
+    },
+    {
+      path: "./fonts/SFPro-ExpandedBold.ttf",
+      weight: "760",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sf-pro",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +58,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${sfPro.variable}`}
+      >
+        <Header />
         {children}
       </body>
     </html>

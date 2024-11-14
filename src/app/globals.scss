@@ -1,6 +1,9 @@
 @import "./styles/media.scss";
 @import "./fonts/coinbase-mono/stylesheet.css";
 @import "./privacy/page.scss";
+@import "./collection/[address]/[nft]/page.scss";
+@import "../components/header/index.scss";
+@import "../components/footer/index.scss";
 
 
 
@@ -10,6 +13,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --color-shadow: rgba(0, 0, 0, 0.20);
+  --starlight-secondary: rgba(255, 248, 231, 0.10);
+  --space-light-secondary: rgba(18, 22, 33, 0.80);
+  --box-shadow: 0px 2px 16px 0px var(--color-shadow);
+  --accent-yellow: #FC0;
+
+  --sf-pro: var(--font-sf-pro), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +34,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  height: 100dvh;
 }
 
 body {
