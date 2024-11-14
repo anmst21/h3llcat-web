@@ -8,12 +8,17 @@
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    align-items: center;
 
     &__code {
         border-radius: 8px;
         background-color: black;
-        width: 72px;
-        height: 72px;
+        width: 100px;
+        height: 100px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        position: relative;
     }
 
     &__logo {
@@ -52,5 +57,44 @@
             }
         }
     }
+
+}
+
+
+.center {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.sq-top-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    rotate: 90deg;
+
+}
+
+.sq-top-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    rotate: 180deg;
+
+}
+
+.sq-bot-left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
 
 }

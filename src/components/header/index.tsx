@@ -26,8 +26,12 @@ const navBtns = [
 ];
 
 export default async function Header() {
-  const fullUrl = headers().get("referer") || "";
-  const { pathname } = new URL(fullUrl);
+  const fullUrl = headers().get("referer") || null;
+
+  let pathname: string = "";
+  if (fullUrl) {
+    pathname = new URL(fullUrl).pathname;
+  }
 
   const navBtnsWithActive = navBtns.map((btn) => ({
     ...btn,

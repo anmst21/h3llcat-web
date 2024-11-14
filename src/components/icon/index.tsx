@@ -8,8 +8,12 @@ import CollectionContract from "./CollectionContract";
 import CollectionId from "./CollectionId";
 import CollectionStandard from "./CollectionStandard";
 import HeaderLogo from "./HeaderLogo";
+import QrLogo from "./QrLogo";
+import QrSq from "./QrSq";
 
 export {
+  QrSq,
+  QrLogo,
   HeaderLogo,
   Globe,
   ChevDown,
