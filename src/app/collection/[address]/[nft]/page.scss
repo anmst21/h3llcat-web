@@ -1,20 +1,58 @@
 .nft {
+
+    display: flex;
+    flex: 1;
+    height: 100%;
+    background-color: var(--accent-yellow);
+    align-items: center;
+    justify-content: center;
+
+
+
+    &__corner {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 20px;
+
+        &__state {
+            position: relative;
+            border-radius: 3px;
+            width: 55px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--text-primary);
+
+            span {
+                letter-spacing: 0.4px;
+                font-size: 21px;
+                font-weight: 590;
+                color: var(--accent-yellow);
+                font-family: var(--font-sf-pro);
+            }
+        }
+    }
+
+
     &__container {
-        display: flex;
-        flex: 1;
-        height: 100%;
-        background-color: var(--accent-yellow);
-        align-items: center;
-        justify-content: center;
+        width: 392px;
+        height: 589px;
+
+        position: relative;
     }
 
 
 
-
-
-
-
     &__card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+
         &__name {
             font-weight: 760;
             font-family: var(--font-sf-pro);
@@ -22,8 +60,7 @@
             letter-spacing: -0.08px;
         }
 
-        width: 392px;
-        height: 589px;
+
         display: flex;
         border-radius: 25px;
         border: 1px solid var(--starlight-secondary);
@@ -31,4 +68,30 @@
         box-shadow: var(--box-shadow);
         backdrop-filter: blur(10px);
     }
+}
+
+
+.pyramid-img,
+.crystall-img,
+.leaf-img {
+    z-index: 1;
+    position: absolute;
+}
+
+.pyramid-img {
+
+    left: -100px;
+    top: -60px;
+}
+
+.crystall-img {
+
+    right: -150px;
+    top: 100px
+}
+
+.leaf-img {
+
+    bottom: -50px;
+    left: -90px;
 }
