@@ -1,7 +1,7 @@
 import Image from "next/image";
 import image from "@/app/logo-display.svg";
 import QRCode from "./qr-code";
-export default function Footer() {
+export default function Footer({ uri }: { uri: string }) {
   return (
     <div className="footer">
       <div className="footer__logo">
@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <QRCode uri="http://localhost:3000/collection/0b9f682f-dd5a-4452-8e56-188e8cd585e0/59ecbd91-fd06-44b4-be63-58d46a698f96" />
+      <QRCode uri={uri} />
     </div>
   );
 }

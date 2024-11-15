@@ -64,11 +64,35 @@
         padding-top: 0;
         gap: 30px;
 
+        &__sticks {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            padding: 5px 10px;
+
+            span {
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                letter-spacing: -0.08px;
+                color: var(--accent-yellow);
+                font-family: var(--font-sf-pro);
+
+                span {
+                    color: var(--text-grey);
+                    margin-left: 1px;
+                }
+            }
+        }
+
         &__comment {
             display: flex;
             height: 50px;
             width: 100%;
+            align-items: center;
 
+            gap: 15px;
 
             &__item {
                 display: flex;

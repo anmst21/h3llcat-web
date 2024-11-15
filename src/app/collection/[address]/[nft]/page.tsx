@@ -6,6 +6,8 @@ import { truncateEthAddress } from "@/helpers/truncateAddress";
 import BgImages from "@/components/collection/bg-images";
 import { CollectionLock, CoinFade } from "@/components/icon";
 import { stringToColor } from "@/helpers/stringToColor";
+import Footer from "@/components/footer";
+import Sticks from "@/components/collection/sticks";
 
 const gateway = "https://hellcat.nyc3.cdn.digitaloceanspaces.com";
 const apiUri = "https://api.h3llcat.app";
@@ -16,6 +18,7 @@ export default async function Nft({
   params: Promise<{ nft: string; address: string }>;
 }) {
   const postId = (await params).nft;
+  const contractId = (await params).address;
   const { data } = await axios.get(apiUri + "/anonymous/rodeo/post", {
     params: { postId },
   });
@@ -97,6 +100,20 @@ export default async function Nft({
               <span>Comment...</span>
               <CollectionLock />
             </div>
+
+            <div className="nft__card__sticks">
+              <Sticks
+                totalSticks={6}
+                filledSticks={filledSticks}
+                stickWidth={3}
+                stickHeight={12}
+                gap={3}
+              />
+              <span>
+                {hoursRemaining}
+                <span>h</span>
+              </span>
+            </div>
           </div>
 
           <div className="nft__card__meta">
@@ -113,6 +130,7 @@ export default async function Nft({
           </div>
         </div>
       </div>
+      <Footer uri={`hellcat:///collection/${contractId}/${postId}`} />
     </div>
   );
 }
