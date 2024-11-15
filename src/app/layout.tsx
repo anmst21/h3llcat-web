@@ -68,6 +68,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${sfPro.variable}`}
       >
         <Header />
+
         <Script src="/interractiveCard.js" strategy="lazyOnload" />
 
         {children}

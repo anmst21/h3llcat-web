@@ -97,6 +97,7 @@
         gap: 30px;
 
 
+
         &__cta {
             display: flex;
             height: 70px;
@@ -193,8 +194,7 @@
             img {
                 position: absolute;
                 border-radius: 2px;
-                box-shadow: 0px 2px 16px 0px var(--color-shadow);
-                //  background-color: black;
+                box-shadow: var(--box-shadow); //  background-color: black;
             }
 
             &__1 {
@@ -389,12 +389,16 @@
     height: 400px;
     width: 400px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.13);
+    background-color: rgba(255, 255, 255, 0.01);
     filter: brightness(70%) blur(20px);
     color: #333;
     font-weight: bold;
     left: -20%;
     top: -13%;
+
+    @include respond-to-phone(large) {
+        display: none;
+    }
 }
 
 .nft__container * {
