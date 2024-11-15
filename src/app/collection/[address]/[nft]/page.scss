@@ -47,9 +47,7 @@
         width: 392px;
         height: 536px;
 
-        @include respond-to-phone(large) {
-            height: 650px;
-        }
+
 
         position: relative;
 
