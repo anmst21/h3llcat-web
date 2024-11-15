@@ -21,7 +21,7 @@ export default async function Nft({
   );
 
   const { creatorAddress, contractAddress } = data.collection;
-  const images = data.posts.map((post: any, id: number) => {
+  const images = data.posts.map((post: any) => {
     const fullUri = `${gateway}/${
       post.image.ipfsCid.split("ipfs://")[1]
     }_Sm.webp`;
