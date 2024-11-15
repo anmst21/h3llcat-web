@@ -106,7 +106,7 @@ export default async function Nft({
           </div>
         </div>
       </div>
-      <Footer uri={`h3llcat:///collection/${collectionId}`} />
+      <Footer sqSize={18} uri={`h3llcat:///collection/${collectionId}`} />
     </div>
   );
 }

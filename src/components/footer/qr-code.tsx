@@ -11,9 +11,10 @@ function generateQRCodeData(text: string) {
 
 interface ShowCodeProps {
   uri: string;
+  sqSize: number;
 }
 
-const ShowCode: React.FC<ShowCodeProps> = ({ uri }) => {
+const ShowCode: React.FC<ShowCodeProps> = ({ uri, sqSize }) => {
   const reservedBit = generateQRCodeData(uri);
   const size = 100 - 14;
 
@@ -31,13 +32,13 @@ const ShowCode: React.FC<ShowCodeProps> = ({ uri }) => {
     <div className="footer__code">
       <div style={{ position: "relative", display: "flex" }}>
         <div className="sq-top-left">
-          <QrSq />
+          <QrSq size={sqSize} />
         </div>
         <div className="sq-bot-left">
-          <QrSq />
+          <QrSq size={sqSize} />
         </div>
         <div className="sq-top-right">
-          <QrSq />
+          <QrSq size={sqSize} />
         </div>
         <svg
           style={{ borderRadius: 3 }}

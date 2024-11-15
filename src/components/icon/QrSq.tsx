@@ -1,10 +1,10 @@
 import * as React from "react";
 
-const SvgIcon = () => (
+const SvgIcon = ({ size }: { size: number }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
+    width={size}
+    height={size}
     fill="none"
     viewBox="0 0 7 7"
   >
