@@ -6,6 +6,10 @@ import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { MetaItemName } from "@/components/collection/types";
 import MetaItem from "@/components/collection/meta-item";
 import Image from "next/image";
+import image from "@/app/logo-display.svg";
+import CornerStatus from "@/components/collection/coner-status";
+import SidebarBtn from "@/components/header/sidebar-btn";
+import CtaBtn from "@/components/collection/cta-btn";
 
 export default async function Nft({
   params,
@@ -51,11 +55,14 @@ export default async function Nft({
   return (
     <div className="nft">
       <div className="nft__corner">
-        <div className="nft__corner__state">
-          <span>COLLECTION</span>
-        </div>
+        <CornerStatus status="collection" />
       </div>
       <div className="nft__container">
+        <div className="nft__container__status">
+          <Image width={26} height={26} src={image} alt="logo-status" />
+
+          <CornerStatus status="collection" />
+        </div>
         <BgImages />
         <div className="nft__card">
           <div className="nft__card__images">
@@ -103,9 +110,11 @@ export default async function Nft({
                 );
               })}
             </div>
+            <CtaBtn collectionId={collectionId} />
           </div>
         </div>
       </div>
+      <SidebarBtn />
       <Footer sqSize={18} uri={`h3llcat:///collection/${collectionId}`} />
     </div>
   );

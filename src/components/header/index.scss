@@ -9,6 +9,11 @@
     justify-content: center;
     flex-wrap: wrap;
 
+
+    @include respond-to-phone(large) {
+        display: none;
+    }
+
     &__btn {
         font-size: 21px;
         font-style: normal;
@@ -25,4 +30,30 @@
         align-items: center;
     }
 
+}
+
+.sidebar {
+    &__btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 10px;
+        padding-right: 24px;
+        display: none;
+
+        @include respond-to-phone(large) {
+            display: flex;
+        }
+
+        &__container {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+        }
+    }
 }

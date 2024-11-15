@@ -12,8 +12,10 @@ import QrLogo from "./QrLogo";
 import QrSq from "./QrSq";
 import CoinFade from "./CoinFade";
 import ChevBtn from "./ChevBtn";
+import SidebarWindow from "./SidebarWindow";
 
 export {
+  SidebarWindow,
   ChevBtn,
   CoinFade,
   QrSq,

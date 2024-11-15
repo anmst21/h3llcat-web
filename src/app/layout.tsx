@@ -38,6 +38,11 @@ const sfPro = localFont({
       style: "italic",
     },
     {
+      path: "./fonts/SFPro-ExpandedSemibold.ttf",
+      weight: "650",
+      style: "normal",
+    },
+    {
       path: "./fonts/SFPro-ExpandedBold.ttf",
       weight: "760",
       style: "normal",

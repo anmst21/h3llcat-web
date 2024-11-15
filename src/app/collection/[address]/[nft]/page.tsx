@@ -9,6 +9,10 @@ import { stringToColor } from "@/helpers/stringToColor";
 import Footer from "@/components/footer";
 import Sticks from "@/components/collection/sticks";
 import { apiUri, gateway } from "@/helpers/uris";
+import CtaBtn from "@/components/collection/cta-btn";
+import SidebarBtn from "@/components/header/sidebar-btn";
+import CornerStatus from "@/components/collection/coner-status";
+import image from "@/app/logo-display.svg";
 
 export default async function Nft({
   params,
@@ -64,12 +68,15 @@ export default async function Nft({
   return (
     <div className="nft">
       <div className="nft__corner">
-        <div className="nft__corner__state">
-          <span>NFT</span>
-        </div>
+        <CornerStatus status="nft" />
       </div>
       <div className="nft__container">
         <BgImages />
+        <div className="nft__container__status">
+          <Image width={26} height={26} src={image} alt="logo-status" />
+
+          <CornerStatus status="nft" />
+        </div>
         <div className="nft__card">
           <div className="nft__card__top">
             <div className="nft__card__image">
@@ -125,8 +132,11 @@ export default async function Nft({
               );
             })}
           </div>
+          <CtaBtn collectionId={contractId} />
         </div>
       </div>
+      <SidebarBtn />
+
       <Footer
         sqSize={14}
         uri={`h3llcat:///collection/${contractId}/${postId}`}

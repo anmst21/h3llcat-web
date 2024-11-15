@@ -10,6 +10,12 @@
     flex-wrap: wrap;
     align-items: center;
 
+    @include respond-to-phone(large) {
+        // Adjustments for screens smaller than 1000px
+        display: none;
+
+    }
+
     &__code {
         border-radius: 8px;
         background-color: var(--text-primary);
