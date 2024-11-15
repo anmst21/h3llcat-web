@@ -132,7 +132,7 @@ export default async function Nft({
               );
             })}
           </div>
-          <CtaBtn collectionId={contractId} />
+          {/* <CtaBtn collectionId={contractId} /> */}
         </div>
       </div>
       <SidebarBtn />
