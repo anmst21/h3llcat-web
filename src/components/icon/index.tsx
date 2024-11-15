@@ -10,8 +10,10 @@ import CollectionStandard from "./CollectionStandard";
 import HeaderLogo from "./HeaderLogo";
 import QrLogo from "./QrLogo";
 import QrSq from "./QrSq";
+import CoinFade from "./CoinFade";
 
 export {
+  CoinFade,
   QrSq,
   QrLogo,
   HeaderLogo,

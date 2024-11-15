@@ -41,7 +41,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ uri }) => {
           <QrSq />
         </div>
         <svg
-          style={{ borderRadius: 5 }}
+          style={{ borderRadius: 3 }}
           width={size}
           height={size}
           viewBox={`0 0 ${size} ${size}`}

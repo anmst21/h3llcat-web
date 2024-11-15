@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer__logo">
         <Image width={50} height={50} src={image} alt="logo-footer" />
         <div className="footer__logo__text">
-          <span className="footer__logo__text__top">Get Display app</span>
+          <span className="footer__logo__text__top">View on Display</span>
           <span className="footer__logo__text__bot">
             Scan QR code to open link in app
           </span>

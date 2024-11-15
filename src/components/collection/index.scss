@@ -1,0 +1,38 @@
+.meta-item {
+
+    &--bg {
+        background-color: var(--starlight-card);
+    }
+
+    &__info {
+        align-items: center;
+        gap: 10px;
+        display: flex;
+
+        span {
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 510;
+            line-height: 20px;
+            font-family: var(--font-sf-pro);
+            letter-spacing: -0.08px;
+            color: var(--starlight-dark)
+        }
+    }
+
+    &__value {
+        margin-left: auto;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 510;
+        line-height: 20px;
+        /* 117.647% */
+        letter-spacing: -0.08px;
+        font-family: var(--font-sf-pro);
+    }
+
+    border-radius: 13px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}

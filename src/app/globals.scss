@@ -4,6 +4,7 @@
 @import "./collection/[address]/[nft]/page.scss";
 @import "../components/header/index.scss";
 @import "../components/footer/index.scss";
+@import "../components/collection/index.scss";
 
 
 
@@ -16,7 +17,10 @@
 
   --color-shadow: rgba(0, 0, 0, 0.20);
   --starlight-secondary: rgba(255, 248, 231, 0.10);
+  --starlight-card: rgba(147, 145, 142, 0.10);
+  --starlight-dark: rgba(147, 145, 142, 0.80);
   --space-light-secondary: rgba(18, 22, 33, 0.80);
+  --white-comment: rgba(255, 255, 255, 0.05);
   --box-shadow: 0px 2px 16px 0px var(--color-shadow);
   --accent-yellow: #FC0;
 

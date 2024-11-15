@@ -1,15 +1,65 @@
+import axios from "axios";
 import Image from "next/image";
-import pyramidImg from "@/app/collection-img-pyramid.png";
-import leafImg from "@/app/collection-img-leaf.png";
-import crystallImg from "@/app/collection-img-crystall.png";
+import MetaItem from "@/components/collection/meta-item";
+import { MetaItemName } from "@/components/collection/types";
+import { truncateEthAddress } from "@/helpers/truncateAddress";
+import BgImages from "@/components/collection/bg-images";
+import { CollectionLock, CoinFade } from "@/components/icon";
+import { stringToColor } from "@/helpers/stringToColor";
+
+const gateway = "https://hellcat.nyc3.cdn.digitaloceanspaces.com";
+const apiUri = "https://api.h3llcat.app";
 
 export default async function Nft({
   params,
 }: {
   params: Promise<{ nft: string; address: string }>;
 }) {
-  const nft = (await params).nft;
-  const address = (await params).address;
+  const postId = (await params).nft;
+  const { data } = await axios.get(apiUri + "/anonymous/rodeo/post", {
+    params: { postId },
+  });
+
+  const {
+    mintEndDatetime,
+    image: { name, category, ipfsCid, width, height },
+    collection: { contractAddress, creatorAddress, tokenId },
+    mints: { total },
+  } = data.post;
+
+  const hash = ipfsCid.split("ipfs://")[1];
+  const fullUriSm = `${gateway}/${hash}_Sm.webp`;
+
+  const currentTime = Math.floor(Date.now() / 1000);
+  const endTime = Math.floor(new Date(mintEndDatetime).getTime() / 1000);
+  const remainingSeconds = Math.max(endTime - currentTime, 0);
+  const hoursRemaining = Math.floor(remainingSeconds / 3600);
+  const filledSticks = Math.ceil(hoursRemaining / 4) - 1;
+
+  console.log("filledSticks", filledSticks, hoursRemaining);
+
+  const metaItemData = [
+    {
+      name: MetaItemName.contract,
+      value: truncateEthAddress(contractAddress),
+      isBg: false,
+    },
+    {
+      name: MetaItemName.token,
+      value: tokenId,
+      isBg: true,
+    },
+    {
+      name: MetaItemName.chain,
+      value: "Base",
+      isBg: false,
+    },
+    {
+      name: MetaItemName.standard,
+      value: "ERC-1155",
+      isBg: true,
+    },
+  ];
 
   return (
     <div className="nft">
@@ -19,32 +69,50 @@ export default async function Nft({
         </div>
       </div>
       <div className="nft__container">
-        <Image
-          className="pyramid-img"
-          src={pyramidImg}
-          width={192.12}
-          height={192.12}
-          alt="pyramid"
-        />
-        <Image
-          className="leaf-img"
-          src={leafImg}
-          width={191.66}
-          height={191.66}
-          alt="leaf"
-        />
-        <Image
-          className="crystall-img"
-          src={crystallImg}
-          width={262.62}
-          height={262.62}
-          alt="crystall"
-        />
+        <BgImages />
         <div className="nft__card">
-          <span className="nft__card__name">Citizen Sleeper</span>
+          <div className="nft__card__top">
+            <div className="nft__card__image">
+              <Image
+                src={fullUriSm}
+                alt="nft-preview"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="nft__card__text">
+              <span className="nft__card__name">{name}</span>
+              <span className="nft__card__creator">{category}</span>
+            </div>
+          </div>
+
+          <div className="nft__card__comment">
+            <div className="nft__card__comment__item">
+              <div
+                className="coin-fade"
+                style={{ color: stringToColor(contractAddress) }}
+              >
+                <CoinFade />
+              </div>
+              <span>Comment...</span>
+              <CollectionLock />
+            </div>
+          </div>
+
+          <div className="nft__card__meta">
+            {metaItemData.map((data, index) => {
+              return (
+                <MetaItem
+                  name={data.name}
+                  value={data.value}
+                  isBg={data.isBg}
+                  key={index}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-//   Hello!{nft} {address}
