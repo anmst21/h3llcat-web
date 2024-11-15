@@ -9,8 +9,6 @@ import Image from "next/image";
 import image from "@/app/logo-display.svg";
 import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
-import CtaBtn from "@/components/collection/cta-btn";
-
 export default async function Nft({
   params,
 }: {
@@ -65,6 +63,7 @@ export default async function Nft({
         </div>
         <BgImages />
         <div className="nft__card">
+          <div className="highlight" />
           <div className="nft__card__images">
             {images.map((uri: string, key: number) => {
               return (
