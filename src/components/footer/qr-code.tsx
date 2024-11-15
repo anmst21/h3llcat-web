@@ -2,7 +2,6 @@
 
 import QRCode from "qrcode";
 import { QrLogo, QrSq } from "../icon";
-import { relative } from "path";
 
 function generateQRCodeData(text: string) {
   // Generate QR code data

@@ -8,9 +8,7 @@ import { CollectionLock, CoinFade } from "@/components/icon";
 import { stringToColor } from "@/helpers/stringToColor";
 import Footer from "@/components/footer";
 import Sticks from "@/components/collection/sticks";
-
-const gateway = "https://hellcat.nyc3.cdn.digitaloceanspaces.com";
-const apiUri = "https://api.h3llcat.app";
+import { apiUri, gateway } from "@/helpers/uris";
 
 export default async function Nft({
   params,
@@ -25,9 +23,8 @@ export default async function Nft({
 
   const {
     mintEndDatetime,
-    image: { name, category, ipfsCid, width, height },
-    collection: { contractAddress, creatorAddress, tokenId },
-    mints: { total },
+    image: { name, category, ipfsCid },
+    collection: { contractAddress, tokenId },
   } = data.post;
 
   const hash = ipfsCid.split("ipfs://")[1];
@@ -130,7 +127,7 @@ export default async function Nft({
           </div>
         </div>
       </div>
-      <Footer uri={`hellcat:///collection/${contractId}/${postId}`} />
+      <Footer uri={`h3llcat:///collection/${contractId}/${postId}`} />
     </div>
   );
 }

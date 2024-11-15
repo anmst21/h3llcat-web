@@ -11,8 +11,10 @@ import HeaderLogo from "./HeaderLogo";
 import QrLogo from "./QrLogo";
 import QrSq from "./QrSq";
 import CoinFade from "./CoinFade";
+import ChevBtn from "./ChevBtn";
 
 export {
+  ChevBtn,
   CoinFade,
   QrSq,
   QrLogo,

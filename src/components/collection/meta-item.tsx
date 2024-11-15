@@ -14,7 +14,7 @@ interface MetaItemProps {
 }
 
 const MetaItem: React.FC<MetaItemProps> = ({ name, value, isBg }) => {
-  let itemData: { name: string; icon: any };
+  let itemData: { name: string; icon: JSX.Element };
 
   switch (name) {
     case MetaItemName.contract:
