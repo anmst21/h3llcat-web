@@ -6,19 +6,19 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
 const ThreeScene: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const objects: THREE.Object3D[] = []; // Store objects for animation
 
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      40,
+      10,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     );
-    camera.position.set(0, 10, 40);
+    camera.position.set(0, 20, 150);
     camera.lookAt(0, 10, 0);
 
-    // Initialize the renderer
     const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
@@ -28,13 +28,13 @@ const ThreeScene: React.FC = () => {
       containerRef.current.appendChild(renderer.domElement);
     }
 
-    // Helper function to load, position, and scale FBX objects
+    // Helper function to load, position, scale, and add objects to the animation list
     const loadFBXObject = (
       path: string,
       x: number,
       y: number,
       z: number,
-      scaleFactor: number,
+      scaleFactor: number
     ) => {
       const loader = new FBXLoader();
       loader.load(
@@ -52,7 +52,9 @@ const ThreeScene: React.FC = () => {
           // Set position and scale
           object.position.set(x, y, z);
           object.scale.set(scaleFactor, scaleFactor, scaleFactor);
+
           scene.add(object);
+          objects.push(object); // Add object to the array for rotation
         },
         (xhr) => {
           console.log(`FBX Model Loaded: ${(xhr.loaded / xhr.total) * 100}%`);
@@ -63,32 +65,36 @@ const ThreeScene: React.FC = () => {
       );
     };
 
-    // Left/Right X
-    // Up/Down Y
-    // Near/Far Z
-
-    // Load and place objects with specific positions and scales
-    loadFBXObject("/assets/three/Cone.fbx", -4, 10, 0, 0.01);
-    loadFBXObject("/assets/three/Ico.fbx", -3, 15, 0, 0.01);
-    loadFBXObject("/assets/three/Sphere.fbx", 6, 10, 0, 0.01);
-    //loadFBXObject("/assets/three/Cube.fbx", 1, 10, 2, 0.01);
-    // loadFBXObject("/assets/three/Cylinder.fbx", 10, -10, -10, 0.01);
+    // Load objects with specific positions and scales
+    loadFBXObject("/assets/three/Cone.fbx", -4, 10, 0, 0.01); // Cone
+    loadFBXObject("/assets/three/Ico.fbx", 0, 10, 0, 0.01); // Ico
+    loadFBXObject("/assets/three/Sphere.fbx", 4, 10, 0, 0.01); // Sphere
 
     // Add a GridHelper
-    const gridHelper = new THREE.GridHelper(20, 20);
+    const gridHelper = new THREE.GridHelper(30, 30);
     scene.add(gridHelper);
 
     // Add Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 3);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(10, 10, 10);
-    scene.add(pointLight);
+    const pointLight1 = new THREE.PointLight(0xffffff, 100);
+    pointLight1.position.set(3, 20, 5);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0xffffff, 100);
+    pointLight2.position.set(-3, 0, -5);
+    scene.add(pointLight2);
 
     // Animation Loop
     const animate = () => {
       requestAnimationFrame(animate);
+
+      // Rotate each object around its own Y-axis
+      objects.forEach((obj) => {
+        obj.rotation.y += 0.01; // Rotate about Y-axis
+      });
+
       renderer.render(scene, camera);
     };
     animate();
