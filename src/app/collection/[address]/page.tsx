@@ -9,6 +9,8 @@ import Image from "next/image";
 import image from "@/app/logo-display.svg";
 import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
+import ThreeScene from '@/components/three-scene';
+
 export default async function Nft({
   params,
 }: {
@@ -61,7 +63,9 @@ export default async function Nft({
 
           <CornerStatus status="collection" />
         </div>
+
         <BgImages />
+
         <div className="nft__card">
           <div className="highlight" />
           <div className="nft__card__images">
