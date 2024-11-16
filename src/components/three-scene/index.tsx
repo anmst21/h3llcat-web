@@ -28,7 +28,31 @@ const ThreeScene: React.FC = () => {
       containerRef.current.appendChild(renderer.domElement);
     }
 
-    // Helper function to load, position, scale, and add objects to the animation list
+    const material = new THREE.ShaderMaterial({
+      vertexShader: `
+        varying vec3 vPosition;
+
+        void main() {
+          vPosition = position;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vPosition;
+        uniform float time;
+
+        void main() {
+          vec3 color = vec3(0.5 + 0.5 * sin(vPosition.x + time),
+                            0.5 + 0.5 * sin(vPosition.y + time),
+                            0.5 + 0.5 * sin(vPosition.z + time));
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `,
+      uniforms: {
+        time: { value: 0.0 }, // Pass time as a uniform
+      },
+    });
+
     const loadFBXObject = (
       path: string,
       x: number,
@@ -43,18 +67,17 @@ const ThreeScene: React.FC = () => {
           object.traverse((child: any) => {
             if ((child as THREE.Mesh).isMesh) {
               const mesh = child as THREE.Mesh;
-              (mesh.material as THREE.Material).transparent = true;
+              mesh.material = material;
             }
           });
 
           console.log("Loaded object:", object);
 
-          // Set position and scale
           object.position.set(x, y, z);
           object.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
           scene.add(object);
-          objects.push(object); // Add object to the array for rotation
+          objects.push(object);
         },
         (xhr) => {
           console.log(`FBX Model Loaded: ${(xhr.loaded / xhr.total) * 100}%`);
@@ -65,7 +88,6 @@ const ThreeScene: React.FC = () => {
       );
     };
 
-    // Load objects with specific positions and scales
     loadFBXObject("/assets/three/Cone.fbx", -4, 10, 0, 0.01); // Cone
     loadFBXObject("/assets/three/Ico.fbx", 0, 10, 0, 0.01); // Ico
     loadFBXObject("/assets/three/Sphere.fbx", 4, 10, 0, 0.01); // Sphere
@@ -90,7 +112,6 @@ const ThreeScene: React.FC = () => {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate each object around its own Y-axis
       objects.forEach((obj) => {
         obj.rotation.y += 0.01; // Rotate about Y-axis
       });
