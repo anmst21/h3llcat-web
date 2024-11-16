@@ -1,3 +1,13 @@
+.box-item {
+    min-width: 433px;
+    background-color: grey;
+    border-radius: 35px;
+}
+
+
+
+
+
 .btn-rounded {
 
     display: flex;
@@ -58,9 +68,20 @@
 
     &__boxes {
         display: flex;
+        margin-top: 35px;
+        flex-direction: column;
+
+        &__items {
+            gap: 35px;
+            display: flex;
+            padding-top: 50px;
+            height: 586px;
+            align-items: flex-end;
+        }
 
         &__btns {
             padding: 15px 0;
+            margin-top: 35px;
             display: flex;
             flex: 1;
             justify-content: center;
