@@ -12,6 +12,8 @@ import { apiUri, gateway } from "@/helpers/uris";
 import SidebarBtn from "@/components/header/sidebar-btn";
 import CornerStatus from "@/components/collection/coner-status";
 import image from "@/app/logo-display.svg";
+import Script from "next/script";
+import Header from "@/components/header";
 
 export default async function Nft({
   params,
@@ -66,6 +68,7 @@ export default async function Nft({
 
   return (
     <div className="nft">
+      <Header />
       <div className="nft__corner">
         <CornerStatus status="nft" />
       </div>
@@ -142,6 +145,7 @@ export default async function Nft({
         sqSize={14}
         uri={`h3llcat:///collection/${contractId}/${postId}`}
       />
+      <Script src="/interractiveCard.js" strategy="lazyOnload" />
     </div>
   );
 }

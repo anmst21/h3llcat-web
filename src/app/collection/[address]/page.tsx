@@ -9,6 +9,9 @@ import Image from "next/image";
 import image from "@/app/logo-display.svg";
 import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
+import Script from "next/script";
+import Header from "@/components/header";
+
 export default async function Nft({
   params,
 }: {
@@ -52,6 +55,7 @@ export default async function Nft({
   console.log("data", data);
   return (
     <div className="nft">
+      <Header />
       <div className="nft__corner">
         <CornerStatus status="collection" />
       </div>
@@ -115,6 +119,7 @@ export default async function Nft({
       </div>
       <SidebarBtn />
       <Footer sqSize={18} uri={`h3llcat:///collection/${collectionId}`} />
+      <Script src="/interractiveCard.js" strategy="lazyOnload" />
     </div>
   );
 }
