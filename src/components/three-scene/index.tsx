@@ -1,136 +1,129 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useFBX } from "@react-three/drei";
 import * as THREE from "three";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
+import { easing } from "maath"; // For smooth damping
 
-const ThreeScene: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const objects: THREE.Object3D[] = []; // Store objects for animation
+function AnimatedFBX({ path, position, scaleFactor }: {
+  path: string;
+  position: [number, number, number];
+  scaleFactor: number;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+  const fbx = useFBX(path);
+  const dummy = new THREE.Object3D(); // Temporary object for easing
 
-  useEffect(() => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      10,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(0, 20, 150);
-    camera.lookAt(0, 10, 0);
-
-    const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true,
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    if (containerRef.current) {
-      containerRef.current.appendChild(renderer.domElement);
-    }
-
-    const material = new THREE.ShaderMaterial({
-      vertexShader: `
-        varying vec3 vPosition;
-
-        void main() {
-          vPosition = position;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vPosition;
-        uniform float time;
-
-        void main() {
-          vec3 color = vec3(0.5 + 0.5 * sin(vPosition.x + time),
-                            0.5 + 0.5 * sin(vPosition.y + time),
-                            0.5 + 0.5 * sin(vPosition.z + time));
-          gl_FragColor = vec4(color, 1.0);
-        }
-      `,
-      uniforms: {
-        time: { value: 0.0 }, // Pass time as a uniform
-      },
-    });
-
-    const loadFBXObject = (
-      path: string,
-      x: number,
-      y: number,
-      z: number,
-      scaleFactor: number
-    ) => {
-      const loader = new FBXLoader();
-      loader.load(
-        path,
-        (object: any) => {
-          object.traverse((child: any) => {
-            if ((child as THREE.Mesh).isMesh) {
-              const mesh = child as THREE.Mesh;
-              mesh.material = material;
-            }
-          });
-
-          console.log("Loaded object:", object);
-
-          object.position.set(x, y, z);
-          object.scale.set(scaleFactor, scaleFactor, scaleFactor);
-
-          scene.add(object);
-          objects.push(object);
+  fbx.traverse((child) => {
+    if ((child as THREE.Mesh).isMesh) {
+      const mesh = child as THREE.Mesh;
+      mesh.material = new THREE.ShaderMaterial({
+        vertexShader: `
+          uniform float time;
+          varying vec3 vPosition;
+          varying vec3 vNormal;
+    
+          float noise(vec3 p) {
+            return sin(p.x * 1.0 + p.y * 3.0 + p.z * 1.0 + time) * 0.8 + 0.5;
+          }
+    
+          void main() {
+            vec3 distortedPosition = position + normal * noise(position + time) * 0.1;
+            vPosition = distortedPosition;
+            vNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(distortedPosition, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform float time;
+          varying vec3 vPosition;
+          varying vec3 vNormal;
+          
+          void main() {
+              float stripePattern = sin(vPosition.x * 20.0 + time * 2.0);
+          
+              vec3 color = mix(vec3(0.0, 0.5, 1), vec3(0.0, 0.0, 0.0), step(0.8, stripePattern));
+          
+              float lighting = dot(vNormal, vec3(0.0, 1.0, 0.5)) * 0.5 + 0.5;
+              color *= lighting;
+          
+              gl_FragColor = vec4(color, 1.0);
+          }
+        `,
+        uniforms: {
+          time: { value: 0.0 },
         },
-        (xhr) => {
-          console.log(`FBX Model Loaded: ${(xhr.loaded / xhr.total) * 100}%`);
-        },
-        (error) => {
-          console.error("Error loading FBX model:", error);
-        }
-      );
-    };
-
-    loadFBXObject("/assets/three/Cone.fbx", -4, 10, 0, 0.01); // Cone
-    loadFBXObject("/assets/three/Ico.fbx", 0, 10, 0, 0.01); // Ico
-    loadFBXObject("/assets/three/Sphere.fbx", 4, 10, 0, 0.01); // Sphere
-
-    // Add a GridHelper
-    const gridHelper = new THREE.GridHelper(30, 30);
-    scene.add(gridHelper);
-
-    // Add Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 3);
-    scene.add(ambientLight);
-
-    const pointLight1 = new THREE.PointLight(0xffffff, 100);
-    pointLight1.position.set(3, 20, 5);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0xffffff, 100);
-    pointLight2.position.set(-3, 0, -5);
-    scene.add(pointLight2);
-
-    // Animation Loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      objects.forEach((obj) => {
-        obj.rotation.y += 0.01; // Rotate about Y-axis
       });
+    }
+  });
 
-      renderer.render(scene, camera);
-    };
-    animate();
+  useFrame((state, dt) => {
+    if (groupRef.current) {
+      // Rotate on Y-axis
+      groupRef.current.rotation.y += 0.01;
 
-    // Cleanup on unmount
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
-      }
-      renderer.dispose();
-      scene.clear();
-    };
-  }, []);
+      // Make the object look at the mouse position
+      const x = state.pointer.x * 10; // Scale mouse.x for scene space
+      const y = state.pointer.y * 10; // Scale mouse.y for scene space
+      dummy.lookAt(x, y, 1);
 
-  return <div ref={containerRef} style={{ width: "100%", height: "100%" }} />;
-};
+      // Smoothly interpolate the rotation of the group to match the dummy's rotation
+      easing.dampQ(groupRef.current.quaternion, dummy.quaternion, 0.1, dt);
 
-export default ThreeScene;
+      // Update uniform time for the shader
+      fbx.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          const mesh = child as THREE.Mesh;
+          (mesh.material as THREE.ShaderMaterial).uniforms.time.value =
+            state.clock.elapsedTime;
+        }
+      });
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={position} scale={scaleFactor}>
+      <primitive object={fbx} />
+    </group>
+  );
+}
+
+function CameraLookAt() {
+  useFrame(({ camera }) => {
+    // Make the camera look at (0, 10, 0)
+    camera.lookAt(0, 10, 0);
+  });
+
+  return null; // No visual component, only logic
+}
+
+function Scene() {
+  return (
+    <>
+      {/*No light but shader*/}
+      {/* Ambient Light */}
+      {/*<ambientLight intensity={1} color={[1, 1, 1]} />*/}
+      {/* Directional Lights */}
+      {/*<pointLight position={[3, 20, 5]} intensity={1} />*/}
+      {/*<pointLight position={[-3, 0, -5]} intensity={1} />*/}
+
+      {/* FBX Objects */}
+      <AnimatedFBX path="/assets/three/Cube.fbx" position={[-7, 19, 0]} scaleFactor={0.011} />
+      <AnimatedFBX path="/assets/three/Ico.fbx" position={[-4, 4, 0]} scaleFactor={0.015} />
+      <AnimatedFBX path="/assets/three/Sphere.fbx" position={[6, 11, 0]} scaleFactor={0.015} />
+      {/* Grid Helper */}
+      {/*<gridHelper args={[30, 30]} />*/}
+      {/* Camera LookAt Logic */}
+      <CameraLookAt />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Canvas camera={{ position: [0, 10, 150], fov: 10 }}>
+      <Scene />
+    </Canvas>
+  );
+}

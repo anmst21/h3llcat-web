@@ -10,6 +10,7 @@ import image from "@/app/logo-display.svg";
 import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
 import ThreeScene from '@/components/three-scene';
+import '@/components/three-scene/index.scss';
 
 export default async function Nft({
   params,
@@ -54,6 +55,9 @@ export default async function Nft({
   console.log("data", data);
   return (
     <div className="nft">
+      <div className="three_wrapper">
+        <ThreeScene/>
+      </div>
       <div className="nft__corner">
         <CornerStatus status="collection" />
       </div>
@@ -64,7 +68,7 @@ export default async function Nft({
           <CornerStatus status="collection" />
         </div>
 
-        <BgImages />
+        {/*<BgImages />*/}
 
         <div className="nft__card">
           <div className="highlight" />
