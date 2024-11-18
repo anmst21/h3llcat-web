@@ -52,6 +52,11 @@ function AnimatedFBX({
           varying vec3 vPosition;
           varying vec2 vUv;
 
+          float randomizedTime(float baseTime, vec2 uv) {
+              float randomOffset = fract(sin(dot(uv * 123.45, vec2(78.233, 45.543))) * 43758.5453123);
+              return baseTime + randomOffset * 2.0;
+          }
+
           float opSmoothUnion(float d1, float d2, float k) {
               float h = clamp(0.5 + 0.5 * (d2 - d1) / k, 0.0, 1.0);
               return mix(d2, d1, h) - k * h * (1.0 - h);
@@ -65,7 +70,8 @@ function AnimatedFBX({
               float d = 2.0;
               for (int i = 0; i < 16; i++) {
                   float fi = float(i);
-                  float time = iTime * (fract(fi * 412.531 + 0.513) - 0.5) * 2.0;
+                  float rTime = randomizedTime(iTime, vUv);
+                  float time = rTime * (fract(fi * 412.531 + 0.513) - 0.5) * 2.0;
                   d = opSmoothUnion(
                       sdSphere(p + sin(time + fi * vec3(52.5126, 64.62744, 632.25)) * vec3(2.0, 2.0, 0.8), mix(0.5, 1.0, fract(fi * 412.531 + 0.5124))),
                       d,
