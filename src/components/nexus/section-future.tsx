@@ -2,6 +2,7 @@ import BtnRounded from "./btn-rounded";
 import { NexusUri } from "../icon";
 import { BtnRoundedType } from "./types";
 import BoxItem from "./box-item";
+import BoxItemWrapper from "./box-item-wrapper";
 
 export default function SectionFuture() {
   return (
@@ -16,12 +17,7 @@ export default function SectionFuture() {
         </span>
       </div>
       <div className="section-future__boxes">
-        <div className="section-future__boxes__items">
-          <BoxItem flexValue={70} />
-          <BoxItem flexValue={50} />
-          <BoxItem flexValue={80} />
-          <BoxItem flexValue={40} />
-        </div>
+        <BoxItemWrapper />
         <div className="section-future__boxes__btns">
           <BtnRounded
             top

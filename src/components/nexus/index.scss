@@ -1,7 +1,8 @@
 .box-item {
-    min-width: 433px;
+    min-width: calc((100vw / 3));
     background-color: grey;
     border-radius: 35px;
+    scroll-snap-align: center;
 }
 
 
@@ -77,6 +78,16 @@
             padding-top: 50px;
             height: 586px;
             align-items: flex-end;
+            overflow-x: auto;
+            padding: 0 35px;
+            scroll-snap-type: x proximity;
+            scroll-behavior: smooth;
+
+            /* Enable snapping to each item */
+            // -webkit-overflow-scrolling: touch;
+            /* Enable smooth scrolling on iOS */
+
+
         }
 
         &__btns {
@@ -122,4 +133,10 @@
             color: var(--nexus-langing-text-secondary);
         }
     }
+}
+
+.section-future__boxes__items::-webkit-scrollbar {
+    display: none;
+    /* Snap each item to the center */
+    /* Hide the scrollbar */
 }
