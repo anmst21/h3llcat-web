@@ -1,4 +1,3 @@
-console.log("interactiveCard.js script loaded.");
 
 
 // DOM Element selections
