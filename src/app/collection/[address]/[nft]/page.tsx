@@ -13,7 +13,6 @@ import CornerStatus from "@/components/collection/coner-status";
 import image from "@/app/logo-display.svg";
 import ThreeScene from "@/components/three-scene";
 import '@/components/three-scene/index.scss';
-import Script from "next/script";
 import Header from "@/components/header";
 
 export default async function Nft({
@@ -68,93 +67,95 @@ export default async function Nft({
   ];
 
   return (
-    <div className="nft">
-      <Header />
-      <div className="nft__corner">
-        <CornerStatus status="nft" />
-      </div>
-      <div className="nft__container">
-        <BgImages />
-        <div className="nft__container__status">
-          <Image width={26} height={26} src={image} alt="logo-status" />
-          <CornerStatus status="nft" />
+      <div className="nft">
+        <div className="three_wrapper">
+          <ThreeScene/>
         </div>
+        <Header/>
         <div className="nft__corner">
           <CornerStatus status="nft"/>
         </div>
         <div className="nft__container">
-          {/*<BgImages/>*/}
           <div className="nft__container__status">
             <Image width={26} height={26} src={image} alt="logo-status"/>
-
             <CornerStatus status="nft"/>
           </div>
-          <div className="nft__card">
-            <div className="highlight"/>
-
-            <div className="nft__card__top">
-              <div className="nft__card__image">
-                <Image
-                    src={fullUriSm}
-                    alt="nft-preview"
-                    layout="fill"
-                    objectFit="contain"
-                />
-              </div>
-              <div className="nft__card__text">
-                <span className="nft__card__name">{name}</span>
-                <span className="nft__card__creator">{category}</span>
-              </div>
-            </div>
-
-            <div className="nft__card__comment">
-              <div className="nft__card__comment__item">
-                <div
-                    className="coin-fade"
-                    style={{color: stringToColor(contractAddress)}}
-                >
-                  <CoinFade/>
-                </div>
-                <span>Comment...</span>
-                <CollectionLock/>
-              </div>
-
-              <div className="nft__card__sticks">
-                <Sticks
-                    totalSticks={6}
-                    filledSticks={filledSticks}
-                    stickWidth={3}
-                    stickHeight={12}
-                    gap={3}
-                />
-                <span>
-                {hoursRemaining}
-                  <span>h</span>
-              </span>
-              </div>
-            </div>
-
-            <div className="nft__card__meta">
-              {metaItemData.map((data, index) => {
-                return (
-                    <MetaItem
-                        name={data.name}
-                        value={data.value}
-                        isBg={data.isBg}
-                        key={index}
-                    />
-                );
-              })}
-            </div>
-            {/* <CtaBtn collectionId={contractAddress} /> */}
+          <div className="nft__corner">
+            <CornerStatus status="nft"/>
           </div>
+          <div className="nft__container">
+            {/*<BgImages/>*/}
+            <div className="nft__container__status">
+              <Image width={26} height={26} src={image} alt="logo-status"/>
+
+              <CornerStatus status="nft"/>
+            </div>
+            <div className="nft__card">
+              <div className="highlight"/>
+
+              <div className="nft__card__top">
+                <div className="nft__card__image">
+                  <Image
+                      src={fullUriSm}
+                      alt="nft-preview"
+                      layout="fill"
+                      objectFit="contain"
+                  />
+                </div>
+                <div className="nft__card__text">
+                  <span className="nft__card__name">{name}</span>
+                  <span className="nft__card__creator">{category}</span>
+                </div>
+              </div>
+
+              <div className="nft__card__comment">
+                <div className="nft__card__comment__item">
+                  <div
+                      className="coin-fade"
+                      style={{color: stringToColor(contractAddress)}}
+                  >
+                    <CoinFade/>
+                  </div>
+                  <span>Comment...</span>
+                  <CollectionLock/>
+                </div>
+
+                <div className="nft__card__sticks">
+                  <Sticks
+                      totalSticks={6}
+                      filledSticks={filledSticks}
+                      stickWidth={3}
+                      stickHeight={12}
+                      gap={3}
+                  />
+                  <span>
+                {hoursRemaining}
+                    <span>h</span>
+              </span>
+                </div>
+              </div>
+
+              <div className="nft__card__meta">
+                {metaItemData.map((data, index) => {
+                  return (
+                      <MetaItem
+                          name={data.name}
+                          value={data.value}
+                          isBg={data.isBg}
+                          key={index}
+                      />
+                  );
+                })}
+              </div>
+              {/* <CtaBtn collectionId={contractAddress} /> */}
+            </div>
+          </div>
+          <SidebarBtn/>
+          <Footer
+              sqSize={14}
+              uri={`h3llcat:///collection/${collectionAddress}/${postId}`}
+          />
         </div>
-        <SidebarBtn/>
-        <Footer
-            sqSize={14}
-            uri={`h3llcat:///collection/${collectionAddress}/${postId}`}
-        />
       </div>
-    </div>
   );
 }
