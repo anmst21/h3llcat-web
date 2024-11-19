@@ -106,9 +106,9 @@ function Scene() {
         <pointLight position={[-3, 0, -5]} intensity={1}/>
 
         {/* FBX Objects */}
-        <AnimatedFBX path="/assets/three/1.fbx" position={[-10, 18, 0]} scaleFactor={0.017}/>
-        <AnimatedFBX path="/assets/three/2.fbx" position={[-11, 1, 0]} scaleFactor={0.017}/>
-        <AnimatedFBX path="/assets/three/3.fbx" position={[11, 11, 0]} scaleFactor={0.017}/>
+        <AnimatedFBX path="/assets/three/3.fbx" position={[-7, 15, 0]} scaleFactor={0.03}/>
+        <AnimatedFBX path="/assets/three/1.fbx" position={[6, 16, 0]} scaleFactor={0.035}/>
+        <AnimatedFBX path="/assets/three/2.fbx" position={[6, 5, 0]} scaleFactor={0.04}/>
         {/* Grid Helper */}
         {/*<gridHelper args={[30, 30]} />*/}
         {/* Camera LookAt Logic */}
