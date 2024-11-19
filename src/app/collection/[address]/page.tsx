@@ -1,5 +1,4 @@
 import Footer from "@/components/footer";
-import BgImages from "@/components/collection/bg-images";
 import { apiUri, gateway } from "@/helpers/uris";
 import axios from "axios";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
@@ -9,10 +8,8 @@ import Image from "next/image";
 import image from "@/app/logo-display.svg";
 import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
-import ThreeScene from '@/components/three-scene';
-import '@/components/three-scene/index.scss';
-import Script from "next/script";
-import Header from "@/components/header";
+import ThreeScene from "@/components/three-scene";
+import "@/components/three-scene/index.scss";
 
 export default async function Nft({
   params,
@@ -58,7 +55,7 @@ export default async function Nft({
   return (
     <div className="nft">
       <div className="three_wrapper">
-        <ThreeScene/>
+        <ThreeScene />
       </div>
       <div className="nft__corner">
         <CornerStatus status="collection" />
