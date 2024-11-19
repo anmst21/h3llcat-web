@@ -156,5 +156,6 @@ export default async function Nft({
             uri={`h3llcat:///collection/${contractId}/${postId}`}
         />
       </div>
+    </div>
   );
 }
