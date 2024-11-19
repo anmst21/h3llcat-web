@@ -3,7 +3,6 @@ import Image from "next/image";
 import MetaItem from "@/components/collection/meta-item";
 import { MetaItemName } from "@/components/collection/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
-import BgImages from "@/components/collection/bg-images";
 import { CollectionLock, CoinFade } from "@/components/icon";
 import { stringToColor } from "@/helpers/stringToColor";
 import Footer from "@/components/footer";
@@ -23,9 +22,9 @@ export default async function Nft({
   params: Promise<{ nft: string; address: string }>;
 }) {
   const postId = (await params).nft;
-  const contractId = (await params).address;
+  const collectionAddress = (await params).address;
   const { data } = await axios.get(apiUri + "/anonymous/rodeo/post", {
-    params: { postId },
+    params: { collectionAddress: collectionAddress, tokenId: postId },
   });
 
   const {
@@ -147,13 +146,13 @@ export default async function Nft({
                 );
               })}
             </div>
-            {/* <CtaBtn collectionId={contractId} /> */}
+            {/* <CtaBtn collectionId={contractAddress} /> */}
           </div>
         </div>
         <SidebarBtn/>
         <Footer
             sqSize={14}
-            uri={`h3llcat:///collection/${contractId}/${postId}`}
+            uri={`h3llcat:///collection/${collectionAddress}/${postId}`}
         />
       </div>
     </div>
