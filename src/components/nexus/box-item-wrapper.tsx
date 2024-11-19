@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 import BoxItem from "./box-item";
 
-interface BoxItemWrapperProps {}
+// interface BoxItemWrapperProps {}
 
 const BoxItemWrapper = () => {
   const [items, setItems] = useState([
@@ -15,7 +15,7 @@ const BoxItemWrapper = () => {
     { height: 100, index: 5 },
   ]);
   const carouselRef = useRef<HTMLDivElement>(null);
-
+  console.log(setItems);
   //   useEffect(() => {
   //     const interval = setInterval(() => {
   //       if (!carouselRef.current) return;
