@@ -19,11 +19,11 @@ export default async function Nft({
 }: {
   params: Promise<{ address: string }>;
 }) {
-  const collectionId = (await params).address;
+  const collectionAddress = (await params).address;
   const { data } = await axios.get(
     apiUri + "/anonymous/rodeo/collection/posts",
     {
-      params: { collectionId, limit: 5, offset: 0 },
+      params: { collectionAddress: collectionAddress, limit: 5, offset: 0 },
     }
   );
 
@@ -119,12 +119,12 @@ export default async function Nft({
                 );
               })}
             </div>
-            {/* <CtaBtn collectionId={collectionId} /> */}
+            {/* <CtaBtn collectionAddress={collectionAddress} /> */}
           </div>
         </div>
       </div>
       <SidebarBtn />
-      <Footer sqSize={18} uri={`h3llcat:///collection/${collectionId}`} />
+      <Footer sqSize={18} uri={`h3llcat:///collection/${collectionAddress}`} />
     </div>
   );
 }
