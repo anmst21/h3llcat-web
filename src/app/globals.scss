@@ -3,8 +3,11 @@
 @import "./privacy/page.scss";
 @import "./collection/[address]/[nft]/page.scss";
 @import "../components/header/index.scss";
+@import "../components/nexus/index.scss";
+@import "../components/header/nexus-header.scss";
 @import "../components/footer/index.scss";
 @import "../components/collection/index.scss";
+@import "./nexus/page.scss";
 
 
 
@@ -24,7 +27,7 @@
   --box-shadow: 0px 2px 16px 0px var(--color-shadow);
   --accent-yellow: #FC0;
   --text-grey: #93918E;
-  --sf-pro: var(--font-sf-pro), sans-serif;
+  --sf-pro: var(--font-sf-pro);
   --text-primary: #050915;
   --text-opacity: rgba(18, 22, 33, 0.4);
   --color-white: rgba(255, 248, 231, 1);

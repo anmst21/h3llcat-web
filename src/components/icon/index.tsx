@@ -13,8 +13,12 @@ import QrSq from "./QrSq";
 import CoinFade from "./CoinFade";
 import ChevBtn from "./ChevBtn";
 import SidebarWindow from "./SidebarWindow";
+import NexusTestLogo from "./NexusTestLogo";
+import NexusUri from "./NexusUri";
 
 export {
+  NexusUri,
+  NexusTestLogo,
   SidebarWindow,
   ChevBtn,
   CoinFade,

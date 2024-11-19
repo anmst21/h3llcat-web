@@ -1,0 +1,142 @@
+.box-item {
+    min-width: calc((100vw / 3));
+    background-color: grey;
+    border-radius: 35px;
+    scroll-snap-align: center;
+}
+
+
+
+
+
+.btn-rounded {
+
+    display: flex;
+    padding: 18px 40px;
+    align-items: center;
+    width: fit-content;
+    border-radius: 1000px;
+    gap: 10px;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 133.333% */
+    letter-spacing: 0.4px;
+
+    font-family: var(--font-sf-pro);
+    background-color: var(--nexus-text-dark);
+
+    &--top {
+        width: 220px;
+        justify-content: center;
+    }
+
+    &--accent {
+        border-width: 0;
+        background-color: var(--nexus-landing-accent);
+
+
+        color: var(--nexus-text-dark);
+
+    }
+
+    &--active {
+        border: 1px solid var(--nexus-landing-accent);
+
+        color: var(--nexus-landing-accent);
+    }
+
+    &--disabled {
+        border: 1px solid var(--nexus-langing-text-secondary);
+        color: var(--nexus-langing-text-secondary);
+    }
+}
+
+
+
+
+
+
+
+.section-future {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+
+    &__boxes {
+        display: flex;
+        margin-top: 35px;
+        flex-direction: column;
+
+        &__items {
+            gap: 35px;
+            display: flex;
+            padding-top: 50px;
+            height: 586px;
+            align-items: flex-end;
+            overflow-x: auto;
+            padding: 0 35px;
+            scroll-snap-type: x proximity;
+            scroll-behavior: smooth;
+
+            /* Enable snapping to each item */
+            // -webkit-overflow-scrolling: touch;
+            /* Enable smooth scrolling on iOS */
+
+
+        }
+
+        &__btns {
+            padding: 15px 0;
+            margin-top: 35px;
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            gap: 15px
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+
+        gap: 35px;
+
+        // padding: 0 20%;
+        flex: 0.7;
+
+        &__h1 {
+            color: var(--nexus-landing-accent);
+            text-align: center;
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 1.44px;
+            font-family: var(--font-sf-pro);
+        }
+
+        &__p {
+            padding: 0 95px;
+            text-align: center;
+            font-family: var(--font-sf-pro);
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 45px;
+            /* 140.625% */
+            letter-spacing: 0.96px;
+            color: var(--nexus-langing-text-secondary);
+        }
+    }
+}
+
+.section-future__boxes__items::-webkit-scrollbar {
+    display: none;
+    /* Snap each item to the center */
+    /* Hide the scrollbar */
+}
