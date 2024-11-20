@@ -10,6 +10,7 @@ import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
 import ThreeScene from "@/components/three-scene";
 import "@/components/three-scene/index.scss";
+import Script from "next/script";
 
 export default async function Nft({
   params,
@@ -66,7 +67,6 @@ export default async function Nft({
 
           <CornerStatus status="collection" />
         </div>
-
         {/*<BgImages />*/}
 
         <div className="nft__card">
@@ -80,7 +80,7 @@ export default async function Nft({
                   height={154}
                   alt={`collection-image-${key}`}
                   key={key}
-                  objectFit="contain"
+                  style={{ objectFit: "cover" }}
                   className={`nft__card__images__${key + 1}`}
                 />
               );
@@ -122,6 +122,7 @@ export default async function Nft({
       </div>
       <SidebarBtn />
       <Footer sqSize={18} uri={`h3llcat:///collection/${collectionAddress}`} />
+      <Script src="/interractiveCard.js" />
     </div>
   );
 }

@@ -1,199 +1,152 @@
 "use client";
 
 import { useRef } from "react";
+import { Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useFBX } from "@react-three/drei";
-import * as THREE from "three";
-import { easing } from "maath";
+import {
+  Environment,
+  useGLTF,
+  MeshTransmissionMaterial,
+} from "@react-three/drei";
+import { Mesh } from "three";
 
-function AnimatedFBX({
-  path,
-  position,
-  scaleFactor,
-}: {
-  path: string;
-  position: [number, number, number];
-  scaleFactor: number;
-}) {
-  const groupRef = useRef<THREE.Group>(null);
-  const originalFBX = useFBX(path);
-  const fbx = originalFBX.clone();
-  fbx.rotateZ(Math.random() * 100); // if object same
-  fbx.rotateY(Math.random() * 0.5); // if object same
-  const dummy = new THREE.Object3D(); // Temporary object for easing
+export function Model(props: any) {
+  const { nodes, materials } = useGLTF("/assets/icoDEFOL.glb");
+  const { nodes: nodesStar, materials: materialsStar } =
+    useGLTF("/assets/star.glb");
+  const { nodes: nodesCube, materials: materialCube } =
+    useGLTF("/assets/cube.glb");
+  const { nodes: nodesKognac, materials: materialsKognac } =
+    useGLTF("/assets/konyak.glb");
 
-  fbx.traverse((child) => {
-    if ((child as THREE.Mesh).isMesh) {
-      const mesh = child as THREE.Mesh;
-      mesh.material = new THREE.ShaderMaterial({
-        vertexShader: `
-          uniform float iTime;
-          varying vec3 vPosition;
-          varying vec3 vNormal;
-          varying vec2 vUv;
-      
-          float noise(vec3 p) {
-            return sin(p.x * 1.0 + p.y * 3.0 + p.z * 1.0 + iTime) * 0.5 + 0.5;
-          }
-      
-          void main() {
-            vUv = uv;
-            vec3 distortedPosition = position + normal * noise(position + sin(iTime)) * 0.5;
-            vPosition = distortedPosition;
-            vNormal = normalize(normalMatrix * normal);
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(distortedPosition, 1.0);
-          }
-        `,
-        fragmentShader: `
-          uniform vec2 iResolution;
-          uniform float iTime;
+  const myMesh = useRef<Mesh>(null!);
+  const starRef = useRef<Mesh>(null!);
+  const kognacRef = useRef<Mesh>(null!);
+  useFrame(({ clock }) => {
+    myMesh.current.rotation.x = clock.getElapsedTime() / 2 / 4;
+    myMesh.current.rotation.z = clock.getElapsedTime() / 3 / 4;
+    myMesh.current.rotation.y = clock.getElapsedTime() / 0.5 / 4;
 
-          varying vec3 vNormal;
-          varying vec3 vPosition;
-          varying vec2 vUv;
+    starRef.current.rotation.x = clock.getElapsedTime() / 1.5 / 4;
+    starRef.current.rotation.z = clock.getElapsedTime() / 1.2 / 4;
+    starRef.current.rotation.y = clock.getElapsedTime() / 3 / 4;
 
-          float randomizedTime(float baseTime, vec2 uv) {
-              float randomOffset = fract(sin(dot(uv * 123.45, vec2(78.233, 45.543))) * 43758.5453123);
-              return baseTime + randomOffset * 2.0;
-          }
-
-          float opSmoothUnion(float d1, float d2, float k) {
-              float h = clamp(0.5 + 0.5 * (d2 - d1) / k, 0.0, 1.0);
-              return mix(d2, d1, h) - k * h * (1.0 - h);
-          }
-
-          float sdSphere(vec3 p, float s) {
-              return length(p) - s;
-          }
-
-          float map(vec3 p) {
-              float d = 2.0;
-              for (int i = 0; i < 16; i++) {
-                  float fi = float(i);
-                  float rTime = randomizedTime(iTime, vUv);
-                  float time = rTime * (fract(fi * 412.531 + 0.513) - 0.5) * 2.0;
-                  d = opSmoothUnion(
-                      sdSphere(p + sin(time + fi * vec3(52.5126, 64.62744, 632.25)) * vec3(2.0, 2.0, 0.8), mix(0.5, 1.0, fract(fi * 412.531 + 0.5124))),
-                      d,
-                      0.4
-                  );
-              }
-              return d;
-          }
-
-          vec3 calcNormal(in vec3 p) {
-              const float h = 1e-5;
-              const vec2 k = vec2(1, -1);
-              return normalize(
-                  k.xyy * map(p + k.xyy * h) +
-                  k.yyx * map(p + k.yyx * h) +
-                  k.yxy * map(p + k.yxy * h) +
-                  k.xxx * map(p + k.xxx * h)
-              );
-          }
-
-          void main() { 
-              vec2 uv = vUv;
-
-              vec3 rayOri = vec3((uv - 0.5) * vec2(iResolution.x / iResolution.y, 1.0) * 6.0, 3.0);
-              vec3 rayDir = vec3(0.0, 0.0, -1.0);
-
-              float depth = 0.0;
-              vec3 p;
-
-              for (int i = 0; i < 64; i++) {
-                  p = rayOri + rayDir * depth;
-                  float dist = map(p);
-                  depth += dist;
-                  if (dist < 1e-6) {
-                      break;
-                  }
-              }
-
-              depth = min(6.0, depth);
-              vec3 n = calcNormal(p);
-              float b = max(0.0, dot(n, vec3(0.577)));
-              vec3 col = (0.5 + 0.5 * cos((b + iTime * 3.0) + uv.xyx * 700.0 + vec3(0, 2, 4))) * (0.85 + b * 0.35);
-              // orig
-              // vec3 col = (0.5 + 0.5 * cos((b + iTime * 3.0) + uv.xyx * 2.0 + vec3(0, 2, 4))) * (0.85 + b * 0.35);
-              col *= exp(-depth * 0.15);
-
-              gl_FragColor = vec4(col, 1.0 - (depth - 0.5) / 2.0);
-          }
-        `,
-        uniforms: {
-          iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-          iTime: { value: 0.0 },
-        },
-      });
-    }
-  });
-
-  useFrame((state, dt) => {
-    if (groupRef.current) {
-      // Rotate the object on Y-axis
-      groupRef.current.rotation.y += 0.01;
-
-      // Look at the mouse pointer
-      const intensity = 0.5;
-      const x = state.pointer.x * intensity; // Scaled for scene space
-      const y = state.pointer.y * intensity;
-      dummy.lookAt(x, y, 1);
-
-      // Smoothly interpolate rotation to match dummy's rotation
-      easing.dampQ(groupRef.current.quaternion, dummy.quaternion, 0.2, dt);
-
-      // Update uniform time for the shader
-      fbx.traverse((child) => {
-        if ((child as THREE.Mesh).isMesh) {
-          const mesh = child as THREE.Mesh;
-          (mesh.material as THREE.ShaderMaterial).uniforms.iTime.value = state.clock.elapsedTime;
-        }
-      });
-    }
+    kognacRef.current.rotation.x = -clock.getElapsedTime() / 0.5 / 4;
+    kognacRef.current.rotation.z = -clock.getElapsedTime() / 3 / 4;
+    kognacRef.current.rotation.y = -clock.getElapsedTime() / 2 / 4;
   });
 
   return (
-    <group ref={groupRef} position={position} scale={scaleFactor}>
-      <primitive object={fbx} />
+    <group position={[0, 0, 0]} castShadow {...props} dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={(nodesCube.Cube as any).geometry}
+        material={materialCube["Material.001"]}
+        ref={kognacRef}
+        scale={0.2}
+        position={[0, 0, 0]}
+      >
+        <MeshTransmissionMaterial
+          thickness={0.2}
+          roughness={0}
+          transmission={1}
+          ior={1.2}
+          chromaticAberration={0.2}
+          backside
+          opacity={1}
+          clearcoat={1}
+        />
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={(nodesKognac.Cube as any).geometry}
+        material={materialsKognac["Material.001"]}
+        ref={kognacRef}
+        scale={0.7}
+        position={[-1.5, -2, 0]}
+      >
+        <MeshTransmissionMaterial
+          thickness={0.2}
+          roughness={0}
+          transmission={1}
+          ior={1.2}
+          chromaticAberration={0.2}
+          backside
+          opacity={1}
+          clearcoat={1}
+        />
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={(nodes.Icosphere001 as any).geometry}
+        material={materials["Material.001"]}
+        // scale={0.586}
+        position={[3.5, 2, -5]}
+        ref={myMesh}
+      >
+        <MeshTransmissionMaterial
+          thickness={0.2}
+          roughness={0}
+          transmission={1}
+          ior={2}
+          chromaticAberration={0.2}
+          backside
+          opacity={1}
+          clearcoat={1}
+        />
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={(nodesStar.Icosphere as any).geometry}
+        material={materialsStar["Material.001"]}
+        position={[-2, 2, 0]}
+        scale={5}
+        ref={starRef}
+      >
+        <MeshTransmissionMaterial
+          thickness={0.2}
+          roughness={0}
+          transmission={1}
+          ior={2}
+          chromaticAberration={0.2}
+          backside
+          opacity={1}
+          clearcoat={1}
+        />
+      </mesh>
     </group>
   );
 }
 
-function CameraLookAt() {
-  useFrame(({ camera }) => {
-    // Make the camera look at the center of the scene
-    camera.lookAt(0, 10, 0);
-  });
+useGLTF.preload("/assets/icoDEFOL.glb");
+useGLTF.preload("/assets/star.glb");
+useGLTF.preload("/assets/konyak.glb");
 
-  return null; // No visual component, only logic
-}
+export default function AnimatedFBX() {
+  // const groupRef = useRef<THREE.Group>(null);
 
-function Scene() {
   return (
-      <>
-        {/* Ambient Light */}
-        <ambientLight/>
-        {/* Directional Lights */}
-        <pointLight position={[3, 20, 5]} intensity={1}/>
-        <pointLight position={[-3, 0, -5]} intensity={1}/>
+    <Canvas shadows>
+      <color attach="background" args={["#fc0"]} />
+      <Environment preset="studio" />
 
-        {/* FBX Objects */}
-        <AnimatedFBX path="/assets/three/Sphere.fbx" position={[-10, 18, 0]} scaleFactor={0.013}/>
-        <AnimatedFBX path="/assets/three/Sphere.fbx" position={[-13, 1, 0]} scaleFactor={0.017}/>
-        <AnimatedFBX path="/assets/three/Sphere.fbx" position={[7, 11, 0]} scaleFactor={0.017}/>
-        {/* Grid Helper */}
-        {/*<gridHelper args={[30, 30]} />*/}
-        {/* Camera LookAt Logic */}
-        <CameraLookAt/>
-      </>
-  );
-}
+      <ambientLight intensity={1} />
+      <Suspense fallback={null}>
+        <Model /> {/* Left */}
+      </Suspense>
+      <directionalLight intensity={2} position={[0, 2, 3]} />
 
-export default function App() {
-  return (
-    <Canvas camera={{ position: [0, 10, 150], fov: 10 }}>
-      <Scene />
+      {/* <ContactShadows
+        position={[0.8, -2.5, 0]}
+        opacity={1}
+        scale={20}
+        blur={0.5}
+        far={4.5}
+      /> */}
     </Canvas>
   );
 }

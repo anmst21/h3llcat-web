@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^9.117.1",
+    "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
     "@types/qrcode": "^1.5.5",
     "@types/three": "^0.170.0",

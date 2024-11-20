@@ -6,8 +6,8 @@ const card = document.querySelector(".nft__card");
 const highlight = document.querySelector(".highlight");
 console.log("cards", cardWrapper, card)
 // highest values for angle
-const mostX = 15; // 10 or -10
-const mostY = 10; // 10 or -10
+const mostX = 5; // 10 or -10
+const mostY = 5; // 10 or -10
 
 
 if (window.innerWidth > 1000) {
