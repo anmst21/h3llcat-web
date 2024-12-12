@@ -8,6 +8,7 @@
     transform: translateX(-50%);
     justify-content: center;
     flex-wrap: wrap;
+    z-index: 1000;
 
 
     @include respond-to-phone(large) {

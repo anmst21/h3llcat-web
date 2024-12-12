@@ -11,6 +11,7 @@ import SidebarBtn from "@/components/header/sidebar-btn";
 import ThreeScene from "@/components/three-scene";
 import "@/components/three-scene/index.scss";
 import Script from "next/script";
+import Header from "@/components/header";
 
 export default async function Nft({
   params,
@@ -55,6 +56,7 @@ export default async function Nft({
   console.log("data", data);
   return (
     <div className="nft">
+      <Header />
       <div className="three_wrapper">
         <ThreeScene />
       </div>

@@ -68,6 +68,7 @@ export default async function Nft({
 
   return (
     <div className="nft">
+      <Header />
       <div className="three_wrapper">
         <ThreeScene />
       </div>
