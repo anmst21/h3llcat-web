@@ -130,7 +130,7 @@ export default function AnimatedFBX() {
   // const groupRef = useRef<THREE.Group>(null);
 
   return (
-    <Canvas shadows>
+    <Canvas style={{ width: "100%", height: "100%" }} shadows>
       <color attach="background" args={["#fc0"]} />
       <Environment preset="studio" />
 
