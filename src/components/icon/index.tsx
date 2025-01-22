@@ -15,8 +15,10 @@ import ChevBtn from "./ChevBtn";
 import SidebarWindow from "./SidebarWindow";
 import NexusTestLogo from "./NexusTestLogo";
 import NexusUri from "./NexusUri";
+import LandingForward from "./LandingForward";
 
 export {
+  LandingForward,
   NexusUri,
   NexusTestLogo,
   SidebarWindow,
