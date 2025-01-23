@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@privy-io/react-auth": "^2.0.5",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
+    "@reservoir0x/reservoir-sdk": "^2.4.42",
     "@types/qrcode": "^1.5.5",
     "@types/three": "^0.170.0",
     "axios": "^1.7.7",
@@ -20,7 +22,8 @@
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.78.0",
-    "three": "^0.170.0"
+    "three": "^0.170.0",
+    "viem": "^2.22.11"
   },
   "devDependencies": {
     "@types/node": "^20",
