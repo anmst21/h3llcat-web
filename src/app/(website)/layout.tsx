@@ -7,45 +7,45 @@ import Menu from "@/components/menu";
 import PrivyProvider from "@/context/PrivyProvider";
 import { createClient, reservoirChains } from "@reservoir0x/reservoir-sdk";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+export const geistSans = localFont({
+  src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+export const geistMono = localFont({
+  src: "../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-const sfPro = localFont({
+export const sfPro = localFont({
   src: [
     {
-      path: "./fonts/SFPro.ttf",
+      path: "../fonts/SFPro.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/SFPro-Semibold.ttf",
+      path: "../fonts/SFPro-Semibold.ttf",
       weight: "590",
       style: "normal",
     },
     {
-      path: "./fonts/SFPro-Medium.ttf",
+      path: "../fonts/SFPro-Medium.ttf",
       weight: "510",
       style: "normal",
     },
     {
-      path: "./fonts/SFPro-SemiboldItalic.ttf",
+      path: "../fonts/SFPro-SemiboldItalic.ttf",
       weight: "590",
       style: "italic",
     },
     {
-      path: "./fonts/SFPro-ExpandedSemibold.ttf",
+      path: "../fonts/SFPro-ExpandedSemibold.ttf",
       weight: "650",
       style: "normal",
     },
     {
-      path: "./fonts/SFPro-ExpandedBold.ttf",
+      path: "../fonts/SFPro-ExpandedBold.ttf",
       weight: "760",
       style: "normal",
     },

@@ -3,8 +3,8 @@
 
 
 
-@import "../app/privacy/page.scss";
-@import "../app/collection/[address]/[nft]/page.scss";
+@import "../app/(website)/privacy/page.scss";
+@import "../app/(website)/collection/[address]/[nft]/page.scss";
 @import "../components/header/index.scss";
 @import "../components/header/nexus-header.scss";
 @import "../components/footer/index.scss";
@@ -16,4 +16,4 @@
 @import "../components/section-collections/index.scss";
 
 
-@import "../app/blog/page.scss"
+@import "../app/(website)/blog/page.scss"

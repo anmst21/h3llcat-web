@@ -37,7 +37,7 @@ export default function Menu() {
         </Link>
         <Link
           className={classNames("menu-btn", {
-            "menu-btn--active": pathname === "/blog",
+            "menu-btn--active": pathname.includes("/blog"),
           })}
           href="/blog"
         >

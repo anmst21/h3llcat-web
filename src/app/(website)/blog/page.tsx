@@ -22,7 +22,7 @@ export default async function Blog() {
                 src={project.image}
                 width={250}
                 height={100}
-                alt={project.name}
+                alt={project.alt}
               />
             )}
           </Link>
