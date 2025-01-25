@@ -5,7 +5,6 @@ import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { MetaItemName } from "@/components/collection/types";
 import MetaItem from "@/components/collection/meta-item";
 import Image from "next/image";
-import image from "@/app/logo-display.svg";
 import CornerStatus from "@/components/collection/coner-status";
 import SidebarBtn from "@/components/header/sidebar-btn";
 import ThreeScene from "@/components/three-scene";
@@ -65,7 +64,12 @@ export default async function Nft({
       </div>
       <div className="nft__container">
         <div className="nft__container__status">
-          <Image width={26} height={26} src={image} alt="logo-status" />
+          <Image
+            width={26}
+            height={26}
+            src={"/logo-display.svg"}
+            alt="logo-status"
+          />
 
           <CornerStatus status="collection" />
         </div>

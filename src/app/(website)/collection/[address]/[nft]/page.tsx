@@ -10,7 +10,6 @@ import Sticks from "@/components/collection/sticks";
 import { apiUri, gateway } from "@/helpers/uris";
 import SidebarBtn from "@/components/header/sidebar-btn";
 import CornerStatus from "@/components/collection/coner-status";
-import image from "@/app/logo-display.svg";
 import ThreeScene from "@/components/three-scene";
 import "@/components/three-scene/index.scss";
 import Header from "@/components/header";
@@ -78,7 +77,12 @@ export default async function Nft({
       </div>
       <div className="nft__container">
         <div className="nft__container__status">
-          <Image width={26} height={26} src={image} alt="logo-status" />
+          <Image
+            width={26}
+            height={26}
+            src={"/logo-display.svg"}
+            alt="logo-status"
+          />
           <CornerStatus status="nft" />
         </div>
         <div className="nft__corner">
@@ -87,7 +91,12 @@ export default async function Nft({
         <div className="nft__container">
           {/*<BgImages/>*/}
           <div className="nft__container__status">
-            <Image width={26} height={26} src={image} alt="logo-status" />
+            <Image
+              width={26}
+              height={26}
+              src={"/logo-display.svg"}
+              alt="logo-status"
+            />
 
             <CornerStatus status="nft" />
           </div>

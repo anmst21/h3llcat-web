@@ -1,5 +1,4 @@
 import Image from "next/image";
-import image from "@/app/logo-display.svg";
 import QRCode from "./qr-code";
 export default function Footer({
   uri,
@@ -11,7 +10,12 @@ export default function Footer({
   return (
     <div className="footer">
       <div className="footer__logo">
-        <Image width={50} height={50} src={image} alt="logo-footer" />
+        <Image
+          width={50}
+          height={50}
+          src={"/logo-display.svg"}
+          alt="logo-footer"
+        />
         <div className="footer__logo__text">
           <span className="footer__logo__text__top">View on Display</span>
           <span className="footer__logo__text__bot">
