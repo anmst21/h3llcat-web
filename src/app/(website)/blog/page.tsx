@@ -1,9 +1,9 @@
-import { getProjects } from "@/sanity/sanity-utils";
+import { getBlogposts } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import Image from "next/image";
 
 export default async function Blog() {
-  const projects = await getProjects();
+  const projects = await getBlogposts();
   console.log(projects);
   return (
     <div className="blog">

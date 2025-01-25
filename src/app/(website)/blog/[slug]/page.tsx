@@ -1,4 +1,4 @@
-import { getProject } from "@/sanity/sanity-utils";
+import { getBlogpost } from "@/sanity/sanity-utils";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 
@@ -7,7 +7,7 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const project = await getProject(slug);
+  const project = await getBlogpost(slug);
 
   console.log("project", project);
   return (

@@ -1,4 +1,4 @@
-import project from "./project.schema";
+import project from "./blogpost.schema";
 
 const schemas = [project];
 
