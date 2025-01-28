@@ -3,9 +3,7 @@
 import CookieConsent from "react-cookie-consent";
 import Link from "next/link";
 
-type Props = {};
-
-const CookieConsentBanner = (props: Props) => {
+const CookieConsentBanner = () => {
   return (
     <CookieConsent
       location="bottom"
