@@ -14,6 +14,14 @@ import ThreeScene from "@/components/three-scene";
 import "@/components/three-scene/index.scss";
 import Header from "@/components/header";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "NFT Details",
+  description:
+    "Dive into the details of this unique NFT powered by Rodeo.club. View metadata, explore artwork, and seamlessly mint or interact with it directly in the Display app.",
+};
+
 export default async function Nft({
   params,
 }: {
