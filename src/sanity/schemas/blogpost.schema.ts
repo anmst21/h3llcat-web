@@ -6,7 +6,18 @@ const blogpost = {
   fields: [
     { name: "name", title: "Name", type: "string" },
     { name: "slug", title: "Slug", type: "slug", options: { source: "name" } },
-    { name: "pageTitle", title: "Page Title", type: "string" },
+    {
+      name: "author",
+      title: "Blogpost's Author",
+      type: "reference",
+      to: [{ type: "author" }],
+    },
+    {
+      name: "category",
+      title: "Post's category",
+      type: "reference",
+      to: [{ type: "category" }],
+    },
     {
       name: "image",
       title: "Image",
@@ -14,19 +25,11 @@ const blogpost = {
       options: { hotspot: true },
       fields: [{ name: "alt", title: "Alt", type: "string" }],
     },
-    { name: "url", title: "URL", type: "url" },
     {
       name: "content",
       title: "Content",
       type: "array",
       of: [{ type: "block" }],
-    },
-
-    {
-      name: "prevPost",
-      title: "Previous Post",
-      type: "reference",
-      to: [{ type: "blogposts" }],
     },
   ],
 };

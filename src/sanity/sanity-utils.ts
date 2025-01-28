@@ -30,10 +30,31 @@ export async function getBlogpost(slug: string): Promise<Project> {
     url,
     content,
     pageTitle,
-    prevPost-> {
+    author->{
+        _id,
+        name,
+        photo{
+          asset->url,
+          alt
+        },
+        resourceUri
+    },
+    category->{
+        _id,
+        title,
+        slug
+    },
+    
+    "prevPost": *[_type == "blogposts" && _createdAt < ^._createdAt] | order(_createdAt desc) [0]{
+        _id,
         name,
         "slug": slug.current
-      },
+    },
+    "nextPost": *[_type == "blogposts" && _createdAt > ^._createdAt] | order(_createdAt asc) [0]{
+        _id,
+        name,
+        "slug": slug.current
+    }
     
     }`,
 
