@@ -21,36 +21,7 @@ const blogpost = {
       type: "array",
       of: [{ type: "block" }],
     },
-    // {
-    //   name: "blogpost",
-    //   title: "Blogpost",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       type: "object",
-    //       name: "headerEntry",
-    //       title: "Header Entry",
-    //       fields: [
-    //         {
-    //           name: "header",
-    //           type: "string",
-    //           title: "Header",
-    //         },
-    //         {
-    //           name: "paragraphs",
-    //           title: "Paragraphs",
-    //           type: "array",
-    //           of: [
-    //             // Here we use block content:
-    //             {
-    //               type: "block",
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+
     {
       name: "prevPost",
       title: "Previous Post",
@@ -61,3 +32,33 @@ const blogpost = {
 };
 
 export default blogpost;
+// {
+//   name: "blogpost",
+//   title: "Blogpost",
+//   type: "array",
+//   of: [
+//     {
+//       type: "object",
+//       name: "headerEntry",
+//       title: "Header Entry",
+//       fields: [
+//         {
+//           name: "header",
+//           type: "string",
+//           title: "Header",
+//         },
+//         {
+//           name: "paragraphs",
+//           title: "Paragraphs",
+//           type: "array",
+//           of: [
+//             // Here we use block content:
+//             {
+//               type: "block",
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   ],
+// },

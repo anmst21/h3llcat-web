@@ -4,6 +4,7 @@ import "@/styles/index.scss";
 import Menu from "@/components/menu";
 import PrivyProvider from "@/context/PrivyProvider";
 import { createClient, reservoirChains } from "@reservoir0x/reservoir-sdk";
+import CookieConsentBanner from "@/components/cookie-consent";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -83,6 +84,7 @@ export default function RootLayout({
         <PrivyProvider>
           {children}
           <Menu />
+          <CookieConsentBanner />
         </PrivyProvider>
       </body>
     </html>
