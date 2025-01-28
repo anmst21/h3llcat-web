@@ -1,0 +1,159 @@
+.blog-post-page {
+    font-family: var(--font-sf-pro);
+    padding: 60px 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 1;
+
+
+    &__image {
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 510;
+        color: var(--white-badge-text);
+        line-height: 30px;
+    }
+
+    &__author {
+        display: flex;
+        align-items: center;
+        background-color: var(--white-badge);
+        border-radius: 1000px;
+        padding: 10px 40px 10px 10px;
+
+        gap: 20px;
+
+        span {
+            color: var(--white-badge-text);
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 590;
+            line-height: 36px;
+        }
+
+        img {
+            border-radius: 1000px;
+            overflow: hidden;
+        }
+    }
+
+    &__top {
+        background-color: var(--blog-section);
+        display: flex;
+        gap: 60px;
+        flex-direction: column;
+        max-width: 1120px;
+        padding: 20px;
+
+
+    }
+
+    h1 {
+        color: var(--white-headings);
+        font-size: 86px;
+        font-style: normal;
+        font-weight: 650;
+        line-height: 90px;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        a {
+
+            color: var(--white-headings);
+            line-height: 40px;
+            font-size: 36px;
+            width: fit-content;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+.blog-post-main {
+    width: 100%;
+    background-color: var(--blog-section);
+    display: flex;
+    flex-direction: column;
+    max-width: 1120px;
+    padding: 20px;
+    line-height: 50px;
+
+
+    h3 {
+        margin-top: 50px;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 590;
+        line-height: 52px;
+        color: var(--white-headings);
+    }
+
+    p,
+    li {
+        margin-top: 30px;
+        font-size: 27px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 50px;
+        color: var(--white-paragraph);
+
+        &:first-of-type {
+            margin-top: 0; // Remove top margin for the first paragraph
+        }
+    }
+
+    strong {
+        font-weight: 590;
+        margin-right: 10px;
+    }
+
+    ul,
+    ol {
+        margin-top: 30px;
+        padding-left: 20px;
+    }
+
+
+    ul li {
+        list-style-position: outside;
+    }
+
+    ol li {
+        list-style-position: outside;
+    }
+
+
+
+    li {
+        margin: 0;
+    }
+
+
+}

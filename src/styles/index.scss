@@ -1,5 +1,7 @@
+@import "./variables.scss";
 @import "./media.scss";
 @import "./globals.scss";
+
 
 
 
@@ -14,6 +16,8 @@
 
 @import "../components/menu/index.scss";
 @import "../components/section-collections/index.scss";
+@import "../components/button/index.scss";
 
 
-@import "../app/(website)/blog/page.scss"
+@import "../app/(website)/blog/page.scss";
+@import "../app/(website)/blog/[slug]/page.scss";

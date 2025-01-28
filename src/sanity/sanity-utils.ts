@@ -1,8 +1,8 @@
 import { createClient, groq } from "next-sanity";
-import { Project } from "@/types/Project";
+import { Blogpost } from "@/types/Blogpost";
 import config from "./config/client-config";
 
-export async function getBlogposts(): Promise<Project[]> {
+export async function getBlogposts(): Promise<Blogpost[]> {
   return createClient(config).fetch(
     groq`*[_type == "blogposts"]{
     _id,
@@ -18,7 +18,7 @@ export async function getBlogposts(): Promise<Project[]> {
   );
 }
 
-export async function getBlogpost(slug: string): Promise<Project> {
+export async function getBlogpost(slug: string): Promise<Blogpost> {
   return createClient(config).fetch(
     groq`*[_type == "blogposts" && slug.current == $slug][0]{
     _id,
@@ -27,34 +27,30 @@ export async function getBlogpost(slug: string): Promise<Project> {
     "slug": slug.current,
     "image": image.asset->url,
     "alt": image.alt,
-    url,
     content,
     pageTitle,
     author->{
         _id,
         name,
-        photo{
-          asset->url,
-          alt
-        },
-        resourceUri
+        "image": image.asset->url,
+        "alt": image.alt,
     },
     category->{
         _id,
         title,
-        slug
+        "slug": slug.current,
     },
-    
-    "prevPost": *[_type == "blogposts" && _createdAt < ^._createdAt] | order(_createdAt desc) [0]{
-        _id,
-        name,
-        "slug": slug.current
-    },
-    "nextPost": *[_type == "blogposts" && _createdAt > ^._createdAt] | order(_createdAt asc) [0]{
-        _id,
-        name,
-        "slug": slug.current
-    }
+
+    // "prevPost": *[_type == "blogposts" && _createdAt < ^._createdAt] | order(_createdAt desc) [0]{
+    //     _id,
+    //     name,
+    //     "slug": slug.current
+    // },
+    // "nextPost": *[_type == "blogposts" && _createdAt > ^._createdAt] | order(_createdAt asc) [0]{
+    //     _id,
+    //     name,
+    //     "slug": slug.current
+    // }
     
     }`,
 
