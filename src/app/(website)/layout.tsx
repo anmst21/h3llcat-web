@@ -58,6 +58,11 @@ const sfPro = localFont({
       weight: "760",
       style: "normal",
     },
+    {
+      path: "../fonts/SFPro-ExpandedBlack.ttf",
+      weight: "1000",
+      style: "normal",
+    },
   ],
   variable: "--font-sf-pro",
 });

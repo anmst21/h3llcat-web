@@ -35,10 +35,12 @@ export default async function Blog({
             {featured.image && (
               <Image
                 src={featured.image}
-                width={700}
+                width={1080}
                 height={609}
                 alt={featured.alt}
                 style={{
+                  minHeight: "100%",
+                  minWidth: "70%",
                   objectFit: "cover",
                 }}
               />
@@ -51,11 +53,11 @@ export default async function Blog({
               <span className="featured__title">{featured.category.title}</span>
               <h3>{featured.name}</h3>
 
-              <div className="featured__meta">
+              {/* <div className="featured__meta">
                 <span>{formatBlogDate(featured._createdAt)}</span>
                 <BlogSlash />
                 <span>{featured.author.name}</span>
-              </div>
+              </div> */}
               <Link
                 className="featured__forward"
                 href={"/blog/" + featured.slug}
@@ -87,12 +89,14 @@ export default async function Blog({
               {blogpost.image && (
                 <Image
                   src={blogpost.image}
-                  width={364}
-                  height={280}
+                  width={1080}
+                  height={609}
                   alt={blogpost.alt}
                   style={{
                     borderRadius: 10,
-                    objectFit: "cover",
+                    //  objectFit: "cover",
+                    maxHeight: 250,
+                    width: "auto",
                   }}
                 />
               )}

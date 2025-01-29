@@ -1,27 +1,35 @@
 .section-header {
     font-family: var(--font-sf-pro);
     display: flex;
-    padding: 10px 35px 40px 35px;
+    padding: 20px 45px 40px 0px;
     gap: 30px;
     align-items: center;
 
-
+    border-radius: 10px;
 
     &--featured {
+        background-color: var(--accent);
+        padding: 20px 45px 30px 15px;
+
         .section-header__line {
             height: 80px;
+            background-color: #212121;
         }
 
 
         .section-header__text {
+
             h2 {
                 line-height: 74px;
                 font-size: 74px;
+                color: #212121;
+                font-weight: 1000;
             }
 
             span {
                 font-size: 32px;
                 line-height: 36px;
+                color: #212121;
             }
         }
     }
