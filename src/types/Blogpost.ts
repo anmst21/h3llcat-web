@@ -21,11 +21,13 @@ export type PrevNextPost = {
 };
 
 export type Blogpost = {
+  featured: boolean;
   _id: string;
   _createdAt: Date;
   name: string;
   slug: string;
   image: string;
+  subheader: string;
   url: string;
   alt: string;
   content: PortableTextBlock[];

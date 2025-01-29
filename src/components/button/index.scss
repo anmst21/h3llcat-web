@@ -10,7 +10,54 @@
     font-family: var(--font-sf-pro);
     font-weight: 650;
 
+
+    transition: all .2s;
+
+    &:hover {
+        background-color: var(--white-btn-hover)
+    }
+
+    &:active {
+        background-color: var(--white-btn-hover)
+    }
+
     &--accent {
         color: var(--accent);
+    }
+}
+
+.link-button {
+
+    font-family: var(--font-sf-pro);
+
+    color: var(--dark-text);
+    background-color: var(--white);
+    border-radius: 1000px;
+    padding: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    span {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 650;
+        line-height: 22px;
+        margin-left: 25px;
+    }
+
+    &__icon {
+        svg {
+            transform: scaleX(-1);
+            /* Flip horizontally */
+        }
+
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1000px;
+        border: 1px solid currentColor;
     }
 }

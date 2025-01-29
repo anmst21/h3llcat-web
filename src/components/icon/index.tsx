@@ -17,9 +17,11 @@ import NexusTestLogo from "./NexusTestLogo";
 import NexusUri from "./NexusUri";
 import LandingForward from "./LandingForward";
 import BlogBack from "./BlogBack";
+import BlogSlash from "./BlogSlash";
 
 export {
   BlogBack,
+  BlogSlash,
   LandingForward,
   NexusUri,
   NexusTestLogo,

@@ -4,6 +4,7 @@ import Image from "next/image";
 import BlogButton from "@/components/button/blog-button";
 import Link from "next/link";
 import { formatBlogDate } from "@/helpers/formatBlogDate";
+import Categories from "@/components/blog/categories";
 
 type Slug = {
   params: { slug: string };
@@ -14,7 +15,7 @@ export async function generateMetadata({ params: { slug } }: Slug) {
 
   return {
     title: project.name,
-    description: project.content[0].children[0].text,
+    description: project.subheader,
   };
 }
 
@@ -24,6 +25,16 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
   console.log("project", project);
   return (
     <div className="blog-post-page">
+      {/* <div className="blog-post-page__categories">
+        {project.categories.map((category) => {
+          return (
+            <Link key={category._id} href={"/blog/category/" + category.slug}>
+              {category.title}
+            </Link>
+          );
+        })}
+      </div> */}
+      <Categories list={project.categories} />
       <div className="blog-post-page__top">
         <div className="blog-post-page__header">
           <div className="blog-post-page__buttons">
@@ -60,6 +71,7 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
       </div>
 
       <div className="blog-post-main">
+        <p>{project.subheader}</p>
         <PortableText value={project.content} />
       </div>
     </div>

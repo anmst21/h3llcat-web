@@ -1,12 +1,18 @@
 :root {
     --white: #ffffff;
     --white-btn: rgba(255, 255, 255, 0.20);
+    --white-btn-hover: rgba(255, 255, 255, 0.30);
+    --white-btn-active: rgba(255, 255, 255, 0.40);
     --white-badge: rgba(255, 255, 255, 0.10);
     --white-badge-text: rgba(255, 255, 255, 0.50);
     --white-headings: rgba(255, 255, 255, 0.80);
     --white-paragraph: rgba(255, 255, 255, 0.60);
     --accent: #FC0;
 
+    --blog-main-section: #212121;
+    --blog-section: #050915;
+    --color-category: rgba(147, 145, 142, 1);
 
-    --blog-section: #050915
+
+    --dark-text: #010101;
 }
