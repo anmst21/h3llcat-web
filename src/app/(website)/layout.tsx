@@ -29,6 +29,11 @@ const sfPro = localFont({
       style: "normal",
     },
     {
+      path: "../fonts/SFPro-CompressedMedium.ttf",
+      weight: "550",
+      style: "normal",
+    },
+    {
       path: "../fonts/SFPro-Semibold.ttf",
       weight: "590",
       style: "normal",

@@ -1,19 +1,44 @@
-import React from "react";
+"use client";
+
+import React, { useCallback } from "react";
 import { Category } from "@/types/Blogpost";
-import Link from "next/link";
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   list: Category[];
 };
 
 const Categories = ({ list }: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <div className="blog-post-page__categories">
+      <button onClick={() => router.push(pathname)}>Blog</button>
       {list.map((category) => {
         return (
-          <Link key={category._id} href={"/blog/category/" + category.slug}>
+          <button
+            key={category._id}
+            onClick={() =>
+              router.push(
+                "/blog" + "?" + createQueryString("category", category.slug)
+              )
+            }
+          >
             {category.title}
-          </Link>
+          </button>
         );
       })}
     </div>

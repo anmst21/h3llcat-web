@@ -15,7 +15,9 @@ const categoriesQuery = groq`
     }
   `;
 
-export async function getBlogposts(): Promise<ListWithCategories> {
+export async function getBlogposts(
+  category?: string
+): Promise<ListWithCategories> {
   const client = createClient(config);
 
   const blogpostQuery = groq`*[_type == "blogposts"] | order(_createdAt desc) {
@@ -40,8 +42,36 @@ export async function getBlogposts(): Promise<ListWithCategories> {
       },
 }`;
 
+  const blogpostByCategoryQuery = groq`
+  *[_type == "blogposts" && category->slug.current == $category] | order(_createdAt desc) {
+    _id,
+    _createdAt,
+    name,
+    subheader,
+    "slug": slug.current,
+    "image": image.asset->url,
+    "alt": image.alt,
+    featured,
+    category->{
+      _id,
+      title,
+      "slug": slug.current,
+    },
+    author->{
+      _id,
+      name,
+      "image": image.asset->url,
+      "alt": image.alt,
+    },
+  }
+`;
+
+  const decider = category
+    ? client.fetch<Blogpost[]>(blogpostByCategoryQuery, { category })
+    : client.fetch<Blogpost[]>(blogpostQuery);
+
   const [blogposts, categories] = await Promise.all([
-    client.fetch<Blogpost[]>(blogpostQuery),
+    decider,
     client.fetch<Category[]>(categoriesQuery),
   ]);
 

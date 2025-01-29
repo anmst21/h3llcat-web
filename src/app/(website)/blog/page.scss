@@ -181,7 +181,7 @@
         span {
             text-transform: uppercase;
             letter-spacing: -1.35px;
-            font-weight: 540;
+            font-weight: 550;
             font-family: var(--font-sf-pro);
 
             /* Adjust width to 'Compressed' */
@@ -189,12 +189,12 @@
                 font-size: 300px;
                 line-height: 304px;
                 color: rgba(1, 1, 1, 0.30);
-                font-weight: 540;
+
                 position: relative;
             }
 
             &:nth-child(2) {
-                font-weight: 540;
+
                 font-size: 350px;
                 line-height: 354px;
                 color: rgba(1, 1, 1, 0.50);
@@ -203,7 +203,7 @@
             }
 
             &:nth-child(3) {
-                font-weight: 540;
+
                 font-size: 450px;
                 line-height: 454px;
                 position: relative;
