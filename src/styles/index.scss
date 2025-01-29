@@ -20,5 +20,6 @@
 @import "../components/blog/index.scss";
 
 
-@import "../app/(website)/blog/page.scss";
-@import "../app/(website)/blog/[slug]/page.scss";
+// @import "../app/(website)/blog/page.scss";
+@import "../app/(website)/(blog)/blog/page.scss";
+@import "../app/(website)/(blog)/blog/[slug]/page.scss";

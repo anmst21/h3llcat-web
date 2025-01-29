@@ -27,7 +27,7 @@ export default async function Blog({
 
   return (
     <div className="blog-sections">
-      <Categories list={categories} />
+      <Categories active={searchParams?.category} list={categories} />
       {featured && (
         <div className="featured">
           <SectionHeader featured header="Featured" subHeader="Editors Pick" />

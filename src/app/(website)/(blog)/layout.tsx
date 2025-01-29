@@ -1,6 +1,6 @@
 import LinkButton from "@/components/button/link-button";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export default function RootLayout({
             Follow our blog for the latest news, feature launches, and insights
             into Display's platform.
           </p>
-          <LinkButton href="/subscribe" content="Subscribe" />
+          <LinkButton />
         </div>
       </div>
       {children}

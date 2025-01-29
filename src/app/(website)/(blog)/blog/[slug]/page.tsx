@@ -8,6 +8,7 @@ import Categories from "@/components/blog/categories";
 
 type Slug = {
   params: { slug: string };
+  searchParams?: { category: string };
 };
 
 export async function generateMetadata({ params: { slug } }: Slug) {
@@ -19,7 +20,10 @@ export async function generateMetadata({ params: { slug } }: Slug) {
   };
 }
 
-export default async function BlogPostPage({ params: { slug } }: Slug) {
+export default async function BlogPostPage({
+  params: { slug },
+  searchParams,
+}: Slug) {
   const project = await getBlogpost(slug);
 
   console.log("project", project);
@@ -34,7 +38,7 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
           );
         })}
       </div> */}
-      <Categories list={project.categories} />
+      <Categories active={searchParams?.category} list={project.categories} />
       <div className="blog-post-page__top">
         <div className="blog-post-page__header">
           <div className="blog-post-page__buttons">
