@@ -18,8 +18,14 @@ import NexusUri from "./NexusUri";
 import LandingForward from "./LandingForward";
 import BlogBack from "./BlogBack";
 import BlogSlash from "./BlogSlash";
+import IphoneFrame from "./IphoneFrame";
+import LogoNexusMock from "./LogoNexusMock";
+import LogoDisplayMock from "./LogoDisplayMock";
 
 export {
+  LogoNexusMock,
+  LogoDisplayMock,
+  IphoneFrame,
   BlogBack,
   BlogSlash,
   LandingForward,
