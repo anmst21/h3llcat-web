@@ -1,0 +1,33 @@
+.section-display {
+    font-family: var(--font-sf-pro);
+    display: flex;
+    height: 1117px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+
+    &::after {
+        border-radius: 0px 0px 40px 40px;
+        z-index: -1;
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #010101;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        color: var(--accent);
+        font-size: 220px;
+        font-style: normal;
+        font-weight: 540;
+        line-height: 224px;
+        letter-spacing: -1.35px;
+    }
+}

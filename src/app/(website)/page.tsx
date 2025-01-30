@@ -1,15 +1,16 @@
-"use client";
-
-import { subscribeUser } from "@/actions/subscribe";
+import SectionDisplay from "@/components/section-display";
+import SectionMint from "@/components/section-mint";
+import SectionCollections from "@/components/section-collections";
 
 export default function Home() {
   return (
     <div className="home">
-      <button
-        onClick={async () => await subscribeUser("anmstudios21c@gmail.com")}
-      >
-        Subscribe
-      </button>
+      <SectionDisplay />
+      <SectionMint />
+      <SectionCollections />
     </div>
   );
 }
+//  <button onClick={async () => await subscribeUser("anmstudios21c@gmail.com")}>
+//    Subscribe
+//  </button>;

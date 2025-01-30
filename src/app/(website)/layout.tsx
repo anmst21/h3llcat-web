@@ -19,6 +19,11 @@ const geistMono = localFont({
 const sfPro = localFont({
   src: [
     {
+      path: "../fonts/SFPro-CompressedLight.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
       path: "../fonts/SFPro.ttf",
       weight: "400",
       style: "normal",
