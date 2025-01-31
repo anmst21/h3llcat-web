@@ -20,6 +20,11 @@
     gap: 30px;
     height: fit-content;
     max-width: 398px;
+    margin-left: 20px;
+    transform: translate3d(0, 0, 0);
+    min-width: 0;
+
+    flex: 0 0 398px;
 
     &__props {
         display: flex;
@@ -113,12 +118,20 @@
     color: var(--accent);
     flex-direction: column;
 
-    &__list {
+    &__container {
         display: flex;
-        gap: 20px;
-        overflow: scroll;
-        width: 100%;
+        // gap: 20px;
+        // overflow: scroll;
+        // width: 100%;
+        margin-left: calc(20px * -1);
     }
+
+    &__viewport {
+        pointer-events: none;
+        overflow: hidden;
+        width: 120%
+    }
+
 
     &__header {
         padding: 40px 45px;

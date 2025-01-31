@@ -6309,6 +6309,29 @@ elliptic@6.6.1:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
+embla-carousel-auto-scroll@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel-auto-scroll/-/embla-carousel-auto-scroll-8.5.2.tgz#fa5114f009a8743c499c241ad2b77543a917a4b7"
+  integrity sha512-B0QF4vcHRLu7DJwDpgTq5q8qsX4185hOuXfpWPtOlZW+a+QG7ZIN3zTSUTI3Xt0MTWkAB5ZJ0gsFj2zUMKL3ig==
+
+embla-carousel-react@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-8.5.2.tgz#f79f6c36690596fe2aceec994372ab84bfbfd9cc"
+  integrity sha512-Tmx+uY3MqseIGdwp0ScyUuxpBgx5jX1f7od4Cm5mDwg/dptEiTKf9xp6tw0lZN2VA9JbnVMl/aikmbc53c6QFA==
+  dependencies:
+    embla-carousel "8.5.2"
+    embla-carousel-reactive-utils "8.5.2"
+
+embla-carousel-reactive-utils@8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel-reactive-utils/-/embla-carousel-reactive-utils-8.5.2.tgz#914bf99c3d91e0809282fc1d14df3d1453f222c1"
+  integrity sha512-QC8/hYSK/pEmqEdU1IO5O+XNc/Ptmmq7uCB44vKplgLKhB/l0+yvYx0+Cv0sF6Ena8Srld5vUErZkT+yTahtDg==
+
+embla-carousel@8.5.2, embla-carousel@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-8.5.2.tgz#95eb936d14a1b9a67b9207a0fde1f25259a5d692"
+  integrity sha512-xQ9oVLrun/eCG/7ru3R+I5bJ7shsD8fFwLEY7yPe27/+fDHCNj0OT5EoG5ZbFyOxOcG6yTwW8oTz/dWyFnyGpg==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -7213,6 +7236,15 @@ framer-motion@^11.15.0, framer-motion@^11.18.1:
   dependencies:
     motion-dom "^11.18.1"
     motion-utils "^11.18.1"
+    tslib "^2.4.0"
+
+framer-motion@^12.0.6:
+  version "12.0.6"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.0.6.tgz#4ec8b9225ead4d0d7d4ff00ade6e76a83e6d0c99"
+  integrity sha512-LmrXbXF6Vv5WCNmb+O/zn891VPZrH7XbsZgRLBROw6kFiP+iTK49gxTv2Ur3F0Tbw6+sy9BVtSqnWfMUpH+6nA==
+  dependencies:
+    motion-dom "^12.0.0"
+    motion-utils "^12.0.0"
     tslib "^2.4.0"
 
 from2@^2.1.0:
@@ -9096,10 +9128,22 @@ motion-dom@^11.18.1:
   dependencies:
     motion-utils "^11.18.1"
 
+motion-dom@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.0.0.tgz#7045c63642eecbcc04c40b4457ebb07b3c2b3d0c"
+  integrity sha512-CvYd15OeIR6kHgMdonCc1ihsaUG4MYh/wrkz8gZ3hBX/uamyZCXN9S9qJoYF03GqfTt7thTV/dxnHYX4+55vDg==
+  dependencies:
+    motion-utils "^12.0.0"
+
 motion-utils@^11.18.1:
   version "11.18.1"
   resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-11.18.1.tgz#671227669833e991c55813cf337899f41327db5b"
   integrity sha512-49Kt+HKjtbJKLtgO/LKj9Ld+6vw9BjH5d9sc40R/kVyH8GLAXgT42M2NnuPcJNuA3s9ZfZBUcwIgpmZWGEE+hA==
+
+motion-utils@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-12.0.0.tgz#fabf79f4f1c818720a1b70f615e2a1768f396ac0"
+  integrity sha512-MNFiBKbbqnmvOjkPyOKgHUp3Q6oiokLkI1bEwm5QA28cxMZrv0CbbBGDNmhF6DIXsi1pCQBSs0dX8xjeER1tmA==
 
 motion@10.16.2:
   version "10.16.2"
@@ -9112,6 +9156,14 @@ motion@10.16.2:
     "@motionone/types" "^10.15.1"
     "@motionone/utils" "^10.15.1"
     "@motionone/vue" "^10.16.2"
+
+motion@^12.0.6:
+  version "12.0.6"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-12.0.6.tgz#65dfd621350c8ec46e15692d7e32c01b632ca9ff"
+  integrity sha512-AzCEO0+//mPlcGiL9JaVwjddHY1cbbnvz5upHL0toqQwsPCs+hiKJ0XG5jfG0XwDtBbiSXdEqW/UTmGLwkVQ6A==
+  dependencies:
+    framer-motion "^12.0.6"
+    tslib "^2.4.0"
 
 ms@2.0.0:
   version "2.0.0"
