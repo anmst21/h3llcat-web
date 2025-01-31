@@ -1,10 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import { categories } from "../icon/category";
 import { collections } from "@/collections";
 import Image from "next/image";
+import Carousel from "./carousel";
 
 type Props = {};
+
+const colorsTriadic = ["#9747FF", "#FF9747", "#47FF97"];
+const colorsSplitComplementary = ["#9747FF", "#EDFF47", "#72FF47"];
+const colorsAnalogous = ["#4772FF", "#9747FF", "#FF47ED"];
+const colorsTetraidic = ["#9747FF", "#FF47AF", "#AFFF47", "#47FF97"];
+const colorsSquare = ["#9747FF", "#FF4754", "#AFFF47", "#47FFF3"];
 
 const SectionMint = (props: Props) => {
   const collection = collections[0];
@@ -34,17 +40,8 @@ const SectionMint = (props: Props) => {
       <div className="section-mint__header">
         <h1>*Mint Now*</h1>
       </div>
+      <Carousel />
 
-      <div className="rodeo-categories">
-        {categories.map((category) => {
-          return (
-            <div className="rodeo-category" key={category.key}>
-              {category.icon}
-              <span>{category.content}</span>
-            </div>
-          );
-        })}
-      </div>
       <Link className="section-mint__cta" href="/beta">
         Go to Beta
       </Link>

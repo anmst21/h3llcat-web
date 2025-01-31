@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -14,7 +14,7 @@ import { collections } from "@/collections";
 
 const CollectionsCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    AutoScroll({ playOnInit: true }),
+    AutoScroll({ playOnInit: true, speed: 1.5 }),
   ]);
 
   const collectionList = collections
