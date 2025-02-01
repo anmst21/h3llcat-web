@@ -5,7 +5,11 @@
     transform: translateX(-50%);
     // height: 120px;
     //  width: 400px;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.2);
+    /* Semi-transparent background */
+    backdrop-filter: blur(20px);
+    /* Blur the area behind the element */
+    -webkit-backdrop-filter: blur(20px);
     padding: 20px;
     border-radius: 20px;
     z-index: 1000;
@@ -13,6 +17,7 @@
 
 
 .menu-container {
+    background-color: white;
     display: flex;
     align-items: center;
     border-radius: 10px;

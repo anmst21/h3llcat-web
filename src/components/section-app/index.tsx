@@ -1,11 +1,13 @@
 import React from "react";
 import { IphoneFrame, LogoDisplayMock, LogoNexusMock } from "../icon";
+import BtnCarousel from "./btn-carousel";
 
 type Props = {};
 
 const SectionApp = (props: Props) => {
   return (
     <div className="section-app">
+      <BtnCarousel />
       <div className="app">
         <div className="app__top">
           <div className="app__text">

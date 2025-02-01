@@ -27,7 +27,6 @@
 }
 
 .link-button {
-
     font-family: var(--font-sf-pro);
 
     color: var(--dark-text);
@@ -38,7 +37,27 @@
     gap: 10px;
     align-items: center;
 
+    &--dark {
+        color: #010101;
+        background-color: #FFCC00;
+    }
+
+
+    &--carousel {
+        margin-left: 20px;
+        border: none;
+        background-color: transparent;
+
+        color: #9747FF;
+        z-index: 100;
+
+        span {
+            white-space: nowrap;
+        }
+    }
+
     span {
+        white-space: nowrap;
         font-size: 17px;
         font-style: normal;
         font-weight: 650;

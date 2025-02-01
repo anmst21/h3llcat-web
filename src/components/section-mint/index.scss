@@ -176,6 +176,10 @@
         width: 100%;
         max-width: 1728px;
         margin: 30px 0;
+
+        &--app {
+            pointer-events: all;
+        }
     }
 
 

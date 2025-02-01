@@ -37,7 +37,8 @@ export default function Menu() {
         </Link>
         <Link
           className={classNames("menu-btn", {
-            "menu-btn--active": pathname.includes("/blog"),
+            "menu-btn--active":
+              pathname.includes("/blog") || pathname.includes("/subscribe"),
           })}
           href="/blog"
         >
@@ -66,7 +67,7 @@ export default function Menu() {
           )}
           {!ready && <span>Loading...</span>}
         </button>
-        {authenticated && (
+        {authenticated && pathname.includes("/beta") && (
           <button
             className="menu-btn menu-btn__cta"
             disabled={disableLogout}

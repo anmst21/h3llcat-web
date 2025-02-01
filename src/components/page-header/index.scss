@@ -1,0 +1,124 @@
+.blog-cta {
+    display: flex;
+    flex: 1;
+    height: 1172px;
+    flex-direction: column;
+    padding-top: 134px;
+    color: var(--dark-text);
+    background-color: var(--accent);
+    border-radius: 0px 0px 40px 40px;
+    position: relative;
+
+
+    &--dark {
+        background-color: #010101;
+
+
+        .blog-cta__paragraph {
+
+            p {
+                color: white
+            }
+        }
+
+        .blog-cta__carousel {
+
+
+            .link-button {
+                color: white;
+            }
+        }
+
+        .blog-cta__heading {
+            span {
+
+                &:nth-child(1) {
+                    color: #474747;
+                }
+
+                &:nth-child(2) {
+                    color: #787878;
+                }
+
+                &:nth-child(3) {
+                    color: #FFCC00;
+                }
+            }
+        }
+    }
+
+    &__carousel {
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+
+
+        .link-button {
+            color: black;
+        }
+    }
+
+    &__paragraph {
+        padding: 45px 180px 45px 180px;
+        margin-top: auto;
+        height: 304px;
+        display: flex;
+        align-items: center;
+
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        justify-content: space-between;
+
+        p {
+            max-width: 700px;
+        }
+    }
+
+    &__heading {
+        align-items: center;
+        //  flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-sizing: border-box;
+        height: 700px;
+
+        span {
+            text-transform: uppercase;
+            letter-spacing: -1.35px;
+            font-weight: 550;
+            font-family: var(--font-sf-pro);
+
+            /* Adjust width to 'Compressed' */
+            &:nth-child(1) {
+                font-size: 300px;
+                line-height: 304px;
+                color: rgba(1, 1, 1, 0.30);
+
+                position: relative;
+            }
+
+            &:nth-child(2) {
+
+                font-size: 350px;
+                line-height: 354px;
+                color: rgba(1, 1, 1, 0.50);
+                top: -189px;
+                position: relative;
+            }
+
+            &:nth-child(3) {
+
+                font-size: 450px;
+                line-height: 454px;
+                position: relative;
+                top: -400px;
+                /* 100.889% */
+            }
+        }
+    }
+}

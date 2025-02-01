@@ -10,16 +10,19 @@ type Props = {
 };
 
 const CategoriesCarousel = (props: Props) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 20 }, [
-    AutoScroll({
-      playOnInit: true,
-      speed: 3,
-      direction: "backward",
-    }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, watchDrag: false },
+    [
+      AutoScroll({
+        playOnInit: true,
+        speed: 3,
+        direction: "backward",
+      }),
+    ]
+  );
 
   return (
-    <div ref={emblaRef} className="rodeo-categories__viewport">
+    <div ref={emblaRef} className="rodeo-categories__viewport ">
       <div className="rodeo-categories">
         {categories.map((category) => {
           return (
