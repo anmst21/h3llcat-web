@@ -1,29 +1,39 @@
 .collection-image {
-    position: absolute;
     border-radius: 25px;
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.20);
     object-fit: cover;
 
-    &:nth-child(1) {
-        transform: rotate(-45deg);
-        z-index: 15;
-        top: 120px;
+
+}
+
+//const colorsSquare = ["#9747FF", "#FF4754", "#AFFF47", "#47FFF3"];
+
+
+@keyframes strobe {
+    0% {
+        color: #9747FF;
     }
 
-    &:nth-child(2) {
-        transform: rotate(-30deg);
-        z-index: 10;
-        top: 215px;
-        margin-right: 20px;
+    25% {
+        color: #FF4754;
     }
 
-    &:nth-child(3) {
-        transform: rotate(-15deg);
-        z-index: 5;
-        top: 320px;
-        margin-right: 80px;
-
+    50% {
+        color: #AFFF47;
     }
+
+    75% {
+        color: #47FFF3;
+    }
+
+    100% {
+        color: #9747FF;
+    }
+}
+
+.strobe {
+    /* The steps(3) ensures three discrete jumps during the animation */
+    animation: strobe .2s steps(4, end) 4;
 }
 
 
@@ -38,6 +48,7 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 
 
     &__top {
@@ -93,25 +104,25 @@
 
     &__header {
         color: #9747FF;
-
+        pointer-events: none;
         display: flex;
         align-items: center;
         justify-content: center;
         height: 400px;
         margin-top: 80px;
 
-        h1 {
-            text-align: center;
-            font-weight: 100;
-            position: relative;
-            text-wrap: nowrap;
-            font-size: 574px;
-            font-style: normal;
-            font-weight: 270;
-            line-height: normal;
-            text-transform: uppercase;
-            letter-spacing: -1.35px;
-        }
+
+        text-align: center;
+        font-weight: 100;
+        position: relative;
+        text-wrap: nowrap;
+        font-size: 574px;
+        font-style: normal;
+        font-weight: 270;
+        line-height: normal;
+        text-transform: uppercase;
+        letter-spacing: -1.35px;
+
     }
 
     &::after {
