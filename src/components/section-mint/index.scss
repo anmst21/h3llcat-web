@@ -73,8 +73,12 @@
             font-style: normal;
             font-weight: 540;
             line-height: 102px;
-            /* 104.082% */
-            letter-spacing: -1.35px
+            letter-spacing: -1.35px;
+            white-space: nowrap;
+
+            max-width: 10ch;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         h3 {

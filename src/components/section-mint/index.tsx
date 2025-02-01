@@ -8,11 +8,9 @@ import { motion, AnimatePresence } from "motion/react";
 import classNames from "classnames";
 import { collections } from "@/collections";
 
-type Props = {};
-
 const colorsAnalogous = ["#9747FF", "#4772FF", "#FF47ED"];
 
-const SectionMint = (props: Props) => {
+const SectionMint = () => {
   const [strobe, setStrobe] = useState(false);
   const [order, setOrder] = useState<number[]>([0, 1, 2]);
   const [collectionIndex, setCollectionIndex] = useState(0);
@@ -36,7 +34,7 @@ const SectionMint = (props: Props) => {
     <motion.div
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ amount: 0.7 }} // triggers when 1/3 of the element is visible
+      viewport={{ amount: "some" }}
       className="section-mint"
       onViewportEnter={() => setStrobe(true)}
       onViewportLeave={() => setStrobe(false)}
@@ -84,7 +82,9 @@ const SectionMint = (props: Props) => {
         initial={{ color: colorsAnalogous[order[0]] }}
         animate={{ color: colorsAnalogous[order[0]] }}
         transition={{ duration: 0.8, ease: "linear" }}
-        className={classNames("section-mint__header", { strobe: strobe })}
+        className={classNames("section-mint__header", {
+          strobe: strobe && order[0] === 0,
+        })}
       >
         *Mint Now*
       </motion.h1>

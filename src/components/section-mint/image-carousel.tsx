@@ -72,7 +72,7 @@ const headerVariants = {
   },
 };
 const transition = { duration: 1, type: "spring", bounce: 0.2 };
-const transitionUp = { duration: 0.4, type: "spring", bounce: 0.2 };
+const transitionUp = { duration: 0.3, type: "spring", bounce: 0.2 };
 
 const topRaisedVariant = {
   rotate: -65,
@@ -92,6 +92,7 @@ const ImageCarousel = ({
   collectionsLength,
 }: Props) => {
   const [animating, setAnimating] = useState(false);
+  const [isChangingCollection, setIsChangingCollection] = useState(false);
 
   console.log(order, collectionIndex);
 
@@ -103,35 +104,23 @@ const ImageCarousel = ({
   );
 
   useEffect(() => {
+    if (!strobe) {
+      setOrder([0, 1, 2]);
+    }
+
     if (strobe) {
       const interval = setInterval(() => {
-        // Begin the first step: raise the top card.
         setAnimating(true);
 
-        // After the raise animation completes (0.4s),
-        // update the order so the raised card goes to the bottom.
         setTimeout(() => {
-          // Use a functional update so you can check the new order.
           setOrder((prevOrder) => {
-            // Rotate the order array: move the first element to the end.
             const newOrder = [prevOrder[1], prevOrder[2], prevOrder[0]];
 
-            // Check if we've rotated back to the initial order.
-            // (Assuming the initial order is [0, 1, 2])
-            // if (newOrder[0] === 0) {
-            //   if (collectionIndex === collectionsLength - 1) {
-            //     setCollectionIndex(0);
-            //   } else {
-            //     console.log("!!!triggered");
-            //     setIndex(collectionIndex);
-            //   }
-            // }
             return newOrder;
           });
-          // Reset the animating flag so that the new top card uses its standard variant.
           setAnimating(false);
-        }, 400);
-      }, 3000);
+        }, 300);
+      }, 5000);
 
       return () => clearInterval(interval);
     }
@@ -139,17 +128,27 @@ const ImageCarousel = ({
 
   useEffect(() => {
     if (order[0] === 0 && strobe) {
-      if (collectionIndex === collectionsLength - 1) {
-        setCollectionIndex(0);
-      } else {
-        console.log("!!!triggered");
-        setIndex(collectionIndex);
-      }
+      setIsChangingCollection(true);
+
+      // Wait 1 second before executing the logic and then set isChangingCollection to false
+      setTimeout(() => {
+        if (collectionIndex === collectionsLength - 1) {
+          setCollectionIndex(0);
+        } else {
+          console.log("!!!triggered");
+          setIndex(collectionIndex);
+        }
+
+        // Mark the collection change as complete
+        setIsChangingCollection(false);
+      }, 700);
     }
   }, [order]);
+
   return (
     <AnimatePresence>
       {strobe &&
+        !isChangingCollection &&
         collection.map((item, index) => {
           const slot = order.indexOf(index);
 
@@ -157,7 +156,7 @@ const ImageCarousel = ({
             slot === 0 ? "top" : slot === 1 ? "middle" : "bottom";
 
           const variantToUse =
-            slot === 0 && animating
+            slot === 0 && animating && order[1] !== 0
               ? topRaisedVariant
               : cardVariants[variantName];
           const slotName =
@@ -166,8 +165,8 @@ const ImageCarousel = ({
           return (
             <motion.div
               initial={headerVariants.offscreen[slotName]}
-              key={index}
-              exit={headerVariants.offscreen[slotName]}
+              key={`${index}+${collectionIndex}`}
+              exit={headerVariants.afterscreen[slotName]}
               animate={variantToUse}
               transition={transition}
               style={{
