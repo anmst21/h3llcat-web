@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ImageCarousel from "./image-carousel";
 import Carousel from "./carousel";
@@ -10,34 +10,20 @@ import { collections } from "@/collections";
 
 type Props = {};
 
-const colorsTriadic = ["#9747FF", "#FF9747", "#47FF97"];
-const colorsSplitComplementary = ["#9747FF", "#EDFF47", "#72FF47"];
 const colorsAnalogous = ["#9747FF", "#4772FF", "#FF47ED"];
-const colorsTetraidic = ["#9747FF", "#FF47AF", "#AFFF47", "#47FF97"];
-const colorsSquare = ["#9747FF", "#FF4754", "#AFFF47", "#47FFF3"];
 
 const SectionMint = (props: Props) => {
   const [strobe, setStrobe] = useState(false);
   const [order, setOrder] = useState<number[]>([0, 1, 2]);
-  const collection = collections[0];
+  const [collectionIndex, setCollectionIndex] = useState(0);
+  const collection = collections[collectionIndex];
   const topItem = collection[order[0]];
 
-  const headerVariants = {
-    offscreen: { color: colorsTriadic[0] },
-    onscreen: {
-      // Cycle through the colors when in view
-      color: [
-        colorsTriadic[0],
-        colorsTriadic[1],
-        colorsTriadic[2],
-        colorsTriadic[0],
-      ],
-      transition: {
-        duration: 1, // Total duration for the cycle
-        ease: "linear",
-      },
-    },
-  };
+  useEffect(() => {
+    if (!strobe) {
+      setOrder([0, 1, 2]);
+    }
+  }, [strobe]);
 
   const textAnimationProps = {
     initial: { opacity: 0 },
@@ -60,6 +46,9 @@ const SectionMint = (props: Props) => {
         order={order}
         setOrder={setOrder}
         strobe={strobe}
+        setCollectionIndex={setCollectionIndex}
+        collectionIndex={collectionIndex}
+        collectionsLength={collections.length}
       />
       <div className="section-mint__top">
         <Link
@@ -110,3 +99,8 @@ const SectionMint = (props: Props) => {
 };
 
 export default SectionMint;
+
+// const colorsTetraidic = ["#9747FF", "#FF47AF", "#AFFF47", "#47FF97"];
+// const colorsSquare = ["#9747FF", "#FF4754", "#AFFF47", "#47FFF3"];
+// const colorsTriadic = ["#9747FF", "#FF9747", "#47FF97"];
+// const colorsSplitComplementary = ["#9747FF", "#EDFF47", "#72FF47"];

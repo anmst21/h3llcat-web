@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Collection } from "@/types/CollectionCarousel";
@@ -10,6 +10,9 @@ type Props = {
   setOrder: React.Dispatch<React.SetStateAction<number[]>>;
   collection: Collection[];
   strobe: boolean;
+  setCollectionIndex: React.Dispatch<React.SetStateAction<number>>;
+  collectionIndex: number;
+  collectionsLength: number;
 };
 
 const cardVariants = {
@@ -79,29 +82,71 @@ const topRaisedVariant = {
   transition: transitionUp,
 };
 
-const ImageCarousel = ({ order, setOrder, collection, strobe }: Props) => {
+const ImageCarousel = ({
+  order,
+  setOrder,
+  collection,
+  strobe,
+  setCollectionIndex,
+  collectionIndex,
+  collectionsLength,
+}: Props) => {
   const [animating, setAnimating] = useState(false);
 
-  useEffect(() => {
-    // setOrder(([first, second, third]) => [second, third, first]);
+  console.log(order, collectionIndex);
 
+  const setIndex = useCallback(
+    (index: number) => {
+      setCollectionIndex(index + 1);
+    },
+    [setCollectionIndex]
+  );
+
+  useEffect(() => {
     if (strobe) {
       const interval = setInterval(() => {
         // Begin the first step: raise the top card.
         setAnimating(true);
 
-        // After the raise animation completes (0.5s),
+        // After the raise animation completes (0.4s),
         // update the order so the raised card goes to the bottom.
         setTimeout(() => {
-          setOrder(([first, second, third]) => [second, third, first]);
+          // Use a functional update so you can check the new order.
+          setOrder((prevOrder) => {
+            // Rotate the order array: move the first element to the end.
+            const newOrder = [prevOrder[1], prevOrder[2], prevOrder[0]];
+
+            // Check if we've rotated back to the initial order.
+            // (Assuming the initial order is [0, 1, 2])
+            // if (newOrder[0] === 0) {
+            //   if (collectionIndex === collectionsLength - 1) {
+            //     setCollectionIndex(0);
+            //   } else {
+            //     console.log("!!!triggered");
+            //     setIndex(collectionIndex);
+            //   }
+            // }
+            return newOrder;
+          });
           // Reset the animating flag so that the new top card uses its standard variant.
           setAnimating(false);
         }, 400);
-      }, 7000);
+      }, 3000);
 
       return () => clearInterval(interval);
     }
   }, [strobe]);
+
+  useEffect(() => {
+    if (order[0] === 0 && strobe) {
+      if (collectionIndex === collectionsLength - 1) {
+        setCollectionIndex(0);
+      } else {
+        console.log("!!!triggered");
+        setIndex(collectionIndex);
+      }
+    }
+  }, [order]);
   return (
     <AnimatePresence>
       {strobe &&
@@ -140,7 +185,6 @@ const ImageCarousel = ({ order, setOrder, collection, strobe }: Props) => {
                 height={450}
                 alt={item.artName}
                 src={item.artUri as string}
-                className="collection-image"
               />
             </motion.div>
           );
