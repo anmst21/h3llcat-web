@@ -89,7 +89,7 @@ const SectionMint = () => {
         *Mint Now*
       </motion.h1>
 
-      <Carousel isInView={strobe} />
+      <Carousel />
 
       <Link className="section-mint__cta" href="/beta">
         Go to Beta

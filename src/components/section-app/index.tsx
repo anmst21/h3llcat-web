@@ -1,10 +1,7 @@
-import React from "react";
 import { IphoneFrame, LogoDisplayMock, LogoNexusMock } from "../icon";
 import BtnCarousel from "./btn-carousel";
 
-type Props = {};
-
-const SectionApp = (props: Props) => {
+const SectionApp = () => {
   return (
     <div className="section-app">
       <BtnCarousel />

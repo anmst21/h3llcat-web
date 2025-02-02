@@ -86,10 +86,6 @@ export const metadata: Metadata = {
     { name: "Anthony Nazarov", url: "https://www.n3xus.nyc/" },
     { name: "Vladimir Kokorev", url: "https://www.n3xus.nyc/" },
   ],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
 };
 
 createClient({

@@ -4,6 +4,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Collection } from "@/types/CollectionCarousel";
+import {
+  cardVariants,
+  headerVariants,
+  transition,
+  topRaisedVariant,
+} from "./animation";
 
 type Props = {
   order: number[];
@@ -13,73 +19,6 @@ type Props = {
   setCollectionIndex: React.Dispatch<React.SetStateAction<number>>;
   collectionIndex: number;
   collectionsLength: number;
-};
-
-const cardVariants = {
-  top: {
-    rotate: -45,
-    top: 120,
-    marginRight: 0,
-    zIndex: 15,
-  },
-  middle: {
-    rotate: -30,
-    top: 215,
-    marginRight: 20,
-    zIndex: 10,
-  },
-  bottom: {
-    rotate: -15,
-    top: 320,
-    marginRight: 80,
-    zIndex: 5,
-  },
-};
-
-const headerVariants = {
-  offscreen: {
-    top: {
-      ...cardVariants.top,
-      top: 120 - 1000,
-    },
-    middle: {
-      ...cardVariants.middle,
-      top: 215 - 1000,
-    },
-    bottom: {
-      ...cardVariants.bottom,
-      top: 320 - 1000,
-    },
-  },
-  onscreen: {
-    top: cardVariants.top,
-    middle: cardVariants.middle,
-    bottom: cardVariants.bottom,
-  },
-  afterscreen: {
-    top: {
-      ...cardVariants.top,
-      top: 120 + 2000,
-    },
-    middle: {
-      ...cardVariants.middle,
-      top: 215 + 2000,
-    },
-    bottom: {
-      ...cardVariants.bottom,
-      top: 320 + 2000,
-    },
-  },
-};
-const transition = { duration: 1, type: "spring", bounce: 0.2 };
-const transitionUp = { duration: 0.3, type: "spring", bounce: 0.2 };
-
-const topRaisedVariant = {
-  rotate: -65,
-  top: -100,
-  marginRight: -20,
-  zIndex: cardVariants.top.zIndex,
-  transition: transitionUp,
 };
 
 const ImageCarousel = ({
@@ -130,12 +69,10 @@ const ImageCarousel = ({
     if (order[0] === 0 && strobe) {
       setIsChangingCollection(true);
 
-      // Wait 1 second before executing the logic and then set isChangingCollection to false
       setTimeout(() => {
         if (collectionIndex === collectionsLength - 1) {
           setCollectionIndex(0);
         } else {
-          console.log("!!!triggered");
           setIndex(collectionIndex);
         }
 
