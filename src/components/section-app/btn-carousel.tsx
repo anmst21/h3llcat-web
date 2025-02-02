@@ -13,7 +13,7 @@ const BtnCarousel = (props: Props) => {
     [
       AutoScroll({
         playOnInit: true,
-        speed: 3,
+        speed: 2.5,
         direction: "backward",
       }),
     ]

@@ -48,12 +48,19 @@
     }
 
     &__carousel {
-
         position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
 
+        top: 0;
+        left: 0;
+        overflow: visible;
+        right: 0;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+
+        // .rodeo-categories__viewport--app {
+        //     width: 120vw;
+        // }
 
         .link-button {
             color: black;
