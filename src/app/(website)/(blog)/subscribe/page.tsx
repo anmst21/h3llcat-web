@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import SubscribeInput from "@/components/subscribe-input";
 
 export const metadata: Metadata = {
   title: "Join Beta - Mint Your Spot",
@@ -7,5 +8,15 @@ export const metadata: Metadata = {
 };
 
 export default function SubscribePage() {
-  return <div className="home">Hello SubscribePage!</div>;
+  return (
+    <div className="subscribe-page">
+      <div className="subscribe-page__container">
+        <div className="subscribe-page__header">
+          <span>GET EMAIL UPDATES</span>
+          <h2>Subscribe to Display's Newsletter</h2>
+        </div>
+      </div>
+      <SubscribeInput />
+    </div>
+  );
 }

@@ -4,17 +4,48 @@ import mailchimp from "@mailchimp/mailchimp_marketing";
 // import { render } from "@react-email/render";
 import nodemailer from "nodemailer";
 import { emailHtml } from "@/helpers/WelcomingEmail";
+import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
+
+const SECRET_KEY = process.env.RECAPCHA_BACKEND_KEY;
+
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY!,
   server: process.env.MAILCHIMP_SERVER_PREFIX!,
 });
 
-export async function subscribeUser(email: string) {
-  if (!email) {
-    throw new Error("Email is required");
-  }
-
+export async function subscribeUser(
+  formData: SubscribeFormSchema,
+  token: string | undefined
+) {
   try {
+    if (!token) {
+      return { success: false, message: "CAPTCHA token is missing" };
+    }
+
+    const { email } = formData;
+
+    const verificationResponse = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: SECRET_KEY || "",
+          response: token,
+        }),
+      }
+    );
+
+    const verificationResult = await verificationResponse.json();
+
+    if (!verificationResult.success || verificationResult.score < 0.5) {
+      // If the score is too low, reject the submission
+      return {
+        success: false,
+        message: "CAPTCHA verification failed. You might be a bot!",
+      };
+    }
+
     await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID!, {
       email_address: email,
       status: "subscribed", // or "pending" for double opt-in
@@ -40,6 +71,9 @@ export async function subscribeUser(email: string) {
     return { success: true };
   } catch (error) {
     console.error("Error in subscribeUser:", error);
-    throw new Error("Subscription failed");
+    return {
+      success: false,
+      message: "Subscription failed",
+    };
   }
 }

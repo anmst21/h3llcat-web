@@ -44,6 +44,22 @@ export default function Menu() {
         >
           Blog
         </Link>
+        <Link
+          className={classNames("menu-btn", {
+            "menu-btn--active": pathname.includes("/contacts"),
+          })}
+          href="/contacts"
+        >
+          Contacts
+        </Link>
+        <Link
+          className={classNames("menu-btn", {
+            "menu-btn--active": pathname.includes("/privacy"),
+          })}
+          href="/privacy"
+        >
+          Privacy
+        </Link>
         <button
           disabled={disableLogin}
           onClick={login}

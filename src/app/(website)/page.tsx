@@ -13,6 +13,3 @@ export default function Home() {
     </div>
   );
 }
-//  <button onClick={async () => await subscribeUser("anmstudios21c@gmail.com")}>
-//    Subscribe
-//  </button>;
