@@ -5,7 +5,7 @@ import { MetaItemName } from "@/components/collection/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { CollectionLock, CoinFade } from "@/components/icon";
 import { stringToColor } from "@/helpers/stringToColor";
-import Footer from "@/components/footer";
+import Footer from "@/components/footer/qr-footer";
 import Sticks from "@/components/collection/sticks";
 import { apiUri, gateway } from "@/helpers/uris";
 import SidebarBtn from "@/components/header/sidebar-btn";

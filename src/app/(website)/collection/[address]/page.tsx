@@ -1,4 +1,4 @@
-import Footer from "@/components/footer";
+import Footer from "@/components/footer/qr-footer";
 import { apiUri, gateway } from "@/helpers/uris";
 import axios from "axios";
 import { truncateEthAddress } from "@/helpers/truncateAddress";

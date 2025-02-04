@@ -5,6 +5,7 @@ import Menu from "@/components/menu";
 import PrivyProvider from "@/context/PrivyProvider";
 import { createClient, reservoirChains } from "@reservoir0x/reservoir-sdk";
 import CookieConsentBanner from "@/components/cookie-consent";
+import Footer from "@/components/footer";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -113,8 +114,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${sfPro.variable}`}
       >
         <PrivyProvider>
-          {children}
-          <Menu />
+          <div className="main">
+            {children}
+            <Footer />
+          </div>
+          {/* <Menu /> */}
           <CookieConsentBanner />
         </PrivyProvider>
       </body>

@@ -10,6 +10,45 @@
     position: relative;
 
 
+
+    &--white {
+        background-color: white;
+
+        .blog-cta__paragraph {
+            .link-button {
+                background-color: var(--accent);
+            }
+        }
+
+        .blog-cta__carousel {
+
+
+            .link-button {
+                color: rgba(1, 1, 1, 1);
+            }
+        }
+
+        .blog-cta__heading {
+            span {
+
+                &:nth-child(1) {
+                    color: rgba(1, 1, 1, 0.3);
+                }
+
+                &:nth-child(2) {
+                    color: rgba(1, 1, 1, 0.5);
+                }
+
+                &:nth-child(3) {
+                    color: #010101;
+                }
+            }
+        }
+    }
+
+
+
+
     &--dark {
         background-color: #010101;
 
@@ -99,6 +138,7 @@
             letter-spacing: -1.35px;
             font-weight: 550;
             font-family: var(--font-sf-pro);
+            white-space: nowrap;
 
             /* Adjust width to 'Compressed' */
             &:nth-child(1) {

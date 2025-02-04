@@ -21,8 +21,18 @@ import BlogSlash from "./BlogSlash";
 import IphoneFrame from "./IphoneFrame";
 import LogoNexusMock from "./LogoNexusMock";
 import LogoDisplayMock from "./LogoDisplayMock";
+import FooterFarcaster from "./FooterFarcaster";
+import FooterX from "./FooterX";
+import FooterLinkedIn from "./LinkedIn";
+import FooterMail from "./FooterMail";
+import FooterDooted from "./FooterDotted";
 
 export {
+  FooterDooted,
+  FooterMail,
+  FooterFarcaster,
+  FooterX,
+  FooterLinkedIn,
   LogoNexusMock,
   LogoDisplayMock,
   IphoneFrame,

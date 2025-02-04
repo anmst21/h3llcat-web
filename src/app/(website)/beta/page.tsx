@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import PageHeader from "@/components/page-header";
+import SectionBeta from "@/components/section-beta";
 
 export const metadata: Metadata = {
   title: "Join Beta - Mint Your Spot",
@@ -17,6 +18,7 @@ export default function Beta() {
         subHeader="Mint your Beta Pass NFT to unlock early access, exclusive features, and the future of on-chain minting"
         text={["Mint", "Display's", "Beta Pass"]}
       />
+      <SectionBeta />
     </div>
   );
 }

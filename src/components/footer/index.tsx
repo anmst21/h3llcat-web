@@ -1,30 +1,125 @@
+import React from "react";
+import DottedLink from "./dotted-link";
+import Link from "next/link";
 import Image from "next/image";
-import QRCode from "./qr-code";
-export default function Footer({
-  uri,
-  sqSize,
-}: {
-  uri: string;
-  sqSize: number;
-}) {
+import {
+  FooterFarcaster,
+  FooterX,
+  FooterLinkedIn,
+  FooterMail,
+} from "@/components/icon";
+
+const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
+
+const Footer = () => {
   return (
     <div className="footer">
-      <div className="footer__logo">
-        <Image
-          width={50}
-          height={50}
-          src={"/logo-display.svg"}
-          alt="logo-footer"
-        />
-        <div className="footer__logo__text">
-          <span className="footer__logo__text__top">View on Display</span>
-          <span className="footer__logo__text__bot">
-            Scan QR code to open link in app
-          </span>
+      <div className="footer__container">
+        <div className="footer__app">
+          <div className="footer__app__domain">
+            <h4>Display</h4>
+            <h4>.app</h4>
+          </div>
+          <div className="footer__app__links">
+            <DottedLink href="/" index={1} label="Home" />
+            <DottedLink href="/blog" index={2} label="Blog" />
+            <DottedLink href="/beta" index={3} label="Beta" />
+            <DottedLink href="/display" index={4} label="Display" />
+          </div>
+        </div>
+        <div className="footer__team">
+          <div className="footer__team__container">
+            <div className="footer__team__colors">
+              {colors.map((color, index) => (
+                <div key={index} style={{ backgroundColor: color }} />
+              ))}
+            </div>
+            <div className="footer__team__ny">
+              <h5>New York City</h5>
+              <span>Made in</span>
+            </div>
+          </div>
+          <div className="footer__team__year">
+            <span>
+              N<span className="three-letter">3</span>XUS
+            </span>{" "}
+            Team <span className="2025">2025</span>
+          </div>
+        </div>
+        <div className="footer__reimagine">Reimagine How You Mint On Chain</div>
+        <div className="footer__links">
+          <div className="footer__links__home">
+            <h5>Home</h5>
+            <Link href="/">Minting</Link>
+            <Link href="/">Collections</Link>
+            <Link href="/">About</Link>
+            <Link href="/">Features</Link>
+            <Link href="/">Display's NFT</Link>
+          </div>
+          <div className="footer__links__blog">
+            <h5>Blog</h5>
+            <Link href="/">News</Link>
+            <Link href="/">Updates</Link>
+            <Link href="/">Guides</Link>
+          </div>
+          <div className="footer__links__contact">
+            <h5>Contact Us</h5>
+            <Link href="/">+1 (845) 332-40-43</Link>
+            <Link href="/">display@nexus.nyc</Link>
+            <Link href="/">n3xus.nyc</Link>
+          </div>
+          <div className="footer__links__socials">
+            <Link href="/">
+              <FooterX />
+            </Link>
+            <Link href="/">
+              <FooterLinkedIn />
+            </Link>
+            <Link href="/">
+              <FooterFarcaster />
+            </Link>
+          </div>
+        </div>
+        <div className="footer__art">
+          <Image
+            alt="Nexus Dude Art"
+            src="/dude-art.svg"
+            width={556}
+            height={265}
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </div>
+        <div className="footer__form">
+          <div className="footer__form__text">
+            <span>
+              With Display, minting on-chain has never been easier. Swipe
+              through curated collections, mint what inspires you, and build
+              your digital gallery—all in one seamless experience. Join our beta
+              today and shape the next generation of blockchain art.
+            </span>
+          </div>
+          <form className="footer__form__bottom">
+            <div className="footer__form__input">
+              <label>
+                <FooterMail />
+                <input placeholder="E-mail" />
+              </label>
+            </div>
+            <div className="footer__form__cta">
+              <button>Subscribe</button>
+            </div>
+          </form>
         </div>
       </div>
-
-      <QRCode sqSize={sqSize} uri={uri} />
+      <div className="copyright">
+        <span>Display 2025 ©</span>
+        <span>All rights reserved</span>
+      </div>
     </div>
   );
-}
+};
+
+export default Footer;

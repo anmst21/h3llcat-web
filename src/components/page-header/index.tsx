@@ -8,14 +8,23 @@ type Props = {
   subHeader: string;
   href: string;
   isDark?: boolean;
+  isWhite?: boolean;
   btnContent: string;
 };
 
-const PageHeader = ({ text, subHeader, href, isDark, btnContent }: Props) => {
+const PageHeader = ({
+  text,
+  subHeader,
+  href,
+  isDark,
+  btnContent,
+  isWhite,
+}: Props) => {
   return (
     <div
       className={classNames("blog-cta", {
         "blog-cta--dark": isDark,
+        "blog-cta--white": isWhite,
       })}
     >
       <div className="blog-cta__carousel">

@@ -117,6 +117,8 @@ const ImageCarousel = ({
               }}
             >
               <Image
+                //  placeholder="blur"
+                quality={50}
                 width={450}
                 height={450}
                 alt={item.artName}

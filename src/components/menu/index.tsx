@@ -6,15 +6,26 @@ import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
+import { useEffect } from "react";
 
 export default function Menu() {
-  const { login, authenticated, logout, user } = usePrivy();
+  const { login, authenticated, logout, user, getAccessToken } = usePrivy();
   const { wallets } = useWallets();
   console.log("wallets", user);
   const pathname = usePathname();
   const { ready } = usePrivy();
   const disableLogin = !ready || (ready && authenticated);
   const disableLogout = !ready || (ready && !authenticated);
+
+  const getToken = async () => {
+    const accessToken = await getAccessToken();
+    console.log("accessToken", accessToken);
+    return accessToken;
+  };
+
+  useEffect(() => {
+    getToken();
+  }, []);
 
   return (
     <div className="menu">
