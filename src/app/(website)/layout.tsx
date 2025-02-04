@@ -118,7 +118,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
-          {/* <Menu /> */}
+          <Menu />
           <CookieConsentBanner />
         </PrivyProvider>
       </body>

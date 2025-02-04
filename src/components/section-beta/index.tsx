@@ -1,4 +1,4 @@
-import { nftProps } from "@/helpers/nftProps";
+// import { nftProps } from "@/helpers/nftProps";
 
 function SectionBeta() {
   return (

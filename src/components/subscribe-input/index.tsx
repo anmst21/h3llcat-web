@@ -2,7 +2,7 @@
 import { subscribeUser } from "@/actions/subscribe";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
   SubscribeFormSchema,
   subscribeFormSchema,
@@ -11,12 +11,12 @@ import {
 const SubscribeInput = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isCapchaError, setIsCapchaError] = useState(false);
-
+  console.log(isCapchaError);
   const {
     reset,
-    register,
+    // register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    // formState: { errors, isSubmitted },
   } = useForm<SubscribeFormSchema>({
     resolver: zodResolver(subscribeFormSchema),
   });
@@ -57,7 +57,11 @@ const SubscribeInput = () => {
     <div className="subscribe-field">
       <span>Receive updates from the Display's team to your inbox</span>
       <div>
-        <form method="POST" className="subscribe-field__input">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          method="POST"
+          className="subscribe-field__input"
+        >
           <label
           // className={classNames("form-input", {
           //   "form-input--error": isError,

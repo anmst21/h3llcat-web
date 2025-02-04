@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { FooterDooted } from "@/components/icon";
 
 type Props = {
   href: string;
