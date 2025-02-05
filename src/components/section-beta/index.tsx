@@ -4,7 +4,7 @@ import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { createClient } from "@reservoir0x/reservoir-sdk";
 import FooterInput from "../subscribe-input/footer-input";
 import { useUserBalance } from "@/hooks/useUserBalance";
@@ -19,6 +19,8 @@ createClient(options);
 
 function SectionBeta({ mintsNum }: any) {
   const { login, authenticated, getAccessToken, ready } = usePrivy();
+
+  const [timesMinted, setTimesMinted] = useState(mintsNum.totalMinted);
 
   const disableLogin = !ready || (ready && authenticated);
 
@@ -56,7 +58,7 @@ function SectionBeta({ mintsNum }: any) {
     if (userWallet && ready) {
       getUserBalance();
     }
-  }, [userWallet, ready]);
+  }, [userWallet, ready, getUserBalance]);
 
   useEffect(() => {
     if (!authenticated) {
@@ -76,10 +78,10 @@ function SectionBeta({ mintsNum }: any) {
     // logMessage: mintLogMessage,
   } = useBuyNFT({
     userWallet,
-    isEnoughFunds,
     getWalletClient,
     getAccessToken,
     setUserData: setData,
+    setTimesMinted,
   });
 
   return (
@@ -111,7 +113,7 @@ function SectionBeta({ mintsNum }: any) {
           <div className="section-beta__minted">
             <span className="section-beta__minted__label">Minted</span>
             <span className="section-beta__minted__number">
-              {mintsNum.totalMinted}
+              {timesMinted}
               <span>/10,000</span>
             </span>
           </div>
