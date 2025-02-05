@@ -8,6 +8,8 @@ const nextConfig = {
       "cdn.sanity.io",
       "f8n-production-collection-assets.imgix.net",
       "f8n-production.imgix.net",
+      "plus.unsplash.com",
+      "images.unsplash.com",
     ],
   },
 };

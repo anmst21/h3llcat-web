@@ -6,26 +6,49 @@ import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createWalletClient, custom } from "viem";
+import { baseSepolia } from "viem/chains";
 
 export default function Menu() {
-  const { login, authenticated, logout, user, getAccessToken } = usePrivy();
-  const { wallets } = useWallets();
-  console.log("wallets", user);
+  // const [userData, setUserData] = useState<any>(null);
+  const { login, authenticated, logout, user, getAccessToken, ready } =
+    usePrivy();
+  // const { wallets } = useWallets();
+  // console.log("userData", userData);
   const pathname = usePathname();
-  const { ready } = usePrivy();
   const disableLogin = !ready || (ready && authenticated);
   const disableLogout = !ready || (ready && !authenticated);
 
-  const getToken = async () => {
-    const accessToken = await getAccessToken();
-    console.log("accessToken", accessToken);
-    return accessToken;
-  };
+  // const getToken = async () => {
+  //   const accessToken = await getAccessToken();
 
-  useEffect(() => {
-    getToken();
-  }, []);
+  //   const apiUrl = "https://api-airdrop.h3llcat.app/api/v1/privyforms/me";
+
+  //   try {
+  //     const response = await fetch(apiUrl, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
+
+  //     const data = await response.json();
+  //     console.log("Response data:", data);
+  //     setUserData(data);
+  //   } catch (error) {
+  //     console.error("Error fetching /api/v1/privyforms/me:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getToken();
+  // }, []);
 
   return (
     <div className="menu">
@@ -89,7 +112,10 @@ export default function Menu() {
           ) : (
             ready &&
             authenticated && (
-              <span>{truncateEthAddress(wallets[0]?.address)}</span>
+              <span>
+                {user?.wallet?.address &&
+                  truncateEthAddress(user?.wallet?.address)}
+              </span>
             )
           )}
           {!ready && <span>Loading...</span>}

@@ -15,7 +15,7 @@
     "@react-email/components": "^0.0.32",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
-    "@reservoir0x/reservoir-sdk": "^2.4.42",
+    "@reservoir0x/reservoir-sdk": "^2.5.4",
     "@sanity/image-url": "^1.1.0",
     "@types/nodemailer": "^6.4.17",
     "@types/qrcode": "^1.5.5",
@@ -38,7 +38,7 @@
     "sanity": "^3.71.2",
     "sass": "^1.78.0",
     "three": "^0.170.0",
-    "viem": "^2.22.11"
+    "viem": "^2.22.21"
   },
   "devDependencies": {
     "@types/node": "^20",

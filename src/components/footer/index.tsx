@@ -8,7 +8,7 @@ import {
   FooterLinkedIn,
   FooterMail,
 } from "@/components/icon";
-
+import FooterForm from "./footer-form";
 const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
 
 const Footer = () => {
@@ -101,17 +101,23 @@ const Footer = () => {
               today and shape the next generation of blockchain art.
             </span>
           </div>
-          <form className="footer__form__bottom">
-            <div className="footer__form__input">
-              <label>
+          <FooterForm />
+          {/* <form className="footer__form__bottom">
+            <div className="footer__form__input"> */}
+          {/* <label>
                 <FooterMail />
                 <input placeholder="E-mail" />
-              </label>
+              </label> */}
+          {/* <FooterInput
+                type="email"
+                register={register("email")}
+                placeholder="E-Mail"
+              />
             </div>
             <div className="footer__form__cta">
               <button>Subscribe</button>
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
       <div className="copyright">

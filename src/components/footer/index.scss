@@ -61,7 +61,7 @@
         &__input {
             width: 100%;
 
-            label {
+            &__label {
                 &:focus-within {
                     svg {
                         color: white;

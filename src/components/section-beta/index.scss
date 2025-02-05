@@ -1,0 +1,123 @@
+.section-beta {
+    display: flex;
+    padding: 60px 60px 86px 60px;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sf-pro);
+
+
+
+    &__img {
+        min-width: 611px;
+        height: 611px;
+        border-radius: 25px;
+        overflow: hidden;
+        background-color: #000;
+        display: flex;
+
+    }
+
+
+    &__minted {
+
+        color: white;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 510;
+        line-height: 20px;
+        letter-spacing: -0.08px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: auto;
+
+        &__label {
+            color: #939393;
+        }
+
+        &__number {
+            span {
+                color: #939393;
+            }
+        }
+    }
+
+    &__action {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-radius: 25px;
+        background-color: #000;
+        height: 100%;
+        padding: 40px;
+        padding-top: 35px;
+
+
+        h2 {
+            color: #FFF;
+
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 760;
+            line-height: normal;
+            letter-spacing: -0.08px;
+        }
+
+
+        h3 {
+            color: #939393;
+
+            font-size: 36px;
+            font-weight: 590;
+            line-height: normal;
+            letter-spacing: -0.08px;
+        }
+
+
+        p {
+            color: #FFF;
+            font-size: 24px;
+            font-style: normal;
+            line-height: 36px;
+        }
+
+        button {
+
+            color: #050915;
+            width: 100%;
+            padding: 10px;
+            border-radius: 20px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            height: 70px;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 650;
+            line-height: 22px;
+        }
+    }
+
+    &__wrapper {
+        max-width: 1668px;
+        display: flex;
+        height: 691px;
+        padding: 40px 45px;
+        align-items: flex-start;
+        gap: 45px;
+        border-radius: 25px;
+        background-color: var(--accent);
+        width: 100%;
+
+        img {
+
+            box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.20);
+            object-fit: cover;
+
+        }
+    }
+
+
+
+}
