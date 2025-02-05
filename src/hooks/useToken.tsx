@@ -2,12 +2,7 @@
 
 import { usePrivy } from "@privy-io/react-auth";
 import { useState, useCallback, useEffect } from "react";
-
-export type UserData = {
-  did: string | null;
-  email: null | string;
-  isMinted: boolean;
-};
+import { UserData } from "./types";
 
 const apiUrl = "https://api-airdrop.h3llcat.app/api/v1/privyforms/me";
 

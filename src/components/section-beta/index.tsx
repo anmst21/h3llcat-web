@@ -51,7 +51,7 @@ function SectionBeta({ mintsNum }: any) {
     onSubmit,
     // showSuccessMessage,
     // isCaptchaError,
-  } = useBetaSubmit();
+  } = useBetaSubmit({ setUserData });
 
   useEffect(() => {
     if (userWallet && ready) {

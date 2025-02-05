@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 // import { subscribeUser } from "@/actions/subscribe";
@@ -8,6 +8,9 @@ import {
   SubscribeFormSchema,
   subscribeFormSchema,
 } from "@/components/subscribe-input/subscribe-form-schema";
+import { submitBeta } from "@/actions/submit-beta";
+import { usePrivy } from "@privy-io/react-auth";
+import { UserData } from "./types";
 
 interface NewsletterFormHook extends UseFormReturn<SubscribeFormSchema> {
   onSubmit: (data: SubscribeFormSchema) => Promise<void>;
@@ -15,7 +18,11 @@ interface NewsletterFormHook extends UseFormReturn<SubscribeFormSchema> {
   isCaptchaError: boolean;
 }
 
-export function useBetaSubmit(): NewsletterFormHook {
+export function useBetaSubmit({
+  setUserData,
+}: {
+  setUserData: (data: UserData) => void;
+}): NewsletterFormHook {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [
     isCaptchaError,
@@ -28,24 +35,21 @@ export function useBetaSubmit(): NewsletterFormHook {
 
   const { handleSubmit, reset, register, ...rest } = formMethods;
 
-  const onSubmit = async () => {
-    // data: SubscribeFormSchema
+  const { getAccessToken } = usePrivy();
 
-    // // Replace "kek" with your actual token logic or reCaptcha verification
-    // const token = "kek";
-    // if (token) {
-    //   const result = await subscribeUser(data, token);
-    //   if (!result.success) {
-    //     setIsCaptchaError(true);
-    //     return;
-    //   } else {
-    //     setShowSuccessMessage(true);
-    //     setIsCaptchaError(false);
-    //   }
-    // } else {
-    //   setIsCaptchaError(true);
-    //   return;
-    // }
+  const setData = useCallback(
+    (data: UserData) => {
+      setUserData(data);
+    },
+    [setUserData]
+  );
+
+  const onSubmit = async (data: SubscribeFormSchema) => {
+    const accessToken = await getAccessToken();
+
+    const token: UserData = await submitBeta(data, accessToken);
+    setData(token);
+
     reset();
   };
 
