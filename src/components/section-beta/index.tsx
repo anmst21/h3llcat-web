@@ -84,6 +84,14 @@ function SectionBeta({ mintsNum }: any) {
     setTimesMinted,
   });
 
+  console.log("loading data", isLoadingData);
+  console.log("ready", ready);
+  console.log("authenticated", authenticated);
+  console.log("userWalletChain === 84532", userWalletChain === 84532);
+  console.log("isEnoughFunds", isEnoughFunds);
+  console.log("userData?.isMinted", userData?.isMinted);
+  console.log("userData?.isMinted", userData?.email);
+
   return (
     <div className="section-beta">
       <form onSubmit={handleSubmit(onSubmit)} className="section-beta__wrapper">
@@ -127,7 +135,7 @@ function SectionBeta({ mintsNum }: any) {
             authenticated &&
             userWalletChain === 84532 &&
             isEnoughFunds) ||
-            (userData && userData?.isMinted && !userData.email && (
+            (userData && !userData?.isMinted && !userData.email && (
               <button onClick={buyNFT}>Mint</button>
             ))}
 
