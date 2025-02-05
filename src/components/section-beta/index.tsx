@@ -29,8 +29,6 @@ function SectionBeta({ mintsNum }: any) {
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
 
-  // const { fundWallet } = useFundWallet();
-
   const { userBalance, getUserBalance } = useUserBalance(userWallet, ready);
 
   const minBalance = parseUnits("0.0002", 18);
@@ -130,27 +128,27 @@ function SectionBeta({ mintsNum }: any) {
             (userData && userData?.isMinted && !userData.email && (
               <button onClick={buyNFT}>Mint</button>
             ))}
+
           {!isLoadingData &&
             userData &&
             userData?.isMinted &&
             !userData.email &&
             authenticated && <button type="submit">Submit</button>}
-          {/* {!isLoadingData &&
+
+          {!isLoadingData &&
             !isEnoughFunds &&
             ready &&
             authenticated &&
-            userWallet && (
-              <button
-                onClick={async () => await fundWallet(userWallet.address)}
-              >
-                Add funds
-              </button>
-            )} */}
+            userWalletChain === 84532 &&
+            userWallet && <button disabled>Insuficient funds</button>}
+
           {!isLoadingData &&
             authenticated &&
             ready &&
             userData?.isMinted &&
-            userData.email && <button onClick={buyNFT}>Mint More</button>}
+            userData.email &&
+            isEnoughFunds && <button onClick={buyNFT}>Mint More</button>}
+
           {!isLoadingData && userWalletChain && userWalletChain !== 84532 && (
             <button onClick={() => userWallet.switchChain(baseSepolia.id)}>
               Switch Chain

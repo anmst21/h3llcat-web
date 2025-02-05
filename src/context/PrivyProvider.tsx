@@ -13,14 +13,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         supportedChains: [base, baseSepolia],
 
         appearance: {
-          theme: "light",
-          accentColor: "#676FFF",
-          //    logo: "https://your-logo-url",
+          landingHeader: "Connect you wallet to Display",
+
+          walletChainType: "ethereum-only",
+          theme: "dark",
+          accentColor: "#FFCC00",
+          logo: "/logo_new.png",
         },
-        // Create embedded wallets for users who don't have a wallet
-        // embeddedWallets: {
-        //   createOnLogin: "users-without-wallets",
-        // },
       }}
     >
       {children}

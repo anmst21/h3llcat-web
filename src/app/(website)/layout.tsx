@@ -84,6 +84,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://display.app/"),
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
+
   authors: [
     { name: "Anthony Nazarov", url: "https://www.n3xus.nyc/" },
     { name: "Vladimir Kokorev", url: "https://www.n3xus.nyc/" },
