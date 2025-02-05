@@ -90,7 +90,17 @@ function SectionBeta({ mintsNum }: any) {
   console.log("userWalletChain === 84532", userWalletChain === 84532);
   console.log("isEnoughFunds", isEnoughFunds);
   console.log("userData?.isMinted", userData?.isMinted);
-  console.log("userData?.isMinted", userData?.email);
+  console.log("userData?.email", userData?.email);
+  console.log(
+    "check mint",
+    (!isLoadingData &&
+      ready &&
+      authenticated &&
+      userWalletChain === 84532 &&
+      isEnoughFunds) ||
+      (userData && !userData.isMinted && !userData.email)
+  );
+  console.log("balance", userBalance);
 
   return (
     <div className="section-beta">

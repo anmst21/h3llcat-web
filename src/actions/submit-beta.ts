@@ -22,11 +22,6 @@ export async function submitBeta(
       },
     });
 
-    // If the response is not OK, throw an error with the status text
-    if (!response.ok) {
-      throw new Error(`API error: ${response.statusText}`);
-    }
-
     const html = await emailHtml;
 
     const transporter = nodemailer.createTransport({

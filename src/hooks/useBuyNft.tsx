@@ -78,7 +78,7 @@ export function useBuyNFT({
 
         const data = await response.json();
         logMessageRef.current = undefined;
-        setUserData(data.user);
+        setUserData(data);
         setTimesMinted(data.totalMinted);
       }
     } catch (error: any) {
