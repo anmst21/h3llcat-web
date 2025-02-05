@@ -1,7 +1,6 @@
 "use server";
 
 import mailchimp from "@mailchimp/mailchimp_marketing";
-// import { render } from "@react-email/render";
 import nodemailer from "nodemailer";
 import { emailHtml } from "@/helpers/WelcomingEmail";
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";

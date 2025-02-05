@@ -4,26 +4,21 @@ import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
 import { usePrivy, useWallets, useFundWallet } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
-import { useEffect, useState, useCallback } from "react";
-import { getClient, Execute, createClient } from "@reservoir0x/reservoir-sdk";
+import { useEffect, useCallback } from "react";
+import { createClient } from "@reservoir0x/reservoir-sdk";
 import FooterInput from "../subscribe-input/footer-input";
 import { useUserBalance } from "@/hooks/useUserBalance";
 import { options } from "@/helpers/reservoirClientOptions";
 import { parseUnits } from "viem";
 import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
-import { apiUriSubmitMint } from "@/helpers/apiUri";
 import { useBuyNFT } from "@/hooks/useBuyNft";
 import { useBetaSubmit } from "@/hooks/useBetaSubmit";
 
 createClient(options);
 
 function SectionBeta({ mintsNum }: any) {
-  //   const [logMessage, setLogMessage] = useState<Execute["steps"] | null>(null);
-
-  //   const [mintingStatus, setMintingStatus] = useState("");
-
-  const { login, authenticated, user, getAccessToken, ready } = usePrivy();
+  const { login, authenticated, getAccessToken, ready } = usePrivy();
 
   const disableLogin = !ready || (ready && authenticated);
 
@@ -44,14 +39,18 @@ function SectionBeta({ mintsNum }: any) {
 
   const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
 
-  const { userData, setUserData, error, fetchToken } = useToken();
+  const {
+    userData,
+    setUserData,
+    // error, fetchToken
+  } = useToken();
 
   const {
     register,
     handleSubmit,
     onSubmit,
-    showSuccessMessage,
-    isCaptchaError,
+    // showSuccessMessage,
+    // isCaptchaError,
   } = useBetaSubmit();
 
   useEffect(() => {
@@ -74,8 +73,8 @@ function SectionBeta({ mintsNum }: any) {
   );
   const {
     buyNFT,
-    mintingStatus,
-    logMessage: mintLogMessage,
+    // mintingStatus,
+    // logMessage: mintLogMessage,
   } = useBuyNFT({
     userWallet,
     isEnoughFunds,
@@ -133,11 +132,7 @@ function SectionBeta({ mintsNum }: any) {
           {userData &&
             userData?.isMinted &&
             !userData.email &&
-            authenticated && (
-              <button type="submit" onClick={buyNFT}>
-                Submit
-              </button>
-            )}
+            authenticated && <button type="submit">Submit</button>}
           {!isEnoughFunds && ready && authenticated && userWallet && (
             <button onClick={async () => await fundWallet(userWallet.address)}>
               Add funds

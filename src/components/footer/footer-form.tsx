@@ -9,8 +9,8 @@ const FooterForm = () => {
     register,
     handleSubmit,
     onSubmit,
-    showSuccessMessage,
-    isCaptchaError,
+    // showSuccessMessage,
+    // isCaptchaError,
   } = useNewsletterForm();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="footer__form__bottom">

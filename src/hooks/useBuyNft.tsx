@@ -56,14 +56,15 @@ export function useBuyNFT({
         },
         chainId: 84532,
         wallet: walletClient,
-        onProgress: (steps: Execute["steps"], path: Execute["path"]) => {
+        onProgress: (steps: Execute["steps"]) => {
           setLogMessage(steps);
         },
       });
-
+      console.log("buy", buy);
       setMintingStatus("minted");
 
       // Fetch the access token and submit the mint transaction details to your backend
+
       const accessToken = await getAccessToken();
 
       const response = await fetch(apiUriSubmitMint, {

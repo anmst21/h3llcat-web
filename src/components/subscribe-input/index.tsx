@@ -3,13 +3,12 @@
 import { useNewsletterForm } from "@/hooks/useNewsletterForm";
 
 const SubscribeInput = () => {
-    
   const {
-    register,
     handleSubmit,
     onSubmit,
-    showSuccessMessage,
-    isCaptchaError,
+    register,
+    // showSuccessMessage,
+    // isCaptchaError,
   } = useNewsletterForm();
 
   return (
@@ -31,6 +30,7 @@ const SubscribeInput = () => {
             <input
               className="form-input__input"
               type="email"
+              {...register("email")}
               //   onChange={(e) => {
               //     onChange(e);
               //     handleInputChange(e);

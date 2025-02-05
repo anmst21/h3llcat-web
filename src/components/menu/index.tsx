@@ -4,51 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
-import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { usePrivy } from "@privy-io/react-auth";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
-import { useEffect, useState } from "react";
-import { createWalletClient, custom } from "viem";
-import { baseSepolia } from "viem/chains";
 
 export default function Menu() {
-  // const [userData, setUserData] = useState<any>(null);
-  const { login, authenticated, logout, user, getAccessToken, ready } =
-    usePrivy();
-  // const { wallets } = useWallets();
-  // console.log("userData", userData);
+  const { login, authenticated, logout, user, ready } = usePrivy();
+
   const pathname = usePathname();
+
   const disableLogin = !ready || (ready && authenticated);
   const disableLogout = !ready || (ready && !authenticated);
-
-  // const getToken = async () => {
-  //   const accessToken = await getAccessToken();
-
-  //   const apiUrl = "https://api-airdrop.h3llcat.app/api/v1/privyforms/me";
-
-  //   try {
-  //     const response = await fetch(apiUrl, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-
-  //     const data = await response.json();
-  //     console.log("Response data:", data);
-  //     setUserData(data);
-  //   } catch (error) {
-  //     console.error("Error fetching /api/v1/privyforms/me:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getToken();
-  // }, []);
 
   return (
     <div className="menu">

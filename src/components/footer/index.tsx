@@ -2,12 +2,7 @@ import React from "react";
 import DottedLink from "./dotted-link";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  FooterFarcaster,
-  FooterX,
-  FooterLinkedIn,
-  FooterMail,
-} from "@/components/icon";
+import { FooterFarcaster, FooterX, FooterLinkedIn } from "@/components/icon";
 import FooterForm from "./footer-form";
 const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
 
@@ -102,22 +97,6 @@ const Footer = () => {
             </span>
           </div>
           <FooterForm />
-          {/* <form className="footer__form__bottom">
-            <div className="footer__form__input"> */}
-          {/* <label>
-                <FooterMail />
-                <input placeholder="E-mail" />
-              </label> */}
-          {/* <FooterInput
-                type="email"
-                register={register("email")}
-                placeholder="E-Mail"
-              />
-            </div>
-            <div className="footer__form__cta">
-              <button>Subscribe</button>
-            </div>
-          </form> */}
         </div>
       </div>
       <div className="copyright">
