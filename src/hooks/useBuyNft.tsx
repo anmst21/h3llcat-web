@@ -31,7 +31,7 @@ export function useBuyNFT({
 
     if (!userWallet?.address) {
       setMintingStatus("input");
-      setLogMessage(null);
+      //   setLogMessage(null);
       return;
     }
 
@@ -60,24 +60,44 @@ export function useBuyNFT({
           setLogMessage(steps);
         },
       });
-      console.log("buy", buy);
-      setMintingStatus("minted");
+      if (
+        buy &&
+        logMessage &&
+        logMessage[1] &&
+        logMessage[1].items &&
+        logMessage[1].items.length > 0 &&
+        logMessage[1].items[0].transfersData &&
+        logMessage[1].items[0].transfersData.length > 0
+      ) {
+        setMintingStatus("minted");
 
-      // Fetch the access token and submit the mint transaction details to your backend
+        const accessToken = await getAccessToken();
+        const response = await fetch(apiUriSubmitMint, {
+          method: "POST",
+          body: JSON.stringify({
+            data: logMessage[1].items[0].transfersData[0],
+          }),
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        });
 
-      const accessToken = await getAccessToken();
+        const data = await response.json();
+        console.log("logMessage", data);
 
-      const response = await fetch(apiUriSubmitMint, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await response.json();
-      setUserData(data);
-      setLogMessage(null);
+        console.log(
+          logMessage !== null &&
+            logMessage[1] &&
+            logMessage[1].items &&
+            logMessage[1].items[0] &&
+            logMessage[1].items[0].transfersData &&
+            logMessage[1].items[0].transfersData[0] &&
+            logMessage[1].items[0].transfersData[0]
+        );
+        setUserData(data);
+        //   setLogMessage(null);
+      }
     } catch (error: any) {
       console.error("Error buying token:", error);
       setMintingStatus("error");

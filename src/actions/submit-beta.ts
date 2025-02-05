@@ -2,6 +2,8 @@
 
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
 import { apiUriSubmitBeta } from "@/helpers/apiUri";
+import { emailHtml } from "@/helpers/WelcomingEmail";
+import nodemailer from "nodemailer";
 
 export async function submitBeta(
   emailData: SubscribeFormSchema,
@@ -24,6 +26,23 @@ export async function submitBeta(
     if (!response.ok) {
       throw new Error(`API error: ${response.statusText}`);
     }
+
+    const html = await emailHtml;
+
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `My Newsletter${process.env.GMAIL_USER}`,
+      to: email,
+      subject: "Welcome to My Newsletter!",
+      html: html,
+    });
 
     // Parse and return the JSON data from the response
     const data = await response.json();
