@@ -14,7 +14,7 @@ import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
 import { useBetaSubmit } from "@/hooks/useBetaSubmit";
-
+//
 createClient(options);
 
 function SectionBeta({ mintsNum }: any) {
