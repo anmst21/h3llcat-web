@@ -3,6 +3,7 @@
 import { useNewsletterForm } from "@/hooks/useNewsletterForm";
 
 const SubscribeInput = () => {
+    
   const {
     register,
     handleSubmit,

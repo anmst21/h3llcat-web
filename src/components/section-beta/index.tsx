@@ -14,6 +14,7 @@ import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { apiUriSubmitMint } from "@/helpers/apiUri";
 import { useBuyNFT } from "@/hooks/useBuyNft";
+import { useBetaSubmit } from "@/hooks/useBetaSubmit";
 
 createClient(options);
 
@@ -44,6 +45,14 @@ function SectionBeta({ mintsNum }: any) {
   const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
 
   const { userData, setUserData, error, fetchToken } = useToken();
+
+  const {
+    register,
+    handleSubmit,
+    onSubmit,
+    showSuccessMessage,
+    isCaptchaError,
+  } = useBetaSubmit();
 
   useEffect(() => {
     if (userWallet && ready) {
@@ -77,10 +86,16 @@ function SectionBeta({ mintsNum }: any) {
 
   return (
     <div className="section-beta">
-      <form className="section-beta__wrapper">
+      <form onSubmit={handleSubmit(onSubmit)} className="section-beta__wrapper">
         <div className="section-beta__img">
           {userData && userData.isMinted && !userData.email ? (
-            <div className="section-beta__email">!!!</div>
+            <div className="section-beta__email">
+              <FooterInput
+                type="email"
+                register={register("email")}
+                placeholder="E-Mail"
+              />
+            </div>
           ) : (
             <Image
               width={611}
