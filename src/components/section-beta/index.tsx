@@ -2,7 +2,7 @@
 
 import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
-import { usePrivy, useWallets, useFundWallet } from "@privy-io/react-auth";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
 import { useEffect, useCallback } from "react";
 import { createClient } from "@reservoir0x/reservoir-sdk";
@@ -29,7 +29,7 @@ function SectionBeta({ mintsNum }: any) {
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
 
-  const { fundWallet } = useFundWallet();
+  // const { fundWallet } = useFundWallet();
 
   const { userBalance, getUserBalance } = useUserBalance(userWallet, ready);
 
