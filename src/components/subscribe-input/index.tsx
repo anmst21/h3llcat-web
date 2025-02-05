@@ -1,57 +1,15 @@
 "use client";
-import { subscribeUser } from "@/actions/subscribe";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import {
-  SubscribeFormSchema,
-  subscribeFormSchema,
-} from "./subscribe-form-schema";
+
+import { useNewsletterForm } from "@/hooks/useNewsletterForm";
 
 const SubscribeInput = () => {
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [isCapchaError, setIsCapchaError] = useState(false);
-  console.log(isCapchaError);
   const {
-    reset,
-    // register,
+    register,
     handleSubmit,
-    // formState: { errors, isSubmitted },
-  } = useForm<SubscribeFormSchema>({
-    resolver: zodResolver(subscribeFormSchema),
-  });
-
-  const onSubmit = async (data: SubscribeFormSchema) => {
-    //  const token = await handleReCaptchaVerify();
-    const token = "kek";
-    if (token) {
-      const form = await subscribeUser(data, token);
-
-      if (!form.success) {
-        setIsCapchaError(true);
-
-        return;
-      } else {
-        setShowSuccessMessage(true);
-        setIsCapchaError(false);
-      }
-    } else {
-      setIsCapchaError(true);
-      return;
-    }
-
-    reset();
-  };
-
-  useEffect(() => {
-    if (showSuccessMessage) {
-      const timer = setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showSuccessMessage]);
+    onSubmit,
+    showSuccessMessage,
+    isCaptchaError,
+  } = useNewsletterForm();
 
   return (
     <div className="subscribe-field">
