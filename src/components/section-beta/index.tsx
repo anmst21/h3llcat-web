@@ -130,14 +130,14 @@ function SectionBeta({ mintsNum }: any) {
               {!ready ? "Loading" : "Connect Wallet"}
             </button>
           )}
-          {(!isLoadingData &&
+          {((!isLoadingData &&
             ready &&
             authenticated &&
             userWalletChain === 84532 &&
             isEnoughFunds) ||
-            (userData && !userData?.isMinted && !userData.email && (
-              <button onClick={buyNFT}>Mint</button>
-            ))}
+            (userData && !userData.isMinted && !userData.email)) && (
+            <button onClick={buyNFT}>Mint</button>
+          )}
 
           {!isLoadingData &&
             userData &&
