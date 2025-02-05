@@ -42,6 +42,7 @@ function SectionBeta({ mintsNum }: any) {
   const {
     userData,
     setUserData,
+    isLoadingData,
     // error, fetchToken
   } = useToken();
 
@@ -116,29 +117,41 @@ function SectionBeta({ mintsNum }: any) {
               <span>/10,000</span>
             </span>
           </div>
-
           {(!ready || !authenticated) && (
             <button onClick={login} disabled={disableLogin}>
               {!ready ? "Loading" : "Connect Wallet"}
             </button>
           )}
-          {(ready &&
+          {(!isLoadingData &&
+            ready &&
             authenticated &&
             userWalletChain === 84532 &&
             isEnoughFunds) ||
             (userData && userData?.isMinted && !userData.email && (
               <button onClick={buyNFT}>Mint</button>
             ))}
-          {userData &&
+          {!isLoadingData &&
+            userData &&
             userData?.isMinted &&
             !userData.email &&
             authenticated && <button type="submit">Submit</button>}
-          {!isEnoughFunds && ready && authenticated && userWallet && (
-            <button onClick={async () => await fundWallet(userWallet.address)}>
-              Add funds
-            </button>
-          )}
-          {userWalletChain && userWalletChain !== 84532 && (
+          {/* {!isLoadingData &&
+            !isEnoughFunds &&
+            ready &&
+            authenticated &&
+            userWallet && (
+              <button
+                onClick={async () => await fundWallet(userWallet.address)}
+              >
+                Add funds
+              </button>
+            )} */}
+          {!isLoadingData &&
+            authenticated &&
+            ready &&
+            userData?.isMinted &&
+            userData.email && <button onClick={buyNFT}>Mint More</button>}
+          {!isLoadingData && userWalletChain && userWalletChain !== 84532 && (
             <button onClick={() => userWallet.switchChain(baseSepolia.id)}>
               Switch Chain
             </button>

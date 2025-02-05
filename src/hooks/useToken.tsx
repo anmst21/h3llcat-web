@@ -19,8 +19,10 @@ export function useToken() {
     isMinted: false,
   });
   const [error, setError] = useState<Error | null>(null);
+  const [isLoadingData, setIsLoadingData] = useState(false);
   const { getAccessToken } = usePrivy();
   const fetchToken = useCallback(async () => {
+    setIsLoadingData(true);
     try {
       const accessToken = await getAccessToken();
       const response = await fetch(apiUrl, {
@@ -38,7 +40,10 @@ export function useToken() {
       const data: UserData = await response.json();
       console.log("Response data:", data);
       setUserData(data);
+      setIsLoadingData(false);
     } catch (err: any) {
+      setIsLoadingData(false);
+
       console.error("Error fetching /api/v1/privyforms/me:", err);
       setError(err);
     }
@@ -49,5 +54,5 @@ export function useToken() {
     fetchToken();
   }, [fetchToken]);
 
-  return { userData, error, fetchToken, setUserData };
+  return { userData, error, fetchToken, setUserData, isLoadingData };
 }
