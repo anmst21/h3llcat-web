@@ -35,6 +35,8 @@ export async function subscribeUser(
       }
     );
 
+    console.log("verificationResponse", verificationResponse);
+
     const verificationResult = await verificationResponse.json();
 
     if (!verificationResult.success || verificationResult.score < 0.5) {
@@ -68,11 +70,12 @@ export async function subscribeUser(
     });
 
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error in subscribeUser:", error);
     return {
       success: false,
       message: "Subscription failed",
+      error: JSON.stringify(error),
     };
   }
 }

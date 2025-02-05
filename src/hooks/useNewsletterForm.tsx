@@ -41,21 +41,28 @@ export function useNewsletterForm(): NewsletterFormHook {
 
   const onSubmit = async (data: SubscribeFormSchema) => {
     // Replace "kek" with your actual token logic or reCaptcha verification
-    const token = await handleReCaptchaVerify();
-    if (token) {
-      const result = await subscribeUser(data, token);
-      if (!result.success) {
+    try {
+      const token = await handleReCaptchaVerify();
+      // const token = "kek";
+      console.log(token);
+      if (token) {
+        const result = await subscribeUser(data, token);
+        console.log(result);
+        if (!result.success) {
+          setIsCaptchaError(true);
+          return;
+        } else {
+          setShowSuccessMessage(true);
+          setIsCaptchaError(false);
+        }
+      } else {
         setIsCaptchaError(true);
         return;
-      } else {
-        setShowSuccessMessage(true);
-        setIsCaptchaError(false);
       }
-    } else {
-      setIsCaptchaError(true);
-      return;
+      reset();
+    } catch (err) {
+      console.log("err", err);
     }
-    reset();
   };
 
   useEffect(() => {
