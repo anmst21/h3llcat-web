@@ -7,6 +7,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_KEY as string}
+      clientId={process.env.NEXT_PUBLIC_CLIENT_ID as string}
       config={{
         defaultChain: base,
         supportedChains: [base, baseSepolia],
