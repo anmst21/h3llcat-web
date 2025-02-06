@@ -20,7 +20,7 @@ export function useToken() {
   });
   const [error, setError] = useState<Error | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(false);
-  const { getAccessToken, ready } = usePrivy();
+  const { getAccessToken, ready, authenticated } = usePrivy();
   const fetchToken = useCallback(async () => {
     setIsLoadingData(true);
     try {
@@ -47,14 +47,14 @@ export function useToken() {
       console.error("Error fetching /api/v1/privyforms/me:", err);
       setError(err);
     }
-  }, [getAccessToken]);
+  }, [getAccessToken, setUserData]);
 
   // Automatically fetch token data when the hook is first used.
   useEffect(() => {
-    if (ready) {
+    if (ready && authenticated) {
       fetchToken();
     }
-  }, [fetchToken, ready]);
+  }, [fetchToken, ready, authenticated]);
 
   return { userData, error, fetchToken, setUserData, isLoadingData };
 }

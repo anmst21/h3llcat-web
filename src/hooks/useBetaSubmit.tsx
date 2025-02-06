@@ -16,6 +16,7 @@ interface NewsletterFormHook extends UseFormReturn<SubscribeFormSchema> {
   onSubmit: (data: SubscribeFormSchema) => Promise<void>;
   showSuccessMessage: boolean;
   isCaptchaError: boolean;
+  isLoadingSubmit: boolean;
 }
 
 export function useBetaSubmit({
@@ -24,6 +25,7 @@ export function useBetaSubmit({
   setUserData: (data: UserData) => void;
 }): NewsletterFormHook {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false);
   const [
     isCaptchaError,
     //  setIsCaptchaError
@@ -46,6 +48,7 @@ export function useBetaSubmit({
 
   const onSubmit = useCallback(
     async (data: SubscribeFormSchema) => {
+      setIsLoadingSubmit(true);
       try {
         const accessToken = await getAccessToken();
 
@@ -53,8 +56,10 @@ export function useBetaSubmit({
         setData(token);
 
         reset();
+        setIsLoadingSubmit(false);
       } catch (err: any) {
         console.error("Error sending mail", err.message);
+        setIsLoadingSubmit(false);
       }
     },
     [setData, getAccessToken, reset]
@@ -70,6 +75,7 @@ export function useBetaSubmit({
   }, [showSuccessMessage]);
 
   return {
+    isLoadingSubmit,
     register,
     handleSubmit,
     onSubmit,

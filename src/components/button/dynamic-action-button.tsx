@@ -1,55 +1,85 @@
-// import React from "react";
+import React from "react";
+import { usePrivy } from "@privy-io/react-auth";
 
-// interface Props {}
+interface Props {
+  isLoadingContext: boolean;
+  isLoadingBalance: boolean;
+  isLoadingUserData: boolean;
+  isMinting: boolean;
+  isCorrectChain: boolean;
+  isMintSubmitted: boolean;
+  isEmailSubmitted: string | null;
+  isEnoughFunds: boolean;
+  buyNFTAction: () => void;
+  switchChainAction: () => void;
+  isLoadingSubmit: boolean;
+}
 
-// const DynamicActionButton: React.FC<Props> = () => {
-//   let buttonText = "";
-//   let buttonAction = () => {};
-//   let disabled = false;
+const DynamicActionButton: React.FC<Props> = ({
+  isLoadingContext,
+  isLoadingUserData,
+  isLoadingBalance,
+  isMinting,
+  isCorrectChain,
+  isMintSubmitted,
+  isEmailSubmitted,
+  isEnoughFunds,
+  buyNFTAction,
+  switchChainAction,
+  isLoadingSubmit,
+}) => {
+  const { authenticated, login, ready } = usePrivy();
+  let buttonText = "";
+  let onClickAction: (() => void) | undefined = undefined;
+  let disabled = false;
 
-//   console.log(buttonAction, buttonText, disabled);
+  console.log("dynamic", isLoadingContext, isLoadingUserData, isLoadingBalance);
+  // 1. When the context, user data, or balance is still loading:
+  if (!ready || isLoadingSubmit) {
+    buttonText = "Loading...";
+    disabled = true;
+  } else if (isLoadingContext || !authenticated) {
+    buttonText = "ConnectWallet";
+    onClickAction = login;
+  }
+  // 2. When the wallet is connected but on the wrong chain:
+  else if (!isCorrectChain) {
+    buttonText = "Switch Chain";
+    onClickAction = switchChainAction;
+  }
+  // 3. When the balance is loaded but insufficient:
+  else if (!isEnoughFunds && !isLoadingBalance) {
+    buttonText = "Insufficient Balance";
+    disabled = true;
+  }
+  // 4. When the NFT has not yet been minted (and no email is submitted):
+  else if (!isMintSubmitted && !isMinting && !isEmailSubmitted) {
+    buttonText = "Mint";
+    onClickAction = buyNFTAction;
+  }
+  // 5. When the minting process is in progress:
+  else if (isMinting) {
+    buttonText = "Minting...";
+    disabled = true;
+  }
+  // 6. When the NFT is minted but email has not been submitted:
+  else if (isMintSubmitted && !isEmailSubmitted) {
+    // The email submission is handled by the form. This button is just indicative.
+    buttonText = "Submit Email";
+    disabled = false;
+    onClickAction = () => {};
+  }
+  // 7. When the email has been submitted, allow minting more NFTs:
+  else if (isEmailSubmitted) {
+    buttonText = "Mint More";
+    onClickAction = buyNFTAction;
+  }
 
-//   return <div>DynamicActionButton</div>;
-// };
+  return (
+    <button type="submit" onClick={onClickAction} disabled={disabled}>
+      {buttonText}
+    </button>
+  );
+};
 
-// export default DynamicActionButton;
-
-//   {(!ready || !authenticated) && (
-//             <button onClick={login} disabled={disableLogin}>
-//               {!ready ? "Loading" : "Connect Wallet"}
-//             </button>
-//           )}
-//           {((!isLoadingData &&
-//             ready &&
-//             authenticated &&
-//             userWalletChain === 84532 &&
-//             isEnoughFunds) ||
-//             (userData && !userData.isMinted && !userData.email)) && (
-//             <button onClick={buyNFT}>Mint</button>
-//           )}
-
-//           {!isLoadingData &&
-//             userData &&
-//             userData?.isMinted &&
-//             !userData.email &&
-//             authenticated && <button type="submit">Submit</button>}
-
-//           {!isLoadingData &&
-//             !isEnoughFunds &&
-//             ready &&
-//             authenticated &&
-//             userWalletChain === 84532 &&
-//             userWallet && <button disabled>Insuficient funds</button>}
-
-//           {!isLoadingData &&
-//             authenticated &&
-//             ready &&
-//             userData?.isMinted &&
-//             userData.email &&
-//             isEnoughFunds && <button onClick={buyNFT}>Mint More</button>}
-
-//           {!isLoadingData && userWalletChain && userWalletChain !== 84532 && (
-//             <button onClick={() => userWallet.switchChain(baseSepolia.id)}>
-//               Switch Chain
-//             </button>
-//           )}
+export default DynamicActionButton;

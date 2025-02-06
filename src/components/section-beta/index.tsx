@@ -14,6 +14,7 @@ import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
 import { useBetaSubmit } from "@/hooks/useBetaSubmit";
+import DynamicActionButton from "../button/dynamic-action-button";
 //
 createClient(options);
 
@@ -31,11 +32,12 @@ function SectionBeta({ mintsNum }: any) {
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
 
-  const { userBalance, getUserBalance } = useUserBalance(userWallet, ready);
+  const { userBalance, getUserBalance, isLoadingBalance } =
+    useUserBalance(userWallet);
 
   const minBalance = parseUnits("0.0002", 18);
 
-  const isEnoughFunds = userBalance && userBalance > minBalance;
+  const isEnoughFunds = userBalance > minBalance;
 
   const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
 
@@ -50,6 +52,7 @@ function SectionBeta({ mintsNum }: any) {
     register,
     handleSubmit,
     onSubmit,
+    isLoadingSubmit,
     // showSuccessMessage,
     // isCaptchaError,
   } = useBetaSubmit({ setUserData });
@@ -74,6 +77,7 @@ function SectionBeta({ mintsNum }: any) {
   );
   const {
     buyNFT,
+    isMinting,
     // mintingStatus,
     // logMessage: mintLogMessage,
   } = useBuyNFT({
@@ -135,7 +139,31 @@ function SectionBeta({ mintsNum }: any) {
               <span>/10,000</span>
             </span>
           </div>
-          {(!ready || !authenticated) && (
+
+          <DynamicActionButton
+            isLoadingSubmit={isLoadingSubmit}
+            isLoadingContext={!disableLogin}
+            isLoadingUserData={isLoadingData}
+            isMinting={isMinting}
+            isCorrectChain={userWalletChain === 84532}
+            isMintSubmitted={userData?.isMinted}
+            isEmailSubmitted={userData?.email}
+            isLoadingBalance={isLoadingBalance}
+            isEnoughFunds={isEnoughFunds}
+            buyNFTAction={buyNFT}
+            switchChainAction={async () =>
+              await userWallet.switchChain(baseSepolia.id)
+            }
+          />
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default SectionBeta;
+{
+  /* {(!ready || !authenticated) && (
             <button onClick={login} disabled={disableLogin}>
               {!ready ? "Loading" : "Connect Wallet"}
             </button>
@@ -148,36 +176,26 @@ function SectionBeta({ mintsNum }: any) {
             (userData && !userData.isMinted && !userData.email)) && (
             <button onClick={buyNFT}>Mint</button>
           )}
-
           {!isLoadingData &&
             userData &&
             userData?.isMinted &&
             !userData.email &&
             authenticated && <button type="submit">Submit</button>}
-
           {!isLoadingData &&
             !isEnoughFunds &&
             ready &&
             authenticated &&
             userWalletChain === 84532 &&
             userWallet && <button disabled>Insuficient funds</button>}
-
           {!isLoadingData &&
             authenticated &&
             ready &&
             userData?.isMinted &&
             userData.email &&
             isEnoughFunds && <button onClick={buyNFT}>Mint More</button>}
-
           {!isLoadingData && userWalletChain && userWalletChain !== 84532 && (
             <button onClick={() => userWallet.switchChain(baseSepolia.id)}>
               Switch Chain
             </button>
-          )}
-        </div>
-      </form>
-    </div>
-  );
+          )} */
 }
-
-export default SectionBeta;
