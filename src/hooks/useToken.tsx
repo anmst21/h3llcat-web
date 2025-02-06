@@ -20,7 +20,7 @@ export function useToken() {
   });
   const [error, setError] = useState<Error | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(false);
-  const { getAccessToken } = usePrivy();
+  const { getAccessToken, ready } = usePrivy();
   const fetchToken = useCallback(async () => {
     setIsLoadingData(true);
     try {
@@ -51,8 +51,10 @@ export function useToken() {
 
   // Automatically fetch token data when the hook is first used.
   useEffect(() => {
-    fetchToken();
-  }, [fetchToken]);
+    if (ready) {
+      fetchToken();
+    }
+  }, [fetchToken, ready]);
 
   return { userData, error, fetchToken, setUserData, isLoadingData };
 }
