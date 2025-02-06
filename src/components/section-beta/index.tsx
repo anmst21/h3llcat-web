@@ -19,7 +19,7 @@ import DynamicActionButton from "../button/dynamic-action-button";
 createClient(options);
 
 function SectionBeta({ mintsNum }: any) {
-  const { login, authenticated, getAccessToken, ready } = usePrivy();
+  const { authenticated, getAccessToken, ready } = usePrivy();
 
   const [timesMinted, setTimesMinted] = useState(mintsNum.totalMinted);
 

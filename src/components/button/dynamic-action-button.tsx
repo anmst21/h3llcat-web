@@ -1,5 +1,6 @@
 import React from "react";
 import { usePrivy } from "@privy-io/react-auth";
+import { AnimatePresence, motion } from "motion/react";
 
 interface Props {
   isLoadingContext: boolean;
@@ -75,9 +76,26 @@ const DynamicActionButton: React.FC<Props> = ({
     onClickAction = buyNFTAction;
   }
 
+  const variants = {
+    initial: { opacity: 0, x: -10 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 10 },
+  };
+
   return (
     <button type="submit" onClick={onClickAction} disabled={disabled}>
-      {buttonText}
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={buttonText} // Changing key triggers the animation
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.3 }}
+        >
+          {buttonText}
+        </motion.span>
+      </AnimatePresence>
     </button>
   );
 };
