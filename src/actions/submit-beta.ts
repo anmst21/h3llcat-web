@@ -10,7 +10,10 @@ export async function submitBeta(
   token: string | null
 ): Promise<any> {
   try {
-    // Encode the email for URL safety
+    if (!emailData.email) {
+      throw new Error("Email is required for subscription.");
+    }
+
     const email = encodeURIComponent(emailData.email);
 
     // Make the POST request
@@ -33,8 +36,8 @@ export async function submitBeta(
     });
 
     await transporter.sendMail({
-      from: `My Newsletter${process.env.GMAIL_USER}`,
-      to: email,
+      from: `My Newsletter <${process.env.GMAIL_USER}>`, // Ensure a proper "from" field format
+      to: emailData.email, // Use the raw email here
       subject: "Welcome to My Newsletter!",
       html: html,
     });

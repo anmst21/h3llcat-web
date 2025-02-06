@@ -44,14 +44,21 @@ export function useBetaSubmit({
     [setUserData]
   );
 
-  const onSubmit = async (data: SubscribeFormSchema) => {
-    const accessToken = await getAccessToken();
+  const onSubmit = useCallback(
+    async (data: SubscribeFormSchema) => {
+      try {
+        const accessToken = await getAccessToken();
 
-    const token: UserData = await submitBeta(data, accessToken);
-    setData(token);
+        const token: UserData = await submitBeta(data, accessToken);
+        setData(token);
 
-    reset();
-  };
+        reset();
+      } catch (err: any) {
+        console.error("Error sending mail", err.message);
+      }
+    },
+    [setData, getAccessToken, reset]
+  );
 
   useEffect(() => {
     if (showSuccessMessage) {
