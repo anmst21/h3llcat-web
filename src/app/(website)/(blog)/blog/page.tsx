@@ -58,12 +58,12 @@ export default async function Blog({
                 <BlogSlash />
                 <span>{featured.author.name}</span>
               </div> */}
-              <Link
+              {/* <Link
                 className="featured__forward"
                 href={"/blog/" + featured.slug}
               >
                 <BlogBack />
-              </Link>
+              </Link> */}
             </Link>
           </div>
         </div>
