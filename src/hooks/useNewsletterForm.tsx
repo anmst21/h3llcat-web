@@ -14,11 +14,14 @@ interface NewsletterFormHook extends UseFormReturn<SubscribeFormSchema> {
   onSubmit: (data: SubscribeFormSchema) => Promise<void>;
   showSuccessMessage: boolean;
   isCaptchaError: boolean;
+  isSubmitting: boolean;
+  disableError: () => void;
 }
 
 export function useNewsletterForm(): NewsletterFormHook {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isCaptchaError, setIsCaptchaError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -42,6 +45,7 @@ export function useNewsletterForm(): NewsletterFormHook {
   const onSubmit = async (data: SubscribeFormSchema) => {
     // Replace "kek" with your actual token logic or reCaptcha verification
     try {
+      setIsSubmitting(true);
       const token = await handleReCaptchaVerify();
       // const token = "kek";
       console.log(token);
@@ -62,6 +66,8 @@ export function useNewsletterForm(): NewsletterFormHook {
       reset();
     } catch (err) {
       console.log("err", err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -74,7 +80,23 @@ export function useNewsletterForm(): NewsletterFormHook {
     }
   }, [showSuccessMessage]);
 
+  useEffect(() => {
+    if (isCaptchaError) {
+      const timer = setTimeout(() => {
+        setIsCaptchaError(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isCaptchaError]);
+
+  const disableError = useCallback(() => {
+    setIsCaptchaError(false);
+    setShowSuccessMessage(false);
+  }, []);
+
   return {
+    disableError,
+    isSubmitting,
     register,
     handleSubmit,
     onSubmit,

@@ -13,6 +13,8 @@ const FooterForm = () => {
     onSubmit,
     showSuccessMessage,
     isCaptchaError,
+    isSubmitting,
+    disableError,
   } = useNewsletterForm();
 
   const props = {
@@ -34,25 +36,51 @@ const FooterForm = () => {
           />
         </div>
         <div className="footer__form__cta">
-          <button>Subscribe</button>
+          <AnimatePresence mode="wait">
+            <button disabled={isSubmitting} type="submit">
+              <AnimatePresence mode="wait">
+                {isSubmitting ? (
+                  <motion.span {...props} key="loading">
+                    Loading
+                  </motion.span>
+                ) : (
+                  <motion.span {...props} key="submit">
+                    Subscribe
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          </AnimatePresence>
         </div>
       </div>
       <AnimatePresence mode="wait">
         {showSuccessMessage && !isCaptchaError && (
-          <motion.div {...props} className="footer__form__state">
+          <motion.button
+            type="button"
+            onClick={disableError}
+            key="success"
+            {...props}
+            className="footer__form__state"
+          >
             <div className="footer__form__success">
               Subscribed <FormSuccess />
             </div>
-          </motion.div>
+          </motion.button>
         )}
         {!showSuccessMessage && isCaptchaError && (
-          <motion.div {...props} className="footer__form__state">
+          <motion.button
+            type="button"
+            onClick={disableError}
+            key="error"
+            {...props}
+            className="footer__form__state"
+          >
             <div
               className={"footer__form__success footer__form__success--error"}
             >
               Capcha Error <FormError />
             </div>
-          </motion.div>
+          </motion.button>
         )}
       </AnimatePresence>
     </form>
