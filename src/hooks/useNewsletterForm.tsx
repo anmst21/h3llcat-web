@@ -69,7 +69,7 @@ export function useNewsletterForm(): NewsletterFormHook {
     if (showSuccessMessage) {
       const timer = setTimeout(() => {
         setShowSuccessMessage(false);
-      }, 5000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [showSuccessMessage]);

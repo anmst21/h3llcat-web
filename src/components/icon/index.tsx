@@ -26,8 +26,12 @@ import FooterX from "./FooterX";
 import FooterLinkedIn from "./LinkedIn";
 import FooterMail from "./FooterMail";
 import FooterDooted from "./FooterDotted";
+import FormSuccess from "./FormSuccess";
+import FormError from "./FormError";
 
 export {
+  FormError,
+  FormSuccess,
   FooterDooted,
   FooterMail,
   FooterFarcaster,

@@ -18,9 +18,8 @@ const FooterInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <label className="footer__form__input__label">
-      <FooterMail />
-
       <input {...register} type={type} placeholder={placeholder} />
+      <FooterMail />
     </label>
   );
 };

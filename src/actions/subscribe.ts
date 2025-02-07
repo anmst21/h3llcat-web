@@ -72,10 +72,19 @@ export async function subscribeUser(
     return { success: true };
   } catch (error: any) {
     console.error("Error in subscribeUser:", error);
+
+    if (error.response?.status === 400) {
+      return {
+        success: true,
+        message: "User already subscribed",
+      };
+    }
+
+    // For any other errors, return a subscription failure response.
     return {
       success: false,
       message: "Subscription failed",
-      error: JSON.stringify(error),
+      error: error.response?.data || error.message || "Unknown error",
     };
   }
 }
