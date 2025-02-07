@@ -35,8 +35,7 @@ const DynamicActionButton: React.FC<Props> = ({
   let disabled = true;
 
   const { fundWallet } = useFundWallet();
-  console.log("dynamic", isLoadingContext, isLoadingUserData);
-  // 1. When the context, user data, or balance is still loading:
+
   if (isLoadingSubmit || !ready || isLoadingUserData) {
     buttonText = isLoadingSubmit ? "Submitting..." : "Loading...";
     disabled = true;
@@ -44,22 +43,18 @@ const DynamicActionButton: React.FC<Props> = ({
     buttonText = "ConnectWallet";
     onClickAction = login;
     disabled = false;
-  }
-  // 2. When the wallet is connected but on the wrong chain:
-  else if (!isCorrectChain) {
+  } else if (!isCorrectChain) {
     buttonText = "Switch Chain";
     onClickAction = switchChainAction;
     disabled = false;
-  }
-  // 3. When the balance is loaded but insufficient:
-  else if (!isEnoughFunds) {
+  } else if (!isEnoughFunds) {
     buttonText = "Insufficient Balance";
     disabled = false;
     onClickAction = () => {
       if (user?.wallet?.address) {
         fundWallet(user?.wallet?.address, {
           chain: baseSepolia,
-          amount: "0.0002", // Since no `asset` is set, defaults to 'native-currency' (ETH)
+          amount: "0.0002",
         });
       }
     };
@@ -70,9 +65,11 @@ const DynamicActionButton: React.FC<Props> = ({
     buttonText = "Mint More";
     onClickAction = buyNFTAction;
     disabled = false;
-  }
-  // 4. When the NFT has not yet been minted (and no email is submitted):
-  else if (
+  } else if (isMintSubmitted && !isEmailSubmitted) {
+    buttonText = "Submit Email";
+    disabled = false;
+    onClickAction = () => {};
+  } else if (
     !isMintSubmitted &&
     !isMinting &&
     !isEmailSubmitted &&
@@ -82,16 +79,6 @@ const DynamicActionButton: React.FC<Props> = ({
     onClickAction = buyNFTAction;
     disabled = false;
   }
-  // 5. When the minting process is in progress:
-
-  // 6. When the NFT is minted but email has not been submitted:
-  else if (isMintSubmitted && !isEmailSubmitted) {
-    // The email submission is handled by the form. This button is just indicative.
-    buttonText = "Submit Email";
-    disabled = false;
-    onClickAction = () => {};
-  }
-  // 7. When the email has been submitted, allow minting more NFTs:
 
   const variants = {
     initial: { opacity: 0, x: -10 },

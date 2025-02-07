@@ -18,7 +18,7 @@ export default function WelcomingEmail(): React.ReactElement {
         >
           <Heading style={{ marginBottom: "20px" }}>My Bulk Newsletter</Heading>
           <Text>
-            This is the content you’d like to send to everyone on the Mailchimp
+            This is the content you'd like to send to everyone on the Mailchimp
             list!
           </Text>
         </Container>
