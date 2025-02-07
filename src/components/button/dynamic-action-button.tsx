@@ -54,6 +54,7 @@ const DynamicActionButton: React.FC<Props> = ({
       if (user?.wallet?.address) {
         fundWallet(user?.wallet?.address, {
           chain: baseSepolia,
+          defaultFundingMethod: "manual",
           amount: "0.0002",
         });
       }
