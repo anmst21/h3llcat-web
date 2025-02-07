@@ -9,7 +9,7 @@ import { createClient } from "@reservoir0x/reservoir-sdk";
 import FooterInput from "../subscribe-input/footer-input";
 import { useUserBalance } from "@/hooks/useUserBalance";
 import { options } from "@/helpers/reservoirClientOptions";
-import { parseUnits } from "viem";
+// import { parseUnits } from "viem";
 import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
@@ -19,7 +19,9 @@ import DynamicActionButton from "../button/dynamic-action-button";
 createClient(options);
 
 function SectionBeta({ mintsNum }: any) {
-  const { authenticated, getAccessToken, ready } = usePrivy();
+  const { authenticated, getAccessToken, ready, user } = usePrivy();
+
+  const [isFundsError, setIsFundsError] = useState(false);
 
   const [timesMinted, setTimesMinted] = useState(mintsNum.totalMinted);
 
@@ -27,17 +29,19 @@ function SectionBeta({ mintsNum }: any) {
 
   const { wallets } = useWallets();
 
-  const userWallet = wallets[wallets.length - 1];
+  const userWallet = wallets.find(
+    (wallet) => wallet.address === user?.wallet?.address
+  );
 
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
 
-  const { userBalance, getUserBalance, isLoadingBalance } =
-    useUserBalance(userWallet);
+  const { userBalance, getUserBalance } = useUserBalance(userWallet);
 
-  const minBalance = parseUnits("0.0002", 18);
+  // const minBalance = parseUnits("0.0002", 18);
 
-  const isEnoughFunds = userBalance > minBalance;
+  // const isEnoughFunds = true;
+  // // userBalance > minBalance;
 
   const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
 
@@ -86,13 +90,15 @@ function SectionBeta({ mintsNum }: any) {
     getAccessToken,
     setUserData: setData,
     setTimesMinted,
+    isFundsError,
+    setIsFundsError,
   });
 
   console.log("loading data", isLoadingData);
   console.log("ready", ready);
   console.log("authenticated", authenticated);
   console.log("userWalletChain === 84532", userWalletChain === 84532);
-  console.log("isEnoughFunds", isEnoughFunds);
+  console.log("isEnoughFunds", !isFundsError);
   console.log("userData?.isMinted", userData?.isMinted);
   console.log("userData?.email", userData?.email);
   console.log(
@@ -101,7 +107,7 @@ function SectionBeta({ mintsNum }: any) {
       ready &&
       authenticated &&
       userWalletChain === 84532 &&
-      isEnoughFunds) ||
+      !isFundsError) ||
       (userData && !userData.isMinted && !userData.email)
   );
   console.log("balance", userBalance);
@@ -148,12 +154,13 @@ function SectionBeta({ mintsNum }: any) {
             isCorrectChain={userWalletChain === 84532}
             isMintSubmitted={userData?.isMinted}
             isEmailSubmitted={userData?.email}
-            isLoadingBalance={isLoadingBalance}
-            isEnoughFunds={isEnoughFunds}
+            isEnoughFunds={!isFundsError}
             buyNFTAction={buyNFT}
-            switchChainAction={async () =>
-              await userWallet.switchChain(baseSepolia.id)
-            }
+            switchChainAction={async () => {
+              if (userWallet) {
+                await userWallet.switchChain(baseSepolia.id);
+              }
+            }}
           />
         </div>
       </form>

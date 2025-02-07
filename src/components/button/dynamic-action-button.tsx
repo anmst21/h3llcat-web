@@ -1,10 +1,11 @@
 import React from "react";
 import { usePrivy } from "@privy-io/react-auth";
 import { AnimatePresence, motion } from "motion/react";
+import { useFundWallet } from "@privy-io/react-auth";
+import { baseSepolia } from "viem/chains";
 
 interface Props {
   isLoadingContext: boolean;
-  isLoadingBalance: boolean;
   isLoadingUserData: boolean;
   isMinting: boolean;
   isCorrectChain: boolean;
@@ -19,7 +20,6 @@ interface Props {
 const DynamicActionButton: React.FC<Props> = ({
   isLoadingContext,
   isLoadingUserData,
-  isLoadingBalance,
   isMinting,
   isCorrectChain,
   isMintSubmitted,
@@ -29,12 +29,13 @@ const DynamicActionButton: React.FC<Props> = ({
   switchChainAction,
   isLoadingSubmit,
 }) => {
-  const { authenticated, login, ready } = usePrivy();
+  const { authenticated, login, ready, user } = usePrivy();
   let buttonText = "";
   let onClickAction: (() => void) | undefined = undefined;
   let disabled = false;
 
-  console.log("dynamic", isLoadingContext, isLoadingUserData, isLoadingBalance);
+  const { fundWallet } = useFundWallet();
+  console.log("dynamic", isLoadingContext, isLoadingUserData);
   // 1. When the context, user data, or balance is still loading:
   if (!ready || isLoadingSubmit) {
     buttonText = "Loading...";
@@ -49,9 +50,17 @@ const DynamicActionButton: React.FC<Props> = ({
     onClickAction = switchChainAction;
   }
   // 3. When the balance is loaded but insufficient:
-  else if (!isEnoughFunds && !isLoadingBalance) {
+  else if (!isEnoughFunds) {
     buttonText = "Insufficient Balance";
-    disabled = true;
+    disabled = false;
+    onClickAction = () => {
+      if (user?.wallet?.address) {
+        fundWallet(user?.wallet?.address, {
+          chain: baseSepolia,
+          amount: "0.0002", // Since no `asset` is set, defaults to 'native-currency' (ETH)
+        });
+      }
+    };
   }
   // 4. When the NFT has not yet been minted (and no email is submitted):
   else if (!isMintSubmitted && !isMinting && !isEmailSubmitted) {

@@ -43,10 +43,10 @@ export function useUserBalance(userWallet: any) {
 
   // Run getUserBalance when the wallet is available and ready
   useEffect(() => {
-    if (ready && authenticated) {
+    if (ready && authenticated && userWallet) {
       getUserBalance();
     }
-  }, [ready, getUserBalance, authenticated]);
+  }, [ready, getUserBalance, authenticated, userWallet]);
 
   return { userBalance, getUserBalance, isLoadingBalance };
 }

@@ -6,7 +6,7 @@ import { formatBlogDate } from "@/helpers/formatBlogDate";
 import Categories from "@/components/blog/categories";
 // import LinkButton from "@/components/button/link-button";
 import SectionHeader from "@/components/blog/section-header";
-import { BlogSlash, BlogBack } from "@/components/icon";
+import { BlogSlash } from "@/components/icon";
 
 export const metadata: Metadata = {
   title: "Display Updates - Stay tuned",
