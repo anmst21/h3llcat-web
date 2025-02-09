@@ -1,19 +1,19 @@
-import PageHeader from "@/components/page-header";
+import Categories from "@/components/blog/categories";
+import { getCategories } from "@/sanity/sanity-utils";
 
-export default async function RootLayout({
+export default async function BlogLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const categories = await getCategories();
+
   return (
     <div className="blog">
-      <PageHeader
-        btnContent="Subscribe"
-        href="/subscribe"
-        subHeader="Follow our blog for the latest news, feature launches, and insights into Display's platform"
-        text={["Explore", "Display's", "Updates"]}
-      />
-      {children}
+      <div className="blog-sections">
+        <Categories list={categories} />
+        {children}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,68 @@
+.subscribe-field {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 45px 30px 30px 30px;
+
+    gap: 30px;
+    background-color: rgba(147, 145, 142, 0.20);
+
+    &__header {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 540;
+        line-height: 24px;
+        color: rgba(255, 248, 231, 1);
+    }
+
+
+
+    &__input {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    &__cta {
+        position: relative;
+        display: flex;
+
+        .footer__form__state {
+            padding: 0;
+            z-index: 1000;
+        }
+
+        .email-submit {
+            width: 210px;
+        }
+    }
+}
+
+
+.footer__form__input__label {
+
+    svg {
+        transition: all .3s;
+    }
+
+    &:hover {
+        svg {
+            color: #FFF8E7;
+        }
+    }
+
+    input {
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 510;
+        line-height: normal;
+        letter-spacing: -0.08px;
+
+        &::placeholder {
+            color: rgba(147, 145, 142, 1);
+        }
+    }
+}

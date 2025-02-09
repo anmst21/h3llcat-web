@@ -6,6 +6,12 @@ import { FooterFarcaster, FooterX, FooterLinkedIn } from "@/components/icon";
 import FooterForm from "./footer-form";
 const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
 
+import {
+  socialWarpcast,
+  socialsLinkedIn,
+  socialsTwitter,
+} from "@/helpers/socials";
+
 const Footer = () => {
   return (
     <div className="footer">
@@ -64,13 +70,13 @@ const Footer = () => {
             <Link href="/">n3xus.nyc</Link>
           </div>
           <div className="footer__links__socials">
-            <Link href="/">
+            <Link className="socials-link" href={socialsTwitter}>
               <FooterX />
             </Link>
-            <Link href="/">
+            <Link className="socials-link" href={socialsLinkedIn}>
               <FooterLinkedIn />
             </Link>
-            <Link href="/">
+            <Link className="socials-link" href={socialWarpcast}>
               <FooterFarcaster />
             </Link>
           </div>

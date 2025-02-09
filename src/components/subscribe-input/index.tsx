@@ -1,50 +1,45 @@
 "use client";
 
 import { useNewsletterForm } from "@/hooks/useNewsletterForm";
+import SubmitCta from "../button/submit-cta";
+import FormStatusBar from "../footer/form-status-bar";
+import FooterInput from "./footer-input";
 
 const SubscribeInput = () => {
   const {
     handleSubmit,
     onSubmit,
     register,
-    // showSuccessMessage,
-    // isCaptchaError,
+    disableError,
+    showSuccessMessage,
+    isCaptchaError,
+    isSubmitting,
   } = useNewsletterForm();
 
   return (
     <div className="subscribe-field">
-      <span>Receive updates from the Display's team to your inbox</span>
-      <div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          method="POST"
-          className="subscribe-field__input"
-        >
-          <label
-          // className={classNames("form-input", {
-          //   "form-input--error": isError,
-          // })}
-          >
-            {/* {formIcon} */}
+      <span className="subscribe-field__header">
+        Subscribe to Display's newsletter
+      </span>
 
-            <input
-              className="form-input__input"
-              type="email"
-              {...register("email")}
-              //   onChange={(e) => {
-              //     onChange(e);
-              //     handleInputChange(e);
-              //   }}
-              //   {...rest}
-              placeholder="Email"
-            />
-
-            {/* {optional && !hasValue && <span>Optional</span>} */}
-            <div className="form-input__underline" />
-          </label>
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="subscribe-field__input"
+      >
+        <FooterInput
+          type="email"
+          register={register("email")}
+          placeholder="E-Mail"
+        />
+        <div className="subscribe-field__cta">
+          <FormStatusBar
+            disableError={disableError}
+            showSuccessMessage={showSuccessMessage}
+            isCaptchaError={isCaptchaError}
+          />
+          <SubmitCta isSubmitting={isSubmitting} />
+        </div>
+      </form>
     </div>
   );
 };

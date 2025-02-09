@@ -28,8 +28,10 @@ import FooterMail from "./FooterMail";
 import FooterDooted from "./FooterDotted";
 import FormSuccess from "./FormSuccess";
 import FormError from "./FormError";
+import ArrowContainer from "./ArrowContainer";
 
 export {
+  ArrowContainer,
   FormError,
   FormSuccess,
   FooterDooted,

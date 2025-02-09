@@ -26,6 +26,16 @@ const sfPro = localFont({
       style: "normal",
     },
     {
+      path: "../fonts/SFPro-ExpandedLight.ttf",
+      weight: "270",
+      style: "normal",
+    },
+    {
+      path: "../fonts/SFPro-CompressedLight.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
       path: "../fonts/SFPro.ttf",
       weight: "400",
       style: "normal",

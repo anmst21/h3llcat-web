@@ -1,77 +1,117 @@
 .section-header {
-    font-family: var(--font-sf-pro);
     display: flex;
-    padding: 20px 45px 40px 0px;
-    gap: 30px;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 20px 0px 10px 0px;
 
-    border-radius: 10px;
+    .divider {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: rgba(147, 145, 142, 0.5);
+    }
 
-    &--featured {
-        background-color: var(--accent);
-        padding: 20px 45px 30px 15px;
+    &__cta {
+        display: flex;
+        padding: 5px;
+        padding-left: 30px;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 650;
+        line-height: 22px;
+        gap: 10px;
+        align-items: center;
 
-        .section-header__line {
-            height: 80px;
-            background-color: #212121;
+        transition: all .2s;
+
+        &:hover {
+            opacity: 0.8;
         }
 
+        &:active {
+            opacity: 0.6;
+        }
 
-        .section-header__text {
-
-            h2 {
-                line-height: 74px;
-                font-size: 74px;
-                color: #212121;
-                font-weight: 1000;
-            }
-
-            span {
-                font-size: 32px;
-                line-height: 36px;
-                color: #212121;
-            }
+        &__icon {
+            color: #FFF8E7;
+            height: 64px;
+            width: 64px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid currentColor;
+            border-radius: 1000px;
         }
     }
 
-    &__line {
-        width: 9px;
-        height: 60px;
-        border-radius: 2px;
-        background: #FFF;
-    }
 
     &__text {
-
         display: flex;
         flex-direction: column;
         gap: 10px;
 
         span {
-            font-size: 28px;
+            font-size: 16px;
             font-style: normal;
-            font-weight: 590;
-            line-height: 32px;
-            letter-spacing: -1.35px;
-            color: var(--color-category);
+            font-weight: 510;
+            line-height: 20px;
+
+            color: rgba(147, 145, 142, 1);
+            font-variant: all-small-caps;
         }
 
         h2 {
-            color: #FFF;
-
-            font-size: 70px;
+            color: rgba(255, 248, 231, 1);
+            font-size: 48px;
             font-style: normal;
-            font-weight: 540;
-            line-height: 74px;
-            /* 105.714% */
-            letter-spacing: -1.35px;
+            font-weight: 270;
+            line-height: 52px;
         }
     }
 }
 
+.category {
+
+    &__container {
+        gap: 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    // Your existing button styles...
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 22px;
+    font-weight: 590;
+    color: rgba(255, 248, 231, 0.6);
+    transition: all 0.2s;
+
+    &:hover {
+        color: white;
+    }
+
+    // Ensure the button is positioned relative
+    position: relative;
+    //  overflow: hidden;
+}
 
 .active-category {
-    text-decoration: underline;
-    color: white !important;
+    // You might no longer need these if the background indicator is visible,
+    // but you can leave them if you want additional styling.
+    color: #050915 !important;
+    z-index: 1000;
+}
 
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    background-color: var(--accent);
+    border-radius: 5px;
 }

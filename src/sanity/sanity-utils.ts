@@ -15,6 +15,14 @@ const categoriesQuery = groq`
     }
   `;
 
+export async function getCategories(): Promise<Category[]> {
+  const client = createClient(config);
+
+  const categories = await client.fetch<Category[]>(categoriesQuery);
+
+  return categories;
+}
+
 export async function getBlogposts(
   category?: string
 ): Promise<ListWithCategories> {

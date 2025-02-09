@@ -13,10 +13,16 @@ export default function SubscribePage() {
       <div className="subscribe-page__container">
         <div className="subscribe-page__header">
           <span>GET EMAIL UPDATES</span>
-          <h2>Subscribe to Display's Newsletter</h2>
+          <h2>
+            Reimagine <br />
+            How You Mint
+            <br />
+            On Chain
+            <br />
+          </h2>
         </div>
+        <SubscribeInput />
       </div>
-      <SubscribeInput />
     </div>
   );
 }

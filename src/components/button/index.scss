@@ -82,3 +82,66 @@
         border: 1px solid currentColor;
     }
 }
+
+.email-submit {
+    position: relative;
+    overflow: hidden;
+    color: rgba(5, 9, 21, 1);
+    border-radius: 10px;
+    height: 52px;
+    padding: 10px;
+    min-width: 118px;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 650;
+    line-height: 22px;
+    background: #FC0;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+        background-color: black;
+    }
+}
+
+/* Pseudo-element for the gradient background on hover */
+.email-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(88deg, rgba(255, 216, 59, 0.70) 0%, rgba(255, 105, 5, 0.70) 100%), #FC0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 0;
+}
+
+/* Bring text above the pseudo-element */
+.email-submit span {
+    position: relative;
+    z-index: 1;
+    /* Set a transition if you want a smooth effect */
+    transition: background 0.2s ease;
+}
+
+/* On hover or focus, reveal the gradient background behind the button */
+.email-submit:hover::before,
+.email-submit:focus::before {
+    opacity: 1;
+}
+
+/* When the button is active, remove the pseudo-element's gradient background */
+.email-submit:active::before {
+    opacity: 0;
+}
+
+/* When the button is active, apply the gradient to the text */
+.email-submit:active span {
+    background: linear-gradient(88deg, #FC0 0%, #FF9305 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* Makes sure the text itself appears transparent so the gradient shows */
+    -webkit-text-fill-color: transparent;
+}

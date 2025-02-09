@@ -3,10 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { formatBlogDate } from "@/helpers/formatBlogDate";
-import Categories from "@/components/blog/categories";
-// import LinkButton from "@/components/button/link-button";
 import SectionHeader from "@/components/blog/section-header";
-import { BlogSlash } from "@/components/icon";
+import { BlogBack } from "@/components/icon";
+import Divider from "@/components/blog/divider";
 
 export const metadata: Metadata = {
   title: "Display Updates - Stay tuned",
@@ -19,91 +18,102 @@ export default async function Blog({
 }: {
   searchParams?: { category: string };
 }) {
-  const { categories, blogposts } = await getBlogposts(searchParams?.category);
+  const { blogposts } = await getBlogposts(searchParams?.category);
 
   const featured = blogposts.find((blogpost) => blogpost.featured === true);
+  const filteredPosts = blogposts.filter((blogpost) => blogpost !== featured);
 
-  console.log(" categories, blogposts ", searchParams?.category);
+  const featuredBottom = filteredPosts.slice(0, 4);
+  const otherPosts = blogposts.length > 4 ? blogposts.slice(4) : [];
 
   return (
-    <div className="blog-sections">
-      <Categories active={searchParams?.category} list={categories} />
-      {featured && (
-        <div className="featured">
-          <SectionHeader featured header="Featured" subHeader="Editors Pick" />
-          <div className="featured__main">
-            {featured.image && (
-              <Image
-                src={featured.image}
-                width={1080}
-                height={609}
-                alt={featured.alt}
-                style={{
-                  minHeight: "100%",
-                  minWidth: "70%",
-                  objectFit: "cover",
-                }}
-              />
-            )}
-            <Link
-              className="featured__right"
-              href={`/blog/${featured.slug}`}
-              key={featured._id}
-            >
-              <span className="featured__title">{featured.category.title}</span>
-              <h3>{featured.name}</h3>
+    <>
+      <div className="blog-featured">
+        <SectionHeader featured header="The latest" subHeader="Featured" />
 
-              {/* <div className="featured__meta">
-                <span>{formatBlogDate(featured._createdAt)}</span>
-                <BlogSlash />
-                <span>{featured.author.name}</span>
-              </div> */}
-              {/* <Link
-                className="featured__forward"
-                href={"/blog/" + featured.slug}
-              >
+        {featured && (
+          <Link
+            href={"/blog/" + featured.slug}
+            className="blog-featured__container"
+          >
+            <Image
+              src={featured.image}
+              alt={featured.alt}
+              width={690}
+              height={420}
+              //    style={{ width: "100%", height: "auto" }}
+            />
+            <div className="blog-featured__text">
+              <span>Latest</span>
+              <h3>{featured.name}</h3>
+              <div className="blog-featured__icon">
                 <BlogBack />
-              </Link> */}
-            </Link>
-          </div>
-        </div>
-      )}
-      <div className="blog-all">
-        <SectionHeader header="Display's news" subHeader="All posts" />
-        <div className="blog-items">
-          {blogposts.map((blogpost) => (
-            <Link
-              className="blog-item"
-              href={`/blog/${blogpost.slug}`}
-              key={blogpost._id}
-            >
-              <div className="blog-item__left">
-                <h3>{blogpost.name}</h3>
-                <div className="featured__meta">
-                  <span>{formatBlogDate(blogpost._createdAt)}</span>
-                  <BlogSlash />
-                  <span>{blogpost.author.name}</span>
-                </div>
-                <p>{blogpost.subheader}</p>
               </div>
-              {blogpost.image && (
+            </div>
+          </Link>
+        )}
+        <div className="blog-featured__bottom">
+          {featuredBottom.map((post, index) => {
+            return (
+              <Link
+                key={index}
+                className="blog-featured__small"
+                href={"/blog/" + post.slug}
+              >
+                {!featured &&
+                index === 0 &&
+                featuredBottom.length === 1 ? null : (
+                  <Divider />
+                )}
+                <div className="blog-featured__small__text">
+                  <span>{post.category.title}</span>
+                  <h4>{post.name}</h4>
+                </div>
                 <Image
-                  src={blogpost.image}
-                  width={1080}
-                  height={609}
-                  alt={blogpost.alt}
-                  style={{
-                    borderRadius: 10,
-                    //  objectFit: "cover",
-                    maxHeight: 250,
-                    width: "auto",
-                  }}
+                  width={220}
+                  height={132}
+                  alt={post.alt}
+                  src={post.image}
                 />
-              )}
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
-    </div>
+      {otherPosts.length > 0 && (
+        <div className="other-posts">
+          <SectionHeader header="Display Updates" subHeader="Other Posts" />
+          {otherPosts.map((post, index) => {
+            return (
+              <Link
+                key={index}
+                className="other-posts__post"
+                href={"/blog/" + post.slug}
+              >
+                {index !== 0 && <Divider transparent={index === 0} />}
+                <div className="other-posts__container">
+                  <div className="other-posts__text">
+                    <span className="subtitle">{post.category.title}</span>
+                    <h4>{post.name}</h4>
+                    <div className="other-posts__meta">
+                      <span>{formatBlogDate(post._createdAt)}</span>
+                      <div className="vert-divider" />
+                      <span>{post.author.name}</span>
+                    </div>
+                    <p>{post.subheader}</p>
+                  </div>
+                  <Image
+                    width={370}
+                    height={222}
+                    alt={post.alt}
+                    src={post.image}
+                  />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 }
