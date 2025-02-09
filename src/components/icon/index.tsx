@@ -29,8 +29,22 @@ import FooterDooted from "./FooterDotted";
 import FormSuccess from "./FormSuccess";
 import FormError from "./FormError";
 import ArrowContainer from "./ArrowContainer";
+import { MenuHamburger } from "./MenuHamburger";
+import { MenuCross } from "./MenuCross";
+import MenuContacts from "./MenuContacts";
+import MenuHome from "./MenuHome";
+import MenuWallet from "./MenuWallet";
+import MenuBeta from "./MenuBeta";
+import MenuBlog from "./MenuBlog";
 
 export {
+  MenuContacts,
+  MenuWallet,
+  MenuBlog,
+  MenuHamburger,
+  MenuHome,
+  MenuBeta,
+  MenuCross,
   ArrowContainer,
   FormError,
   FormSuccess,

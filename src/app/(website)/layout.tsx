@@ -7,6 +7,8 @@ import { createClient, reservoirChains } from "@reservoir0x/reservoir-sdk";
 import CookieConsentBanner from "@/components/cookie-consent";
 import Footer from "@/components/footer";
 import { CapchaProvider } from "@/context/CapchaProvider";
+import { MenuProvider } from "@/context/MenuProvider";
+import { BalanceProvider } from "@/context/BalanceProvider";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -127,12 +129,15 @@ export default function RootLayout({
       >
         <CapchaProvider>
           <PrivyProvider>
-            <div className="main">
-              {children}
-              <Footer />
-            </div>
-            <Menu />
-            <CookieConsentBanner />
+            <BalanceProvider>
+              <MenuProvider>
+                <div className="main">
+                  {children}
+                  <Footer />
+                </div>
+              </MenuProvider>
+              <CookieConsentBanner />
+            </BalanceProvider>
           </PrivyProvider>
         </CapchaProvider>
       </body>

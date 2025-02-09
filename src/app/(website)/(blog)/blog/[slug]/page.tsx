@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
           </div>
           <p>{subheader}</p>
           <div className="divider" />
-          <p>{subheader}</p>
+
           <div className="rich-text">
             <PortableText value={project.content} />
           </div>

@@ -7,19 +7,17 @@ import { baseSepolia } from "viem/chains";
 import { useEffect, useCallback, useState } from "react";
 import { createClient } from "@reservoir0x/reservoir-sdk";
 import FooterInput from "../subscribe-input/footer-input";
-import { useUserBalance } from "@/hooks/useUserBalance";
 import { options } from "@/helpers/reservoirClientOptions";
-// import { parseUnits } from "viem";
 import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
 import { useBetaSubmit } from "@/hooks/useBetaSubmit";
 import DynamicActionButton from "../button/dynamic-action-button";
-//
+
 createClient(options);
 
 function SectionBeta({ mintsNum }: any) {
-  const { authenticated, getAccessToken, ready, user } = usePrivy();
+  const { authenticated, getAccessToken, ready } = usePrivy();
 
   const [isFundsError, setIsFundsError] = useState(false);
 
@@ -30,18 +28,10 @@ function SectionBeta({ mintsNum }: any) {
   const { wallets } = useWallets();
 
   const userWallet = wallets.find(
-    (wallet) => wallet.address === user?.wallet?.address
+    (wallet) => wallet.walletClientType === "coinbase_wallet"
   );
-
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
-
-  const { userBalance, getUserBalance } = useUserBalance(userWallet);
-
-  // const minBalance = parseUnits("0.0002", 18);
-
-  // const isEnoughFunds = true;
-  // // userBalance > minBalance;
 
   const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
 
@@ -60,12 +50,6 @@ function SectionBeta({ mintsNum }: any) {
     // showSuccessMessage,
     // isCaptchaError,
   } = useBetaSubmit({ setUserData });
-
-  useEffect(() => {
-    if (userWallet && ready) {
-      getUserBalance();
-    }
-  }, [userWallet, ready, getUserBalance]);
 
   useEffect(() => {
     if (!authenticated) {
@@ -93,24 +77,6 @@ function SectionBeta({ mintsNum }: any) {
     isFundsError,
     setIsFundsError,
   });
-
-  console.log("loading data", isLoadingData);
-  console.log("ready", ready);
-  console.log("authenticated", authenticated);
-  console.log("userWalletChain === 84532", userWalletChain === 84532);
-  console.log("isEnoughFunds", !isFundsError);
-  console.log("userData?.isMinted", userData?.isMinted);
-  console.log("userData?.email", userData?.email);
-  console.log(
-    "check mint",
-    (!isLoadingData &&
-      ready &&
-      authenticated &&
-      userWalletChain === 84532 &&
-      !isFundsError) ||
-      (userData && !userData.isMinted && !userData.email)
-  );
-  console.log("balance", userBalance);
 
   return (
     <div className="section-beta">
@@ -169,40 +135,3 @@ function SectionBeta({ mintsNum }: any) {
 }
 
 export default SectionBeta;
-{
-  /* {(!ready || !authenticated) && (
-            <button onClick={login} disabled={disableLogin}>
-              {!ready ? "Loading" : "Connect Wallet"}
-            </button>
-          )}
-          {((!isLoadingData &&
-            ready &&
-            authenticated &&
-            userWalletChain === 84532 &&
-            isEnoughFunds) ||
-            (userData && !userData.isMinted && !userData.email)) && (
-            <button onClick={buyNFT}>Mint</button>
-          )}
-          {!isLoadingData &&
-            userData &&
-            userData?.isMinted &&
-            !userData.email &&
-            authenticated && <button type="submit">Submit</button>}
-          {!isLoadingData &&
-            !isEnoughFunds &&
-            ready &&
-            authenticated &&
-            userWalletChain === 84532 &&
-            userWallet && <button disabled>Insuficient funds</button>}
-          {!isLoadingData &&
-            authenticated &&
-            ready &&
-            userData?.isMinted &&
-            userData.email &&
-            isEnoughFunds && <button onClick={buyNFT}>Mint More</button>}
-          {!isLoadingData && userWalletChain && userWalletChain !== 84532 && (
-            <button onClick={() => userWallet.switchChain(baseSepolia.id)}>
-              Switch Chain
-            </button>
-          )} */
-}
