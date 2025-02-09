@@ -1,5 +1,6 @@
 import Categories from "@/components/blog/categories";
 import { getCategories } from "@/sanity/sanity-utils";
+import { Suspense } from "react";
 
 export default async function BlogLayout({
   children,
@@ -11,7 +12,9 @@ export default async function BlogLayout({
   return (
     <div className="blog">
       <div className="blog-sections">
-        <Categories list={categories} />
+        <Suspense>
+          <Categories list={categories} />
+        </Suspense>
         {children}
       </div>
     </div>
