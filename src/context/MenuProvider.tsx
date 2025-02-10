@@ -9,6 +9,7 @@ import React, {
   SetStateAction,
 } from "react";
 import Menu from "@/components/menu";
+import MenuModal from "@/components/menu/menu-modal";
 
 // Define the shape of your context data.
 interface MenuContextProps {
@@ -31,6 +32,8 @@ export const MenuProvider: FC<MenuProviderProps> = ({ children }) => {
   return (
     <MenuContext.Provider value={{ isOpenMenu, setIsOpenMenu }}>
       {/* Render the Menu component and pass the state as props */}
+      <MenuModal isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
+
       <Menu isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
       {children}
     </MenuContext.Provider>

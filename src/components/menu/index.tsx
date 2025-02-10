@@ -1,7 +1,8 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { MenuCross, MenuHamburger } from "../icon";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import animationData from "@/components/icon/animation.json";
 
 export default function Menu({
   isOpen,
@@ -22,48 +23,53 @@ export default function Menu({
     exit: { x: -20, opacity: 0 },
   };
 
-  const iconVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
-
   const toggleMenu = useCallback(
     (value: boolean) => {
       setIsOpen(value);
     },
     [setIsOpen]
   );
+
+  // Create a ref to control the Lottie animation instance
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      if (isOpen) {
+        lottieRef.current.playSegments([102, 126.75], true);
+      } else {
+        lottieRef.current.playSegments([0, 50], true);
+      }
+    }
+  }, [isOpen]);
+  const iconVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
   return (
     <div className="menu">
       <button onClick={() => toggleMenu(!isOpen)} className="menu-container">
         <div className="menu-container__icon">
           <AnimatePresence mode="wait">
-            {!isOpen ? (
-              <motion.div
-                style={{ display: "flex" }}
-                key="hamburger-icon"
-                variants={iconVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.3 }}
-              >
-                <MenuHamburger />
-              </motion.div>
-            ) : (
-              <motion.div
-                style={{ display: "flex" }}
-                key="cross-icon"
-                variants={iconVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.3 }}
-              >
-                <MenuCross />
-              </motion.div>
-            )}
+            <motion.div
+              style={{ display: "flex" }}
+              key="hamburger-icon"
+              variants={iconVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3 }}
+            >
+              <Lottie
+                style={{ width: 30, height: 30 }}
+                lottieRef={lottieRef}
+                animationData={animationData}
+                loop={false}
+                autoplay={false} // We control playback via the ref and useEffect
+              />
+            </motion.div>
           </AnimatePresence>
         </div>
         <div className="menu-container__text">

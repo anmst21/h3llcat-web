@@ -36,8 +36,18 @@ import MenuHome from "./MenuHome";
 import MenuWallet from "./MenuWallet";
 import MenuBeta from "./MenuBeta";
 import MenuBlog from "./MenuBlog";
+import MenuFunds from "./MenuFunds";
+import MenuLogout from "./MenuLogout";
+import MenuEth from "./MenuEth";
+import MenuBase from "./MenuBase";
+import MenuArrow from "./MenuArrow";
 
 export {
+  MenuArrow,
+  MenuBase,
+  MenuEth,
+  MenuLogout,
+  MenuFunds,
   MenuContacts,
   MenuWallet,
   MenuBlog,

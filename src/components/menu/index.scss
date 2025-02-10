@@ -1,11 +1,225 @@
+.wallet-item {
+
+    display: flex;
+    z-index: 20;
+    gap: 15px;
+
+
+    &--hover {
+
+        .wallet-item__icon {
+            transition: all .3s ease-in;
+        }
+
+        &:hover {
+
+            .wallet-item__icon {
+                background-color: rgba(255, 248, 231, 0.3);
+            }
+
+            .wallet-item__address {
+                color: var(--accent)
+            }
+
+            .wallet-item__title__arrow {
+
+
+                opacity: 1;
+
+                position: relative;
+                transform: translateX(3px);
+
+            }
+        }
+
+        &:active {
+            .wallet-item__title__arrow {
+                transform: translateX(6px);
+
+            }
+
+            .wallet-item__icon {
+                color: var(--accent);
+                background-color: rgba(255, 204, 0, 0.2);
+            }
+        }
+    }
+
+
+
+
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 510;
+        line-height: 20px;
+        border-radius: 4px;
+        padding: 5px;
+        background-color: rgba(255, 248, 231, 0.1);
+
+        &__title {
+            color: rgba(255, 248, 231, 1);
+
+
+        }
+
+        &__value {
+            align-items: center;
+            display: flex;
+            gap: 5px;
+            color: rgba(255, 248, 231, 0.6);
+
+            &--switch {
+                transition: all .3s;
+
+                &:hover {
+                    color: rgba(255, 248, 231, 1);
+                }
+
+
+            }
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        width: 250px;
+    }
+
+
+    &__user {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+        width: 250px;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        color: rgba(255, 248, 231, 1);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        max-height: 20px;
+
+
+
+        div {
+            display: flex;
+
+
+        }
+    }
+
+    &__address {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 510;
+        line-height: 20px;
+        color: rgba(255, 248, 231, 0.6);
+        display: flex;
+        max-height: 20px;
+        text-wrap: nowrap;
+        flex-wrap: nowrap;
+        transition: all .3s ease-in;
+    }
+
+
+    &__right {
+        //  width: 250px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__icon {
+        &--active {
+            background-color: rgba(255, 204, 0, 0.2);
+            color: var(--accent);
+            transition: all .3s;
+        }
+
+        //   transition: all .3s ease-in;
+        display: flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 248, 231, 0.2);
+        border-radius: 4px;
+        color: rgba(255, 248, 231, 1);
+    }
+}
+
+
+
+
+
+
+
+.menu-modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2000;
+    background-color: #121621;
+
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-sf-pro);
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 22px;
+            /* 122.222% */
+            font-variant: all-small-caps;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__container {
+        display: flex;
+        padding: 25px 0px 15px 0px;
+        gap: 20px;
+        height: 300px;
+    }
+}
+
+
+
+
 .menu {
     position: fixed;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-
     padding: 30px 20px;
-    z-index: 1000;
+    z-index: 3000;
 }
 
 
@@ -47,7 +261,29 @@
         justify-content: center;
         border-radius: 10px;
         background-color: var(--accent);
+
+
     }
+}
+
+
+
+.wallet-item__title__arrow {
+    opacity: 0;
+    transition: all .3s;
+}
+
+.wallet-item__item--active {
+    .wallet-item__title__arrow {
+        transform: translateX(6px);
+        opacity: 1;
+    }
+
+    .wallet-item__address {
+        color: var(--accent)
+    }
+
+
 }
 
 
