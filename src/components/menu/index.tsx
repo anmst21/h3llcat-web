@@ -1,8 +1,9 @@
 "use client";
-import React, { useCallback, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import animationData from "@/components/icon/animation.json";
+import classNames from "classnames";
 
 export default function Menu({
   isOpen,
@@ -11,27 +12,32 @@ export default function Menu({
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }) {
-  const menuTextVariants = {
-    initial: { x: 20, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: 20, opacity: 0 },
-  };
+  // Refs for container and children
+  const containerRef = useRef<HTMLButtonElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
-  const closeTextVariants = {
-    initial: { x: -20, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: -20, opacity: 0 },
-  };
+  // Offsets for aligning icon and text to container edges
+  const [offsets, setOffsets] = useState({ icon: 0, text: 0 });
 
-  const toggleMenu = useCallback(
-    (value: boolean) => {
-      setIsOpen(value);
-    },
-    [setIsOpen]
-  );
-
-  // Create a ref to control the Lottie animation instance
+  // Ref for controlling the Lottie animation
   const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  useEffect(() => {
+    // Recalculate offsets whenever isOpen changes (or when layout might change)
+    if (containerRef.current && iconRef.current && textRef.current) {
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const iconRect = iconRef.current.getBoundingClientRect();
+      const textRect = textRef.current.getBoundingClientRect();
+
+      // Calculate how far the icon should move so its right edge aligns with the container's right edge.
+      const iconOffset = containerRect.right - iconRect.right - 5;
+      // Calculate how far the text should move so its left edge aligns with the container's left edge.
+      const textOffset = containerRect.left - textRect.left + 5;
+
+      setOffsets({ icon: iconOffset, text: textOffset });
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (lottieRef.current) {
@@ -42,24 +48,29 @@ export default function Menu({
       }
     }
   }, [isOpen]);
-  const iconVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
 
   return (
     <div className="menu">
-      <button onClick={() => toggleMenu(!isOpen)} className="menu-container">
-        <div className="menu-container__icon">
+      <button
+        ref={containerRef}
+        onClick={() => setIsOpen(!isOpen)}
+        className={classNames("menu-container", {
+          "menu-container--active": isOpen,
+        })}
+      >
+        {/* Icon wrapper */}
+        <motion.div
+          style={{ zIndex: 50 }}
+          className="menu-container__icon"
+          ref={iconRef}
+          animate={{ x: isOpen ? offsets.icon : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               style={{ display: "flex" }}
               key="hamburger-icon"
-              variants={iconVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
+              // You can also include your icon fade variants here if needed
               transition={{ duration: 0.3 }}
             >
               <Lottie
@@ -67,20 +78,24 @@ export default function Menu({
                 lottieRef={lottieRef}
                 animationData={animationData}
                 loop={false}
-                autoplay={false} // We control playback via the ref and useEffect
+                autoplay={false} // Controlled via useEffect
               />
             </motion.div>
           </AnimatePresence>
-        </div>
-        <div className="menu-container__text">
+        </motion.div>
+
+        {/* Text wrapper */}
+        <motion.div
+          className="menu-container__text"
+          ref={textRef}
+          animate={{ x: isOpen ? offsets.text : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <AnimatePresence mode="wait">
             {!isOpen ? (
               <motion.span
                 key="menu"
-                variants={menuTextVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
+                // Include your text fade/slide variants for "Menu"
                 transition={{ duration: 0.3 }}
               >
                 Menu
@@ -88,17 +103,14 @@ export default function Menu({
             ) : (
               <motion.span
                 key="close"
-                variants={closeTextVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
+                // Include your text fade/slide variants for "Close"
                 transition={{ duration: 0.3 }}
               >
                 Close
               </motion.span>
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </button>
     </div>
   );

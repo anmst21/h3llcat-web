@@ -87,7 +87,7 @@
     font-size: 22px;
     font-weight: 590;
     color: rgba(255, 248, 231, 0.6);
-    transition: all 0.2s;
+    transition: all 0.2s ease-in;
 
     &:hover {
         color: white;

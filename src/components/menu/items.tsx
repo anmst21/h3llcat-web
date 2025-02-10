@@ -3,25 +3,25 @@ import { MenuHome, MenuBeta, MenuBlog, MenuContacts } from "../icon";
 export const menuItems = [
   {
     title: "Home",
-    value: "The Display Product",
+    value: "Learn about Display",
     icon: <MenuHome />,
     href: "/",
   },
   {
     title: "Beta",
-    value: "The Display Product",
+    value: "Sign up for early access",
     icon: <MenuBeta />,
     href: "/beta",
   },
   {
     title: "Blog",
-    value: "The Display Product",
+    value: "Updates & announcements",
     icon: <MenuBlog />,
     href: "/blog",
   },
   {
     title: "Contacts",
-    value: "The Display Product",
+    value: "Get in touch with us",
     icon: <MenuContacts />,
     href: "/contacts",
   },

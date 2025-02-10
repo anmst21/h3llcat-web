@@ -250,6 +250,31 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        transition: all 0.1s ease-in;
+    }
+
+    &--active {
+        span {
+            background: linear-gradient(88deg,
+                    rgba(255, 216, 59, 0.70) 0%,
+                    rgba(255, 105, 5, 0.70) 100%),
+                #FC0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    &:active {
+        span {
+            background: linear-gradient(88deg,
+                    rgba(255, 216, 59, 0.70) 0%,
+                    rgba(255, 105, 5, 0.70) 100%),
+                #FC0;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
 
 
@@ -262,7 +287,8 @@
         border-radius: 10px;
         background-color: var(--accent);
 
-
+        position: relative;
+        overflow: hidden;
     }
 }
 
@@ -356,3 +382,49 @@
 // * {
 //     box-sizing: border-box;
 // }
+
+
+
+.menu-container__icon {
+    position: relative;
+    overflow: hidden;
+    color: rgba(5, 9, 21, 1);
+    border-radius: 10px;
+    height: 74px;
+    padding: 10px;
+    width: 74px;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 650;
+    line-height: 22px;
+    background: #FC0;
+    border: none;
+    cursor: pointer;
+}
+
+/* Pseudo-element for the gradient background */
+.menu-container__icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(88deg, rgba(255, 216, 59, 0.70) 0%, rgba(255, 105, 5, 0.70) 100%), #FC0;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    z-index: 0;
+}
+
+/* Activate the pseudo-element when the parent is hovered or focused */
+.menu-container:hover .menu-container__icon::before,
+.menu-container:focus .menu-container__icon::before {
+    opacity: 1;
+}
+
+/* Bring SVG paths above the pseudo-element */
+.menu-container__icon svg path {
+    position: relative;
+    z-index: 1;
+    transition: background 0.2s ease-in;
+}

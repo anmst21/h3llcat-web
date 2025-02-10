@@ -114,8 +114,13 @@
     height: 100%;
     background: linear-gradient(88deg, rgba(255, 216, 59, 0.70) 0%, rgba(255, 105, 5, 0.70) 100%), #FC0;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease-in;
     z-index: 0;
+}
+
+.email-submit:hover::before,
+.email-submit:focus::before {
+    opacity: 1;
 }
 
 /* Bring text above the pseudo-element */
@@ -123,14 +128,11 @@
     position: relative;
     z-index: 1;
     /* Set a transition if you want a smooth effect */
-    transition: background 0.2s ease;
+    transition: background 0.2s ease-in;
 }
 
 /* On hover or focus, reveal the gradient background behind the button */
-.email-submit:hover::before,
-.email-submit:focus::before {
-    opacity: 1;
-}
+
 
 /* When the button is active, remove the pseudo-element's gradient background */
 .email-submit:active::before {
