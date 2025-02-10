@@ -13,7 +13,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         supportedChains: [base, baseSepolia],
 
         appearance: {
-          landingHeader: "Connect you wallet to Display",
+          loginMessage: "Connect you wallet to Display",
+          landingHeader: "Display",
           walletList: ["coinbase_wallet"],
           walletChainType: "ethereum-only",
           theme: "dark",

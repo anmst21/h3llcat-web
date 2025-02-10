@@ -18,6 +18,41 @@
   --text-secondary: #121621;
 }
 
+#privy-dialog-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  font-variant: all-small-caps;
+}
+
+#privy-dialog-backdrop {
+  font-family: var(--font-sf-pro);
+}
+
+body {
+  --privy-border-radius-sm: 10px !important;
+  --privy-border-radius-md: 10px !important;
+  --privy-border-radius-lg: 0px !important;
+  --privy-border-radius-full: 5px !important;
+  --privy-color-background: hsl(222deg 10.2% 19.22%) !important;
+  --privy-color-background-2: hsl(222deg 9.99% 32.64%) !important;
+  --privy-color-background-3: hsl(221.54deg 9.3% 43.53%) !important;
+  --privy-color-foreground: hsl(39deg 28.57% 86.27%) !important;
+  --privy-color-foreground-2: hsl(39deg 28.57% 86.27%) !important;
+  --privy-color-foreground-3: hsl(58.85deg 5.96% 54.13%) !important;
+  --privy-color-foreground-4: hsl(220deg 4.35% 27.06%) !important;
+  --privy-color-foreground-accent: hsl(246deg 100% 50%) !important;
+  --privy-color-accent: hsl(48deg 100% 50%) !important;
+  --privy-color-accent-light: hsl(48deg 100% 50%) !important;
+  --privy-color-accent-lightest: hsl(48, 100%, 75%) !important;
+  --privy-color-accent-dark: hsl(48, 100%, 44%) !important;
+  --privy-color-accent-darkest: hsl(228deg 10.42% 18.82%) !important;
+  --privy-color-success: hsl(147, 43%, 52%) !important;
+  --privy-color-error: hsl(7, 80%, 62%) !important;
+  --privy-color-error-light: hsl(0deg 0% 100%) !important;
+}
+
 
 html,
 body {
