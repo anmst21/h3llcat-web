@@ -26,9 +26,17 @@ interface Props {
 }
 
 const MenuModal = ({ isOpen, setIsOpen }: Props) => {
-  const isMobile = useMemo(() => {
-    return typeof window !== "undefined" ? window.innerWidth < 1100 : false;
-  }, [window]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // This code runs only on the client
+    setIsMobile(window.innerWidth < 1100);
+
+    // Optional: Update on resize
+    const handleResize = () => setIsMobile(window.innerWidth < 1100);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useLockBodyScroll(isOpen);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
