@@ -13,7 +13,7 @@ import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { useBalanceContext } from "@/context/BalanceProvider";
 import MenuItem from "./menu-item";
 import { buttonProps, menuItems } from "./items";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { base } from "viem/chains";
 import { dynamicButtonProps } from "../button/animation";
 import classNames from "classnames";
@@ -26,7 +26,9 @@ interface Props {
 }
 
 const MenuModal = ({ isOpen, setIsOpen }: Props) => {
-  const isMobile = window.innerWidth < 1100;
+  const isMobile = useMemo(() => {
+    return typeof window !== "undefined" ? window.innerWidth < 1100 : false;
+  }, [window]);
 
   useLockBodyScroll(isOpen);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
