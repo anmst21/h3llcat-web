@@ -9,12 +9,21 @@
     gap: 30px;
     background-color: rgba(147, 145, 142, 0.20);
 
+    @include media-sm {
+        padding: 0;
+        background-color: transparent
+    }
+
     &__header {
         font-size: 20px;
         font-style: normal;
         font-weight: 540;
         line-height: 24px;
         color: rgba(255, 248, 231, 1);
+
+        @include media-sm {
+            display: none;
+        }
     }
 
 
@@ -24,15 +33,38 @@
         gap: 10px;
         align-items: center;
         overflow: hidden;
+        background-color: transparent;
+        border-radius: 10px;
+        overflow: hidden;
+
+        .footer__form__success {
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        @include media-sm {
+            flex-direction: column;
+            gap: 20px;
+
+            .email-submit {
+                width: 100% !important;
+            }
+        }
     }
 
     &__cta {
         position: relative;
         display: flex;
 
+        @include media-sm {
+            width: 100%;
+        }
+
         .footer__form__state {
             padding: 0;
             z-index: 1000;
+
         }
 
         .email-submit {

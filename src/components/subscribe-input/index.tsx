@@ -15,7 +15,6 @@ const SubscribeInput = () => {
     isCaptchaError,
     isSubmitting,
   } = useNewsletterForm();
-
   return (
     <div className="subscribe-field">
       <span className="subscribe-field__header">

@@ -52,6 +52,10 @@
                 font-weight: 590;
                 line-height: 36px;
                 margin: 35px 0px 15px 0px;
+
+                @include media-sm {
+                    margin: 15px 0px 15px 0px;
+                }
             }
 
 
@@ -100,6 +104,13 @@
         color: rgba(147, 145, 142, 1);
         font-variant: all-small-caps;
         margin: 40px 0px 20px 0px;
+
+        @include media-sm {
+            margin: 25px 0px 15px 0px;
+            font-size: 18px;
+            line-height: normal;
+        }
+
         transition: all .3s;
 
         &:hover {
@@ -113,12 +124,29 @@
         display: flex;
         max-width: 1100px;
 
+        @include media-sm {
+            flex-direction: column;
+
+            .blog-post-page__socials {
+                width: 100%;
+            }
+
+            .blog-post-page__socials:nth-child(2) {
+                display: none;
+            }
+        }
+
         h1 {
             color: var(--accent);
             font-size: 62px;
             font-style: normal;
             font-weight: 540;
             line-height: 66px;
+
+            @include media-sm {
+                font-size: 42px;
+                line-height: 46px;
+            }
         }
     }
 
@@ -143,6 +171,11 @@
         display: flex;
         gap: 90px;
         margin-top: 110px;
+
+        @include media-sm {
+            margin-top: 20px;
+            gap: 60px;
+        }
     }
 
 

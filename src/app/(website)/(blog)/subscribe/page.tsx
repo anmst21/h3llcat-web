@@ -12,7 +12,7 @@ export default function SubscribePage() {
     <div className="subscribe-page">
       <div className="subscribe-page__container">
         <div className="subscribe-page__header">
-          <span>GET EMAIL UPDATES</span>
+          <span>Get email updates</span>
           <h2>
             Reimagine <br />
             How You Mint
