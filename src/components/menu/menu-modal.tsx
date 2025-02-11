@@ -18,6 +18,7 @@ import { base } from "viem/chains";
 import { dynamicButtonProps } from "../button/animation";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
+import Divider from "../blog/divider";
 
 interface Props {
   isOpen: boolean;
@@ -25,6 +26,8 @@ interface Props {
 }
 
 const MenuModal = ({ isOpen, setIsOpen }: Props) => {
+  const isMobile = window.innerWidth < 1100;
+
   useLockBodyScroll(isOpen);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const { user, authenticated, ready, logout, login } = usePrivy();
@@ -89,11 +92,17 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                   />
                 ))}
               </div>
+              {isMobile && (
+                <motion.div {...buttonProps(menuItems.length + 2)}>
+                  <Divider />
+                </motion.div>
+              )}
+
               <div className="menu-modal__list">
                 <div className="wallet-item ">
                   <motion.button
                     onClick={onWalletPress}
-                    {...buttonProps(2)}
+                    {...buttonProps(!isMobile ? 2 : menuItems.length + 3)}
                     className={classNames("wallet-item__icon", {
                       "wallet-item__icon--active": isWalletOpen,
                     })}
@@ -103,7 +112,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                   <div className="wallet-item__right">
                     <motion.button
                       onClick={onWalletPress}
-                      {...buttonProps(2)}
+                      {...buttonProps(!isMobile ? 2 : menuItems.length + 3)}
                       className={classNames(
                         "wallet-item__user wallet-item--hover",
                         {
@@ -135,7 +144,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                     </motion.button>
                     <AnimatePresence mode="wait">
                       <motion.div
-                        {...buttonProps(3)}
+                        {...buttonProps(!isMobile ? 3 : menuItems.length + 4)}
                         className="wallet-item__bottom"
                       >
                         <AnimatePresence initial={false} mode="wait">

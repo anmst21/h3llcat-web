@@ -65,7 +65,7 @@ const Footer = async () => {
           <div className="footer__links__blog">
             <h5>Blog</h5>
             {categories.map((category) => (
-              <Link href={`/blog?category=${category.slug}`}>
+              <Link key={category._id} href={`/blog?category=${category.slug}`}>
                 {category.title}
               </Link>
             ))}
