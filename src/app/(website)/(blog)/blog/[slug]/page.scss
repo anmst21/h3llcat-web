@@ -272,6 +272,21 @@
         max-width: 1200px;
         gap: 5px;
 
+        @include media-sm {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+
+
+            .category {
+                font-size: 19px !important;
+                height: 33px !important;
+                line-height: normal;
+                display: flex !important;
+                align-items: center;
+            }
+        }
+
 
 
         button {
@@ -283,6 +298,11 @@
                 font-style: normal;
                 font-weight: 510;
                 line-height: 28px;
+
+                @include media-sm {
+                    margin-right: 0;
+                }
+
                 //    color: white !important;
             }
         }

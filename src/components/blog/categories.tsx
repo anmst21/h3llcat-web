@@ -33,6 +33,7 @@ const Categories = ({ list }: Props) => {
       >
         Blog
       </button>
+
       <div className="category__container">
         <button
           key={"mail"}

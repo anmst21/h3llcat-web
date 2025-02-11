@@ -41,7 +41,7 @@ export default async function Blog({
               alt={featured.alt}
               width={690}
               height={420}
-              //    style={{ width: "100%", height: "auto" }}
+              style={{ height: "auto", width: "100%" }}
             />
             <div className="blog-featured__text">
               <span>Latest</span>
@@ -74,6 +74,7 @@ export default async function Blog({
                   height={132}
                   alt={post.alt}
                   src={post.image}
+                  //  style={{ height: "auto" }}
                 />
               </Link>
             );
@@ -92,8 +93,13 @@ export default async function Blog({
               >
                 {index !== 0 && <Divider transparent={index === 0} />}
                 <div className="other-posts__container">
+                  <span className="subtitle subtitle--top">
+                    {post.category.title}
+                  </span>
                   <div className="other-posts__text">
-                    <span className="subtitle">{post.category.title}</span>
+                    <span className="subtitle--block">
+                      {post.category.title}
+                    </span>
                     <h4>{post.name}</h4>
                     <div className="other-posts__meta">
                       <span>{formatBlogDate(post._createdAt)}</span>
@@ -107,6 +113,7 @@ export default async function Blog({
                     height={222}
                     alt={post.alt}
                     src={post.image}
+                    style={{ height: "auto", width: "100%", maxWidth: 400 }}
                   />
                 </div>
               </Link>
