@@ -29,3 +29,45 @@ $breakpoint-xlarge: 1300px;
         }
     }
 }
+
+
+$breakpoint-xl: 1728px; // MacBook 16"
+$breakpoint-lg: 1512px; // MacBook 14"
+$breakpoint-md: 1280px; // MacBook Air (or similar)
+$breakpoint-sm: 1100px; // iPhone Pro Max
+$breakpoint-xs: 400px; // iPhone Mini
+
+// Mixin for MacBook 16"
+@mixin media-xl {
+    @media (max-width: $breakpoint-xl) {
+        @content;
+    }
+}
+
+// Mixin for MacBook 14"
+@mixin media-lg {
+    @media (max-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+// Mixin for MacBook Air
+@mixin media-md {
+    @media (max-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+// Mixin for iPhone Pro Max
+@mixin media-sm {
+    @media (max-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+// Mixin for iPhone Mini
+@mixin media-sx {
+    @media (max-width: $breakpoint-xs) {
+        @content;
+    }
+}

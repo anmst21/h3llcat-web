@@ -32,6 +32,7 @@ const SectionMint = () => {
 
   return (
     <motion.div
+      id="collections"
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ amount: "some" }}

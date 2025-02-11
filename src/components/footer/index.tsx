@@ -4,15 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { FooterFarcaster, FooterX, FooterLinkedIn } from "@/components/icon";
 import FooterForm from "./footer-form";
-const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
 
 import {
   socialWarpcast,
   socialsLinkedIn,
   socialsTwitter,
 } from "@/helpers/socials";
+import { getCategories } from "@/sanity/sanity-utils";
 
-const Footer = () => {
+const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
+
+const Footer = async () => {
+  const categories = await getCategories();
+
   return (
     <div className="footer">
       <div className="footer__container">
@@ -23,9 +27,9 @@ const Footer = () => {
           </div>
           <div className="footer__app__links">
             <DottedLink href="/" index={1} label="Home" />
-            <DottedLink href="/blog" index={2} label="Blog" />
             <DottedLink href="/beta" index={3} label="Beta" />
-            <DottedLink href="/display" index={4} label="Display" />
+            <DottedLink href="/blog" index={2} label="Blog" />
+            <DottedLink href="/contacts" index={4} label="Contacts" />
           </div>
         </div>
         <div className="footer__team">
@@ -51,23 +55,32 @@ const Footer = () => {
         <div className="footer__links">
           <div className="footer__links__home">
             <h5>Home</h5>
-            <Link href="/">Minting</Link>
-            <Link href="/">Collections</Link>
-            <Link href="/">About</Link>
-            <Link href="/">Features</Link>
-            <Link href="/">Display's NFT</Link>
+            <Link href="/#hero">Hero</Link>
+            <Link href="/#collections">Collections</Link>
+            <Link href="/#explore">Explore</Link>
+            <Link href="/#about">About</Link>
+            <Link href="/#features">Features</Link>
+            <Link href="/#join">Join</Link>
           </div>
           <div className="footer__links__blog">
             <h5>Blog</h5>
-            <Link href="/">News</Link>
-            <Link href="/">Updates</Link>
-            <Link href="/">Guides</Link>
+            {categories.map((category) => (
+              <Link href={`/blog?category=${category.slug}`}>
+                {category.title}
+              </Link>
+            ))}
           </div>
           <div className="footer__links__contact">
             <h5>Contact Us</h5>
-            <Link href="/">+1 (845) 332-40-43</Link>
-            <Link href="/">display@nexus.nyc</Link>
-            <Link href="/">n3xus.nyc</Link>
+            <Link href="tel:+18453324043">+1 (845) 332-40-43</Link>
+            <Link href="mailto:display@nexus.nyc">display@nexus.nyc</Link>
+            <Link
+              href="https://n3xus.nyc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              n3xus.nyc
+            </Link>
           </div>
           <div className="footer__links__socials">
             <Link className="socials-link" href={socialsTwitter}>

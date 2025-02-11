@@ -3,7 +3,7 @@ import CollectionsCarousel from "./carousel";
 
 export default function SectionCollections() {
   return (
-    <div className="section-collections">
+    <div id="explore" className="section-collections">
       <div className="section-collections__header">
         <span>Explore all</span>
         <h1>Collections</h1>

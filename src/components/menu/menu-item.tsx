@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { MenuArrow } from "../icon";
+import classNames from "classnames";
+
 type Props = {
   title: string;
   value: string;
@@ -9,6 +11,7 @@ type Props = {
   href?: string;
   callback: () => void;
   buttonProps: any;
+  isActive?: boolean;
 };
 
 const MenuItem = ({
@@ -18,6 +21,7 @@ const MenuItem = ({
   href,
   callback,
   buttonProps,
+  isActive,
 }: Props) => {
   const router = useRouter();
 
@@ -31,7 +35,9 @@ const MenuItem = ({
 
         callback();
       }}
-      className="wallet-item wallet-item--hover"
+      className={classNames("wallet-item wallet-item--hover", {
+        "wallet-item--active": isActive,
+      })}
     >
       <div className="wallet-item__icon">{icon}</div>
       <div className="wallet-item__right">

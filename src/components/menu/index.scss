@@ -5,6 +5,28 @@
     gap: 15px;
 
 
+    &--active {
+        .wallet-item__icon {
+            color: var(--accent);
+            background-color: rgba(255, 204, 0, 0.2) !important;
+        }
+
+        // .wallet-item__address {
+        //     color: var(--accent)
+        // }
+
+        // .wallet-item__title__arrow {
+
+
+        //     opacity: 1;
+
+        //     position: relative;
+        //     transform: translateX(3px);
+
+        // }
+    }
+
+
     &--hover {
 
         .wallet-item__icon {

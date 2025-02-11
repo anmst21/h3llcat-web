@@ -17,6 +17,7 @@ import { useCallback, useEffect, useState } from "react";
 import { base } from "viem/chains";
 import { dynamicButtonProps } from "../button/animation";
 import classNames from "classnames";
+import { usePathname } from "next/navigation";
 
 interface Props {
   isOpen: boolean;
@@ -29,6 +30,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
   const { user, authenticated, ready, logout, login } = usePrivy();
   const { wallets } = useWallets();
   const { fundWallet } = useFundWallet();
+  const pathname = usePathname();
   const userWallet = wallets.find(
     (wallet) => wallet.walletClientType === "coinbase_wallet"
   );
@@ -83,6 +85,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                     href={item.href}
                     key={index}
                     callback={callback}
+                    isActive={pathname === item.href}
                   />
                 ))}
               </div>

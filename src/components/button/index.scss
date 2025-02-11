@@ -126,7 +126,7 @@
 /* Bring text above the pseudo-element */
 .email-submit span {
     position: relative;
-    z-index: 1;
+    // z-index: 1;
     /* Set a transition if you want a smooth effect */
     transition: background 0.2s ease-in;
 }

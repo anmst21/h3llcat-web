@@ -11,7 +11,7 @@ const CookieConsentBanner = () => {
       declineButtonText="Decline"
       enableDeclineButton
       cookieName="yourAppCookieConsent"
-      style={{ background: "#2B373B", color: "#FFF" }}
+      style={{ background: "#2B373B", color: "#FFF", zIndex: 99099 }}
       buttonStyle={{
         backgroundColor: "#4CAF50",
         color: "#FFF",

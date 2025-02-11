@@ -13,3 +13,10 @@ export default function Home() {
     </div>
   );
 }
+
+// <Link href="/">Hero</Link>
+//         <Link href="/">Collections</Link>
+//         <Link href="/">Explore</Link>
+//         <Link href="/">About</Link>
+//         <Link href="/">Features</Link>
+//         <Link href="/">Join</Link>

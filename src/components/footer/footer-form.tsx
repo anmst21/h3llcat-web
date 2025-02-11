@@ -17,7 +17,6 @@ const FooterForm = () => {
     isSubmitting,
     disableError,
   } = useNewsletterForm();
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="footer__form__bottom">
       <div className="footer__form__container">

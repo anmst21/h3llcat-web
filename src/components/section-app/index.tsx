@@ -3,7 +3,7 @@ import BtnCarousel from "./btn-carousel";
 
 const SectionApp = () => {
   return (
-    <div className="section-app">
+    <div id="about" className="section-app">
       <BtnCarousel />
       <div className="app">
         <div className="app__top">

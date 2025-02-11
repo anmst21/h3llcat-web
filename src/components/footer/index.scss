@@ -36,13 +36,18 @@
     font-style: normal;
     line-height: 20px;
     margin-top: 60px;
+
+
+    @include media-sm {
+        margin-top: 120px;
+    }
 }
 
 
 
 .footer {
     --border-footer: 1px solid #FFF8E7;
-    padding: 30px 30px 70px 30px;
+    padding: 30px 30px 144px 30px;
     display: flex;
     width: 100%;
     height: fit-content;
@@ -52,11 +57,19 @@
     align-items: center;
     flex-direction: column;
 
+    @include media-sm {
+        padding-bottom: 10px;
+    }
 
 
     &__form {
+        @include media-sm {
+            grid-area: form;
+        }
+
         display: flex;
         flex-direction: column;
+
 
         &__state {
             position: absolute;
@@ -72,6 +85,11 @@
         &__container {
             display: flex;
             flex: 1;
+
+            @include media-sm {
+                flex-direction: column;
+
+            }
         }
 
         &__success {
@@ -91,6 +109,14 @@
             font-style: normal;
             font-weight: 650;
             line-height: 22px;
+
+            @include media-sm {
+                position: absolute;
+                left: 25px;
+                right: 25px;
+                bottom: 20px;
+                width: auto;
+            }
 
             &--error {
                 background-color: #EB5757
@@ -146,6 +172,16 @@
 
             border-left: var(--border-footer);
 
+            @include media-sm {
+                width: 100%;
+                border-left: none;
+                border-top: var(--border-footer);
+
+                .email-submit {
+                    width: 100%;
+                }
+            }
+
 
         }
 
@@ -161,6 +197,10 @@
             display: flex;
             height: 90px;
             position: relative;
+
+            @include media-sm {
+                height: fit-content;
+            }
         }
 
         &__text {
@@ -180,6 +220,12 @@
         border-left: var(--border-footer);
         border-right: var(--border-footer);
 
+        @include media-sm {
+            grid-area: team;
+            border: none;
+            border-top: var(--border-footer);
+        }
+
         &__year {
             padding: 0 20px;
             white-space: nowrap;
@@ -196,6 +242,18 @@
             align-items: center;
 
             gap: 10px;
+
+
+            @include media-md {
+                font-size: 32px;
+                line-height: 36px;
+            }
+
+            @include media-sm {
+                justify-content: center;
+                font-size: 24px;
+                line-height: 28px;
+            }
 
             span {
                 color: #FFF8E7;
@@ -254,6 +312,10 @@
 
 
     &__reimagine {
+        @include media-sm {
+            grid-area: reimagine;
+        }
+
         font-size: 48px;
         font-style: normal;
         font-weight: 540;
@@ -261,6 +323,16 @@
         padding: 20px 25px;
         color: rgba(255, 248, 231, 1);
         border-bottom: var(--border-footer);
+
+        @include media-lg {
+            font-size: 38px;
+            line-height: 42px;
+        }
+
+        @include media-md {
+            font-size: 28px;
+            line-height: 32px;
+        }
     }
 
 
@@ -270,26 +342,44 @@
         align-items: flex-end;
         border-left: var(--border-footer);
         border-right: var(--border-footer);
+
+        @include media-sm {
+            grid-area: art;
+            border: none;
+            border-bottom: var(--border-footer);
+        }
     }
 
     &__links {
+
+
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, auto);
 
-        &__socials {
-            border-top: var(--border-footer);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 10px;
-
-
+        @include media-md {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
         }
+
+        @include media-sm {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, auto);
+        }
+
+
+
+
+
+
 
         &__home,
         &__blog {
             grid-row: 1 / span 2;
+
+            @include media-md {
+                grid-row: unset;
+            }
 
             border-right: var(--border-footer);
         }
@@ -300,7 +390,7 @@
             padding: 20px 25px;
             display: flex;
             flex-direction: column;
-
+            //  height: fit-content;
             gap: 2px;
 
             a {
@@ -317,6 +407,13 @@
                 font-weight: 510;
                 line-height: 20px;
                 letter-spacing: -1px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                // @include media-md {
+                //     font-size: 14px;
+                //     line-height: 18px;
+                // }
             }
 
             h5 {
@@ -326,9 +423,80 @@
                 font-style: normal;
                 font-weight: 590;
                 line-height: normal;
+
+                @include media-md {
+                    font-size: 16px;
+                }
             }
 
 
+        }
+
+
+        &__home {
+            @include media-md {
+                grid-row: 1 / span 2; // from row line 1 to row line 2
+                grid-column: 1 / 2; // from column line 1 to column line 2
+                padding-bottom: 120px;
+
+
+            }
+
+            @include media-sm {
+                grid-row: 1 / 2; // from row line 1 to row line 2
+                grid-column: 1 / 2;
+                padding-bottom: 20px;
+                //   border-bottom: var(--border-footer);
+            }
+        }
+
+        &__blog {
+            @include media-md {
+                grid-row: 1 / 2; // top row
+                grid-column: 2 / 3; // from column line 2 to column line 3
+                border: none;
+            }
+        }
+
+        &__socials {
+            border-top: var(--border-footer);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 10px;
+            gap: 5px;
+
+            @include media-md {
+                grid-row: 2 / 3;
+                grid-column: 1 / 2;
+                height: fit-content;
+                align-self: flex-end;
+                justify-content: space-around;
+
+
+            }
+
+            @include media-sm {
+                align-self: flex-start;
+                grid-row: 3 / 3;
+                grid-column: 1 / 3;
+            }
+        }
+
+        &__contact {
+            @include media-md {
+                grid-row: 2 / 3; // bottom row
+                grid-column: 2 / 3; // second column
+                height: fit-content;
+                align-self: flex-end;
+                border-top: 1px solid #FFF8E7;
+            }
+
+            @include media-sm {
+                align-self: flex-start;
+                grid-row: 2 / 3;
+                grid-column: 1 / 3;
+            }
         }
     }
 
@@ -339,9 +507,22 @@
         display: grid;
         // height: 144px;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 144px 233px;
+        grid-template-rows: 144px auto;
         border: 3px solid #FFF8E7;
         max-width: 1668px;
+
+
+        @include media-sm {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto auto auto;
+            grid-template-areas:
+                "app"
+                "links"
+                "team"
+                "art"
+                "reimagine"
+                "form";
+        }
     }
 
 
@@ -350,6 +531,10 @@
         padding: 20px 25px;
         border-bottom: var(--border-footer);
         gap: 10px;
+
+        @include media-sm {
+            grid-area: app;
+        }
 
         &__links {
             display: flex;
@@ -362,21 +547,36 @@
             line-height: normal;
             justify-content: center;
             gap: 4px;
+
+
+
         }
 
 
         &__domain {
             flex-direction: column;
-            font-size: 42px;
+
             font-style: normal;
             font-weight: 540;
+            font-size: 42px;
             line-height: 40px;
             letter-spacing: -1.35px;
             color: var(--accent);
             display: flex;
             flex: 1;
 
+            @include media-lg {
+                font-size: 32px;
+                line-height: 36px;
+            }
+
+            @include media-sm {
+                font-size: 24px;
+                line-height: 28px;
+            }
+
             h4 {
+
                 &:nth-child(2) {
                     color: #FFF8E7;
                 }
