@@ -13,7 +13,7 @@ import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { useBalanceContext } from "@/context/BalanceProvider";
 import MenuItem from "./menu-item";
 import { buttonProps, menuItems } from "./items";
-import { useCallback, useEffect, useState, useMemo } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { base } from "viem/chains";
 import { dynamicButtonProps } from "../button/animation";
 import classNames from "classnames";
