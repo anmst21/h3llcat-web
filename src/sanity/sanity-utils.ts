@@ -1,10 +1,9 @@
 import { createClient, groq } from "next-sanity";
-import { Blogpost, Category } from "@/types/Blogpost";
+import { Blogpost, Category, PrivacyPolicy } from "@/types/Blogpost";
 import config from "./config/client-config";
 
-type ListWithCategories = {
+type List = {
   blogposts: Blogpost[];
-  categories: Category[];
 };
 
 const categoriesQuery = groq`
@@ -23,9 +22,30 @@ export async function getCategories(): Promise<Category[]> {
   return categories;
 }
 
-export async function getBlogposts(
-  category?: string
-): Promise<ListWithCategories> {
+export async function getPrivacy(): Promise<PrivacyPolicy> {
+  const client = createClient(config);
+
+  const privacyPolicyQuery = groq`
+  *[_type == "privacy"][0]{
+    _id,
+    _createdAt,
+    title,
+    author->{
+        _id,
+        name,
+        "image": image.asset->url,
+        "alt": image.alt,
+      },
+    subheader,
+    content,
+
+  }`;
+  const privacy = await client.fetch<PrivacyPolicy>(privacyPolicyQuery);
+
+  return privacy;
+}
+
+export async function getBlogposts(category?: string): Promise<List> {
   const client = createClient(config);
 
   const blogpostQuery = groq`*[_type == "blogposts"] | order(_createdAt desc) {
@@ -78,20 +98,12 @@ export async function getBlogposts(
     ? client.fetch<Blogpost[]>(blogpostByCategoryQuery, { category })
     : client.fetch<Blogpost[]>(blogpostQuery);
 
-  const [blogposts, categories] = await Promise.all([
-    decider,
-    client.fetch<Category[]>(categoriesQuery),
-  ]);
+  const [blogposts] = await Promise.all([decider]);
 
-  return { blogposts, categories };
+  return { blogposts };
 }
 
-type BlogpostWithCategories = Blogpost & {
-  categories: Category[];
-};
-export async function getBlogpost(
-  slug: string
-): Promise<BlogpostWithCategories> {
+export async function getBlogpost(slug: string): Promise<Blogpost> {
   const client = createClient(config);
 
   // GROQ query to fetch the blog post by slug
@@ -135,10 +147,9 @@ export async function getBlogpost(
 
   // GROQ query to fetch all categories
 
-  const [blogpost, categories] = await Promise.all([
+  const [blogpost] = await Promise.all([
     client.fetch<Blogpost>(blogpostQuery, { slug }),
-    client.fetch<Category[]>(categoriesQuery),
   ]);
 
-  return { ...blogpost, categories };
+  return { ...blogpost };
 }

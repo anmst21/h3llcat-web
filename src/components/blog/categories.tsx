@@ -3,8 +3,9 @@
 import React, { useCallback } from "react";
 import { Category } from "@/types/Blogpost";
 import classNames from "classnames";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { motion } from "motion/react";
+import { dynamicMintProps } from "../button/animation";
 
 type Props = {
   list: Category[];
@@ -14,7 +15,21 @@ const Categories = ({ list }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category");
+  const pathname = usePathname();
 
+  let buttonText = "Blog";
+  let href = "/blog";
+
+  if (pathname.includes("/blog")) {
+    buttonText = "Blog";
+    href = "/blog";
+  } else if (pathname.includes("/subscribe")) {
+    buttonText = "Newsletter";
+    href = "/blog";
+  } else if (pathname.includes("/privacy")) {
+    buttonText = "Privacy";
+    href = "/privacy";
+  }
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -27,12 +42,13 @@ const Categories = ({ list }: Props) => {
 
   return (
     <div className="blog-post-page__categories">
-      <button
-        //  className={classNames({ "active-category": !activeCategory })}
-        onClick={() => router.push("/blog")}
+      <motion.button
+        key={buttonText} // Changing key triggers the animation
+        {...dynamicMintProps}
+        onClick={() => router.push(href)}
       >
-        Blog
-      </button>
+        {buttonText}
+      </motion.button>
 
       <div className="category__container">
         <button

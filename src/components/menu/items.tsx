@@ -1,4 +1,10 @@
-import { MenuHome, MenuBeta, MenuBlog, MenuContacts } from "../icon";
+import {
+  MenuHome,
+  MenuBeta,
+  MenuBlog,
+  MenuContacts,
+  MenuPrivacy,
+} from "../icon";
 
 export const menuItems = [
   {
@@ -24,6 +30,12 @@ export const menuItems = [
     value: "Get in touch with us",
     icon: <MenuContacts />,
     href: "/contacts",
+  },
+  {
+    title: "Privacy",
+    value: "Privacy & data usage",
+    icon: <MenuPrivacy />,
+    href: "/privacy",
   },
 ];
 

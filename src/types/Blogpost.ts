@@ -34,3 +34,12 @@ export type Blogpost = {
   author: Author;
   category: Category;
 };
+
+export type PrivacyPolicy = {
+  _id: string;
+  _createdAt: Date;
+  title: string;
+  author: Author;
+  subheader: PortableTextBlock[];
+  content: PortableTextBlock[];
+};

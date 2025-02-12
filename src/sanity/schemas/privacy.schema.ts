@@ -4,7 +4,19 @@ const privacy = {
 
   type: "document",
   fields: [
-    { name: "name", title: "Name", type: "string" },
+    { name: "title", title: "Title", type: "string" },
+    {
+      name: "author",
+      title: "Blogpost's Author",
+      type: "reference",
+      to: [{ type: "author" }],
+    },
+    {
+      name: "subheader",
+      title: "Sub Title",
+      type: "array",
+      of: [{ type: "block" }],
+    },
     {
       name: "content",
       title: "Content",

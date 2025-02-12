@@ -41,8 +41,10 @@ import MenuLogout from "./MenuLogout";
 import MenuEth from "./MenuEth";
 import MenuBase from "./MenuBase";
 import MenuArrow from "./MenuArrow";
+import MenuPrivacy from "./MenuPrivacy";
 
 export {
+  MenuPrivacy,
   MenuArrow,
   MenuBase,
   MenuEth,

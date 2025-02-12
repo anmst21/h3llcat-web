@@ -1,3 +1,42 @@
+.privacy {
+    h3 {
+        font-size: 20px !important;
+        line-height: 24px !important;
+        color: var(--accent);
+        font-weight: 590 !important;
+    }
+
+    a {
+        color: var(--accent);
+    }
+
+    strong {
+        color: rgba(255, 248, 231, 1);
+    }
+
+    p,
+    li {
+        font-size: 16px !important;
+        line-height: 26px !important;
+        /* 162.5% */
+    }
+
+    li:has(> em)::marker {
+        color: var(--accent);
+    }
+
+    ul li ul {
+        margin-bottom: 5px !important;
+    }
+
+    em {
+        color: var(--accent);
+        font-style: normal;
+        font-weight: 590;
+    }
+}
+
+
 // ul {
 //     list-style-position: inside;
 // }
