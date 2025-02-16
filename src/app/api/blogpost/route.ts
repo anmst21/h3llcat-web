@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
     // (Assumes `data` has post title, slug, etc.
     //  Adjust variable names as needed.)
-    const { title, slug } = data;
+    const { name, slug } = data;
 
     // 2. Create a Mailchimp "regular" campaign to send to your entire audience
     const campaign = await mailchimp.campaigns.create({
@@ -25,15 +25,15 @@ export async function POST(request: NextRequest) {
         list_id: process.env.MAILCHIMP_AUDIENCE_ID!,
       },
       settings: {
-        subject_line: `New blog post: ${title}`,
-        title: `Blog Update: ${title}`, // internal name in Mailchimp
+        subject_line: `New blog post: ${name}`,
+        title: `Blog Update: ${name}`, // internal name in Mailchimp
         from_name: "Display - NFT Marketplace",
         from_email: "anmstudios21c@gmail.com", // must be valid & verified
         reply_to: "anmstudios21c@gmail.com",
       },
     });
 
-    const newPostHtml = await emailHtml(title, slug);
+    const newPostHtml = await emailHtml(name, slug.current);
 
     // 3. Render custom HTML with React Email
 
