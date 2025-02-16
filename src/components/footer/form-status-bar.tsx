@@ -7,12 +7,14 @@ type Props = {
   disableError: () => void;
   showSuccessMessage: boolean;
   isCaptchaError: boolean;
+  contacts?: boolean;
 };
 
 const FormStatusBar = ({
   isCaptchaError,
   showSuccessMessage,
   disableError,
+  contacts,
 }: Props) => {
   return (
     <AnimatePresence mode="wait">
@@ -25,7 +27,7 @@ const FormStatusBar = ({
           className="footer__form__state"
         >
           <div className="footer__form__success">
-            Subscribed <FormSuccess />
+            {contacts ? "Submitted" : "Subscribed"} <FormSuccess />
           </div>
         </motion.button>
       )}

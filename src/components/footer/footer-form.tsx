@@ -24,7 +24,7 @@ const FooterForm = () => {
           <FooterInput
             type="email"
             register={register("email")}
-            placeholder="E-Mail"
+            placeholder="example@gmail.com"
           />
         </div>
         <div className="footer__form__cta">

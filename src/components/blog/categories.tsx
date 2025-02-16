@@ -29,6 +29,9 @@ const Categories = ({ list }: Props) => {
   } else if (pathname.includes("/privacy")) {
     buttonText = "Privacy";
     href = "/privacy";
+  } else if (pathname.includes("/contacts")) {
+    buttonText = "Contacts";
+    href = "/contacts";
   }
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -54,7 +57,7 @@ const Categories = ({ list }: Props) => {
         <button
           key={"mail"}
           className={classNames("category", {
-            "active-category": !activeCategory,
+            "active-category": !activeCategory && pathname.includes("/blog"),
           })}
           onClick={() => router.push("/blog")}
           // Ensure the button can contain the absolutely positioned background

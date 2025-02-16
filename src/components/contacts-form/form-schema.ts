@@ -10,6 +10,7 @@ export const formSchema = z.object({
       (val) => !val || /^[+]?[1-9]\d{1,14}$/.test(val),
       "Phone number must be valid (e.g., +1234567890)"
     ),
+  subject: z.string().optional(),
   message: z.string().min(1, "Message field is required."),
   consent: z.boolean().refine((val) => val, "You must agree to proceed"),
 });

@@ -74,7 +74,18 @@
 }
 
 
+.form-input--error {
+    background: rgba(235, 87, 87, 0.10);
+
+
+
+    svg {
+        color: rgba(235, 87, 87, 1) !important
+    }
+}
+
 .footer__form__input__label {
+    transition: all .3s ease-in;
 
     svg {
         transition: all .3s;
@@ -86,8 +97,19 @@
         }
     }
 
-    input {
-        font-size: 19px;
+    &:active,
+    &:focus-within {
+        svg {
+            color: var(--accent);
+        }
+    }
+
+
+
+
+    input,
+    textarea {
+        font-size: 16px;
         font-style: normal;
         font-weight: 510;
         line-height: normal;
@@ -97,4 +119,13 @@
             color: rgba(147, 145, 142, 1);
         }
     }
+}
+
+textarea {
+    transition: all .3s ease-in;
+    width: 100%;
+    min-height: 160px;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }

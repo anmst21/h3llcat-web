@@ -64,9 +64,9 @@ body {
 
 
 
-// .grecaptcha-badge {
-//   display: none !important;
-// }
+.grecaptcha-badge {
+  display: none !important;
+}
 
 
 html {
@@ -82,7 +82,8 @@ body {
   height: 100dvh;
 }
 
-input {
+input,
+textarea {
   all: unset;
 }
 

@@ -46,7 +46,7 @@ export const buttonVariants = {
     y: 0,
     transition: {
       duration: 0.1,
-      delay: index * 0.1, // Apply a delay based on the index
+      delay: (index / 1.5) * 0.1, // Apply a delay based on the index
     },
   }),
 };

@@ -124,6 +124,24 @@
         display: flex;
         max-width: 1100px;
 
+        &--contacts {
+
+            .blog-post-page__category {
+                &:hover {
+                    text-decoration: none;
+                    color: rgb(147, 145, 142);
+                }
+            }
+
+            @include media-sm {
+                align-items: center;
+            }
+
+            h1 {
+                margin-bottom: 15px;
+            }
+        }
+
         @include media-sm {
             flex-direction: column;
 
@@ -137,6 +155,7 @@
         }
 
         h1 {
+            white-space: pre-wrap;
             color: var(--accent);
             font-size: 62px;
             font-style: normal;
@@ -304,6 +323,7 @@
         width: 100%;
         max-width: 1200px;
         gap: 5px;
+        min-height: 38px;
 
         @include media-sm {
             flex-direction: column;

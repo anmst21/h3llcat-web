@@ -42,8 +42,20 @@ import MenuEth from "./MenuEth";
 import MenuBase from "./MenuBase";
 import MenuArrow from "./MenuArrow";
 import MenuPrivacy from "./MenuPrivacy";
+import ContactsMail from "./ContactsMail";
+import ContactsPhone from "./ContactsPhone";
+import ContactsProfile from "./ContactsProfile";
+import ContactsText from "./ContactsText";
+import ContactsSubject from "./ContactsSubject";
+import CheckMark from "./CheckMark";
 
 export {
+  CheckMark,
+  ContactsSubject,
+  ContactsText,
+  ContactsProfile,
+  ContactsPhone,
+  ContactsMail,
   MenuPrivacy,
   MenuArrow,
   MenuBase,
