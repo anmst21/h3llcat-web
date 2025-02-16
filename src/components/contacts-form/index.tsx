@@ -146,7 +146,7 @@ const ContactsForm = () => {
         icon={<ContactsMail />}
         type="email"
         register={register("email")}
-        placeholder={"example@gmail.com"}
+        placeholder={"example@display.app"}
         isError={!!errors.email}
       />
       <ContactInput
