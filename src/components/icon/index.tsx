@@ -48,8 +48,12 @@ import ContactsProfile from "./ContactsProfile";
 import ContactsText from "./ContactsText";
 import ContactsSubject from "./ContactsSubject";
 import CheckMark from "./CheckMark";
+import ScrollChev from "./ScrollChev";
+import LogoNotFound from "./LogoNotFound";
 
 export {
+  LogoNotFound,
+  ScrollChev,
   CheckMark,
   ContactsSubject,
   ContactsText,

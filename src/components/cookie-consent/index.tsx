@@ -8,20 +8,21 @@ const CookieConsentBanner = () => {
     <CookieConsent
       location="bottom"
       buttonText="Accept All"
+      disableStyles
       declineButtonText="Decline"
       enableDeclineButton
       cookieName="yourAppCookieConsent"
-      style={{ background: "#2B373B", color: "#FFF", zIndex: 99099 }}
-      buttonStyle={{
-        backgroundColor: "#4CAF50",
-        color: "#FFF",
-        fontSize: "14px",
-      }}
-      declineButtonStyle={{
-        backgroundColor: "#f44336",
-        color: "#FFF",
-        fontSize: "14px",
-      }}
+      // style={{ background: "#2B373B", color: "#FFF", zIndex: 99099 }}
+      // buttonStyle={{
+      //   backgroundColor: "#4CAF50",
+      //   color: "#FFF",
+      //   fontSize: "14px",
+      // }}
+      // declineButtonStyle={{
+      //   backgroundColor: "#f44336",
+      //   color: "#FFF",
+      //   fontSize: "14px",
+      // }}
       expires={365} // Number of days before the cookie expires
       onAccept={() => {
         // Add functionality when user accepts cookies

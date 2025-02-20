@@ -1,3 +1,5 @@
+"use server";
+
 import { createClient, groq } from "next-sanity";
 import { Blogpost, Category, PrivacyPolicy } from "@/types/Blogpost";
 import config from "./config/client-config";
@@ -99,7 +101,6 @@ export async function getBlogposts(category?: string): Promise<List> {
     : client.fetch<Blogpost[]>(blogpostQuery);
 
   const [blogposts] = await Promise.all([decider]);
-
   return { blogposts };
 }
 

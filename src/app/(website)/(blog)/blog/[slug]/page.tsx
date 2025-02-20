@@ -24,7 +24,6 @@ type Slug = {
 
 export async function generateMetadata({ params: { slug } }: Slug) {
   const project = await getBlogpost(slug);
-
   return {
     title: project.name,
     description: project.subheader,
@@ -34,10 +33,12 @@ export async function generateMetadata({ params: { slug } }: Slug) {
 export default async function BlogPostPage({ params: { slug } }: Slug) {
   const project = await getBlogpost(slug);
 
-  const { category, name, author, _createdAt: date, subheader } = project;
-  if (!project) {
+  if (!project || Object.keys(project).length === 0) {
     notFound();
   }
+
+  const { category, name, author, _createdAt: date, subheader } = project;
+
   console.log("project", project);
   return (
     <>

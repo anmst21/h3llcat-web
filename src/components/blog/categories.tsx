@@ -16,7 +16,7 @@ const Categories = ({ list }: Props) => {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category");
   const pathname = usePathname();
-
+  console.log("pathname", process.env.NEXT_NOT_FOUND);
   let buttonText = "Blog";
   let href = "/blog";
 
@@ -77,11 +77,12 @@ const Categories = ({ list }: Props) => {
               className={classNames("category", {
                 "active-category": isActive,
               })}
-              onClick={() =>
-                router.push(
-                  "/blog" + "?" + createQueryString("category", category.slug)
-                )
-              }
+              onClick={() => {
+                const newPath =
+                  "/blog" + "?" + createQueryString("category", category.slug);
+                router.push(newPath);
+                router.refresh();
+              }}
               // Ensure the button can contain the absolutely positioned background
               //  style={{ position: "relative", overflow: "hidden" }}
             >

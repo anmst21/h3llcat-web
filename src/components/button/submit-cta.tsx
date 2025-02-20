@@ -5,12 +5,19 @@ import { props } from "../footer/animation";
 type Props = {
   isSubmitting: boolean;
   contacts?: boolean;
+  back?: boolean;
+  callback?: () => void;
 };
 
-const SubmitCta = ({ isSubmitting, contacts }: Props) => {
+const SubmitCta = ({ isSubmitting, contacts, back, callback }: Props) => {
   return (
     <AnimatePresence mode="wait">
-      <button className="email-submit" disabled={isSubmitting} type="submit">
+      <button
+        onClick={callback}
+        className="email-submit"
+        disabled={isSubmitting}
+        type="submit"
+      >
         <AnimatePresence mode="wait">
           {isSubmitting ? (
             <motion.span {...props} key="loading">
@@ -18,7 +25,7 @@ const SubmitCta = ({ isSubmitting, contacts }: Props) => {
             </motion.span>
           ) : (
             <motion.span {...props} key="submit">
-              {contacts ? "Submit" : "Subscribe"}
+              {contacts ? "Submit" : back ? "Go Back" : "Subscribe"}
             </motion.span>
           )}
         </AnimatePresence>

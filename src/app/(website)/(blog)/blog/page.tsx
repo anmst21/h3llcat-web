@@ -19,6 +19,9 @@ export default async function Blog({
   searchParams?: { category: string };
 }) {
   const { blogposts } = await getBlogposts(searchParams?.category);
+  if (blogposts.length === 0) {
+    return <div>fallback</div>;
+  }
 
   const featured = blogposts.find((blogpost) => blogpost.featured === true);
   const filteredPosts = blogposts.filter((blogpost) => blogpost !== featured);

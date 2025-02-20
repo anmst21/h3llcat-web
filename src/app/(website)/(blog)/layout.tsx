@@ -8,7 +8,6 @@ export default async function BlogLayout({
   children: React.ReactNode;
 }) {
   const categories = await getCategories();
-
   return (
     <div className="blog">
       <div className="blog-sections">

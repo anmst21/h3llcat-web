@@ -18,7 +18,7 @@ const Footer = async () => {
   const categories = await getCategories();
 
   return (
-    <div className="footer">
+    <div id="footer" className="footer">
       <div className="footer__container">
         <div className="footer__app">
           <div className="footer__app__domain">
