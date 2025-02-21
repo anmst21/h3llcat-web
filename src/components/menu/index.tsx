@@ -16,6 +16,11 @@ export default function Menu({
   const containerRef = useRef<HTMLButtonElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   // Offsets for aligning icon and text to container edges
   const [offsets, setOffsets] = useState({ icon: 0, text: 0 });
@@ -51,67 +56,67 @@ export default function Menu({
 
   return (
     <div className="menu">
-      <button
-        ref={containerRef}
-        onClick={() => setIsOpen(!isOpen)}
-        className={classNames("menu-container", {
-          "menu-container--active": isOpen,
-        })}
-      >
-        {/* Icon wrapper */}
-        <motion.div
-          style={{ zIndex: 50 }}
-          className="menu-container__icon"
-          ref={iconRef}
-          animate={{ x: isOpen ? offsets.icon : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <AnimatePresence mode="wait">
+      <AnimatePresence>
+        {isLoaded && (
+          <motion.button
+            key="menu-button"
+            ref={containerRef}
+            onClick={() => setIsOpen(!isOpen)}
+            className={classNames("menu-container", {
+              "menu-container--active": isOpen,
+            })}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Icon wrapper */}
             <motion.div
-              style={{ display: "flex" }}
-              key="hamburger-icon"
-              // You can also include your icon fade variants here if needed
+              style={{ zIndex: 50 }}
+              className="menu-container__icon"
+              ref={iconRef}
+              animate={{ x: isOpen ? offsets.icon : 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Lottie
-                style={{ width: 30, height: 30 }}
-                lottieRef={lottieRef}
-                animationData={animationData}
-                loop={false}
-                autoplay={false} // Controlled via useEffect
-              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  style={{ display: "flex" }}
+                  key="hamburger-icon"
+                  transition={{ duration: 0.3 }}
+                >
+                  <Lottie
+                    style={{ width: 30, height: 30 }}
+                    lottieRef={lottieRef}
+                    animationData={animationData}
+                    loop={false}
+                    autoplay={false}
+                  />
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
-          </AnimatePresence>
-        </motion.div>
 
-        {/* Text wrapper */}
-        <motion.div
-          className="menu-container__text"
-          ref={textRef}
-          animate={{ x: isOpen ? offsets.text : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <AnimatePresence mode="wait">
-            {!isOpen ? (
-              <motion.span
-                key="menu"
-                // Include your text fade/slide variants for "Menu"
-                transition={{ duration: 0.3 }}
-              >
-                Menu
-              </motion.span>
-            ) : (
-              <motion.span
-                key="close"
-                // Include your text fade/slide variants for "Close"
-                transition={{ duration: 0.3 }}
-              >
-                Close
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </button>
+            {/* Text wrapper */}
+            <motion.div
+              className="menu-container__text"
+              ref={textRef}
+              animate={{ x: isOpen ? offsets.text : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AnimatePresence mode="wait">
+                {!isOpen ? (
+                  <motion.span key="menu" transition={{ duration: 0.3 }}>
+                    Menu
+                  </motion.span>
+                ) : (
+                  <motion.span key="close" transition={{ duration: 0.3 }}>
+                    Close
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

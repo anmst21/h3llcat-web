@@ -19,20 +19,30 @@ import {
   ContactsText,
 } from "../icon";
 import classNames from "classnames";
+import { getCookieConsentValue } from "react-cookie-consent";
 
 const ContactsForm = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isCaptchaError, setIsCaptchaError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const cookieValue = getCookieConsentValue("cookieConsent");
+
   const {
     reset,
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitted },
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
+
+  useEffect(() => {
+    if (cookieValue) {
+      setValue("consent", true);
+    }
+  }, [cookieValue]);
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 

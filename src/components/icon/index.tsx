@@ -50,9 +50,11 @@ import ContactsSubject from "./ContactsSubject";
 import CheckMark from "./CheckMark";
 import ScrollChev from "./ScrollChev";
 import LogoNotFound from "./LogoNotFound";
+import ConsentCross from "./ConsentCross";
 
 export {
   LogoNotFound,
+  ConsentCross,
   ScrollChev,
   CheckMark,
   ContactsSubject,
