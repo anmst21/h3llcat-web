@@ -20,7 +20,7 @@ export default async function Blog({
 }) {
   const { blogposts } = await getBlogposts(searchParams?.category);
   if (blogposts.length === 0) {
-    return <div>fallback</div>;
+    return;
   }
 
   const featured = blogposts.find((blogpost) => blogpost.featured === true);

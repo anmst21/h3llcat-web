@@ -78,7 +78,8 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
   )}&title=${encodeURIComponent(name)}&summary=${encodeURIComponent(subheader)}`;
   // Adjust Farcaster share URL as needed if there's a specific share endpoint
   const farcasterShareUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(
-    `Check out "${name}": ${postUrl}`
+    `Check out "${name}": 
+    ${postUrl}`
   )}`;
   return (
     <>

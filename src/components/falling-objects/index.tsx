@@ -169,7 +169,7 @@ export default function FallingObjects(): JSX.Element {
         left: 0,
         right: 0,
         bottom: 0,
-        //  zIndex: -1,
+        zIndex: 0, // ensure canvas is below the overlay
         display: "flex",
         alignItems: "flex-end",
       }}
