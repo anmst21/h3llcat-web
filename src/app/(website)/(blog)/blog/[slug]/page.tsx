@@ -1,4 +1,4 @@
-import { getBlogpost } from "@/sanity/sanity-utils";
+import { getBlogpost, getBlogposts } from "@/sanity/sanity-utils";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,11 +9,7 @@ import {
   FooterLinkedIn,
   ArrowContainer,
 } from "@/components/icon";
-import {
-  socialsTwitter,
-  socialsLinkedIn,
-  socialWarpcast,
-} from "@/helpers/socials";
+
 import BlogForm from "@/components/subscribe-input/blog-form";
 import { notFound } from "next/navigation";
 
@@ -22,11 +18,40 @@ type Slug = {
   searchParams?: { category: string };
 };
 
+export async function generateStaticParams() {
+  const { blogposts } = await getBlogposts();
+  return blogposts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export async function generateMetadata({ params: { slug } }: Slug) {
   const project = await getBlogpost(slug);
+  const postUrl = `https://h3llcat.app/blog/${slug}`;
+  const imageUrl = project.image; // Ensure this is an absolute URL
+
   return {
     title: project.name,
     description: project.subheader,
+    openGraph: {
+      title: project.name,
+      description: project.subheader,
+      url: postUrl,
+
+      images: [
+        {
+          url: imageUrl,
+          alt: project.alt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.name,
+      description: project.subheader,
+      images: [imageUrl],
+      site: "@0xN3XUS",
+    },
   };
 }
 
@@ -40,6 +65,21 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
   const { category, name, author, _createdAt: date, subheader } = project;
 
   console.log("project", project);
+
+  // Construct the canonical URL for the blog post
+  const postUrl = `https://h3llcat.app/blog/${slug}`;
+
+  // Build dynamic social share URLs using the post metadata
+  const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(
+    postUrl
+  )}&text=${encodeURIComponent(name)}`;
+  const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+    postUrl
+  )}&title=${encodeURIComponent(name)}&summary=${encodeURIComponent(subheader)}`;
+  // Adjust Farcaster share URL as needed if there's a specific share endpoint
+  const farcasterShareUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(
+    `Check out "${name}": ${postUrl}`
+  )}`;
   return (
     <>
       <div className="blog-post-page__container">
@@ -74,7 +114,7 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
         <div className="blog-post-page__socials__container">
           <div className="blog-post-page__socials">
             <span>Share this article</span>
-            <Link target="_blank" href={socialsTwitter}>
+            <Link target="_blank" href={twitterShareUrl}>
               <div className="socials-link">
                 <FooterX />
               </div>
@@ -82,14 +122,14 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
               <ArrowContainer />
             </Link>
 
-            <Link target="_blank" href={socialsLinkedIn}>
+            <Link target="_blank" href={linkedInShareUrl}>
               <div className="socials-link">
                 <FooterLinkedIn />
               </div>
               Share with LinkedIn
               <ArrowContainer />
             </Link>
-            <Link target="_blank" href={socialWarpcast}>
+            <Link target="_blank" href={farcasterShareUrl}>
               <div className="socials-link">
                 <FooterFarcaster />
               </div>
