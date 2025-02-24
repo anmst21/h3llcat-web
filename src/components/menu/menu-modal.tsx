@@ -19,6 +19,7 @@ import { dynamicButtonProps } from "../button/animation";
 import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import Divider from "../blog/divider";
+import { useEthPrice } from "@/context/EthPriceProvider";
 
 interface Props {
   isOpen: boolean;
@@ -27,6 +28,11 @@ interface Props {
 
 const MenuModal = ({ isOpen, setIsOpen }: Props) => {
   const [isMobile, setIsMobile] = useState(false);
+  const {
+    ethPrice,
+    loading: isLoadingPrice,
+    error: isErrorPrice,
+  } = useEthPrice();
 
   useEffect(() => {
     // This code runs only on the client
@@ -168,7 +174,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                   Balance
                                 </span>
                                 <AnimatePresence mode="wait">
-                                  {isLoadingBalance ? (
+                                  {isLoadingBalance || isLoadingPrice ? (
                                     <motion.div
                                       key="loading-balance"
                                       style={{
@@ -201,7 +207,10 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                       key="balance"
                                       className="wallet-item__meta__value"
                                     >
-                                      {formattedUserBalance}
+                                      <span className="wallet-item__meta__title">
+                                        {formattedUserBalance}
+                                      </span>
+                                      {`${isErrorPrice && ethPrice ? "" : `/ $${(Number(formattedUserBalance) * Number(ethPrice)).toFixed(2)}`}`}
                                       <MenuEth />
                                     </motion.span>
                                   )}
@@ -215,8 +224,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                   Chain
                                 </span>
                                 <AnimatePresence mode="wait">
-                                  {userWalletChain === 84532 ||
-                                  userWalletChain === 8453 ? (
+                                  {userWalletChain === 8453 ? (
                                     <motion.span
                                       key="base"
                                       {...dynamicButtonProps}

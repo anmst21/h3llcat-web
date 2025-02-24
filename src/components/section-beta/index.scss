@@ -1,8 +1,330 @@
+.numbers-btn {
+    display: flex;
+    padding: 6px;
+    gap: 8px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.20);
+    backdrop-filter: blur(40px);
+    background-color: rgba(255, 248, 231, 0.20);
+    width: fit-content;
+    align-items: center;
+    height: 42px;
+
+
+    &--fix {
+        display: flex;
+        max-width: fit-content;
+        min-width: 0;
+    }
+
+    &__plus,
+    &__minus {
+        display: flex;
+        transition: all .3s ease-out;
+
+        &:hover {
+            opacity: .8;
+        }
+
+        &:active {
+            color: var(--accent);
+        }
+    }
+
+    input {
+        display: flex;
+
+        text-align: center;
+        min-width: 1ch;
+        max-width: 4ch;
+
+
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 540;
+        line-height: 22px;
+        /* 169.231% */
+        letter-spacing: -0.43px;
+
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        // Remove spinner buttons for Firefox
+        -moz-appearance: textfield;
+    }
+}
+
+
+
+
+
+
+
+
+
+.mint-submit {
+    height: 42px;
+    // width: 100%;
+    //  min-width: 120px;
+    // width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //gap: 10px;
+    overflow: hidden;
+    // transition: all .3s ease-in-out;
+    border-radius: 10px;
+    color: #050915;
+
+
+
+
+    &__contaienr {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+    }
+
+    span {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 590;
+        line-height: 22px;
+        // transition: all .3s ease-in;
+        text-transform: uppercase;
+        color: currentColor;
+        white-space: nowrap;
+    }
+
+    // &--cta {
+    //     background-color: var(--accent);
+    // }
+
+    // &--white {
+    //     background-color: #FFF8E7;
+    // }
+
+    // &--tertiary {
+    //     background-color: rgba(5, 9, 21, 0.20);
+    //     color: #FFF8E7;
+    // }
+
+}
+
+
+
+
+
+
+.section-beta {
+    gap: 20px;
+    justify-content: center;
+
+    &__right {
+        max-width: 340px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        img {
+            border-radius: 10px;
+        }
+    }
+}
+
+
+.pass-description {
+    background-color: #1F222C;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 15px;
+
+    &:nth-child(1) {
+        flex: 1
+    }
+
+    &:nth-child(2) {
+        .wallet-item {
+            .wallet-item__user {
+                .wallet-item__address {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: #FFF8E7;
+
+                        svg {
+                            opacity: 1;
+                        }
+                    }
+
+                    svg {
+                        opacity: 0;
+                        transition: all .3s ease-in;
+
+                    }
+                }
+            }
+        }
+    }
+
+    .wallet-item__bottom {
+        margin-left: 51px;
+        width: calc(100% - 51px);
+    }
+
+    &__text {
+        margin-left: 51px;
+        border-radius: 4px;
+        padding: 8px 9px 18px 9px;
+        background-color: rgba(255, 248, 231, 0.10);
+        font-size: 15px;
+        font-style: normal;
+        line-height: 20px;
+        letter-spacing: 0.28px;
+        color: #FFF8E7;
+        flex: 1
+    }
+
+}
+
+
+
+
+.pass-details {
+    background-color: #1F222C;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+
+
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        padding: 11px 10px 10px 10px;
+        border-radius: 10px;
+        gap: 5px;
+        background-color: rgba(147, 145, 142, 0.10);
+        flex: 1;
+
+        &__icons {
+            display: flex;
+            align-items: center;
+            color: var(--accent);
+            gap: 10px;
+
+            svg {
+                &:nth-child(2) {
+                    color: rgba(255, 204, 0, 0.70);
+                }
+
+                &:nth-child(3) {
+                    color: rgba(255, 204, 0, 0.50);
+                }
+
+                &:nth-child(4) {
+                    color: rgba(255, 204, 0, 0.30);
+                }
+            }
+
+            &--target {
+                color: rgba(255, 255, 255, 1);
+
+                svg {
+                    &:nth-child(2) {
+                        color: rgba(255, 255, 255, .7);
+                    }
+
+                    &:nth-child(3) {
+                        color: rgba(255, 255, 255, 0.50);
+                    }
+
+                    &:nth-child(4) {
+                        color: rgba(255, 255, 255, 0.30);
+                    }
+                }
+            }
+        }
+
+        span {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 590;
+            line-height: 18px;
+            color: #93918E;
+            font-variant: all-small-caps;
+            letter-spacing: -0.08px;
+
+            &:nth-child(2) {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+
+        h4 {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 510;
+            line-height: normal;
+            letter-spacing: 0.4px;
+            color: #FFF8E7;
+            margin-bottom: 5px;
+            overflow: hidden;
+            display: flex;
+
+            span {
+                all: inherit
+            }
+        }
+    }
+
+    &__top {
+        gap: 10px;
+        display: flex;
+
+        svg {
+            margin-left: auto;
+        }
+
+        .wallet-item__user {
+            width: fit-content;
+        }
+
+    }
+
+    &__bottom {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+
+
+
+
+
 .section-beta {
     display: flex;
     padding: 60px 60px 86px 60px;
-    align-items: center;
-    justify-content: center;
+    // align-items: center;
+    // justify-content: center;
     font-family: var(--font-sf-pro);
 
     &__email {

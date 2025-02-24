@@ -324,6 +324,7 @@
         max-width: 1200px;
         gap: 5px;
         min-height: 38px;
+        z-index: 5;
 
         @include media-sm {
             flex-direction: column;

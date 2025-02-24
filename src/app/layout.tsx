@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import { CapchaProvider } from "@/context/CapchaProvider";
 import { MenuProvider } from "@/context/MenuProvider";
 import { BalanceProvider } from "@/context/BalanceProvider";
+import { EthPriceProvider } from "@/context/EthPriceProvider";
 
 const sfPro = localFont({
   src: [
@@ -121,15 +122,17 @@ export default function RootLayout({
       <body className={`${sfPro.variable}`}>
         <CapchaProvider>
           <PrivyProvider>
-            <BalanceProvider>
-              <MenuProvider>
-                <div className="main">
-                  {children}
-                  <Footer />
-                </div>
-              </MenuProvider>
-              <CookieConsentBanner />
-            </BalanceProvider>
+            <EthPriceProvider>
+              <BalanceProvider>
+                <MenuProvider>
+                  <div className="main">
+                    {children}
+                    <Footer />
+                  </div>
+                </MenuProvider>
+                <CookieConsentBanner />
+              </BalanceProvider>
+            </EthPriceProvider>
           </PrivyProvider>
         </CapchaProvider>
       </body>

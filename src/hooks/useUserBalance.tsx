@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { createPublicClient, custom, formatUnits } from "viem";
-import { baseSepolia } from "viem/chains";
+import { base } from "viem/chains";
 import type { Hex } from "viem";
 import { usePrivy } from "@privy-io/react-auth";
 
@@ -20,7 +20,7 @@ export function useUserBalance(userWallet: any) {
 
       // Create a public client using viem for the desired chain
       const publicClient = createPublicClient({
-        chain: baseSepolia,
+        chain: base,
         transport: custom(provider),
       });
 

@@ -13,6 +13,8 @@ export type UseBuyNFTProps = {
   setTimesMinted: (data: any) => void;
   isFundsError: boolean;
   setIsFundsError: (value: boolean) => void;
+
+  numToMint: number;
 };
 
 export function useBuyNFT({
@@ -23,6 +25,7 @@ export function useBuyNFT({
   setTimesMinted,
   isFundsError,
   setIsFundsError,
+  numToMint,
 }: UseBuyNFTProps) {
   const [isMinting, setIsMinting] = useState(false);
   const logMessageRef = useRef<TransferData[] | undefined>(undefined);
@@ -49,7 +52,7 @@ export function useBuyNFT({
         items: [
           {
             token: nftProps.contract + ":" + "1",
-            quantity: 1,
+            quantity: numToMint,
           },
         ],
         options: {
@@ -113,6 +116,8 @@ export function useBuyNFT({
     setUserData,
     setTimesMinted,
     setIsFundsError,
+    numToMint,
+    getClient()?.actions.mintToken,
   ]);
 
   return { buyNFT, isMinting, logMessage: logMessageRef.current };

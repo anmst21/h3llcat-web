@@ -83,8 +83,8 @@
         background-color: rgba(255, 248, 231, 0.1);
 
         &__title {
-            color: rgba(255, 248, 231, 1);
 
+            color: rgba(255, 248, 231, 0.6);
 
         }
 
@@ -92,13 +92,14 @@
             align-items: center;
             display: flex;
             gap: 5px;
-            color: rgba(255, 248, 231, 0.6);
+
+            color: rgba(255, 248, 231, 1);
 
             &--switch {
                 transition: all .3s;
 
                 &:hover {
-                    color: rgba(255, 248, 231, 1);
+                    color: var(--accent);
                 }
 
 

@@ -51,8 +51,26 @@ import CheckMark from "./CheckMark";
 import ScrollChev from "./ScrollChev";
 import LogoNotFound from "./LogoNotFound";
 import ConsentCross from "./ConsentCross";
+import BetaBarCode from "./BetaBarCode";
+import BetaRagdoll from "./BetaRagdoll";
+import BetaTarget from "./BetaTarget";
+import BetaDescription from "./BetaDescription";
+import BetaUri from "./BetaUri";
+import BetaMeta from "./BetaMeta";
+import FormPlus from "./FormMinus";
+import FormMinus from "./FormPlus";
+import BetaCoin from "./BetaCoin";
 
 export {
+  BetaCoin,
+  FormPlus,
+  FormMinus,
+  BetaMeta,
+  BetaBarCode,
+  BetaRagdoll,
+  BetaTarget,
+  BetaDescription,
+  BetaUri,
   LogoNotFound,
   ConsentCross,
   ScrollChev,

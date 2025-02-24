@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import PageHeader from "@/components/page-header";
 import SectionBeta from "@/components/section-beta";
 import { apiUri } from "@/helpers/apiUri";
 
@@ -21,13 +20,6 @@ export default async function Beta() {
   const data = (await response.json()) as string;
   return (
     <div className="home">
-      <PageHeader
-        isDark
-        btnContent="Go to BETA"
-        href="/beta"
-        subHeader="Mint your Beta Pass NFT to unlock early access, exclusive features, and the future of on-chain minting"
-        text={["Mint", "Display's", "Beta Pass"]}
-      />
       <SectionBeta mintsNum={data} />
     </div>
   );

@@ -10,6 +10,7 @@ interface FormInputProps {
   icon: React.ReactNode;
   isError: boolean;
   optional?: boolean;
+  beta?: boolean;
   textArea?: boolean;
 }
 
@@ -21,6 +22,7 @@ const FooterInput: React.FC<FormInputProps> = ({
   optional,
   textArea,
   isError,
+  beta,
 }) => {
   const [hasValue, setHasValue] = useState(false);
   const ref = useRef<HTMLTextAreaElement | null>(null);
@@ -47,6 +49,7 @@ const FooterInput: React.FC<FormInputProps> = ({
         "form-input--error": isError,
         "form-input--textarea": textArea,
         "form-input--optional": optional,
+        "form-input--beta": beta,
       })}
     >
       <div className="form-input__wrapper">
