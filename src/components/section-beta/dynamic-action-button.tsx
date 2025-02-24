@@ -9,8 +9,6 @@ import { usePrivy } from "@privy-io/react-auth";
 import { AnimatePresence, motion } from "motion/react";
 import { useFundWallet } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
-import { dynamicMintProps } from "../button/animation";
-import FooterInput from "../subscribe-input/footer-input";
 import ContactInput from "../contacts-form/contact-input";
 import { useBetaSubmit } from "@/hooks/useBetaSubmit";
 import { UserData } from "@/hooks/types";
@@ -73,7 +71,7 @@ const DynamicActionButton: React.FC<Props> = ({
     handleSubmit,
     onSubmit,
     isLoadingSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors },
     // showSuccessMessage,
     // isCaptchaError,
   } = useBetaSubmit({ setUserData });

@@ -122,13 +122,52 @@
 
 .section-beta {
     gap: 20px;
-    justify-content: center;
+    //  justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-height: 100dvh;
+
+    &__top {
+        height: 200px;
+        width: 100%;
+        display: flex;
+        background-color: #1F222C;
+        border-radius: 10px;
+        max-width: 1100px;
+        padding: 10px;
+        flex-direction: column;
+        gap: 15px;
+
+        &__section {
+            display: flex;
+            flex: 1;
+            background-color: rgba(255, 248, 231, 0.10);
+            border-radius: 4px;
+        }
+    }
+
+    &__bot {
+        display: flex;
+        gap: 20px;
+        max-width: 1100px;
+
+        @include media-sm {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+    }
 
     &__right {
-        max-width: 340px;
+        //   max-width: 420px;
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        @include media-sm {
+            gap: 10px
+        }
     }
 
     &__left {
@@ -136,8 +175,18 @@
         flex-direction: column;
         gap: 20px;
 
+        @include media-sm {
+            gap: 10px
+        }
+
         img {
             border-radius: 10px;
+
+            @include media-sm {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+            }
         }
     }
 }
@@ -204,6 +253,13 @@
 
 
 
+@include media-sm {
+
+    //  min-width: 350px;
+    .pass-details__section:nth-child(3) {
+        flex: 0 0 100%;
+    }
+}
 
 .pass-details {
     background-color: #1F222C;
@@ -222,7 +278,8 @@
         border-radius: 10px;
         gap: 5px;
         background-color: rgba(147, 145, 142, 0.10);
-        flex: 1;
+        flex: 1 1 auto;
+
 
         &__icons {
             display: flex;
@@ -263,6 +320,11 @@
             }
         }
 
+        .price {
+            font-size: 18px;
+            line-height: 20px;
+        }
+
         span {
             font-size: 14px;
             font-style: normal;
@@ -272,10 +334,7 @@
             font-variant: all-small-caps;
             letter-spacing: -0.08px;
 
-            &:nth-child(2) {
-                font-size: 16px;
-                line-height: 20px;
-            }
+
         }
 
         h4 {
@@ -288,6 +347,11 @@
             margin-bottom: 5px;
             overflow: hidden;
             display: flex;
+
+            @include media-sm {
+                font-size: 14px;
+                line-height: normal;
+            }
 
             span {
                 all: inherit
@@ -312,6 +376,10 @@
     &__bottom {
         display: flex;
         gap: 10px;
+
+        @include media-sm {
+            flex-wrap: wrap;
+        }
     }
 }
 
@@ -322,7 +390,13 @@
 
 .section-beta {
     display: flex;
-    padding: 60px 60px 86px 60px;
+    padding: 86px 60px;
+
+    @include media-sm {
+        padding: 30px 15px 120px 15px;
+        gap: 10px;
+    }
+
     // align-items: center;
     // justify-content: center;
     font-family: var(--font-sf-pro);

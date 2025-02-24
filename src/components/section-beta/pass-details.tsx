@@ -61,7 +61,7 @@ const PassDetails = ({ timesMinted }: Props) => {
                 }}
               />
             ) : (
-              <motion.span {...dynamicButtonProps}>
+              <motion.span className="price" {...dynamicButtonProps}>
                 (${(artPrice * Number(ethPrice)).toFixed(2)})
               </motion.span>
             )}

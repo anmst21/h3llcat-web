@@ -1,8 +1,7 @@
 import { HTMLInputTypeAttribute } from "react";
-import { FooterMail, ContactsMail } from "../icon";
+import { FooterMail } from "../icon";
 import { SubscribeFormSchema } from "./subscribe-form-schema";
 import { UseFormRegister } from "react-hook-form";
-import classNames from "classnames";
 
 interface FormInputProps {
   register: ReturnType<UseFormRegister<SubscribeFormSchema>>;

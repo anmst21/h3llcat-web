@@ -6,18 +6,13 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
 import { useEffect, useCallback, useState, useMemo } from "react";
 import { createClient } from "@reservoir0x/reservoir-sdk";
-import FooterInput from "../subscribe-input/footer-input";
 import { options } from "@/helpers/reservoirClientOptions";
 import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
-import { useBetaSubmit } from "@/hooks/useBetaSubmit";
 import DynamicActionButton from "./dynamic-action-button";
-import { BetaUri, MenuBeta, BetaDescription, MenuBase } from "../icon";
-import { useEthPrice } from "@/context/EthPriceProvider";
+import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
-import { truncateEthAddress } from "@/helpers/truncateAddress";
-import Link from "next/link";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -102,81 +97,92 @@ function SectionBeta({ mintsNum }: any) {
   console.log("user data", userData);
   return (
     <div className="section-beta">
-      <div className="section-beta__left">
-        <Image
-          width={460}
-          height={460}
-          alt={nftProps.name}
-          src={nftProps.artUri}
-        />
-        <PassDetails timesMinted={timesMinted} />
-      </div>
-      <div className="section-beta__right">
-        <div className="pass-description">
-          <div className="wallet-item">
-            <div className="wallet-item__icon">
-              <BetaDescription />
-            </div>
-            <div className="wallet-item__user">
-              <span className="wallet-item__title">{nftProps.name}</span>
-              <span className="wallet-item__address">About:</span>
-            </div>
-          </div>
-          <div className="pass-description__text">
-            <p>{nftProps.description}</p>
+      <div className="section-beta__top">
+        <div className="wallet-item">
+          <div className="wallet-item__user">
+            <span className="wallet-item__title">Join our beta raffle</span>
+            <span className="wallet-item__address">Good to know:</span>
           </div>
         </div>
-        <PassMeta
-          contract={nftProps.contract}
-          creator={nftProps.creator}
-          standard={nftProps.standard}
-        />
-        <div className="pass-description">
-          <div className="wallet-item">
-            <div className="wallet-item__icon">
-              <MenuBeta />
+        <div className="section-beta__top__section" />
+      </div>
+      <div className="section-beta__bot">
+        <div className="section-beta__left">
+          <Image
+            width={460}
+            height={460}
+            alt={nftProps.name}
+            src={nftProps.artUri}
+          />
+          <PassDetails timesMinted={timesMinted} />
+        </div>
+        <div className="section-beta__right">
+          <div className="pass-description">
+            <div className="wallet-item">
+              <div className="wallet-item__icon">
+                <BetaDescription />
+              </div>
+              <div className="wallet-item__user">
+                <span className="wallet-item__title">{nftProps.name}</span>
+                <span className="wallet-item__address">About:</span>
+              </div>
             </div>
-            <div className="wallet-item__user">
-              <span className="wallet-item__title">Secure your spot</span>
-              <span
-                style={{ overflow: "hidden" }}
-                className="wallet-item__address"
-              >
-                Step:
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={currectStep} // key change triggers re-animation
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    style={{ color: "#FFF8E7", width: 12, textAlign: "end" }}
-                  >
-                    {currectStep}
-                  </motion.span>
-                </AnimatePresence>
-                <span>/4</span>
-              </span>
+            <div className="pass-description__text">
+              <p>{nftProps.description}</p>
             </div>
           </div>
-          <DynamicActionButton
-            numToMint={numToMint}
-            setNumToMint={setNumToMint}
-            setUserData={setData}
-            isLoadingContext={!disableLogin}
-            isLoadingUserData={isLoadingData}
-            isMinting={isMinting}
-            isCorrectChain={userWalletChain === 84532}
-            isMintSubmitted={userData?.isMinted}
-            isEmailSubmitted={userData?.email}
-            isEnoughFunds={!isFundsError}
-            buyNFTAction={buyNFT}
-            switchChainAction={async () => {
-              if (userWallet) {
-                await userWallet.switchChain(baseSepolia.id);
-              }
-            }}
+          <PassMeta
+            contract={nftProps.contract}
+            creator={nftProps.creator}
+            standard={nftProps.standard}
           />
+          <div className="pass-description">
+            <div className="wallet-item">
+              <div className="wallet-item__icon">
+                <MenuBeta />
+              </div>
+              <div className="wallet-item__user">
+                <span className="wallet-item__title">Secure your spot</span>
+                <span
+                  style={{ overflow: "hidden" }}
+                  className="wallet-item__address"
+                >
+                  Step:
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={currectStep} // key change triggers re-animation
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -20, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      style={{ color: "#FFF8E7", width: 12, textAlign: "end" }}
+                    >
+                      {currectStep}
+                    </motion.span>
+                  </AnimatePresence>
+                  <span>/4</span>
+                </span>
+              </div>
+            </div>
+            <DynamicActionButton
+              numToMint={numToMint}
+              setNumToMint={setNumToMint}
+              setUserData={setData}
+              isLoadingContext={!disableLogin}
+              isLoadingUserData={isLoadingData}
+              isMinting={isMinting}
+              isCorrectChain={userWalletChain === 84532}
+              isMintSubmitted={userData?.isMinted}
+              isEmailSubmitted={userData?.email}
+              isEnoughFunds={!isFundsError}
+              buyNFTAction={buyNFT}
+              switchChainAction={async () => {
+                if (userWallet) {
+                  await userWallet.switchChain(baseSepolia.id);
+                }
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
