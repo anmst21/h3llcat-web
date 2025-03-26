@@ -4,7 +4,7 @@ import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
-import { useEffect, useCallback, useState, useMemo } from "react";
+import { useEffect, useCallback, useState, useMemo, useRef } from "react";
 import { createClient } from "@reservoir0x/reservoir-sdk";
 import { options } from "@/helpers/reservoirClientOptions";
 import { useWalletClient } from "@/hooks/useWalletClient";
@@ -15,6 +15,7 @@ import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
+import anime from "animejs";
 
 createClient(options);
 
@@ -50,7 +51,7 @@ function SectionBeta({ mintsNum }: any) {
     if (!authenticated) {
       setData(null);
     }
-  }, [authenticated]);
+  }, [authenticated, setData]);
 
   const setData = useCallback(
     (data: any) => {
@@ -74,22 +75,67 @@ function SectionBeta({ mintsNum }: any) {
     numToMint,
   });
 
-  const getCurrentStep = () => {
-    if (!userData) {
-      return "1";
-    } else if (userData.did && !userData.email && !userData.isMinted) {
-      return "2";
-    } else if (userData.did && !userData.email && userData.isMinted) {
-      return "3";
-    } else if (userData.did && userData.email && userData.isMinted) {
-      return "4";
-    } else {
-      return "1";
-    }
-  };
   const currectStep = useMemo(() => {
-    return getCurrentStep();
+    const getStep = () => {
+      if (!userData) {
+        return "1";
+      } else if (userData.did && !userData.email && !userData.isMinted) {
+        return "2";
+      } else if (userData.did && !userData.email && userData.isMinted) {
+        return "3";
+      } else if (userData.did && userData.email && userData.isMinted) {
+        return "4";
+      } else {
+        return "1";
+      }
+    };
+    return getStep();
   }, [userData]);
+
+  const animationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const numberOfEls = window.innerWidth > 1000 ? 500 : 300;
+    const duration = 1000;
+    const container = animationRef.current;
+    if (!container) return;
+
+    // Get container dimensions for positioning (center of container)
+    const rect = container.getBoundingClientRect();
+    const midX = rect.width / 2;
+    const midY = rect.height / 2;
+    const radius = Math.sqrt(midX * midX + midY * midY);
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < numberOfEls; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const el = document.createElement("div");
+      el.classList.add("particule");
+      el.style.backgroundColor = "#fff"; // Set dots to white
+      el.style.width = "1px";
+      el.style.height = "1px";
+      el.style.borderRadius = "50%"; // Make dots rounded (circle)
+      // Position absolutely within container
+      el.style.position = "absolute";
+
+      // Animate dots from the center (midX, midY) outward
+      anime({
+        targets: el,
+        width: ["1px", "3px"],
+        height: ["1px", "3px"],
+        left: [midX + "px", Math.cos(angle) * radius + midX + "px"],
+        top: [midY + "px", Math.sin(angle) * radius + midY + "px"],
+        delay: (duration / numberOfEls) * i,
+        duration: duration,
+        easing: "easeInExpo",
+        loop: true,
+      });
+      fragment.appendChild(el);
+    }
+
+    container.appendChild(fragment);
+  }, []);
+
   // did: null,
   //   email: null,
   //   isMinted: false,
@@ -104,7 +150,7 @@ function SectionBeta({ mintsNum }: any) {
             <span className="wallet-item__address">Good to know:</span>
           </div>
         </div>
-        <div className="section-beta__top__section" />
+        <div className="section-beta__top__section" ref={animationRef} />
       </div>
       <div className="section-beta__bot">
         <div className="section-beta__left">
@@ -190,54 +236,3 @@ function SectionBeta({ mintsNum }: any) {
 }
 
 export default SectionBeta;
-
-// <form onSubmit={handleSubmit(onSubmit)} className="section-beta__wrapper">
-//         <div className="section-beta__img">
-//           {userData && userData.isMinted && !userData.email ? (
-//             <div className="section-beta__email">
-//               <FooterInput
-//                 type="email"
-//                 register={register("email")}
-//                 placeholder="E-Mail"
-//               />
-//             </div>
-//           ) : (
-//             <Image
-//               width={611}
-//               height={611}
-//               alt={nftProps.name}
-//               src={nftProps.artUri}
-//             />
-//           )}
-//         </div>
-
-//         <div className="section-beta__action">
-//           <h2>{nftProps.name}</h2>
-//           <h3>{nftProps.creator}</h3>
-//           <p>{nftProps.description}</p>
-//           <div className="section-beta__minted">
-//             <span className="section-beta__minted__label">Minted</span>
-//             <span className="section-beta__minted__number">
-//               {timesMinted}
-//               <span>/10,000</span>
-//             </span>
-//           </div>
-
-//           <DynamicActionButton
-//             isLoadingSubmit={isLoadingSubmit}
-//             isLoadingContext={!disableLogin}
-//             isLoadingUserData={isLoadingData}
-//             isMinting={isMinting}
-//             isCorrectChain={userWalletChain === 84532}
-//             isMintSubmitted={userData?.isMinted}
-//             isEmailSubmitted={userData?.email}
-//             isEnoughFunds={!isFundsError}
-//             buyNFTAction={buyNFT}
-//             switchChainAction={async () => {
-//               if (userWallet) {
-//                 await userWallet.switchChain(baseSepolia.id);
-//               }
-//             }}
-//           />
-//         </div>
-//       </form>
