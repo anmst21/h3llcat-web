@@ -47,18 +47,18 @@ function SectionBeta({ mintsNum }: any) {
     // error, fetchToken
   } = useToken();
 
-  useEffect(() => {
-    if (!authenticated) {
-      setData(null);
-    }
-  }, [authenticated, setData]);
-
   const setData = useCallback(
     (data: any) => {
       setUserData(data);
     },
     [setUserData]
   );
+
+  useEffect(() => {
+    if (!authenticated) {
+      setData(null);
+    }
+  }, [authenticated, setData]);
   const {
     buyNFT,
     isMinting,
