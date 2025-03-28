@@ -3,7 +3,7 @@ export type Collection = {
   userProfileUri: string;
   rodeoUri: string;
   contract: string;
-  artName: string;
+  artName?: string;
   id: number;
   minted: number;
   name: string;

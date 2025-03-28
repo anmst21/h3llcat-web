@@ -7,9 +7,9 @@ export default function Home() {
   return (
     <div className="home">
       <SectionDisplay />
-      <SectionMint />
+      {/*  <SectionMint />
       <SectionCollections />
-      <SectionApp />
+      <SectionApp /> */}
     </div>
   );
 }

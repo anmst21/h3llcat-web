@@ -29,7 +29,7 @@ const CollectionsCarousel = () => {
               <Image
                 width={348}
                 height={310}
-                alt={item.artName}
+                alt={item.artName || ""}
                 src={item.artUri as string}
                 style={{
                   objectFit: "cover",
