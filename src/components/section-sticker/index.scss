@@ -1,0 +1,50 @@
+.section-sticker {
+    display: flex;
+    position: absolute;
+    z-index: 30;
+    width: 406px;
+    height: 1000px;
+    left: 15%;
+    flex-direction: column;
+
+
+
+    &__hollow {
+        display: flex;
+        height: 334px;
+
+        background-color: #121621;
+    }
+}
+
+.holes {
+    display: flex;
+    position: relative;
+    height: 34px;
+
+    &__flipped {
+        transform: scaleX(-1);
+    }
+
+    &__center {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #121621;
+    }
+
+
+
+
+
+    &__top {
+        border-bottom: 1px dashed #fff;
+    }
+
+    &__top,
+    &__bot {
+        display: flex;
+        width: 100%;
+        flex: 1
+    }
+}

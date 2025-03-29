@@ -60,8 +60,20 @@ import BetaMeta from "./BetaMeta";
 import FormPlus from "./FormMinus";
 import FormMinus from "./FormPlus";
 import BetaCoin from "./BetaCoin";
+import StarCarousel from "./StarCarousel";
+import LandingWelcome from "./LandingWelcome";
+import NexusJap from "./NexusJap";
+import DisplayJap from "./DisplayJap";
+import SideJap from "./SideJap";
+import SectionHole from "./SectionHole";
 
 export {
+  SectionHole,
+  NexusJap,
+  SideJap,
+  DisplayJap,
+  LandingWelcome,
+  StarCarousel,
   BetaCoin,
   FormPlus,
   FormMinus,

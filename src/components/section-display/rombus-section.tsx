@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collection } from "@/types/CollectionCarousel";
 import classNames from "classnames";
 import Image from "next/image";
@@ -12,6 +12,7 @@ type Props = {
 };
 
 function RombusSection({ array, colIndex }: Props) {
+  const [loaded, setLoaded] = useState(false);
   const [emblaRef] = useEmblaCarousel(
     { loop: true, axis: "y", watchDrag: false },
     [
@@ -23,6 +24,7 @@ function RombusSection({ array, colIndex }: Props) {
     ]
   );
   const router = useRouter();
+
   return (
     <div className="rombus-container__viewport" ref={emblaRef}>
       <div className="rombus-container">
@@ -45,6 +47,12 @@ function RombusSection({ array, colIndex }: Props) {
                   (index === 1 || index === 2),
               })}
             >
+              {!loaded &&
+                !(
+                  (colIndex === 6 || colIndex === 7) &&
+                  (index === 1 || index === 2)
+                ) && <div className="skeleton"></div>}
+
               {colIndex === 6 && index === 1 ? (
                 <Image
                   src={"/section-logo/1.svg"}
@@ -74,6 +82,8 @@ function RombusSection({ array, colIndex }: Props) {
                   style={{ objectFit: "cover" }}
                 />
               ) : // <Image
+              //   onLoad={() => setLoaded(true)}
+              //   // onError={() => setLoaded(false)}
               //   src={item.artUri}
               //   alt={item.artName || item.name || "Artwork"}
               //   fill
