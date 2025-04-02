@@ -66,9 +66,25 @@ import NexusJap from "./NexusJap";
 import DisplayJap from "./DisplayJap";
 import SideJap from "./SideJap";
 import SectionHole from "./SectionHole";
+import ArrowSticker from "./ArrowSticker";
+import StickerLove from "./StickerLove";
+import StickerInfo from "./StickerInfo";
+import StickerTool from "./StickerTool";
+import StickerJap from "./StickerJap";
+import StickerIphoneIcon from "./StickerIphoneIcon";
+import StickerBarcode from "./StickerBarcode";
+import StickerEnd from "./StickerEnd";
 
 export {
+  StickerEnd,
+  StickerBarcode,
+  StickerIphoneIcon,
+  StickerJap,
+  StickerLove,
+  StickerInfo,
+  StickerTool,
   SectionHole,
+  ArrowSticker,
   NexusJap,
   SideJap,
   DisplayJap,

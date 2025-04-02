@@ -13,10 +13,10 @@ export default function Home() {
       </div>
       <SectionSticker />
       <SectionDisplay />
-
+      {/* <SectionApp /> */}
       {/*  <SectionMint />
       <SectionCollections />
-      <SectionApp /> */}
+      */}
     </div>
   );
 }

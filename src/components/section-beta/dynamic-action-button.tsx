@@ -22,7 +22,7 @@ import {
 import NumberInput from "./number-input";
 import animationBeta from "../icon/animationBeta.json";
 import Lottie from "lottie-react";
-
+import { arrowVariants, textVariants } from "./dynamic-action-button-variants";
 interface Props {
   isLoadingContext: boolean;
   isLoadingUserData: boolean;
@@ -37,20 +37,6 @@ interface Props {
   numToMint: number;
   setNumToMint: (value: number) => void;
 }
-
-const arrowVariants = {
-  initial: { opacity: 0, x: 24 },
-  hover: { opacity: 1, x: 10, transition: { duration: 0.3 } },
-  exit: { opacity: 0, x: 24 },
-  active: { x: 15 },
-};
-
-const textVariants = {
-  animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 10 },
-  initial: { opacity: 0, x: -10 },
-  hover: { opacity: 1, x: 0, transition: { duration: 0.3 } },
-};
 
 const DynamicActionButton: React.FC<Props> = ({
   isLoadingContext,

@@ -3,16 +3,227 @@
     position: absolute;
     z-index: 30;
     width: 406px;
-    height: 1000px;
+    //  height: 1000px;
     left: 15%;
     flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+
+    &__gradient {
+        display: flex;
+        padding: 8px;
+        background-color: #121621;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        height: 137px;
+
+        &__text {
+            z-index: 1000;
+            padding: 0 17px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #050915;
+
+            h3 {
+
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+            }
+
+            svg {
+
+                width: 20px;
+                height: 20px;
+            }
+
+            span {
+
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+            }
+        }
+
+        &__img {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            right: 8px;
+            bottom: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__iphone {
+        display: flex;
+        gap: 10px;
+        align-items: center;
 
 
+        &__text {
+            display: flex;
+            flex-direction: column;
+
+            //      gap: 3px;
+
+            h5 {
+                color: #FFF;
+
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 590;
+                line-height: 24px;
+                letter-spacing: 0.4px;
+            }
+
+            &__sub {
+                color: #888A90;
+
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 510;
+                line-height: 19px;
+                font-variant: all-small-caps;
+                letter-spacing: -0.43px;
+            }
+        }
+    }
+
+
+    h3 {
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    h4 {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    &__reimagine {
+        svg {
+            color: rgba(255, 255, 255, .5);
+        }
+    }
+
+    &__barcode {
+
+        &__container {
+            max-height: 60px;
+            width: 100%;
+            overflow: hidden;
+
+            svg {
+                width: 100%;
+                height: auto;
+
+                overflow: hidden;
+            }
+        }
+    }
+
+
+    &__newsletter {
+        .mint-submit {
+            margin-top: 10px;
+        }
+    }
+
+    &__reimagine,
+    &__works,
+    &__newsletter,
+    &__logo,
+    &__barcode {
+        background-color: #121621;
+        padding: 25px;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .arr-down {
+            color: rgba(255, 255, 255, .5);
+            transform: rotate(90deg);
+        }
+
+        p {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 590;
+            line-height: 24px;
+            color: rgba(255, 255, 255, 0.80);
+            letter-spacing: 0.48px;
+        }
+
+        span {
+            color: rgba(255, 255, 255, .5);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+    }
+
+
+    &__works {
+
+        &__video {
+            position: relative;
+            width: 356px;
+            height: 275px;
+            background-color: black;
+
+        }
+
+        .mint-submit {
+            margin-top: 25px;
+        }
+
+        &__arrows {
+            gap: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            span {
+                color: rgba(255, 255, 255, 0.5);
+
+                span {
+                    color: rgba(255, 255, 255, 1);
+                }
+            }
+        }
+
+        span {
+            color: rgba(255, 255, 255, 1);
+        }
+
+
+    }
 
     &__hollow {
         display: flex;
-        height: 334px;
-
+        height: 238px;
+        width: 100%;
         background-color: #121621;
     }
 }
@@ -21,6 +232,7 @@
     display: flex;
     position: relative;
     height: 34px;
+    width: 100%;
 
     &__flipped {
         transform: scaleX(-1);
@@ -47,4 +259,89 @@
         width: 100%;
         flex: 1
     }
+}
+
+
+.mint-submit--cta {
+    position: relative;
+
+    &:active {
+        background-color: black !important;
+    }
+
+    transition: all 0.3s ease-in;
+
+
+    /* Pseudo-element for the gradient background on hover */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(88deg, rgba(255, 216, 59, 0.70) 0%, rgba(255, 105, 5, 0.70) 100%), #FC0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+        z-index: 0;
+    }
+
+    &:hover::before,
+    &:focus::before {
+        opacity: 1;
+    }
+
+    /* Bring text above the pseudo-element */
+    & span {
+        position: relative;
+        // z-index: 1;
+        /* Set a transition if you want a smooth effect */
+        transition: background 0.3s ease-in;
+    }
+
+    /* On hover or focus, reveal the gradient background behind the button */
+
+
+    /* When the button is active, remove the pseudo-element's gradient background */
+    &:active::before {
+        opacity: 0;
+    }
+
+    /* When the button is active, apply the gradient to the text */
+    &:active span {
+        background: linear-gradient(88deg, #FC0 0%, #FF9305 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        /* Makes sure the text itself appears transparent so the gradient shows */
+        -webkit-text-fill-color: transparent;
+    }
+
+    &:active svg {
+        color: #FF9305
+    }
+}
+
+.icon-small {
+    color: rgba(255, 255, 255, 0.5);
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+
+.arrow-down {
+    svg {
+        color: rgba(255, 255, 255, .5);
+        transform: rotate(90deg);
+    }
+}
+
+
+.arrow-border {
+    border-bottom: 2px dashed rgba(255, 255, 255, .5);
+    max-width: 220px;
+    width: 100%;
 }

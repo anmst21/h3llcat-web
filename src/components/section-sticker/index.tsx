@@ -1,18 +1,70 @@
 import React from "react";
 import Holes from "./holes";
-
+import {
+  ArrowSticker,
+  StickerLove,
+  StickerIphoneIcon,
+  StickerBarcode,
+  StickerInfo,
+  MenuBeta,
+  ContactsMail,
+  StickerTool,
+  StickerJap,
+  StickerEnd,
+} from "../icon";
+import StickerBtn from "./sticker-btn";
+import Image from "next/image";
 function SectionSticker() {
   return (
     <div className="section-sticker">
       <div className="section-sticker__hollow"></div>
+      <div className="section-sticker__logo">
+        <div className="section-sticker__iphone">
+          <StickerIphoneIcon />
+          <div className="section-sticker__iphone__text">
+            <h5>Display</h5>
+            <span className="section-sticker__iphone__text__sub">
+              swipe. collect. repeat.
+            </span>
+          </div>
+        </div>
+      </div>
       <Holes />
       <div className="section-sticker__reimagine">
         <h3>Reimagine How You Mint On Chain</h3>
-        <span>Swipe. Collect. Repeat. </span>
+
+        <div className="section-sticker__works__arrows">
+          <span>one swipe at a time</span>
+          <ArrowSticker />
+        </div>
       </div>
       <Holes />
       <div className="section-sticker__works">
-        <span>How it works?</span>
+        <div className="section-sticker__works__arrows">
+          <span>introduction</span> <StickerLove />
+        </div>
+        <p>
+          Welcome to Display, where on-chain minting is as intuitive as a swipe.
+          Explore curated NFT collections, mint the pieces that catch your eye,
+          and seamlessly grow your digital gallery—all in one app.
+        </p>
+        <StickerBtn type="cta" content="Join the beta" />
+      </div>
+      <Holes />
+      <div className="section-sticker__barcode">
+        <div className="section-sticker__barcode__container">
+          <StickerBarcode />
+        </div>
+        <div className="section-sticker__works__arrows">
+          <span>Design by n3xus team</span>
+          <span>xx-xx-2025</span>
+        </div>
+      </div>
+      <Holes />
+      <div className="section-sticker__works">
+        <div className="section-sticker__works__arrows">
+          <span>About Display</span> <StickerInfo />
+        </div>
         <p>
           With Display, minting on-chain has never been easier. Swipe through
           curated collections, mint what inspires you, and build your digital
@@ -20,10 +72,108 @@ function SectionSticker() {
         </p>
       </div>
       <Holes />
-      <div className="section-sticker__newsletter">
-        <h3>Never Miss a Drop: Sign Up for Display's Newsletter</h3>
+      <div className="section-sticker__gradient">
+        <div className="section-sticker__gradient__img">
+          <Image
+            alt="Gradient for sticker."
+            width={408}
+            height={137}
+            src={"/gradient-bg.png"}
+          />
+        </div>
+        <div className="section-sticker__gradient__text">
+          <h3>TINDER-INSPIRED MINTING WITH DISPLAY</h3>
+
+          <div className="section-sticker__works__arrows">
+            <span>GET STARTED</span>
+            <MenuBeta />
+          </div>
+        </div>
+      </div>
+
+      <Holes />
+      <div className="section-sticker__works">
+        <div className="section-sticker__works__video">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              scale: 0.65,
+              // zIndex: -1, // ensures content overlays the video
+            }}
+          >
+            <source src="/nexus-logo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div className="section-sticker__works__arrows">
+          <div className="arrow-down">
+            <ArrowSticker />
+            <ArrowSticker />
+            <ArrowSticker />
+          </div>
+          <button>
+            <span>
+              {"--{ "}
+              <span>NEXT</span>
+              {" }--"}
+            </span>
+          </button>
+          <div className="arrow-down">
+            <ArrowSticker />
+            <ArrowSticker />
+            <ArrowSticker />
+          </div>
+        </div>
       </div>
       <Holes />
+      <div className="section-sticker__works">
+        <div className="section-sticker__works__arrows">
+          <span>How it works?</span> <StickerTool />
+        </div>
+        <p>
+          Display simplifies on-chain minting so you can focus on collecting
+          art. Just connect a wallet, swipe through curated collections, and
+          mint the pieces you love—all in one seamless motion.
+        </p>
+      </div>
+      <Holes />
+      <div className="section-sticker__newsletter">
+        <div className="section-sticker__works__arrows">
+          <span>Stay in the loop</span>
+          <div className="icon-small">
+            <ContactsMail />
+          </div>
+        </div>
+        <h4>subscribe to our newsletter for exclusive updates and insights</h4>
+        <StickerBtn type="letter" content="Subscribe Now" />
+      </div>
+      <Holes />
+      <div className="section-sticker__works">
+        <StickerJap />
+        <div className="section-sticker__works__arrows">
+          <div className="arrow-down">
+            <ArrowSticker />
+            <ArrowSticker />
+            <ArrowSticker />
+          </div>
+          <div className="arrow-border" />
+          <div className="arrow-down">
+            <ArrowSticker />
+            <ArrowSticker />
+            <ArrowSticker />
+          </div>
+        </div>
+      </div>
+      <StickerEnd />
     </div>
   );
 }
