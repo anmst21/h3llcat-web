@@ -4,6 +4,7 @@ import SectionCollections from "@/components/section-collections";
 import SectionApp from "@/components/section-app";
 import SectionSticker from "@/components/section-sticker";
 import { LandingWelcome } from "@/components/icon";
+import SectionFeatures from "@/components/section-features";
 
 export default function Home() {
   return (
@@ -11,8 +12,9 @@ export default function Home() {
       <div className="section-display__welcome">
         <LandingWelcome />
       </div>
-      <SectionSticker />
+      {/* <SectionSticker /> */}
       <SectionDisplay />
+      <SectionFeatures />
       {/* <SectionApp /> */}
       {/*  <SectionMint />
       <SectionCollections />

@@ -74,8 +74,14 @@ import StickerJap from "./StickerJap";
 import StickerIphoneIcon from "./StickerIphoneIcon";
 import StickerBarcode from "./StickerBarcode";
 import StickerEnd from "./StickerEnd";
+import TopFeaturesHeader from "./TopFeaturesHeader";
+import FeaturesJap from "./FeaturesJap";
+import FeaturesSticker from "./FeaturesSticker";
 
 export {
+  FeaturesSticker,
+  FeaturesJap,
+  TopFeaturesHeader,
   StickerEnd,
   StickerBarcode,
   StickerIphoneIcon,

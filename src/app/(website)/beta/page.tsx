@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import SectionBeta from "@/components/section-beta";
 import { apiUri } from "@/helpers/apiUri";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Join Beta - Mint Your Spot",
@@ -16,8 +17,12 @@ export default async function Beta() {
     },
     cache: "no-cache",
   });
+  if (!response.ok) {
+    notFound();
+  }
 
   const data = (await response.json()) as string;
+
   return (
     <div className="home">
       <SectionBeta mintsNum={data} />

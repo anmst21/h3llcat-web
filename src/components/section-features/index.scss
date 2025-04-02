@@ -1,0 +1,422 @@
+.section-features {
+    background-color: black;
+    font-family: var(--font-sf-pro);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+    &__sticker {
+        display: flex;
+        position: absolute;
+        top: calc(50% - 125px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    &__jap {
+        display: flex;
+        width: 83px;
+        height: 191px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+
+        top: calc(50%);
+        transform: translateY(-50%);
+        background: linear-gradient(189deg, #0232F8 2.16%, #050915 85.14%);
+
+        &--left {
+            left: 0;
+        }
+
+        &--right {
+            right: 0;
+        }
+    }
+
+    &__grid {
+
+        &__container {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-template-rows: repeat(2, auto);
+            gap: 0;
+            width: fit-content;
+
+            margin: 180px 0;
+        }
+
+        &__item {
+            display: grid;
+            grid-template-columns: 60px 270px 60px;
+            grid-template-rows: 90px 182px 345px;
+            gap: 0;
+            grid-template-areas:
+                "a b c"
+                "d e f"
+                "g h i";
+
+
+
+
+
+            .card-circle {
+                width: 40px;
+                height: 40px;
+                border-width: 1px;
+                border-color: #888888;
+                border-radius: 1000px;
+                position: absolute;
+                border-style: solid;
+                display: none;
+            }
+
+            .top-left-corner {
+                grid-area: a;
+                position: relative;
+
+                .card-circle {
+
+                    right: -20px;
+                    bottom: -20px;
+                }
+            }
+
+            .top-mid-section {
+                grid-area: b;
+                position: relative; // Establish positioning context for pseudo-elements
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    width: 1px; // Adjust the width as needed for your border thickness
+                }
+
+                // Left border gradient
+                &::before {
+                    left: 0;
+                    background: linear-gradient(to bottom, transparent, #888888);
+                }
+
+                // Right border gradient
+                &::after {
+                    right: 0;
+                    background: linear-gradient(to bottom, transparent, #888888);
+                }
+            }
+
+            .top-right-corner {
+                grid-area: c;
+                position: relative;
+
+                .card-circle {
+
+                    left: -20px;
+                    bottom: -20px;
+                }
+            }
+
+            .mid-left-side {
+                grid-area: d;
+
+                position: relative; // Establish positioning context for pseudo-elements
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 1px; // Adjust the width as needed for your border thickness
+                }
+
+                // Left border gradient
+                &::before {
+                    top: 0;
+                    background: linear-gradient(to right, transparent, #888888);
+                }
+
+                // Right border gradient
+                &::after {
+                    bottom: 0;
+                    background: linear-gradient(to right, transparent, #888888);
+                }
+            }
+
+            .mid-center-section {
+                grid-area: e;
+                border: 1px solid #888;
+                z-index: 10;
+
+            }
+
+            .mid-right-side {
+                grid-area: f;
+
+                position: relative; // Establish positioning context for pseudo-elements
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 1px; // Adjust the width as needed for your border thickness
+                }
+
+                // Left border gradient
+                &::before {
+                    top: 0;
+                    background: linear-gradient(to left, transparent, #888888);
+                }
+
+                // Right border gradient
+                &::after {
+                    bottom: 0;
+                    background: linear-gradient(to left, transparent, #888888);
+                }
+            }
+
+            .bot-left-corner {
+                grid-area: g;
+                position: relative;
+
+                .card-circle {
+
+                    right: -20px;
+                    top: -20px;
+                }
+            }
+
+            .bot-center-section {
+                grid-area: h;
+                display: flex;
+                padding: 25px;
+                gap: 10px;
+                flex-direction: column;
+
+                position: relative; // Establish positioning context for pseudo-elements
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    height: 140px;
+                    width: 1px; // Adjust the width as needed for your border thickness
+                }
+
+                // Left border gradient
+                &::before {
+                    left: 0;
+                    background: linear-gradient(to top, transparent, #888888);
+                }
+
+                // Right border gradient
+                &::after {
+                    right: 0;
+                    background: linear-gradient(to top, transparent, #888888);
+                }
+
+
+                h3 {
+                    color: #FFF;
+
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                }
+
+                p {
+                    color: rgba(255, 255, 255, 0.75);
+
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 22px;
+                }
+            }
+
+            .bot-right-corner {
+                grid-area: i;
+                position: relative;
+
+                .card-circle {
+
+                    left: -20px;
+                    top: -20px;
+                }
+            }
+
+            &--1 {
+                .mid-center-section {
+                    background: linear-gradient(132deg, #050915 26.1%, #1D357B 100%);
+                }
+
+                .bot-center-section {
+                    &::after {
+                        height: 100%;
+                        background: #888888;
+                    }
+                }
+
+                .top-left-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+            }
+
+            &--2 {
+                .mid-center-section {
+                    background: linear-gradient(180deg, #050915 0.26%, #1D357B 99.74%);
+                }
+
+                position: relative;
+                bottom: 182px;
+
+                .top-left-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+
+                .top-right-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+            }
+
+            &--3 {
+                .mid-center-section {
+                    background: linear-gradient(228deg, #050915 26.05%, #1D357B 100%);
+                }
+
+                .bot-center-section {
+                    &::before {
+                        height: 100%;
+                        background: #888888;
+                    }
+                }
+
+                .top-right-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+            }
+
+            &--4 {
+                .mid-center-section {
+                    background: linear-gradient(64deg, #050915 9.17%, #1D357B 98.32%)
+                }
+
+                .top-mid-section {
+                    &::after {
+                        height: 100%;
+                        background: #888888;
+                    }
+                }
+
+                .bot-left-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+            }
+
+            &--5 {
+                position: relative;
+                top: 182px;
+
+                .mid-center-section {
+                    background: linear-gradient(0deg, #050915 0.26%, #1D357B 99.74%);
+                }
+
+                .bot-left-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+
+                .bot-right-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+            }
+
+            &--6 {
+
+                .mid-center-section {
+                    background: linear-gradient(296deg, #050915 19.78%, #1D357B 92.59%);
+                }
+
+                .top-mid-section {
+                    &::before {
+                        height: 100%;
+                        background: #888888;
+                    }
+                }
+
+                .bot-right-corner {
+                    .card-circle {
+                        display: flex;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    &__badge {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+
+        &__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            span {
+                color: #FFF;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 590;
+                line-height: normal;
+                font-variant: all-small-caps;
+            }
+        }
+    }
+
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 90px 120px 0 120px;
+
+        &__svg {
+            svg {
+                max-width: 1066px;
+                width: 100%;
+                height: auto;
+            }
+
+        }
+
+
+    }
+}
