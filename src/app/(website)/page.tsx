@@ -6,6 +6,7 @@ import SectionSticker from "@/components/section-sticker";
 import { LandingWelcome } from "@/components/icon";
 import SectionFeatures from "@/components/section-features";
 import SectionMockups from "@/components/section-mockups";
+import JoinCarousel from "@/components/join-carousel";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <SectionMint />
       {/* <SectionCollections /> */}
       <SectionFeatures />
+      <JoinCarousel />
       <SectionMockups />
       {/* <SectionApp /> */}
       {/*  

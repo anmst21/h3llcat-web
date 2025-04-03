@@ -83,8 +83,12 @@ import ScreenshotApp from "./ScreenshotApp";
 import ScreenshotAppStore from "./ScreenshotAppStore";
 import ScreenshotDots from "./ScreenshotDots";
 import ScreenshotLogo from "./ScreenshotLogo";
+import JoinIcon from "./JoinIcon";
+import JoinJap from "./JoinJap";
 
 export {
+  JoinIcon,
+  JoinJap,
   ScreenshotApp,
   ScreenshotDots,
   ScreenshotAppStore,

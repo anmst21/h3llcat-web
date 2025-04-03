@@ -1,0 +1,45 @@
+.join-carousel {
+
+    width: 100%;
+    border-top: 4px solid #FFF;
+    border-bottom: 4px solid #FFF;
+    padding: 20px 0px;
+    background: #000;
+    font-family: var(--font-sf-pro);
+    overflow: hidden;
+
+    &__container {
+
+        display: flex;
+        margin-left: calc(30px * -1);
+        align-items: center;
+    }
+
+
+
+    &__item {
+
+
+        margin-left: 30px;
+        display: flex;
+
+        color: #fc0;
+        gap: 10px;
+        align-items: center;
+
+
+        span {
+            color: #FFF;
+            white-space: nowrap;
+            font-size: 23px;
+            font-style: normal;
+            font-weight: 760;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+
+        &--jap {
+            color: white;
+        }
+    }
+}
