@@ -77,9 +77,21 @@ import StickerEnd from "./StickerEnd";
 import TopFeaturesHeader from "./TopFeaturesHeader";
 import FeaturesJap from "./FeaturesJap";
 import FeaturesSticker from "./FeaturesSticker";
+import CollectionZigZag from "./CollectionZigZag";
+import CollectionText from "./CollectionText";
+import ScreenshotApp from "./ScreenshotApp";
+import ScreenshotAppStore from "./ScreenshotAppStore";
+import ScreenshotDots from "./ScreenshotDots";
+import ScreenshotLogo from "./ScreenshotLogo";
 
 export {
+  ScreenshotApp,
+  ScreenshotDots,
+  ScreenshotAppStore,
+  ScreenshotLogo,
+  CollectionText,
   FeaturesSticker,
+  CollectionZigZag,
   FeaturesJap,
   TopFeaturesHeader,
   StickerEnd,

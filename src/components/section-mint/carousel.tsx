@@ -8,7 +8,7 @@ const CategoriesCarousel = () => {
   const [emblaRef] = useEmblaCarousel({ loop: true, watchDrag: false }, [
     AutoScroll({
       playOnInit: true,
-      speed: 3,
+      speed: 1,
       direction: "backward",
     }),
   ]);

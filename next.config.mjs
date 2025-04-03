@@ -11,6 +11,7 @@ const nextConfig = {
       "plus.unsplash.com",
       "images.unsplash.com",
       "d2ybmb80bbm9ts.cloudfront.net",
+      "cryptoiconsstorage.blob.core.windows.net",
     ],
   },
 };

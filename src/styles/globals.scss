@@ -74,12 +74,20 @@ html {
 }
 
 .main {
-  overflow: hidden;
+  //  overflow: hidden;
+  max-width: 1780px;
+  position: relative;
+
+
+
 }
 
 body {
   overflow-x: visible;
   height: 100dvh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 input,

@@ -5,6 +5,7 @@ import SectionApp from "@/components/section-app";
 import SectionSticker from "@/components/section-sticker";
 import { LandingWelcome } from "@/components/icon";
 import SectionFeatures from "@/components/section-features";
+import SectionMockups from "@/components/section-mockups";
 
 export default function Home() {
   return (
@@ -12,11 +13,14 @@ export default function Home() {
       <div className="section-display__welcome">
         <LandingWelcome />
       </div>
-      {/* <SectionSticker /> */}
+      <SectionSticker />
       <SectionDisplay />
+      <SectionMint />
+      {/* <SectionCollections /> */}
       <SectionFeatures />
+      <SectionMockups />
       {/* <SectionApp /> */}
-      {/*  <SectionMint />
+      {/*  
       <SectionCollections />
       */}
     </div>

@@ -14,6 +14,7 @@ import {
 } from "../icon";
 import StickerBtn from "./sticker-btn";
 import Image from "next/image";
+import VideoCarousel from "./video-carousel";
 function SectionSticker() {
   return (
     <div className="section-sticker">
@@ -92,48 +93,7 @@ function SectionSticker() {
       </div>
 
       <Holes />
-      <div className="section-sticker__works">
-        <div className="section-sticker__works__video">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              scale: 0.65,
-              // zIndex: -1, // ensures content overlays the video
-            }}
-          >
-            <source src="/nexus-logo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div className="section-sticker__works__arrows">
-          <div className="arrow-down">
-            <ArrowSticker />
-            <ArrowSticker />
-            <ArrowSticker />
-          </div>
-          <button>
-            <span>
-              {"--{ "}
-              <span>NEXT</span>
-              {" }--"}
-            </span>
-          </button>
-          <div className="arrow-down">
-            <ArrowSticker />
-            <ArrowSticker />
-            <ArrowSticker />
-          </div>
-        </div>
-      </div>
+      <VideoCarousel />
       <Holes />
       <div className="section-sticker__works">
         <div className="section-sticker__works__arrows">

@@ -21,6 +21,9 @@ type Props = {
   collectionsLength: number;
 };
 
+const repoDefault =
+  "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/compressed-assets/";
+
 const ImageCarousel = ({
   order,
   setOrder,
@@ -99,6 +102,13 @@ const ImageCarousel = ({
           const slotName =
             slot === 0 ? "top" : slot === 1 ? "middle" : "bottom";
 
+          const type = item.artUri.split(".").pop();
+          console.log("type", type);
+          const finalType = type === "png" || type === "jpeg" ? "jpg" : "mp4";
+
+          const repoUri =
+            repoDefault + `${item.contract}:${item.id}.${finalType}`;
+
           return (
             <motion.div
               initial={headerVariants.offscreen[slotName]}
@@ -116,14 +126,34 @@ const ImageCarousel = ({
                 boxShadow: "0px 2px 16px 0px rgba(0, 0, 0, 0.20)",
               }}
             >
-              <Image
-                //  placeholder="blur"
-                quality={50}
-                width={450}
-                height={450}
-                alt={item.artName}
-                src={item.artUri as string}
-              />
+              {finalType === "jpg" && (
+                <Image
+                  //  placeholder="blur"
+                  width={450}
+                  height={450}
+                  alt={item.artName || ""}
+                  src={item.artUri as string}
+                />
+              )}
+
+              {finalType === "mp4" && (
+                <video
+                  width="630"
+                  height="630"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: "450px",
+                    height: "450px",
+                    objectFit: "cover",
+                  }}
+                >
+                  <source src={repoUri} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </motion.div>
           );
         })}
@@ -132,3 +162,5 @@ const ImageCarousel = ({
 };
 
 export default ImageCarousel;
+
+//

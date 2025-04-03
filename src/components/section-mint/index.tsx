@@ -6,9 +6,9 @@ import ImageCarousel from "./image-carousel";
 import Carousel from "./carousel";
 import { motion, AnimatePresence } from "motion/react";
 import classNames from "classnames";
-import { collections } from "@/collections";
-
-const colorsAnalogous = ["#9747FF", "#4772FF", "#FF47ED"];
+import { optimizedCollections as collections } from "@/collections";
+import ZigZagCarousel from "./zig-zag-carousel";
+import TextCarousel from "./text-carousel";
 
 const SectionMint = () => {
   const [strobe, setStrobe] = useState(false);
@@ -31,54 +31,55 @@ const SectionMint = () => {
   };
 
   return (
-    <motion.div
-      id="collections"
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ amount: "some" }}
-      className="section-mint"
-      onViewportEnter={() => setStrobe(true)}
-      onViewportLeave={() => setStrobe(false)}
-    >
-      <ImageCarousel
-        collection={collection}
-        order={order}
-        setOrder={setOrder}
-        strobe={strobe}
-        setCollectionIndex={setCollectionIndex}
-        collectionIndex={collectionIndex}
-        collectionsLength={collections.length}
-      />
-      <div className="section-mint__top">
-        <Link
-          target="_blank"
-          href={topItem.rodeoUri}
-          className="section-mint__top__left"
-        >
-          <span>Creator</span>
-          <AnimatePresence mode="wait">
-            <motion.h2
-              key={topItem.name} // key changes when the value updates
-              {...textAnimationProps}
-            >
-              {topItem.name}
-            </motion.h2>
-          </AnimatePresence>
-        </Link>
-        <div className="section-mint__top__right">
-          <span>Minted</span>
-          <AnimatePresence mode="wait">
-            <motion.h3
-              key={topItem.minted} // key changes when the value updates
-              {...textAnimationProps}
-            >
-              {topItem.minted}
-            </motion.h3>
-          </AnimatePresence>
+    <div className="section-mint__container">
+      <motion.div
+        id="collections"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ amount: "some" }}
+        className="section-mint"
+        onViewportEnter={() => setStrobe(true)}
+        onViewportLeave={() => setStrobe(false)}
+      >
+        <ImageCarousel
+          collection={collection}
+          order={order}
+          setOrder={setOrder}
+          strobe={strobe}
+          setCollectionIndex={setCollectionIndex}
+          collectionIndex={collectionIndex}
+          collectionsLength={collections.length}
+        />
+        <div className="section-mint__top">
+          <Link
+            target="_blank"
+            href={topItem.rodeoUri}
+            className="section-mint__top__left"
+          >
+            <span>Creator</span>
+            <AnimatePresence mode="wait">
+              <motion.h2
+                key={topItem.name} // key changes when the value updates
+                {...textAnimationProps}
+              >
+                {topItem.name}
+              </motion.h2>
+            </AnimatePresence>
+          </Link>
+          <div className="section-mint__top__right">
+            <span>Minted</span>
+            <AnimatePresence mode="wait">
+              <motion.h3
+                key={topItem.minted} // key changes when the value updates
+                {...textAnimationProps}
+              >
+                {topItem.minted}
+              </motion.h3>
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
 
-      <motion.h1
+        {/* <motion.h1
         // Use the current order to pick a color from the analogous colors array.
         initial={{ color: colorsAnalogous[order[0]] }}
         animate={{ color: colorsAnalogous[order[0]] }}
@@ -88,14 +89,27 @@ const SectionMint = () => {
         })}
       >
         *Mint Now*
-      </motion.h1>
+      </motion.h1> */}
 
-      <Carousel />
+        {/* <Carousel /> */}
 
-      <Link className="section-mint__cta" href="/beta">
+        {/* <Link className="section-mint__cta" href="/beta">
         Go to Beta
-      </Link>
-    </motion.div>
+      </Link> */}
+      </motion.div>
+      <TextCarousel strobe={strobe && order[0] === 0} />
+      <Carousel />
+      <ZigZagCarousel />
+      <div className="section-mint__disclaimer">
+        <span>
+          All these collections come from{" "}
+          <Link href="https://rodeo.club/">rodeo.club</Link>, a Base-powered
+          photo-sharing platform where each post is minted on-chain. Display
+          simply offers a fresh way to discover, swipe, and collect—giving you a
+          different perspective on what's possible on-chain.
+        </span>
+      </div>
+    </div>
   );
 };
 

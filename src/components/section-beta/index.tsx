@@ -19,14 +19,18 @@ import anime from "animejs";
 
 createClient(options);
 
-function SectionBeta({ mintsNum }: any) {
+function SectionBeta({
+  mintsNum,
+}: {
+  mintsNum: { totalMinted: number } | undefined;
+}) {
   const { authenticated, getAccessToken, ready } = usePrivy();
 
   const [numToMint, setNumToMint] = useState(1);
 
   const [isFundsError, setIsFundsError] = useState(false);
 
-  const [timesMinted, setTimesMinted] = useState(mintsNum.totalMinted);
+  const [timesMinted, setTimesMinted] = useState(mintsNum?.totalMinted || 0);
 
   const disableLogin = !ready || (ready && authenticated);
 
