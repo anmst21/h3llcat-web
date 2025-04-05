@@ -1,11 +1,7 @@
 import classNames from "classnames";
-import {
-  TopFeaturesHeader,
-  StarCarousel,
-  FeaturesJap,
-  FeaturesSticker,
-} from "../icon";
+import { TopFeaturesHeader, StarCarousel, FeaturesJap } from "../icon";
 import { featuresCards } from "./features-cards";
+import FeaturesSticker from "./features-sticker";
 
 const SectionFeatures = () => {
   const items = ["simple", "fast", "on-chain"];
@@ -35,9 +31,7 @@ const SectionFeatures = () => {
       </div>
 
       <div className="section-features__grid__container">
-        <div className="section-features__sticker">
-          <FeaturesSticker />
-        </div>
+        <FeaturesSticker />
         {featuresCards.map((item, index) => {
           const num = index + 1;
           return (
