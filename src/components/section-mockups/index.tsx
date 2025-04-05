@@ -8,8 +8,6 @@ import {
 
 import Image from "next/image";
 
-type Props = {};
-
 const SectionMockups = () => {
   return (
     <div className="section-mockups">

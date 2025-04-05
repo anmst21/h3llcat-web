@@ -1,9 +1,7 @@
 import React from "react";
 import { SectionHole } from "../icon";
 
-type Props = {};
-
-const Holes = (props: Props) => {
+const Holes = () => {
   return (
     <div className="holes back">
       <SectionHole />

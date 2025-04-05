@@ -3,8 +3,6 @@ import { CollectionText } from "../icon";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 
-const colorsAnalogous = ["#9747FF", "#4772FF", "#FF47ED"];
-
 const TextCarousel = ({ strobe }: { strobe: boolean }) => {
   const [emblaRef] = useEmblaCarousel({ loop: true, watchDrag: false }, [
     AutoScroll({

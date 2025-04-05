@@ -1,12 +1,12 @@
 import SectionDisplay from "@/components/section-display";
 import SectionMint from "@/components/section-mint";
-import SectionCollections from "@/components/section-collections";
-import SectionApp from "@/components/section-app";
+
 import SectionSticker from "@/components/section-sticker";
 import { LandingWelcome } from "@/components/icon";
 import SectionFeatures from "@/components/section-features";
 import SectionMockups from "@/components/section-mockups";
 import JoinCarousel from "@/components/join-carousel";
+import SectionCta from "@/components/section-cta";
 
 export default function Home() {
   return (
@@ -20,6 +20,7 @@ export default function Home() {
       {/* <SectionCollections /> */}
       <SectionFeatures />
       <JoinCarousel />
+      <SectionCta />
       <SectionMockups />
       {/* <SectionApp /> */}
       {/*  

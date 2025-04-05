@@ -858,32 +858,6 @@
         "standard": "ERC-1155"
     },
     {
-        "artUri": "https://d2ybmb80bbm9ts.cloudfront.net/rodeo/8453/0xa001FbF1F457EA699043e7aC358021272FFF0984/204/QmYtiLM7b9KZNv32vgZmoeqKZ7MGj7FH4JN3iFagaBDfpj/hls/master.m3u8",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/profile_image_1491cea0-41f5-44d4-9ae3-f6059d232e55.jpeg?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0xa001FbF1F457EA699043e7aC358021272FFF0984/204",
-        "id": 204,
-        "minted": 7,
-        "name": "Coop Records",
-        "userName": "@cooprecs",
-        "userAddress": "https://basescan.org/address/0x512b55b00d744fC2eDB8474f223a7498c3e5a7ce",
-        "contract": "0xa001FbF1F457EA699043e7aC358021272FFF0984",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
-        "artUri": "https://d2ybmb80bbm9ts.cloudfront.net/rodeo/8453/0xA1808373a9bef83ff564dcEE8e8eC4873E2B40E5/5/QmZX29yuVas5CehMHwfmdQd5pq9h3jYEuuuRejiemcwkZg/hls/master.m3u8",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/kttgwzj9g.jpeg?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0xA1808373a9bef83ff564dcEE8e8eC4873E2B40E5/5",
-        "id": 5,
-        "minted": 13,
-        "name": "pylogon",
-        "userName": "@pylogon",
-        "userAddress": "https://basescan.org/address/0x4188547950B5D637A486A72d60ccf30D02f5708E",
-        "contract": "0xA1808373a9bef83ff564dcEE8e8eC4873E2B40E5",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
         "artUri": "https://f8n-production-collection-assets.imgix.net/rodeo/8453/0xE849F3ff79b790Bf4276c988E6a2750df8d6838E/55/QmZmAwkqaYa8owhtWqa7eVLSiWouWYLXPjA7LyZx9jiZwZ/nft.png",
         "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/vo9neu5y4.jpg?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
         "rodeoUri": "https://rodeo.club/post/0xE849F3ff79b790Bf4276c988E6a2750df8d6838E/55",
@@ -893,45 +867,6 @@
         "userName": "@handywarhole",
         "userAddress": "https://basescan.org/address/0x54ee9A5764D0A0A8689fa33c18f000168BfaD27F",
         "contract": "0xE849F3ff79b790Bf4276c988E6a2750df8d6838E",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
-        "artUri": "https://d2ybmb80bbm9ts.cloudfront.net/rodeo/8453/0xa001FbF1F457EA699043e7aC358021272FFF0984/225/QmeKUPMX1PXkRvLtq22xweczRARcvRcebyFpzsiXL9osGf/hls/master.m3u8",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/profile_image_1491cea0-41f5-44d4-9ae3-f6059d232e55.jpeg?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0xa001FbF1F457EA699043e7aC358021272FFF0984/225",
-        "id": 225,
-        "minted": 5,
-        "name": "Coop Records",
-        "userName": "@cooprecs",
-        "userAddress": "https://basescan.org/address/0x512b55b00d744fC2eDB8474f223a7498c3e5a7ce",
-        "contract": "0xa001FbF1F457EA699043e7aC358021272FFF0984",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
-        "artUri": "https://d2ybmb80bbm9ts.cloudfront.net/rodeo/8453/0xa001FbF1F457EA699043e7aC358021272FFF0984/223/Qmf5XqygLizSsKWg8gmgZ9JFd8G5LonpgxF4QiHKgNB8Gp/hls/master.m3u8",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/profile_image_1491cea0-41f5-44d4-9ae3-f6059d232e55.jpeg?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0xa001FbF1F457EA699043e7aC358021272FFF0984/223",
-        "id": 223,
-        "minted": 4,
-        "name": "Coop Records",
-        "userName": "@cooprecs",
-        "userAddress": "https://basescan.org/address/0x512b55b00d744fC2eDB8474f223a7498c3e5a7ce",
-        "contract": "0xa001FbF1F457EA699043e7aC358021272FFF0984",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
-        "artUri": "https://d2ybmb80bbm9ts.cloudfront.net/rodeo/8453/0xA1808373a9bef83ff564dcEE8e8eC4873E2B40E5/18/QmXc1Tbvcj8gkVC2Wq1B2FDYXn32jc7SkFqx1Wdr4n85fp/hls/master.m3u8",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/kttgwzj9g.jpeg?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0xA1808373a9bef83ff564dcEE8e8eC4873E2B40E5/18",
-        "id": 18,
-        "minted": 22,
-        "name": "pylogon",
-        "userName": "@pylogon",
-        "userAddress": "https://basescan.org/address/0x4188547950B5D637A486A72d60ccf30D02f5708E",
-        "contract": "0xA1808373a9bef83ff564dcEE8e8eC4873E2B40E5",
         "chain": "Base",
         "standard": "ERC-1155"
     },

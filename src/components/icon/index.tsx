@@ -84,10 +84,34 @@ import ScreenshotAppStore from "./ScreenshotAppStore";
 import ScreenshotDots from "./ScreenshotDots";
 import ScreenshotLogo from "./ScreenshotLogo";
 import JoinIcon from "./JoinIcon";
+import CtaJap from "./CtaJap";
 import JoinJap from "./JoinJap";
+import CtaStars from "./CtaStars";
+
+import CtaEth from "./CtaEth";
+import CtaIlluminati from "./CtaIlluminati";
+import CtaLogo from "./CtaLogo";
+import CtaTryNow from "./CtaTryNow";
+import CtaWeb from "./CtaWeb";
+import CtaNft from "./CtaNft";
+import CtaStar from "./CtaStar";
+
+import MainDiskCar from "./MainDiskCar";
+import MainDiskKiss from "./MainDiskKiss";
 
 export {
+  MainDiskCar,
+  MainDiskKiss,
+  CtaEth,
+  CtaIlluminati,
+  CtaLogo,
+  CtaTryNow,
+  CtaWeb,
+  CtaNft,
+  CtaStar,
   JoinIcon,
+  CtaStars,
+  CtaJap,
   JoinJap,
   ScreenshotApp,
   ScreenshotDots,

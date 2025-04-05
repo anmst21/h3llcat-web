@@ -5,9 +5,7 @@ import { ArrowSticker } from "../icon";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 
-type Props = {};
-
-const VideoCarousel = (props: Props) => {
+const VideoCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Fade(),
   ]);

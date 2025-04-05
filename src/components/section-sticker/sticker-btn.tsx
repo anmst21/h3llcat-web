@@ -13,9 +13,10 @@ import { useRouter } from "next/navigation";
 type Props = {
   content: string;
   type: "cta" | "letter";
+  large?: boolean;
 };
 
-const StickerBtn = ({ content, type }: Props) => {
+const StickerBtn = ({ content, type, large }: Props) => {
   const router = useRouter();
 
   const btnAnimate = {
@@ -34,6 +35,7 @@ const StickerBtn = ({ content, type }: Props) => {
       }
       className={classNames("mint-submit", {
         "mint-submit--cta": type === "cta",
+        "mint-submit--lg": large,
       })}
       variants={{
         initial: {

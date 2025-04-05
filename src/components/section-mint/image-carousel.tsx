@@ -10,6 +10,7 @@ import {
   transition,
   topRaisedVariant,
 } from "./animation";
+import { decode } from "blurhash";
 
 type Props = {
   order: number[];
@@ -23,6 +24,26 @@ type Props = {
 
 const repoDefault =
   "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/compressed-assets/";
+
+const getBlurDataURL = (blurHash: string, width = 32, height = 32): string => {
+  // Decode the blurhash string into RGBA pixel data
+  const pixels = decode(blurHash, width, height);
+
+  // Create a temporary canvas to draw the decoded pixels
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return "";
+
+  // Create an ImageData object and draw the pixels
+  const imageData = ctx.createImageData(width, height);
+  imageData.data.set(pixels);
+  ctx.putImageData(imageData, 0, 0);
+
+  // Return the canvas content as a base64-encoded data URL
+  return canvas.toDataURL();
+};
 
 const ImageCarousel = ({
   order,
@@ -108,7 +129,9 @@ const ImageCarousel = ({
 
           const repoUri =
             repoDefault + `${item.contract}:${item.id}.${finalType}`;
+          // item.blurHash
 
+          const blurhash = getBlurDataURL(item.blurHash);
           return (
             <motion.div
               initial={headerVariants.offscreen[slotName]}
@@ -129,6 +152,8 @@ const ImageCarousel = ({
               {finalType === "jpg" && (
                 <Image
                   //  placeholder="blur"
+                  blurDataURL={blurhash}
+                  placeholder="blur"
                   width={450}
                   height={450}
                   alt={item.artName || ""}
@@ -144,6 +169,7 @@ const ImageCarousel = ({
                   loop
                   muted
                   playsInline
+                  poster={blurhash}
                   style={{
                     width: "450px",
                     height: "450px",

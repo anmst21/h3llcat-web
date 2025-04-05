@@ -7,7 +7,7 @@ export default function ContactsPage() {
     <div className="blog-post-page__container blog-post-page__container--contacts">
       <div className="blog-post-page__post">
         <Image
-          src={"/contacts-picture.png"}
+          src={"/contacts.jpg"}
           alt="Contacts image"
           width={730}
           height={438}

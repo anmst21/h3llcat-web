@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 import SectionBeta from "@/components/section-beta";
-import { apiUri } from "@/helpers/apiUri";
-import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Join Beta - Mint Your Spot",

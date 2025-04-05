@@ -5,7 +5,6 @@ import Link from "next/link";
 import ImageCarousel from "./image-carousel";
 import Carousel from "./carousel";
 import { motion, AnimatePresence } from "motion/react";
-import classNames from "classnames";
 import { optimizedCollections as collections } from "@/collections";
 import ZigZagCarousel from "./zig-zag-carousel";
 import TextCarousel from "./text-carousel";

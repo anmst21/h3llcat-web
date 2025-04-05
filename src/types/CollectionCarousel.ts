@@ -11,4 +11,5 @@ export type Collection = {
   userAddress: string;
   chain: string;
   standard: string;
+  blurHash: string;
 };

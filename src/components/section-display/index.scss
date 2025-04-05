@@ -7,8 +7,7 @@
     align-items: flex-end;
     background-color: #000;
     position: relative;
-    border-left: 4px solid #FFF;
-    border-right: 4px solid #FFF;
+
 
     &__bottom {
         border-top: 4px solid #FFF;
@@ -47,6 +46,7 @@
 
     &__center {
         display: flex;
+        width: 100%;
     }
 
     &__welcome {
@@ -212,5 +212,83 @@
 
     100% {
         background-position: 200% 0;
+    }
+}
+
+
+
+
+.disk-section {
+    display: flex;
+    width: 650px;
+    position: relative;
+    overflow: hidden;
+
+
+    &__radio {
+        transform: rotate(-14.294deg);
+        position: absolute;
+        top: 220px;
+        // left: -25px;
+
+
+        &__eq {
+            position: absolute;
+            top: 80px;
+            right: 34px;
+            width: 127px;
+            height: 119px;
+            background-color: red;
+        }
+    }
+
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
+        pointer-events: none;
+        //    z-index: 1000;
+        opacity: 0.5;
+
+    }
+
+    &__kiss {
+        position: absolute;
+        left: -180px;
+        animation: rotateKiss 80s linear infinite;
+    }
+
+    &__car {
+        position: absolute;
+        bottom: -400px;
+        left: -150px;
+        animation: rotateCar 45s linear infinite;
+    }
+}
+
+
+@keyframes rotateKiss {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateCar {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+        /* Opposite direction */
     }
 }

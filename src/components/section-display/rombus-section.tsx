@@ -11,6 +11,8 @@ type Props = {
   colIndex: number;
 };
 
+const uriDefault =
+  "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/compressed-main/";
 function RombusSection({ array, colIndex }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [emblaRef] = useEmblaCarousel(
@@ -81,15 +83,17 @@ function RombusSection({ array, colIndex }: Props) {
                   fill
                   style={{ objectFit: "cover" }}
                 />
-              ) : // <Image
-              //   onLoad={() => setLoaded(true)}
-              //   // onError={() => setLoaded(false)}
-              //   src={item.artUri}
-              //   alt={item.artName || item.name || "Artwork"}
-              //   fill
-              //   style={{ objectFit: "cover" }}
-              // />
-              undefined}
+              ) : (
+                <Image
+                  onLoad={() => setLoaded(true)}
+                  unoptimized
+                  // onError={() => setLoaded(false)}
+                  src={uriDefault + `${item.contract}_${item.id}.jpg`}
+                  alt={item.artName || item.name || "Artwork"}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              )}
             </div>
           );
         })}

@@ -5,7 +5,8 @@ import posts from "../../../100.json";
 import { Collection } from "@/types/CollectionCarousel";
 import RombusSection from "./rombus-section";
 import {
-  LandingWelcome,
+  MainDiskCar,
+  MainDiskKiss,
   StarCarousel,
   NexusJap,
   SideJap,
@@ -13,6 +14,8 @@ import {
 } from "../icon";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
+import Image from "next/image";
+import Equalizer from "./equalizer";
 
 const SectionDisplay = () => {
   console.log("l", posts.length);
@@ -50,6 +53,23 @@ const SectionDisplay = () => {
       </div>
 
       <div className="section-display__center">
+        <div className="disk-section">
+          <div className="disk-section__kiss">
+            <MainDiskKiss />
+          </div>
+          <div className="disk-section__radio">
+            <Image
+              alt="Wakkie talkie radio"
+              width={360}
+              height={650}
+              src={"/section-main/walkie-talkie.png"}
+            />
+            <Equalizer />
+          </div>
+          <div className="disk-section__car">
+            <MainDiskCar />
+          </div>
+        </div>
         <div className="rombus-section">
           {chunkArray.map((chunk, index) => {
             return (
