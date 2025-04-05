@@ -1,7 +1,8 @@
 .section-mockups {
     padding: 60px 60px 20px 60px;
-    background-color: #050915;
+    background-color: #0a0a0a;
     width: 100%;
+    display: flex;
 
     &__screenshots {
         width: 100%;
@@ -20,7 +21,7 @@
 
     &__container {
         overflow: hidden;
-
+        width: 100%;
         gap: 50px;
         display: flex;
         height: 690px;

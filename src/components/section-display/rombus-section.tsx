@@ -12,7 +12,7 @@ type Props = {
 };
 
 const uriDefault =
-  "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/compressed-main/";
+  "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/x5/";
 function RombusSection({ array, colIndex }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [emblaRef] = useEmblaCarousel(
@@ -20,7 +20,7 @@ function RombusSection({ array, colIndex }: Props) {
     [
       AutoScroll({
         playOnInit: true,
-        speed: 0.4,
+        speed: 0.2,
         direction: colIndex % 2 === 0 ? "backward" : "forward",
       }),
     ]
@@ -91,6 +91,7 @@ function RombusSection({ array, colIndex }: Props) {
                   src={uriDefault + `${item.contract}_${item.id}.jpg`}
                   alt={item.artName || item.name || "Artwork"}
                   fill
+                  className={`${item.contract}_${item.id}`}
                   style={{ objectFit: "cover" }}
                 />
               )}

@@ -39,19 +39,6 @@
         "standard": "ERC-1155"
     },
     {
-        "artUri:": "https://f8n-production-collection-assets.imgix.net/rodeo/8453/0x5c85fd31Bb528c881562C36198a4C549B17EEf87/28029/QmPBnQDUCV1jk4xE7xNgujYf4mdGVuzMTZXJmUcmsKynVd/nft.jpeg?auto=format%2Ccompress&q=70&cs=srgb&w=1480&dpr=2&contentHash=ipfs%3A%2F%2FQmPBnQDUCV1jk4xE7xNgujYf4mdGVuzMTZXJmUcmsKynVd&fnd_key=v1",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/hebex5a3l.jpeg?q=90&cs=srgb&w=29&dpr=2&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0x5c85fd31Bb528c881562C36198a4C549B17EEf87/28029",
-        "id": 28029,
-        "minted": 8,
-        "contract": "0x5c85fd31Bb528c881562C36198a4C549B17EEf87",
-        "name": "natcat",
-        "userName": "@natcat",
-        "userAddress": "0x91a172fc21f9b6c293E211f046CE014561B0B531",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
         "artUri": "https://f8n-production-collection-assets.imgix.net/rodeo/8453/0x77A3335122d938A5F5c1f642Ba2CAcf2656840B3/233/QmdUft8NJwKLc3Zcdo7BVK6u4hyg8wrZS4NWQMaDWbPBUQ/nft.png",
         "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/w21fc2v2c.png?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
         "rodeoUri": "https://rodeo.club/post/0x77A3335122d938A5F5c1f642Ba2CAcf2656840B3/233",
@@ -282,19 +269,6 @@
         "userName": "@lucrezia",
         "userAddress": "https://basescan.org/address/0x0857E44e0df0187117fDc797fAeb33C131419a10",
         "contract": "0xBFC01285654A643c7cDEd7051756F7543EF02108",
-        "chain": "Base",
-        "standard": "ERC-1155"
-    },
-    {
-        "artUri": "https://f8n-production-collection-assets.imgix.net/rodeo/8453/0x1295038Ff0Fe1bf57B86aa89de98f59478f52B16/231/QmZQ6QRfX3oJd1VNhfz8wHZejpjKgzFPF7816DLBg8xT8m/nft.png",
-        "userProfileUri": "https://f8n-production.imgix.net/rodeo/profiles/3ytbl87wm.png?q=90&cs=srgb&w=116&dpr=1&fm=jpg&fnd_key=v1",
-        "rodeoUri": "https://rodeo.club/post/0x1295038Ff0Fe1bf57B86aa89de98f59478f52B16/231",
-        "id": 231,
-        "minted": 2,
-        "name": "ΞMФJI",
-        "userName": "@em0ji",
-        "userAddress": "https://basescan.org/address/0xB2F2914b1c56E45060f2F1D8889719326fD20476",
-        "contract": "0x1295038Ff0Fe1bf57B86aa89de98f59478f52B16",
         "chain": "Base",
         "standard": "ERC-1155"
     },

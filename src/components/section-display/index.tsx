@@ -20,7 +20,7 @@ import Equalizer from "./equalizer";
 const SectionDisplay = () => {
   console.log("l", posts.length);
   const chunkArray = useMemo(() => {
-    const chunkSize = 10;
+    const chunkSize = 9;
     const result = [];
     for (let i = 0; i < posts.length; i += chunkSize) {
       result.push(posts.slice(i, i + chunkSize));

@@ -34,9 +34,18 @@
             margin-bottom: 20px;
         }
 
+        code {
+            /* Break lines even in the middle of long words */
+            word-break: break-all;
+            /* Alternatively or additionally, ensure proper wrapping */
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
         .rich-text {
             display: flex;
             flex-direction: column;
+            max-width: 100%;
 
             a {
                 color: var(--accent);
@@ -162,9 +171,11 @@
             font-weight: 540;
             line-height: 66px;
 
+
             @include media-sm {
-                font-size: 42px;
-                line-height: 46px;
+                max-width: 90%;
+                font-size: 40px;
+                line-height: 36px;
             }
         }
     }

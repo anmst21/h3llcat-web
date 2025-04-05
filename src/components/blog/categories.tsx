@@ -64,7 +64,7 @@ const Categories = ({ list }: Props) => {
           //  style={{ position: "relative", overflow: "hidden" }}
         >
           {/* The animated background indicator */}
-          {!activeCategory ? (
+          {!activeCategory && pathname.includes("/blog") ? (
             <motion.div layoutId="underline" className="underline" />
           ) : null}
           <span>Main</span>

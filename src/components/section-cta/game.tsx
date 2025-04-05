@@ -10,8 +10,8 @@ const Game = () => {
       <Lottie
         style={{
           display: "flex",
-          width: 146,
-          height: 113,
+          width: 139,
+          height: 120,
         }}
         animationData={animationGame}
         loop
