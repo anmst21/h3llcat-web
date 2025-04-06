@@ -61,7 +61,7 @@ const Categories = ({ list }: Props) => {
       </Link>
       <div className="category__container__scroll">
         <motion.div className="category__container">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="sync">
             <motion.button
               className="blog-post-page__categories__status"
               key={buttonText} // Changing key triggers the animation
