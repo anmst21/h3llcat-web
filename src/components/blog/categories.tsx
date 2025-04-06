@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import { Category } from "@/types/Blogpost";
 import classNames from "classnames";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { dynamicMintProps } from "../button/animation";
 import { StickerIphoneIcon } from "../icon";
 import Link from "next/link";
