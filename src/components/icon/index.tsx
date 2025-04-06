@@ -99,8 +99,10 @@ import CtaStar from "./CtaStar";
 import MainDiskCar from "./MainDiskCar";
 import MainDiskKiss from "./MainDiskKiss";
 import WalletBeta from "./WalletBeta";
+import LogoFooter from "./LogoFooter";
 
 export {
+  LogoFooter,
   WalletBeta,
   MainDiskCar,
   MainDiskKiss,

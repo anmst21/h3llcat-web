@@ -2,7 +2,12 @@ import React from "react";
 import DottedLink from "./dotted-link";
 import Link from "next/link";
 import Image from "next/image";
-import { FooterFarcaster, FooterX, FooterLinkedIn } from "@/components/icon";
+import {
+  FooterFarcaster,
+  FooterX,
+  FooterLinkedIn,
+  LogoFooter,
+} from "@/components/icon";
 import FooterForm from "./footer-form";
 
 import {
@@ -21,10 +26,14 @@ const Footer = async () => {
     <div id="footer" className="footer">
       <div className="footer__container">
         <div className="footer__app">
-          <div className="footer__app__domain">
+          {/* <div className="footer__app__domain">
             <h4>Display</h4>
             <h4>.app</h4>
-          </div>
+          </div> */}
+
+          <Link href={"/"} className="footer__app__logo">
+            <LogoFooter />
+          </Link>
           <div className="footer__app__links">
             <DottedLink href="/" index={1} label="Home" />
             <DottedLink href="/beta" index={3} label="Beta" />
