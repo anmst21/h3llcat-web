@@ -61,16 +61,15 @@ const Categories = ({ list }: Props) => {
       </Link>
       <div className="category__container__scroll">
         <motion.div className="category__container">
-          <AnimatePresence mode="sync">
-            <motion.button
-              className="blog-post-page__categories__status"
-              key={buttonText} // Changing key triggers the animation
-              {...dynamicMintProps}
-              onClick={() => router.push(href)}
-            >
-              {buttonText}
-            </motion.button>
-          </AnimatePresence>
+          <motion.button
+            className="blog-post-page__categories__status"
+            key={buttonText} // Changing key triggers the animation
+            {...dynamicMintProps}
+            onClick={() => router.push(href)}
+          >
+            {buttonText}
+          </motion.button>
+
           <div className="divider" />
           <button
             key={"mail"}
