@@ -4,8 +4,10 @@ import React, { useCallback } from "react";
 import { Category } from "@/types/Blogpost";
 import classNames from "classnames";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { dynamicMintProps } from "../button/animation";
+import { StickerIphoneIcon } from "../icon";
+import Link from "next/link";
 
 type Props = {
   list: Category[];
@@ -45,55 +47,74 @@ const Categories = ({ list }: Props) => {
 
   return (
     <div className="blog-post-page__categories">
-      <motion.button
-        key={buttonText} // Changing key triggers the animation
-        {...dynamicMintProps}
-        onClick={() => router.push(href)}
+      <Link
+        href={"/"}
+        className="section-sticker__iphone section-beta__header__logo"
       >
-        {buttonText}
-      </motion.button>
-
-      <div className="category__container">
-        <button
-          key={"mail"}
-          className={classNames("category", {
-            "active-category": !activeCategory && pathname.includes("/blog"),
-          })}
-          onClick={() => router.push("/blog")}
-          // Ensure the button can contain the absolutely positioned background
-          //  style={{ position: "relative", overflow: "hidden" }}
-        >
-          {/* The animated background indicator */}
-          {!activeCategory && pathname.includes("/blog") ? (
-            <motion.div layoutId="underline" className="underline" />
-          ) : null}
-          <span>Main</span>
-        </button>
-        {list.map((category) => {
-          const isActive = activeCategory === category.slug;
-          return (
-            <button
-              key={category._id}
-              className={classNames("category", {
-                "active-category": isActive,
-              })}
-              onClick={() => {
-                const newPath =
-                  "/blog" + "?" + createQueryString("category", category.slug);
-                router.push(newPath);
-                router.refresh();
-              }}
-              // Ensure the button can contain the absolutely positioned background
-              //  style={{ position: "relative", overflow: "hidden" }}
+        <StickerIphoneIcon />
+        <div className="section-sticker__iphone__text">
+          <h5>Display</h5>
+          <span className="section-sticker__iphone__text__sub">
+            swipe. collect. repeat.
+          </span>
+        </div>
+      </Link>
+      <div className="category__container__scroll">
+        <motion.div className="category__container">
+          <AnimatePresence mode="popLayout">
+            <motion.button
+              className="blog-post-page__categories__status"
+              key={buttonText} // Changing key triggers the animation
+              {...dynamicMintProps}
+              onClick={() => router.push(href)}
             >
-              {/* The animated background indicator */}
-              {isActive ? (
-                <motion.div layoutId="underline" className="underline" />
-              ) : null}
-              <span>{category.title}</span>
-            </button>
-          );
-        })}
+              {buttonText}
+            </motion.button>
+          </AnimatePresence>
+          <div className="divider" />
+          <button
+            key={"mail"}
+            className={classNames("category", {
+              "active-category": !activeCategory && pathname.includes("/blog"),
+            })}
+            onClick={() => router.push("/blog")}
+            // Ensure the button can contain the absolutely positioned background
+            //  style={{ position: "relative", overflow: "hidden" }}
+          >
+            {/* The animated background indicator */}
+            {!activeCategory && pathname.includes("/blog") ? (
+              <motion.div layoutId="underline" className="underline" />
+            ) : null}
+            <span>Main</span>
+          </button>
+          {list.map((category) => {
+            const isActive = activeCategory === category.slug;
+            return (
+              <button
+                key={category._id}
+                className={classNames("category", {
+                  "active-category": isActive,
+                })}
+                onClick={() => {
+                  const newPath =
+                    "/blog" +
+                    "?" +
+                    createQueryString("category", category.slug);
+                  router.push(newPath);
+                  router.refresh();
+                }}
+                // Ensure the button can contain the absolutely positioned background
+                //  style={{ position: "relative", overflow: "hidden" }}
+              >
+                {/* The animated background indicator */}
+                {isActive ? (
+                  <motion.div layoutId="underline" className="underline" />
+                ) : null}
+                <span>{category.title}</span>
+              </button>
+            );
+          })}
+        </motion.div>
       </div>
     </div>
   );

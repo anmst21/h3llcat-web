@@ -104,12 +104,54 @@
     }
 }
 
+
+.blog-post-page__categories {
+    display: flex;
+    justify-content: space-between;
+}
+
 .category {
 
     &__container {
         gap: 5px;
         display: flex;
         align-items: center;
+
+        //   overflow-x: scroll;
+
+
+        &__scroll {
+            overflow-x: scroll;
+
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+            display: flex;
+
+            @include media-sm {
+                width: 100%;
+
+                .divider {
+                    display: flex !important;
+                }
+            }
+        }
+
+        &__scroll::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        .divider {
+            background-color: rgba(255, 248, 231, 0.60);
+            width: 1px;
+            height: 26px;
+            margin-right: 5px;
+            margin-left: 15px;
+
+
+        }
 
     }
 

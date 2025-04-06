@@ -98,8 +98,10 @@ import CtaStar from "./CtaStar";
 
 import MainDiskCar from "./MainDiskCar";
 import MainDiskKiss from "./MainDiskKiss";
+import WalletBeta from "./WalletBeta";
 
 export {
+  WalletBeta,
   MainDiskCar,
   MainDiskKiss,
   CtaEth,

@@ -125,8 +125,94 @@
     //  justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    min-height: 100dvh;
+
+    font-family: var(--font-sf-pro);
+
+    &__header {
+        display: flex;
+        padding: 10px;
+        border-radius: 10px;
+        background: #1F222C;
+        width: 100%;
+        max-width: 1100px;
+        align-items: center;
+
+
+
+        &__wallet {
+            display: flex;
+            padding: 0 10px;
+            gap: 10px;
+            align-items: center;
+
+            .white {
+                color: rgba(255, 255, 255, 0.60);
+            }
+
+
+
+            span {
+                color: #FFF;
+
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 510;
+                line-height: 20px;
+
+
+            }
+
+            .divider {
+                height: 26px;
+                width: 1px;
+                background-color: rgba(255, 255, 255, 0.60);
+
+
+            }
+
+            @include media-sm {
+
+                .white,
+                .divider {
+                    display: none;
+                }
+            }
+        }
+
+        &__logo {
+            margin-right: auto;
+            gap: 0;
+            width: fit-content;
+
+            .section-sticker__iphone__text {
+
+
+                h5 {
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 590;
+                    line-height: normal;
+                    letter-spacing: 0.4px;
+                }
+
+                span {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 510;
+                    line-height: normal;
+                    font-variant: all-small-caps;
+                    letter-spacing: -0.43px;
+                }
+            }
+
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+
+
 
     &__top {
         height: 200px;
@@ -396,11 +482,13 @@
 
 .section-beta {
     display: flex;
-    padding: 86px 60px;
+    padding: 60px 75px;
+    padding-bottom: 60px;
 
     @include media-sm {
         padding: 30px 15px 120px 15px;
         gap: 10px;
+        padding-top: 15px;
     }
 
     // align-items: center;

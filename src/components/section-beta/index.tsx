@@ -11,11 +11,21 @@ import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
 import DynamicActionButton from "./dynamic-action-button";
-import { MenuBeta, BetaDescription } from "../icon";
+import {
+  MenuBeta,
+  BetaDescription,
+  WalletBeta,
+  StickerIphoneIcon,
+} from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
 import anime from "animejs";
+import { useBalanceContext } from "@/context/BalanceProvider";
+import { dynamicButtonProps } from "../button/animation";
+import { truncateEthAddress } from "@/helpers/truncateAddress";
+import Link from "next/link";
+import { useMenu } from "@/context/MenuProvider";
 
 createClient(options);
 
@@ -24,7 +34,7 @@ function SectionBeta({
 }: {
   mintsNum: { totalMinted: number } | undefined;
 }) {
-  const { authenticated, getAccessToken, ready } = usePrivy();
+  const { authenticated, getAccessToken, ready, user } = usePrivy();
 
   const [numToMint, setNumToMint] = useState(1);
 
@@ -145,8 +155,44 @@ function SectionBeta({
   //   isMinted: false,
 
   console.log("user data", userData);
+
+  const { isLoadingBalance, formattedUserBalance } = useBalanceContext();
+  const { setIsOpenMenu } = useMenu();
+
+  const openMenuCallback = useCallback(() => setIsOpenMenu(true), []);
   return (
     <div className="section-beta">
+      <div className="section-beta__header">
+        <Link
+          href={"/"}
+          className="section-sticker__iphone section-beta__header__logo"
+        >
+          <StickerIphoneIcon />
+          <div className="section-sticker__iphone__text">
+            <h5>Display</h5>
+            <span className="section-sticker__iphone__text__sub">
+              swipe. collect. repeat.
+            </span>
+          </div>
+        </Link>
+        <AnimatePresence mode="wait">
+          {!isLoadingBalance && user?.wallet?.address && (
+            <motion.button
+              onClick={openMenuCallback}
+              key={"wallet"}
+              {...dynamicButtonProps}
+              className="section-beta__header__wallet"
+            >
+              <WalletBeta />
+              <span>{formattedUserBalance} ETH</span>
+              <div className="divider" />
+              <span className="white">
+                {truncateEthAddress(user?.wallet?.address)}
+              </span>
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </div>
       <div className="section-beta__top">
         <div className="wallet-item">
           <div className="wallet-item__user">
