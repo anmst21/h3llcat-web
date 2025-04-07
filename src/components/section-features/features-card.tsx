@@ -15,7 +15,6 @@ import {
   useSpring,
   animate,
 } from "framer-motion";
-import { minInt104 } from "viem";
 
 type Props = {
   item: {
