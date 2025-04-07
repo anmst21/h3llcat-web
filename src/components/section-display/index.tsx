@@ -11,6 +11,7 @@ import {
   NexusJap,
   SideJap,
   DisplayJap,
+  RadioKnob,
 } from "../icon";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -65,6 +66,9 @@ const SectionDisplay = () => {
               src={"/section-main/walkie-talkie.png"}
             />
             <Equalizer />
+            <div className="disk-section__radio__knob">
+              <RadioKnob />
+            </div>
           </div>
           <div className="disk-section__car">
             <MainDiskCar />

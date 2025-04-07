@@ -1,10 +1,49 @@
-import classNames from "classnames";
+"use client";
+
 import { TopFeaturesHeader, StarCarousel, FeaturesJap } from "../icon";
 import { featuresCards } from "./features-cards";
 import FeaturesSticker from "./features-sticker";
 
+import FeaturesCard from "./features-card";
+import { useEffect, useRef, useState } from "react";
+
 const SectionFeatures = () => {
   const items = ["simple", "fast", "on-chain"];
+
+  const [autoIndex, setAutoIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const currentActiveIndex = hoveredIndex !== null ? hoveredIndex : autoIndex;
+
+  // Use this ref to detect the initial mount
+  const initialMountRef = useRef(true);
+
+  useEffect(() => {
+    let autoInterval: ReturnType<typeof setInterval> | null = null;
+    let autoTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    if (hoveredIndex === null) {
+      if (initialMountRef.current) {
+        // On initial mount, start auto-play immediately.
+        autoInterval = setInterval(() => {
+          setAutoIndex((prev) => (prev + 1) % featuresCards.length);
+        }, 6000);
+        initialMountRef.current = false;
+      } else {
+        // After hover ends, wait 2s before resuming auto-play.
+        autoTimeout = setTimeout(() => {
+          autoInterval = setInterval(() => {
+            setAutoIndex((prev) => (prev + 1) % featuresCards.length);
+          }, 6000);
+        }, 2000);
+      }
+    }
+
+    return () => {
+      if (autoTimeout) clearTimeout(autoTimeout);
+      if (autoInterval) clearInterval(autoInterval);
+    };
+  }, [hoveredIndex]);
+
   return (
     <div className="section-features">
       <div className="section-features__header">
@@ -32,45 +71,15 @@ const SectionFeatures = () => {
 
       <div className="section-features__grid__container">
         <FeaturesSticker />
-        {featuresCards.map((item, index) => {
-          const num = index + 1;
-          return (
-            <div
-              key={index}
-              className={classNames("section-features__grid__item", {
-                "section-features__grid__item--1": num === 1,
-                "section-features__grid__item--2": num === 2,
-                "section-features__grid__item--3": num === 3,
-                "section-features__grid__item--4": num === 4,
-                "section-features__grid__item--5": num === 5,
-                "section-features__grid__item--6": num === 6,
-              })}
-            >
-              <div className="top-left-corner">
-                <div className="card-circle" />
-              </div>
-              <div className="top-mid-section"></div>
-              <div className="top-right-corner">
-                <div className="card-circle" />
-              </div>
-
-              <div className="mid-left-side"></div>
-              <div className="mid-center-section"></div>
-              <div className="mid-right-side"></div>
-
-              <div className="bot-left-corner">
-                <div className="card-circle" />
-              </div>
-              <div className="bot-center-section">
-                <h4>{item.header}</h4>
-                <p>{item.paragraph}</p>
-              </div>
-              <div className="bot-right-corner">
-                <div className="card-circle" />
-              </div>
-            </div>
-          );
-        })}
+        {featuresCards.map((item, index) => (
+          <FeaturesCard
+            key={index}
+            item={item}
+            index={index}
+            activeItemIndex={currentActiveIndex}
+            setActiveItemIndex={setHoveredIndex}
+          />
+        ))}
       </div>
     </div>
   );

@@ -101,7 +101,10 @@ import MainDiskKiss from "./MainDiskKiss";
 import WalletBeta from "./WalletBeta";
 import LogoFooter from "./LogoFooter";
 
+import RadioKnob from "./RadioKnob";
+
 export {
+  RadioKnob,
   LogoFooter,
   WalletBeta,
   MainDiskCar,

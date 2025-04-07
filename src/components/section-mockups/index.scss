@@ -4,18 +4,23 @@
     width: 100%;
     display: flex;
 
+    @include media-xl {
+        margin-top: 200px;
+    }
+
     &__screenshots {
         width: 100%;
         display: flex;
         height: fit-content;
         gap: 20px;
-        justify-content: space-around;
+        justify-content: space-between;
         padding: 0 40px;
         margin-top: 30px;
 
         img {
             width: 100%;
             height: auto;
+            min-width: 0;
         }
     }
 

@@ -10,11 +10,22 @@
     justify-content: center;
     flex-direction: row;
 
+    @include media-xl {
+        height: 1136px;
+        padding-top: 120px;
+    }
 
     &__container {
         display: flex;
         align-items: center;
         width: 100%;
+        position: relative;
+
+        @include media-xl {
+            justify-content: center;
+            margin-top: 230px;
+
+        }
     }
 
     &__artwork {
@@ -22,19 +33,41 @@
         height: 943px;
         position: relative;
 
+
+        @include media-xl {
+            max-width: 540px;
+            height: 639px;
+        }
+
         // border: 1px solid red;
         .cta-star-1 {
             position: absolute;
             left: 120px;
             top: 220px;
             transform: rotate(-6.927deg);
+
+            @include media-xl {
+                left: 580px;
+                top: -230px;
+                transform: rotate(22.988deg);
+                width: 48px;
+                height: 112.596px;
+            }
         }
 
         .cta-star-2 {
             position: absolute;
-            top: 53px;
-            left: 660px;
-            transform: rotate(-4.927deg);
+            top: 20px;
+            left: 670px;
+            transform: rotate(8.927deg);
+            height: 60.896px;
+
+            @include media-xl {
+                left: 600px;
+                top: -165px;
+                height: 60.896px;
+                transform: rotate(42.561deg);
+            }
         }
 
         .cta-star-3 {
@@ -42,6 +75,18 @@
             left: 167px;
             top: 315px;
             transform: rotate(-4.927deg);
+
+            @include media-xl {
+                width: 48px;
+                height: 112.596px;
+                transform: rotate(-15.427deg);
+                color: #FFF !important;
+                stroke-width: 1.048px;
+                stroke: #FFF;
+
+                left: -165px;
+                top: -90px;
+            }
         }
 
         .cta-star-4 {
@@ -49,6 +94,15 @@
             left: 250px;
             top: 800px;
             transform: rotate(-6.927deg);
+
+
+            @include media-xl {
+                width: 30.162px;
+                height: 70.065px;
+                left: -100px;
+                top: -250px;
+                transform: rotate(-12.927deg);
+            }
         }
 
         .cta-star-5 {
@@ -56,6 +110,16 @@
             left: 265px;
             top: 780px;
             transform: rotate(2.927deg);
+
+            @include media-xl {
+                width: 27.478px;
+                height: 60.896px;
+
+                left: -130px;
+                top: 500px;
+
+                transform: rotate(-12deg);
+            }
         }
 
         .cta-star-6 {
@@ -63,6 +127,16 @@
             left: 800px;
             top: 320px;
             transform: rotate(5.927deg);
+
+            @include media-xl {
+                width: 48px;
+                height: 112.596px;
+
+                left: -120px;
+                top: 420px;
+                z-index: 3;
+                transform: rotate(-6deg);
+            }
         }
 
         .cta-star-7 {
@@ -70,6 +144,27 @@
             left: 780px;
             top: 800px;
             transform: rotate(12.927deg);
+
+            @include media-xl {
+                width: 28.126px;
+                height: 65.978px;
+                transform: rotate(23.411deg);
+
+                left: 610px;
+                top: 700px;
+            }
+        }
+
+        .cta-star-8 {
+            position: absolute;
+            left: 400px;
+            top: 720px;
+            display: none;
+            transform: rotate(13.413deg);
+
+            @include media-xl {
+                display: flex;
+            }
         }
 
         .cta-game-boy {
@@ -87,9 +182,24 @@
                 left: 40px;
                 //height: auto;
                 top: 290px;
+
+                @include media-xl {
+                    z-index: 2;
+                    top: 180px;
+                    left: -260px;
+                }
             }
 
+
+
             transform: rotate(-26.036deg);
+
+            @include media-xl {
+                transform: rotate(-25.437deg);
+                top: 0;
+                left: 0;
+            }
+
             width: fit-content;
             display: flex;
             top:135px;
@@ -118,7 +228,21 @@
                 left: 170px;
                 top: 58px;
                 position: absolute;
+
+                @include media-xl {
+                    left: 210px;
+                    top: -140px;
+                    width: fit-content;
+                    z-index: 5;
+                }
             }
+
+            @include media-xl {
+                width: 452.885px;
+                height: 205.569px;
+                transform: rotate(10.048deg);
+            }
+
 
             //top:55px;
             position: relative;
@@ -133,22 +257,51 @@
                 position: absolute;
                 left: 203px;
                 top: 343px;
+
+                @include media-xl {
+                    left: -200px;
+                    top: -160px;
+                    z-index: 2;
+                }
             }
 
             left:50px;
+
+
+
             position: relative;
             transform-origin: top left;
             transform: rotate(12.69deg);
+
+            @include media-xl {
+                left: 0;
+                width: 411.071px;
+                height: 316.189px;
+                transform: rotate(-15.998deg);
+            }
         }
 
         .cta-nft {
             &__wrapper {
                 position: absolute;
+
                 left: 671px;
                 top: 342px;
+
+                @include media-xl {
+                    left: 452px;
+
+                    top: 10px;
+                }
             }
 
             transform: rotate(-14.432deg);
+
+            @include media-xl {
+                width: 207.163px;
+                height: 207.163px;
+                transform: rotate(-14.432deg);
+            }
         }
 
         .cta-illuminati {
@@ -159,9 +312,35 @@
 
                 top: 347px;
                 left: 457px;
+
+                @include media-xl {
+                    z-index: 2;
+                    left: 110px;
+                    top: 555px;
+
+                }
+            }
+
+            @include media-xl {
+                width: 277.028px;
+                height: 277.028px;
+                transform: rotate(-13.069deg);
             }
 
             transform: rotate(-8.997deg);
+        }
+
+
+        .cta-computer {
+            display: none;
+            position: absolute;
+            top: 370px;
+            left: 400px;
+            transform: rotate(17.319deg);
+
+            @include media-xl {
+                display: flex;
+            }
         }
 
 
@@ -170,11 +349,26 @@
                 position: absolute;
                 top: 469px;
                 left: 486px;
+
+                @include media-xl {
+                    z-index: 2;
+                    top: 95px;
+                    left: 455px;
+                }
             }
 
             position: relative;
             left: 60px;
             bottom: 5px;
+
+            @include media-xl {
+                left: 0;
+                bottom: 0;
+                width: 265px;
+                height: 421px;
+                transform: rotate(31.099deg);
+            }
+
             transform: rotate(36.97deg);
 
         }
@@ -184,11 +378,26 @@
                 position: absolute;
                 left: 290px;
                 top: 515px;
+
+                @include media-xl {
+
+                    left: -180px;
+                    top: 520px;
+                }
             }
 
             transform: rotate(-13.096deg);
             top:60px;
             left: -5px;
+
+            @include media-xl {
+                top: 0;
+                left: 0;
+                width: 269px;
+                height: 269px;
+                transform: rotate(-13.096deg);
+            }
+
             position: relative;
             transform-origin: top left;
 
@@ -207,6 +416,28 @@
 
         max-width: 440px;
         margin: 0 60px;
+        position: relative;
+
+        @include media-xl {
+            position: absolute;
+
+            z-index: 3;
+            border-radius: 25px;
+            border: 1px solid #888;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(0deg, rgba(14, 21, 38, 0.68) 0%, rgba(14, 21, 38, 0.68) 100%),
+                rgba(255, 255, 255, 0.10);
+            background-blend-mode: overlay, normal, overlay;
+            backdrop-filter: blur(20px);
+            margin: 0;
+            gap: 20px;
+            max-width: 510px;
+            padding: 35px;
+            padding-top: 25px;
+            width: 100%;
+
+        }
 
         p {
             color: rgba(255, 255, 255, 0.90);
@@ -248,6 +479,11 @@
         justify-content: center;
         background: linear-gradient(180deg, rgba(136, 136, 136, 0.20) 0%, rgba(255, 204, 0, 0.20) 100%);
         display: flex;
+        z-index: 50;
+
+        @include media-xl {
+            top: calc(50% + 200px);
+        }
 
         &--left {
             left: 0;
@@ -266,6 +502,10 @@
     border-radius: 20px;
     margin-top: 30px;
     margin-bottom: 60px;
+
+    @include media-xl {
+        margin-bottom: 0;
+    }
 
     span {
         text-transform: none;

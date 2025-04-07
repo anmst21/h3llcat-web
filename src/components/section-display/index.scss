@@ -231,6 +231,35 @@
         top: 220px;
         // left: -25px;
 
+        &__knob {
+            position: absolute;
+            left: 57px;
+            top: 86px;
+            transform: rotate(-18deg);
+            animation: knobAnimation 16s ease-in-out infinite;
+        }
+
+        @keyframes knobAnimation {
+            0% {
+                transform: rotate(-18deg);
+            }
+
+            25% {
+                transform: rotate(-6deg);
+            }
+
+            50% {
+                transform: rotate(6deg);
+            }
+
+            75% {
+                transform: rotate(-12deg);
+            }
+
+            100% {
+                transform: rotate(-18deg);
+            }
+        }
 
         &__eq {
             position: absolute;
