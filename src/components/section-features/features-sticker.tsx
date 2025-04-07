@@ -5,8 +5,6 @@ import {
   useMotionTemplate,
   useMotionValue,
   useSpring,
-  animate,
-  AnimationPlaybackControls,
   useAnimation,
 } from "framer-motion";
 import FeaturesSticker from "../icon/FeaturesSticker";
