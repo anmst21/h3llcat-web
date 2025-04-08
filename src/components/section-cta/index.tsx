@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CtaEth,
   CtaIlluminati,
@@ -15,12 +15,7 @@ import {
 import StickerBtn from "../section-sticker/sticker-btn";
 import Image from "next/image";
 import Game from "./game";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { useTilt } from "@/hooks/useTilt";
 
 const SectionCta = () => {
