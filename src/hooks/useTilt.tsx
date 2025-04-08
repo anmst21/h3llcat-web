@@ -27,8 +27,9 @@ export const useTilt = (tiltValue: number): UseTiltReturn => {
 
   // Combine the tilt transforms into one motion string
   const transform = useMotionTemplate`
-    rotateX(${xSpring}deg)
-    rotateY(${ySpring}deg)
+    rotateX(${xSpring}deg) 
+    rotateY(${ySpring}deg) 
+    translateX(-50%) 
     translateZ(75px)
   `;
 
