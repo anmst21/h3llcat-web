@@ -45,7 +45,10 @@ const VideoCarousel = () => {
       videoRefs.current.forEach((video, index) => {
         if (video) {
           if (index === selectedIndex) {
-            video.play();
+            // Reset video to beginning and play it from the start
+            video.pause(); // Ensure the video is paused before resetting time
+            video.currentTime = 0; // Reset to the beginning
+            video.play(); // Start playback from the beginning
           } else {
             video.pause();
           }
