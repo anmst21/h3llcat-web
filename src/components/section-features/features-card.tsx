@@ -88,7 +88,7 @@ const FeaturesCards = ({
   const handleHoverEnd = () => {
     setActive(null);
 
-    animate(scale, 1, { type: "spring", stiffness: 300, damping: 30 });
+    // animate(scale, 1, { type: "spring", stiffness: 300, damping: 30 });
   };
 
   useEffect(() => {
@@ -106,8 +106,7 @@ const FeaturesCards = ({
         handleMouseLeave();
         handleHoverEnd();
       }}
-      onHoverStart={handleHoverStart}
-      onHoverEnd={handleHoverEnd}
+      onMouseEnter={handleHoverStart}
       style={{
         transformStyle: "preserve-3d",
         transform,

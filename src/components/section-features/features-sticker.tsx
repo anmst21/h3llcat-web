@@ -22,19 +22,19 @@ const AnimatedSticker = () => {
     return () => controls.stop();
   }, [controls]);
 
-  const handleHoverStart = () => {
-    controls.start({
-      rotate: 360,
-      transition: { duration: 50, ease: "linear", repeat: Infinity },
-    });
-  };
+  // const handleHoverStart = () => {
+  //   controls.start({
+  //     rotate: 360,
+  //     transition: { duration: 50, ease: "linear", repeat: Infinity },
+  //   });
+  // };
 
-  const handleHoverEnd = () => {
-    controls.start({
-      rotate: 360,
-      transition: { duration: 30, ease: "linear", repeat: Infinity },
-    });
-  };
+  // const handleHoverEnd = () => {
+  //   controls.start({
+  //     rotate: 360,
+  //     transition: { duration: 30, ease: "linear", repeat: Infinity },
+  //   });
+  // };
 
   return (
     <div
@@ -47,8 +47,8 @@ const AnimatedSticker = () => {
     >
       <motion.div
         animate={controls}
-        onHoverStart={handleHoverStart}
-        onHoverEnd={handleHoverEnd}
+        // onMouseMove={handleHoverStart}
+        // onMouseLeave={handleHoverEnd}
       >
         <FeaturesSticker />
       </motion.div>
@@ -116,6 +116,7 @@ const TiltCardWithSticker = () => {
           //   background: "#0232F8",
           //   borderRadius: "12px",
           // boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+
           transform: "translateZ(75px)",
         }}
       >

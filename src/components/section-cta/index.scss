@@ -44,14 +44,20 @@
             position: absolute;
             left: 120px;
             top: 220px;
-            transform: rotate(-6.927deg);
+
+            svg {
+                transform: rotate(-6.927deg);
+            }
 
             @include media-xl {
                 left: 580px;
                 top: -230px;
-                transform: rotate(22.988deg);
-                width: 48px;
-                height: 112.596px;
+
+                svg {
+                    transform: rotate(22.988deg);
+                    width: 48px;
+                    height: 112.596px;
+                }
             }
         }
 
@@ -59,14 +65,21 @@
             position: absolute;
             top: 20px;
             left: 670px;
-            transform: rotate(8.927deg);
-            height: 60.896px;
+
+            svg {
+                transform: rotate(8.927deg);
+                height: 60.896px;
+            }
 
             @include media-xl {
                 left: 600px;
                 top: -165px;
-                height: 60.896px;
-                transform: rotate(42.561deg);
+
+                svg {
+                    height: 60.896px;
+                    transform: rotate(42.561deg);
+                }
+
             }
         }
 
@@ -74,15 +87,23 @@
             position: absolute;
             left: 167px;
             top: 315px;
-            transform: rotate(-4.927deg);
+
+            svg {
+                transform: rotate(-4.927deg);
+            }
 
             @include media-xl {
-                width: 48px;
-                height: 112.596px;
-                transform: rotate(-15.427deg);
-                color: #FFF !important;
-                stroke-width: 1.048px;
-                stroke: #FFF;
+                svg {
+                    width: 48px;
+                    height: 112.596px;
+                    transform: rotate(-15.427deg);
+                    color: #FFF !important;
+                    stroke-width: 1.048px;
+                    stroke: #FFF;
+                }
+
+
+
 
                 left: -165px;
                 top: -90px;
@@ -93,15 +114,21 @@
             position: absolute;
             left: 250px;
             top: 800px;
-            transform: rotate(-6.927deg);
+
+            svg {
+                transform: rotate(-6.927deg);
+            }
 
 
             @include media-xl {
-                width: 30.162px;
-                height: 70.065px;
+                svg {
+                    width: 30.162px;
+                    height: 70.065px;
+                    transform: rotate(-12.927deg);
+                }
+
                 left: -100px;
                 top: -250px;
-                transform: rotate(-12.927deg);
             }
         }
 
@@ -109,16 +136,21 @@
             position: absolute;
             left: 265px;
             top: 780px;
-            transform: rotate(2.927deg);
+
+            svg {
+                transform: rotate(2.927deg);
+            }
 
             @include media-xl {
-                width: 27.478px;
-                height: 60.896px;
+                svg {
+                    width: 27.478px;
+                    transform: rotate(-12deg);
+                    height: 60.896px;
+                }
 
                 left: -130px;
                 top: 500px;
 
-                transform: rotate(-12deg);
             }
         }
 
@@ -126,16 +158,22 @@
             position: absolute;
             left: 800px;
             top: 320px;
-            transform: rotate(5.927deg);
+
+            svg {
+                transform: rotate(5.927deg);
+            }
 
             @include media-xl {
-                width: 48px;
-                height: 112.596px;
+                svg {
+                    width: 48px;
+                    height: 112.596px;
+                    transform: rotate(-6deg);
+                }
 
                 left: -120px;
                 top: 420px;
                 z-index: 3;
-                transform: rotate(-6deg);
+
             }
         }
 
@@ -143,12 +181,18 @@
             position: absolute;
             left: 780px;
             top: 800px;
-            transform: rotate(12.927deg);
+
+            svg {
+                transform: rotate(12.927deg);
+            }
 
             @include media-xl {
-                width: 28.126px;
-                height: 65.978px;
-                transform: rotate(23.411deg);
+                svg {
+                    width: 28.126px;
+                    height: 65.978px;
+                    transform: rotate(23.411deg);
+                }
+
 
                 left: 610px;
                 top: 700px;
@@ -332,15 +376,22 @@
 
 
         .cta-computer {
-            display: none;
-            position: absolute;
-            top: 370px;
-            left: 400px;
+
+            &__wrapper {
+                position: absolute;
+                top: 370px;
+                left: 400px;
+                display: none;
+
+                @include media-xl {
+                    display: flex;
+                }
+            }
+
+
             transform: rotate(17.319deg);
 
-            @include media-xl {
-                display: flex;
-            }
+
         }
 
 

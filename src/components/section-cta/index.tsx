@@ -21,9 +21,9 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import { useTilt } from "@/hooks/useTilt";
 
 const SectionCta = () => {
-  const ref = useRef<HTMLDivElement>(null);
   const [disableTransform, setDisableTransform] = useState(false);
 
   useEffect(() => {
@@ -36,42 +36,27 @@ const SectionCta = () => {
     return () => window.removeEventListener("resize", updateDisableTransform);
   }, []);
 
-  // Motion values for tilt effect
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const xSpring = useSpring(x, { stiffness: 300, damping: 30 });
-  const ySpring = useSpring(y, { stiffness: 300, damping: 30 });
-
-  // Combine the tilt transforms into one style
-  const transform = useMotionTemplate`
-    rotateX(${xSpring}deg) 
-    rotateY(${ySpring}deg) 
-    translateX(-50%) 
-    translateZ(75px)
-  `;
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (disableTransform || !ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    // Calculate tilt values based on mouse position
-    const tiltX = (mouseY / height - 0.5) * 16 * -1;
-    const tiltY = (mouseX / width - 0.5) * 16;
-    x.set(tiltX);
-    y.set(tiltY);
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      // transition: {
+      //   staggerChildren: 0.2, // delay each child’s animation by 0.2 seconds
+      // },
+    },
   };
 
-  const handleMouseLeave = () => {
-    if (disableTransform) return;
-    x.set(0);
-    y.set(0);
+  const itemVariants = {
+    hidden: { scale: 0.2, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
+  const { ref, transform, handleMouseMove, handleMouseLeave } = useTilt(16);
+
+  ///  transform: "translateZ(75px)",
   return (
     <div className="section-cta">
       <div className="section-cta__badge section-cta__badge--left">
@@ -82,12 +67,44 @@ const SectionCta = () => {
       </div>
 
       <div className="section-cta__container">
-        <div className="section-cta__artwork">
-          <div className="cta-illuminati__wrapper">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 1 }}
+          className="section-cta__artwork"
+        >
+          <motion.div
+            animate={{
+              color: ["#FF2200", "#0033FF", "#88FF00", "#FF2200"],
+              rotate: [0, 360],
+            }}
+            transition={{
+              color: { duration: 9, ease: "linear", repeat: Infinity },
+              rotate: { duration: 50, ease: "linear", repeat: Infinity },
+            }}
+            variants={itemVariants}
+            className="cta-illuminati__wrapper"
+          >
             <CtaIlluminati />
-          </div>
-          <CtaStar color={"#FFCC00"} index={3} width={27} height={60} />
-          <div className="cta-game-boy__wrapper">
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-2, 5, -2] }}
+            transition={{ duration: 12, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-3"
+          >
+            <CtaStar color={"#FFCC00"} index={3} width={27} height={60} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-2, 4, -2] }}
+            transition={{
+              rotate: { duration: 18, ease: "linear", repeat: Infinity },
+              // scale: { duration: 0.2, ease: "linear" },
+            }}
+            variants={itemVariants}
+            className="cta-game-boy__wrapper"
+          >
             <div className="cta-game-boy">
               <Image
                 src={"/section-main/game-boy.png"}
@@ -97,39 +114,120 @@ const SectionCta = () => {
               />
               <Game />
             </div>
-          </div>
-          <div className="cta-logo__wrapper">
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-2, 2, -2] }}
+            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-logo__wrapper"
+          >
             <CtaLogo />
-          </div>
-          <div className="cta-try-now__wrapper">
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-4, 4, -4] }}
+            transition={{ duration: 22, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-try-now__wrapper"
+          >
             <CtaTryNow />
-          </div>
-          <div className="cta-web__wrapper">
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-2, 4, -2] }}
+            transition={{ duration: 26, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-web__wrapper"
+          >
             <CtaWeb />
-          </div>
-          <CtaStar color={"white"} index={6} width={28} height={60} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-1, 3, -1] }}
+            transition={{ duration: 10, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-6"
+          >
+            <CtaStar color={"white"} index={6} width={28} height={60} />
+          </motion.div>
 
-          <div className="cta-nft__wrapper">
+          <motion.div
+            animate={{ rotate: [-1, 3, -1] }}
+            transition={{ duration: 12, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-nft__wrapper"
+          >
             <CtaNft />
-          </div>
-          <div className="cta-eth__wrapper">
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-4, 6, -4] }}
+            transition={{ duration: 10, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-eth__wrapper"
+          >
             <CtaEth />
-          </div>
-          <CtaStar color={"white"} index={1} width={48} height={112} />
-          <CtaStar color={"#FFCC00"} index={2} width={52} height={120} />
-          <CtaStar color={"white"} index={4} width={9} height={48} />
-          <CtaStar color={"#375FFF"} index={5} width={18} height={38} />
-          <CtaStar color={"white"} index={7} width={12} height={74} />
-          <CtaStar color={"#FFCC00"} index={8} width={20} height={43} />
-          <div className="cta-computer">
-            <Image
-              src={"/section-main/computer.png"}
-              width={262.287}
-              height={362.504}
-              alt="Computer image"
-            />
-          </div>
-        </div>
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-2, 5, -2] }}
+            transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-1"
+          >
+            <CtaStar color={"white"} index={1} width={48} height={112} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-8, 3, -8] }}
+            transition={{ duration: 18, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-2"
+          >
+            <CtaStar color={"#FFCC00"} index={2} width={52} height={120} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-3, 3, -3] }}
+            transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-4"
+          >
+            <CtaStar color={"white"} index={4} width={9} height={48} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-1, 3, -1] }}
+            transition={{ duration: 15, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-5"
+          >
+            <CtaStar color={"#375FFF"} index={5} width={18} height={38} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-2, 4, -2] }}
+            transition={{ duration: 12, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-7"
+          >
+            <CtaStar color={"white"} index={7} width={12} height={74} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-6, 3, -6] }}
+            transition={{ duration: 16, ease: "linear", repeat: Infinity }}
+            variants={itemVariants}
+            className="cta-star-8"
+          >
+            <CtaStar color={"#FFCC00"} index={8} width={20} height={43} />
+          </motion.div>
+          <motion.div
+            animate={{ rotate: [-3, 3, -3] }}
+            transition={{ duration: 14, ease: "linear", repeat: Infinity }}
+            className="cta-computer__wrapper"
+            variants={itemVariants}
+          >
+            <div className="cta-computer">
+              <Image
+                src={"/section-main/computer.png"}
+                width={262.287}
+                height={362.504}
+                alt="Computer image"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
         <motion.div
           ref={ref}
           onMouseMove={disableTransform ? undefined : handleMouseMove}
