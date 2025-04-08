@@ -187,7 +187,7 @@
         &__container {
             display: flex;
             touch-action: pan-y pinch-zoom;
-            margin-left: calc(10px * -1);
+
             width: 356px;
             height: 275px;
             background-color: black;
@@ -202,7 +202,7 @@
             position: relative;
             flex: 0 0 100%;
             min-width: 0;
-            padding-left: 10px;
+
             display: flex;
             align-items: center;
             justify-content: center;
