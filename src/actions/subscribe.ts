@@ -2,7 +2,7 @@
 
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import nodemailer from "nodemailer";
-import { emailHtml } from "@/helpers/WelcomingEmail";
+import { emailHtml } from "@/helpers/emails/WelcomingEmail";
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
 
 const SECRET_KEY = process.env.RECAPCHA_BACKEND_KEY;

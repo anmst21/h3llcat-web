@@ -9,6 +9,7 @@ import { CapchaProvider } from "@/context/CapchaProvider";
 import { MenuProvider } from "@/context/MenuProvider";
 import { BalanceProvider } from "@/context/BalanceProvider";
 import { EthPriceProvider } from "@/context/EthPriceProvider";
+import DesktopHeader from "@/components/desktop-header";
 
 const sfPro = localFont({
   src: [
@@ -126,6 +127,7 @@ export default function RootLayout({
               <BalanceProvider>
                 <MenuProvider>
                   <div className="main">
+                    <DesktopHeader />
                     {children}
                     <Footer />
                   </div>

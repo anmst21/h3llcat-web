@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import mailchimp from "@mailchimp/mailchimp_marketing";
-import { emailHtml } from "@/helpers/BlogPostEmail";
+import { emailHtml } from "@/helpers/emails/BlogPostEmail";
 import { verifySanitySignature } from "@/helpers/verifySanitySignature";
 
 mailchimp.setConfig({

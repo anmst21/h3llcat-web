@@ -108,6 +108,19 @@
 .blog-post-page__categories {
     display: flex;
     justify-content: space-between;
+    overflow-x: visible;
+
+    @include media-sm {
+        overflow-x: hidden;
+    }
+
+    &__status {
+        margin-right: auto;
+
+        width: fit-content;
+
+
+    }
 }
 
 .category {
@@ -116,21 +129,40 @@
         gap: 5px;
         display: flex;
         align-items: center;
+        width: 100%;
 
-        //   overflow-x: scroll;
+        @include media-sm {
+            width: fit-content;
+        }
 
+        overflow-x: visible;
+
+        @include media-sm {
+            overflow-x: hidden;
+        }
 
         &__scroll {
-            overflow-x: scroll;
+            overflow-x: visible;
+            width: calc(100vw - 15px);
+
+            @include media-sm {
+                overflow-x: scroll;
+            }
 
             -ms-overflow-style: none;
             /* IE and Edge */
             scrollbar-width: none;
+
+
             /* Firefox */
             display: flex;
 
+
+            // @include media-sm {
+            //     width: fit-content;
+            // }
+
             @include media-sm {
-                width: 100%;
 
                 .divider {
                     display: flex !important;
@@ -149,8 +181,11 @@
             height: 26px;
             margin-right: 5px;
             margin-left: 15px;
+            display: none;
 
-
+            @include media-sm {
+                display: flex;
+            }
         }
 
     }

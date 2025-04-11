@@ -10,7 +10,7 @@ function Icon() {
       viewBox="0 0 11 6"
     >
       <path
-        stroke="#333"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"

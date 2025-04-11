@@ -53,7 +53,7 @@
         position: absolute;
         left: 35px;
         right: 80px;
-        top: 70px;
+        top: calc(70px + 86px);
         z-index: 50;
 
 
@@ -267,7 +267,7 @@
             right: 34px;
             width: 127px;
             height: 119px;
-            background-color: red;
+
         }
     }
 

@@ -5,16 +5,16 @@ import {
   StickerLove,
   StickerIphoneIcon,
   StickerBarcode,
-  StickerInfo,
   MenuBeta,
   ContactsMail,
   StickerTool,
-  StickerJap,
-  StickerEnd,
 } from "../icon";
 import StickerBtn from "./sticker-btn";
 import Image from "next/image";
 import VideoCarousel from "./video-carousel";
+import RoundHoles from "./round-holes";
+import AnimatedSticker from "./animated-sticker";
+
 function SectionSticker() {
   return (
     <div className="section-sticker">
@@ -30,6 +30,7 @@ function SectionSticker() {
           </div>
         </div>
       </div>
+
       <Holes />
       <div className="section-sticker__reimagine">
         <h3>Reimagine How You Mint On Chain</h3>
@@ -61,7 +62,7 @@ function SectionSticker() {
           <span>xx-xx-2025</span>
         </div>
       </div>
-      <Holes />
+      {/* <Holes />
       <div className="section-sticker__works">
         <div className="section-sticker__works__arrows">
           <span>About Display</span> <StickerInfo />
@@ -71,8 +72,8 @@ function SectionSticker() {
           curated collections, mint what inspires you, and build your digital
           gallery—all in one seamless experience.
         </p>
-      </div>
-      <Holes />
+      </div> */}
+      <RoundHoles />
       <div className="section-sticker__gradient">
         <div className="section-sticker__gradient__img">
           <Image
@@ -92,7 +93,7 @@ function SectionSticker() {
         </div>
       </div>
 
-      <Holes />
+      <RoundHoles />
       <VideoCarousel />
       <Holes />
       <div className="section-sticker__works">
@@ -116,24 +117,10 @@ function SectionSticker() {
         <h4>subscribe to our newsletter for exclusive updates and insights</h4>
         <StickerBtn type="letter" content="Subscribe Now" />
       </div>
-      <Holes />
-      <div className="section-sticker__works">
-        <StickerJap />
-        <div className="section-sticker__works__arrows">
-          <div className="arrow-down">
-            <ArrowSticker />
-            <ArrowSticker />
-            <ArrowSticker />
-          </div>
-          <div className="arrow-border" />
-          <div className="arrow-down">
-            <ArrowSticker />
-            <ArrowSticker />
-            <ArrowSticker />
-          </div>
-        </div>
+      <div className="round-holes__top">
+        <RoundHoles />
       </div>
-      <StickerEnd />
+      <AnimatedSticker />
     </div>
   );
 }

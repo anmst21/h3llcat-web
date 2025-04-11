@@ -17,9 +17,12 @@ import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Image from "next/image";
 import Equalizer from "./equalizer";
+import { useState } from "react";
+import { motion } from "motion/react";
 
 const SectionDisplay = () => {
-  console.log("l", posts.length);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const chunkArray = useMemo(() => {
     const chunkSize = 9;
     const result = [];
@@ -44,6 +47,20 @@ const SectionDisplay = () => {
     }),
   ]);
 
+  const itemVariants = {
+    initial: { scale: 0.2, opacity: 0 },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+    exit: {
+      scale: 0.2,
+      opacity: 0,
+      transition: { duration: 0.5, ease: "easeIn" },
+    },
+  };
+
   //100
   return (
     <div id="hero" className="section-display">
@@ -54,25 +71,59 @@ const SectionDisplay = () => {
       </div>
 
       <div className="section-display__center">
-        <div className="disk-section">
-          <div className="disk-section__kiss">
+        <div className="disk-section" key="disk-section">
+          <motion.div
+            key="disk-kiss"
+            className="disk-section__kiss"
+            variants={itemVariants}
+            initial="initial"
+            animate={isLoaded ? "animate" : "initial"}
+            exit="exit"
+          >
             <MainDiskKiss />
-          </div>
-          <div className="disk-section__radio">
+          </motion.div>
+
+          <motion.div
+            className="disk-section__radio"
+            variants={itemVariants}
+            initial="initial"
+            animate={
+              isLoaded
+                ? { rotate: [-14.294, -12, -14.294], ...itemVariants.animate }
+                : "initial"
+            }
+            exit="exit"
+            transition={{
+              rotate: { duration: 18, ease: "linear", repeat: Infinity },
+            }}
+          >
             <Image
+              onLoad={() => setIsLoaded(true)}
               alt="Wakkie talkie radio"
               width={360}
               height={650}
               src={"/section-main/walkie-talkie.png"}
             />
-            <Equalizer />
-            <div className="disk-section__radio__knob">
-              <RadioKnob />
-            </div>
-          </div>
-          <div className="disk-section__car">
+            {isLoaded && (
+              <>
+                <Equalizer />
+                <div className="disk-section__radio__knob">
+                  <RadioKnob />
+                </div>
+              </>
+            )}
+          </motion.div>
+
+          <motion.div
+            key="disk-car"
+            className="disk-section__car"
+            variants={itemVariants}
+            initial="initial"
+            animate={isLoaded ? "animate" : "initial"}
+            exit="exit"
+          >
             <MainDiskCar />
-          </div>
+          </motion.div>
         </div>
         <div className="rombus-section">
           {chunkArray.map((chunk, index) => {

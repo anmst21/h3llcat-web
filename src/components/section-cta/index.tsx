@@ -71,7 +71,7 @@ const SectionCta = () => {
         >
           <motion.div
             animate={{
-              color: ["#FF2200", "#0033FF", "#88FF00", "#FF2200"],
+              color: ["#FF2200", "#FFCC00", "#88FF00", "#FF2200"],
               rotate: [0, 360],
             }}
             transition={{

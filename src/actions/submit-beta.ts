@@ -2,7 +2,7 @@
 
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
 import { apiUriSubmitBeta } from "@/helpers/apiUri";
-import { emailHtml } from "@/helpers/WelcomingEmail";
+import { emailHtml } from "@/helpers/emails/WelcomingEmail";
 import nodemailer from "nodemailer";
 
 export async function submitBeta(

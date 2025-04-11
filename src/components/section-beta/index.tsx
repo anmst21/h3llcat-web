@@ -11,21 +11,11 @@ import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
 import DynamicActionButton from "./dynamic-action-button";
-import {
-  MenuBeta,
-  BetaDescription,
-  WalletBeta,
-  StickerIphoneIcon,
-} from "../icon";
+import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
 import anime from "animejs";
-import { useBalanceContext } from "@/context/BalanceProvider";
-import { dynamicButtonProps } from "../button/animation";
-import { truncateEthAddress } from "@/helpers/truncateAddress";
-import Link from "next/link";
-import { useMenu } from "@/context/MenuProvider";
 
 createClient(options);
 
@@ -34,7 +24,7 @@ function SectionBeta({
 }: {
   mintsNum: { totalMinted: number } | undefined;
 }) {
-  const { authenticated, getAccessToken, ready, user } = usePrivy();
+  const { authenticated, getAccessToken, ready } = usePrivy();
 
   const [numToMint, setNumToMint] = useState(1);
 
@@ -156,13 +146,13 @@ function SectionBeta({
 
   console.log("user data", userData);
 
-  const { isLoadingBalance, formattedUserBalance } = useBalanceContext();
-  const { setIsOpenMenu } = useMenu();
+  // const { isLoadingBalance, formattedUserBalance } = useBalanceContext();
+  // const { setIsOpenMenu } = useMenu();
 
-  const openMenuCallback = useCallback(() => setIsOpenMenu(true), []);
+  // const openMenuCallback = useCallback(() => setIsOpenMenu(true), []);
   return (
     <div className="section-beta">
-      <div className="section-beta__header">
+      {/* <div className="section-beta__header">
         <Link
           href={"/"}
           className="section-sticker__iphone section-beta__header__logo"
@@ -192,7 +182,7 @@ function SectionBeta({
             </motion.button>
           )}
         </AnimatePresence>
-      </div>
+      </div> */}
       <div className="section-beta__top">
         <div className="wallet-item">
           <div className="wallet-item__user">

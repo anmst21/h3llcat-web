@@ -1,13 +1,112 @@
+.round-holes {
+    display: flex;
+    height: 34px;
+    width: 100%;
+    position: relative;
+
+
+    &__top,
+    &__bot {
+        height: 17px;
+        overflow: hidden;
+    }
+
+    &__bot {
+        .holes__center {
+            position: relative;
+            bottom: 17px;
+
+
+        }
+
+        svg {
+            position: relative;
+            top: -17px
+        }
+
+        .round-holes::after {
+            top: 12px !important;
+        }
+    }
+
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0px;
+
+        right: 0px;
+        height: 5px;
+        background-color: #121621;
+    }
+
+    &::after {
+        top: 0px;
+    }
+
+    &::before {
+        bottom: 0px;
+    }
+
+    .rouded-hole {
+        width: 24px;
+        height: 24px;
+
+        overflow: hidden;
+        background-color: transparent;
+        position: relative;
+
+
+        &__gap {
+            height: 34px;
+            width: 7px;
+            background-color: #121621;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 1000px;
+            border: #121621 solid 10px;
+        }
+    }
+
+    .holes__center {
+        width: 100%;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // gap: 8px;
+    }
+}
+
+
+
+
 .section-sticker {
     display: flex;
     position: absolute;
     z-index: 30;
-    width: 406px;
+    width: 403px;
     //  height: 1000px;
     left: 20%;
     flex-direction: column;
-    overflow: hidden;
+    // overflow: hidden;
     align-items: center;
+
+
+    &__jap {
+        transform-origin: left top;
+        position: relative !important;
+        // rotate: 30deg;
+        // top: -9px;
+        // left: 2px;
+    }
 
     &__gradient {
         display: flex;

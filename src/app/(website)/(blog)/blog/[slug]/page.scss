@@ -338,11 +338,25 @@
         z-index: 5;
         overflow: hidden;
 
+        .section-sticker__iphone {
+            display: none;
+        }
+
         @include media-sm {
             flex-direction: column;
             align-items: flex-start;
             gap: 10px;
 
+            .section-sticker__iphone {
+                display: flex;
+
+                .section-sticker__iphone__text {
+                    h5 {
+                        color: white;
+                    }
+                }
+
+            }
 
             .category {
                 font-size: 19px !important;

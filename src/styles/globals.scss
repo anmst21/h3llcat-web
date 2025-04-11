@@ -77,8 +77,11 @@ html {
   //  overflow: hidden;
   max-width: 1780px;
   position: relative;
+  padding-top: 66px;
 
-
+  @include media-sm {
+    padding-top: 0;
+  }
 
 }
 

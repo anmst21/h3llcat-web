@@ -34,6 +34,9 @@ const Categories = ({ list }: Props) => {
   } else if (pathname.includes("/contacts")) {
     buttonText = "Contacts";
     href = "/contacts";
+  } else if (pathname.includes("/beta")) {
+    buttonText = "Beta";
+    href = "/beta";
   }
   const createQueryString = useCallback(
     (name: string, value: string) => {
