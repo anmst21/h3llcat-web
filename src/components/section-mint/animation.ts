@@ -18,6 +18,29 @@ const cardVariants = {
     zIndex: 5,
   },
 };
+const mobileCardVariants = {
+  top: {
+    rotate: -45,
+    top: -100 + 5,
+    marginRight: 0,
+    zIndex: 15,
+    left: -10 - 20,
+  },
+  middle: {
+    rotate: -30,
+    top: -70 + 5,
+    marginRight: 20,
+    zIndex: 10,
+    left: -10 - 20,
+  },
+  bottom: {
+    rotate: -15,
+    top: -40 + 5,
+    marginRight: 200,
+    zIndex: 5,
+    left: -17 - 20,
+  },
+};
 
 const headerVariants = {
   offscreen: {
@@ -64,6 +87,14 @@ const topRaisedVariant = {
   zIndex: cardVariants.top.zIndex,
   transition: transitionUp,
 };
+const topRaisedVariantMobile = {
+  rotate: -65,
+  top: -100 - 30,
+  marginRight: 20,
+  zIndex: cardVariants.top.zIndex,
+  transition: transitionUp,
+  left: -10 - 20,
+};
 
 const containerStyle = {
   position: "absolute",
@@ -82,4 +113,6 @@ export {
   transitionUp,
   topRaisedVariant,
   containerStyle,
+  mobileCardVariants,
+  topRaisedVariantMobile,
 };

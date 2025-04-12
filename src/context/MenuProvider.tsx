@@ -10,6 +10,9 @@ import React, {
 } from "react";
 import Menu from "@/components/menu";
 import MenuModal from "@/components/menu/menu-modal";
+import { useMediaQuery } from "react-responsive";
+import classNames from "classnames";
+import { usePathname } from "next/navigation";
 
 // Define the shape of your context data.
 interface MenuContextProps {
@@ -28,14 +31,23 @@ interface MenuProviderProps {
 // Provider Component that wraps its children with the Menu and Context.
 export const MenuProvider: FC<MenuProviderProps> = ({ children }) => {
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 1100px)" });
+  const pathname = usePathname();
 
   return (
     <MenuContext.Provider value={{ isOpenMenu, setIsOpenMenu }}>
       {/* Render the Menu component and pass the state as props */}
-      <MenuModal isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
 
-      <Menu isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
-      {children}
+      <div
+        className={classNames("remove-footer", {
+          "remove-footer--active": isMobile && pathname === "/",
+        })}
+      >
+        <MenuModal isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
+
+        <Menu isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
+        {children}
+      </div>
     </MenuContext.Provider>
   );
 };

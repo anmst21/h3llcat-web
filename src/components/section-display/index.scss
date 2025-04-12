@@ -8,6 +8,9 @@
     background-color: #000;
     position: relative;
 
+    @include media-sm {
+        display: none;
+    }
 
     &__bottom {
         border-top: 4px solid #FFF;
@@ -15,6 +18,29 @@
         height: 80px;
         display: flex;
         align-items: center;
+
+
+        color: white;
+
+
+        @include media-sm {
+            position: absolute;
+            border-top: 4px solid #121621;
+            border-bottom: 4px solid #121621;
+            background: #FFF;
+            height: 50px;
+            color: black;
+
+            width: 100vw;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(-3.546deg);
+
+            span {
+                color: black !important
+            }
+
+        }
 
         &__viewport {
             width: 100%;
@@ -56,6 +82,9 @@
         top: calc(70px + 86px);
         z-index: 50;
 
+        @include media-sm {
+            display: none;
+        }
 
         svg {
             width: 100%;
@@ -128,6 +157,13 @@
     position: relative;
     cursor: pointer;
 
+
+    @include media-sm {
+        height: 60px;
+        width: 50px;
+        border-radius: 8px;
+    }
+
     &--logo {
         background-color: transparent;
         overflow: visible;
@@ -136,6 +172,7 @@
 
     &--rounded {
         border-radius: 16px 32px;
+        border-radius: 8px 16px;
     }
 }
 
@@ -150,6 +187,15 @@
     height: 914px;
     padding-left: 190px;
     position: relative;
+
+
+    @include media-sm {
+        margin-left: 0;
+        //356
+        width: 356px;
+        height: 356px;
+        padding-left: 0;
+    }
 
     &::before {
         content: "";
@@ -180,12 +226,20 @@
         margin-top: 0;
     }
 
+    @include media-sm {
+        height: calc((5px + 900px)/2);
+    }
 
     &__viewport {
         min-width: 100px;
         transform: skewX(-20deg);
         // overflow: hidden;
         height: 900px;
+
+        @include media-sm {
+            min-width: 50px;
+            height: 450px;
+        }
     }
 }
 
@@ -224,6 +278,9 @@
     position: relative;
     overflow: hidden;
 
+    @include media-sm {
+        display: none;
+    }
 
     &__radio {
         transform: rotate(-14.294deg);

@@ -100,6 +100,125 @@
     align-items: center;
 
 
+    &__features-header {
+        display: flex;
+        padding: 15px;
+        background: #121621;
+        gap: 15px;
+        flex-direction: column;
+        width: 100%;
+        height: 120px;
+        justify-content: flex-end;
+
+        svg {
+            width: 100%;
+            height: auto;
+            transform-origin: left bottom;
+            transform: rotate(-3.518deg);
+        }
+
+        &__slogan {
+            display: flex;
+            color: #888A90;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+
+            gap: 7px;
+
+            .star {
+                color: #FC0
+            }
+
+            svg {
+                width: initial;
+                height: initial;
+                transform-origin: center center;
+                transform: rotate(90deg);
+                margin-left: auto;
+                color: hsba(0, 0%, 100%, 1);
+            }
+
+
+        }
+    }
+
+
+    &__h2 {
+        display: flex;
+        background: #121621;
+        padding: 15px 15px 0px 15px;
+        width: 100%;
+
+        h2 {
+            color: #FFF;
+
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+    }
+
+    &__join {
+
+        width: 100%;
+        background-color: #121621;
+        position: relative;
+    }
+
+    @include media-sm {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__artwork {
+        height: 360px !important;
+        padding: 15px;
+
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            top: 15px;
+            bottom: 15px;
+            background-color: black;
+        }
+
+        .section-cta__artwork--phone {
+            top: -295px;
+            left: -95px;
+        }
+    }
+
+    &__scene {
+        height: 105px;
+        width: 100%;
+        background-color: #121621;
+        position: relative;
+
+        display: none;
+
+        @include media-sm {
+            display: flex;
+        }
+    }
+
+
+    &__initial {
+        display: none !important;
+
+        @include media-sm {
+            display: flex;
+        }
+    }
+
+
     &__jap {
         transform-origin: left top;
         position: relative !important;
@@ -264,7 +383,7 @@
         p {
             font-size: 16px;
             font-style: normal;
-            font-weight: 590;
+            font-weight: 510;
             line-height: 24px;
             color: rgba(255, 255, 255, 0.80);
             letter-spacing: 0.48px;
@@ -340,6 +459,10 @@
         height: 238px;
         width: 100%;
         background-color: #121621;
+
+        @include media-sm {
+            display: none;
+        }
     }
 }
 
@@ -366,6 +489,17 @@
 
     &__top {
         border-bottom: 1px dashed #fff;
+    }
+
+
+    &__bot {
+        &--mobile {
+            display: none;
+
+            @include media-sm {
+                display: flex;
+            }
+        }
     }
 
     &__top,

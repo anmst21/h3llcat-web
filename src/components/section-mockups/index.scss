@@ -8,6 +8,10 @@
         margin-top: 200px;
     }
 
+    @include media-sm {
+        display: none;
+    }
+
     &__screenshots {
         width: 100%;
         display: flex;

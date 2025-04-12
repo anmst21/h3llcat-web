@@ -9,8 +9,11 @@ import {
   headerVariants,
   transition,
   topRaisedVariant,
+  mobileCardVariants,
+  topRaisedVariantMobile,
 } from "./animation";
 import { decode } from "blurhash";
+import { useMediaQuery } from "react-responsive";
 
 const repoDefault =
   "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/compressed-assets/";
@@ -51,13 +54,16 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
   animating,
   collectionIndex,
 }) => {
-  // Determine the slot based on the order array
+  const isMobile = useMediaQuery({ query: "(max-width: 1100px)" });
+  const tRV = isMobile ? topRaisedVariantMobile : topRaisedVariant;
   const slot = order.indexOf(index);
   const variantName = slot === 0 ? "top" : slot === 1 ? "middle" : "bottom";
   const variantToUse =
     slot === 0 && animating && order[1] !== 0
-      ? topRaisedVariant
-      : cardVariants[variantName];
+      ? tRV
+      : isMobile
+        ? mobileCardVariants[variantName]
+        : cardVariants[variantName];
   const slotName = slot === 0 ? "top" : slot === 1 ? "middle" : "bottom";
 
   // Determine file type and repository URI
@@ -87,6 +93,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
         alignItems: "center",
         justifyContent: "center",
         boxShadow: "0px 2px 16px 0px rgba(0, 0, 0, 0.20)",
+        scale: isMobile ? 0.3 : 1,
       }}
     >
       {finalType === "jpg" && (

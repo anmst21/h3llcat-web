@@ -16,29 +16,35 @@ import {
   socialsTwitter,
 } from "@/helpers/socials";
 import { getCategories } from "@/sanity/sanity-utils";
+import Holes from "../section-sticker/holes";
+import RoundHoles from "../section-sticker/round-holes";
 
 const colors = ["#FFF8E7", "#93918E", "#FFCC00", "#050915"];
 
-const Footer = async () => {
+const Footer = async ({ isMobile }: { isMobile?: boolean }) => {
   const categories = await getCategories();
 
   return (
-    <div id="footer" className="footer">
+    <div id={isMobile ? "footer-mobile" : "footer"} className="footer">
       <div className="footer__container">
         <div className="footer__app">
           {/* <div className="footer__app__domain">
             <h4>Display</h4>
             <h4>.app</h4>
           </div> */}
-
-          <Link href={"/"} className="footer__app__logo">
-            <LogoFooter />
-          </Link>
-          <div className="footer__app__links">
-            <DottedLink href="/" index={1} label="Home" />
-            <DottedLink href="/beta" index={3} label="Beta" />
-            <DottedLink href="/blog" index={2} label="Blog" />
-            <DottedLink href="/contacts" index={4} label="Contacts" />
+          <div className="footer__app__wrapper">
+            <div className="footer__app__container">
+              <Link href={"/"} className="footer__app__logo">
+                <LogoFooter />
+              </Link>
+              <div className="footer__app__links">
+                <DottedLink href="/" index={1} label="Home" />
+                <DottedLink href="/beta" index={3} label="Beta" />
+                <DottedLink href="/blog" index={2} label="Blog" />
+                <DottedLink href="/contacts" index={4} label="Contacts" />
+              </div>
+            </div>
+            <Holes />
           </div>
         </div>
         <div className="footer__team">
@@ -104,6 +110,7 @@ const Footer = async () => {
           </div>
         </div>
         <div className="footer__art">
+          <RoundHoles />
           <Image
             alt="Nexus Dude Art"
             src="/dude-art.svg"
@@ -114,6 +121,7 @@ const Footer = async () => {
               height: "auto",
             }}
           />
+          <RoundHoles />
         </div>
         <div className="footer__form">
           <div className="footer__form__text">
@@ -123,6 +131,18 @@ const Footer = async () => {
               your digital gallery—all in one seamless experience. Join our beta
               today and shape the next generation of blockchain art.
             </span>
+          </div>
+          <div className="footer__form__holes">
+            <RoundHoles />
+            <div className="footer__form__holes__container">
+              <div className="section-sticker__works__arrows">
+                <span>Stay in the loop</span>
+                <div className="icon-small">
+                  <span>!!!</span>
+                </div>
+              </div>
+              <h4>sign up our newsletter </h4>
+            </div>
           </div>
           <FooterForm />
         </div>

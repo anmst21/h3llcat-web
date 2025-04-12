@@ -6,6 +6,107 @@
 
 }
 
+
+.mobile-mint {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #121621;
+    padding: 15px;
+    gap: 10px;
+    font-family: var(--font-sf-pro);
+
+
+
+    &__header {}
+
+    &__container {
+        overflow: hidden;
+        position: relative;
+        height: 330px;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .rodeo-categories {
+            margin-left: -10px !important;
+        }
+
+        .rodeo-category {
+            margin-left: 10px !important;
+        }
+
+        .rodeo-categories__viewport {
+            padding: 10px 0;
+        }
+
+        .rodeo-categories__viewport--text {
+            padding: 0;
+
+
+
+        }
+
+        .rodeo-categories__text {
+
+            svg {
+                width: 329.948px;
+                height: 140.47px;
+            }
+        }
+
+
+        .section-mint__top {
+            color: #050915;
+            padding: 20px 30px;
+
+            .section-mint__top__left,
+            .section-mint__top__right {
+                gap: 0;
+
+                span {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 590;
+                    line-height: normal;
+                    letter-spacing: normal;
+                }
+
+                h2,
+                h3 {
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    letter-spacing: normal;
+                }
+            }
+        }
+    }
+
+    .section-sticker__works__arrows {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+
+        button {
+            pointer-events: none;
+        }
+
+        span {
+            color: #888A90;
+
+            span {
+                color: #D0D0D3
+            }
+        }
+    }
+}
+
 //const colorsSquare = ["#9747FF", "#FF4754", "#AFFF47", "#47FFF3"];
 
 
@@ -256,10 +357,9 @@
         border-radius: 10px;
         background-color: rgba(147, 145, 142, 0.10);
         text-wrap: nowrap;
-
+        font-weight: 510;
         font-size: 18px;
         font-style: normal;
-        font-weight: 700;
         line-height: normal;
         //  letter-spacing: -0.43px;
 

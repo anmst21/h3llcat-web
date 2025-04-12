@@ -140,3 +140,18 @@ button {
   border-left: 4px solid #FFF;
   border-right: 4px solid #FFF;
 }
+
+
+
+.remove-footer {
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  justify-content: center;
+
+  &--active {
+    #footer {
+      display: none;
+    }
+  }
+}

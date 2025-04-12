@@ -7,8 +7,9 @@ import classNames from "classnames";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Link from "next/link";
+import { useMediaQuery } from "react-responsive";
 
-const JoinCarousel = () => {
+const JoinCarousel = ({ isMobile }: { isMobile?: boolean }) => {
   const [emblaRef] = useEmblaCarousel({ loop: true, watchDrag: false }, [
     AutoScroll({
       playOnInit: true,
@@ -16,6 +17,10 @@ const JoinCarousel = () => {
       direction: "backward",
     }),
   ]);
+
+  const isM = useMediaQuery({ query: "(max-width: 1100px)" });
+
+  if (!isMobile && isM) return null;
   return (
     <div ref={emblaRef} className="join-carousel">
       <div className="join-carousel__container">

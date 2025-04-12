@@ -87,7 +87,7 @@ import JoinIcon from "./JoinIcon";
 import CtaJap from "./CtaJap";
 import JoinJap from "./JoinJap";
 import CtaStars from "./CtaStars";
-
+import StickerStar from "./StickerStar";
 import CtaEth from "./CtaEth";
 import CtaIlluminati from "./CtaIlluminati";
 import CtaLogo from "./CtaLogo";
@@ -104,6 +104,7 @@ import LogoFooter from "./LogoFooter";
 import RadioKnob from "./RadioKnob";
 
 export {
+  StickerStar,
   RadioKnob,
   LogoFooter,
   WalletBeta,

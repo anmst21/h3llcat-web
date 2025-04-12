@@ -6,6 +6,7 @@ import FeaturesSticker from "./features-sticker";
 
 import FeaturesCard from "./features-card";
 import { useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const SectionFeatures = () => {
   const items = ["simple", "fast", "on-chain"];
@@ -43,6 +44,10 @@ const SectionFeatures = () => {
       if (autoInterval) clearInterval(autoInterval);
     };
   }, [hoveredIndex]);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 1100px)" });
+
+  if (isMobile) return null;
 
   return (
     <div className="section-features">

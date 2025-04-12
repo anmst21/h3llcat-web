@@ -8,6 +8,10 @@
     font-family: var(--font-sf-pro);
     overflow: hidden;
 
+    @include media-sm {
+        border: none;
+    }
+
     &__container {
 
         display: flex;

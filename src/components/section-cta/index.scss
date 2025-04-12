@@ -34,9 +34,19 @@
         position: relative;
 
 
+        &--phone {
+            scale: .35;
+        }
+
+
         @include media-xl {
             max-width: 540px;
             height: 639px;
+        }
+
+        @include media-sm {
+            width: 920px;
+            height: 943px;
         }
 
         // border: 1px solid red;
@@ -59,6 +69,17 @@
                     height: 112.596px;
                 }
             }
+
+            @include media-sm {
+                left: 120px;
+                top: 220px;
+
+                svg {
+                    transform: rotate(-6.927deg);
+                    width: initial;
+                    height: initial;
+                }
+            }
         }
 
         .cta-star-2 {
@@ -79,7 +100,16 @@
                     height: 60.896px;
                     transform: rotate(42.561deg);
                 }
+            }
 
+            @include media-xl {
+                top: 20px;
+                left: 670px;
+
+                svg {
+                    height: initial;
+                    transform: rotate(8.927deg);
+                }
             }
         }
 
@@ -102,11 +132,22 @@
                     stroke: #FFF;
                 }
 
-
-
-
                 left: -165px;
                 top: -90px;
+            }
+
+            @include media-sm {
+                svg {
+                    width: initial;
+                    height: initial;
+                    transform: rotate(-4.927deg);
+                    color: initial !important;
+                    stroke-width: initial;
+                    stroke: initial;
+                }
+
+                left: 167px;
+                top: 315px;
             }
         }
 
@@ -130,6 +171,17 @@
                 left: -100px;
                 top: -250px;
             }
+
+            @include media-sm {
+                svg {
+                    width: initial;
+                    height: initial;
+                    transform: rotate(-6.927deg);
+                }
+
+                left: 250px;
+                top: 800px;
+            }
         }
 
         .cta-star-5 {
@@ -150,6 +202,18 @@
 
                 left: -130px;
                 top: 500px;
+
+            }
+
+            @include media-sm {
+                svg {
+                    width: initial;
+                    transform: rotate(2.927deg);
+                    height: initial;
+                }
+
+                left: 265px;
+                top: 780px;
 
             }
         }
@@ -175,6 +239,19 @@
                 z-index: 3;
 
             }
+
+            @include media-sm {
+                svg {
+                    width: initial;
+                    height: initial;
+                    transform: rotate(5.927deg);
+                }
+
+                left: 800px;
+                top: 320px;
+                z-index: initial;
+
+            }
         }
 
         .cta-star-7 {
@@ -197,6 +274,17 @@
                 left: 610px;
                 top: 700px;
             }
+
+            @include media-sm {
+                svg {
+                    width: initial;
+                    height: initial;
+                    transform: rotate(12.927deg);
+                }
+
+                left: 780px;
+                top: 800px;
+            }
         }
 
         .cta-star-8 {
@@ -208,6 +296,10 @@
 
             @include media-xl {
                 display: flex;
+            }
+
+            @include media-sm {
+                display: none;
             }
         }
 
@@ -224,13 +316,18 @@
             &__wrapper {
                 position: absolute;
                 left: 40px;
-                //height: auto;
                 top: 290px;
 
                 @include media-xl {
                     z-index: 2;
                     top: 180px;
                     left: -260px;
+                }
+
+                @include media-sm {
+                    z-index: initial;
+                    left: 40px;
+                    top: 290px;
                 }
             }
 
@@ -242,6 +339,12 @@
                 transform: rotate(-25.437deg);
                 top: 0;
                 left: 0;
+            }
+
+            @include media-sm {
+                transform: rotate(-26.036deg);
+                top: 135px;
+                left: -25px;
             }
 
             width: fit-content;
@@ -279,12 +382,25 @@
                     width: fit-content;
                     z-index: 5;
                 }
+
+                @include media-sm {
+                    left: 170px;
+                    top: 58px;
+                    width: initial;
+                    z-index: initial;
+                }
             }
 
             @include media-xl {
                 width: 452.885px;
                 height: 205.569px;
                 transform: rotate(10.048deg);
+            }
+
+            @include media-sm {
+                width: initial;
+                height: initial;
+                transform: rotate(-5.072deg);
             }
 
 
@@ -307,6 +423,14 @@
                     top: -160px;
                     z-index: 2;
                 }
+
+                @include media-sm {
+                    left: 203px;
+                    top: 343px;
+                    z-index: initial;
+                }
+
+
             }
 
             left:50px;
@@ -323,6 +447,13 @@
                 height: 316.189px;
                 transform: rotate(-15.998deg);
             }
+
+            @include media-sm {
+                left: 50px;
+                width: initial;
+                height: initial;
+                transform: rotate(12.69deg);
+            }
         }
 
         .cta-nft {
@@ -337,6 +468,11 @@
 
                     top: 10px;
                 }
+
+                @include media-sm {
+                    left: 671px;
+                    top: 342px;
+                }
             }
 
             transform: rotate(-14.432deg);
@@ -344,6 +480,12 @@
             @include media-xl {
                 width: 207.163px;
                 height: 207.163px;
+                transform: rotate(-14.432deg);
+            }
+
+            @include media-sm {
+                width: initial;
+                height: initial;
                 transform: rotate(-14.432deg);
             }
         }
@@ -363,12 +505,25 @@
                     top: 555px;
 
                 }
+
+                @include media-sm {
+                    z-index: initial;
+                    top: 347px;
+                    left: 457px;
+
+                }
             }
 
             @include media-xl {
                 width: 277.028px;
                 height: 277.028px;
                 transform: rotate(-13.069deg);
+            }
+
+            @include media-sm {
+                width: initial;
+                height: initial;
+                transform: rotate(-8.997deg);
             }
 
             transform: rotate(-8.997deg);
@@ -385,6 +540,10 @@
 
                 @include media-xl {
                     display: flex;
+                }
+
+                @include media-sm {
+                    display: none;
                 }
             }
 
@@ -406,6 +565,12 @@
                     top: 95px;
                     left: 455px;
                 }
+
+                @include media-sm {
+                    z-index: 1;
+                    top: 469px;
+                    left: 486px;
+                }
             }
 
             position: relative;
@@ -418,6 +583,14 @@
                 width: 265px;
                 height: 421px;
                 transform: rotate(31.099deg);
+            }
+
+            @include media-sm {
+                left: 60px;
+                bottom: 5px;
+                width: 265px;
+                height: 421px;
+                transform: rotate(36.97deg);
             }
 
             transform: rotate(36.97deg);
@@ -435,6 +608,11 @@
                     left: -180px;
                     top: 520px;
                 }
+
+                @include media-sm {
+                    left: 290px;
+                    top: 515px;
+                }
             }
 
             transform: rotate(-13.096deg);
@@ -446,6 +624,14 @@
                 left: 0;
                 width: 269px;
                 height: 269px;
+                transform: rotate(-13.096deg);
+            }
+
+            @include media-sm {
+                top: 60px;
+                left: -5px;
+                width: initial;
+                height: initial;
                 transform: rotate(-13.096deg);
             }
 
