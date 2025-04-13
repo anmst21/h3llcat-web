@@ -7,6 +7,10 @@ const StickerJap = () => (
     height="57"
     fill="none"
     viewBox="0 0 331 57"
+    style={{
+      width: "auto",
+      height: "auto",
+    }}
   >
     <path
       fill="#fff"

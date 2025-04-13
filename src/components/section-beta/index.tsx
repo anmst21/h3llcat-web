@@ -15,7 +15,7 @@ import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
-import anime from "animejs";
+// import anime from "animejs";
 
 createClient(options);
 
@@ -98,47 +98,47 @@ function SectionBeta({
 
   const animationRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const numberOfEls = window.innerWidth > 1000 ? 500 : 300;
-    const duration = 1000;
-    const container = animationRef.current;
-    if (!container) return;
+  // useEffect(() => {
+  //   const numberOfEls = window.innerWidth > 1000 ? 500 : 300;
+  //   const duration = 1000;
+  //   const container = animationRef.current;
+  //   if (!container) return;
 
-    // Get container dimensions for positioning (center of container)
-    const rect = container.getBoundingClientRect();
-    const midX = rect.width / 2;
-    const midY = rect.height / 2;
-    const radius = Math.sqrt(midX * midX + midY * midY);
-    const fragment = document.createDocumentFragment();
+  //   // Get container dimensions for positioning (center of container)
+  //   const rect = container.getBoundingClientRect();
+  //   const midX = rect.width / 2;
+  //   const midY = rect.height / 2;
+  //   const radius = Math.sqrt(midX * midX + midY * midY);
+  //   const fragment = document.createDocumentFragment();
 
-    for (let i = 0; i < numberOfEls; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const el = document.createElement("div");
-      el.classList.add("particule");
-      el.style.backgroundColor = "#fff"; // Set dots to white
-      el.style.width = "1px";
-      el.style.height = "1px";
-      el.style.borderRadius = "50%"; // Make dots rounded (circle)
-      // Position absolutely within container
-      el.style.position = "absolute";
+  //   for (let i = 0; i < numberOfEls; i++) {
+  //     const angle = Math.random() * Math.PI * 2;
+  //     const el = document.createElement("div");
+  //     el.classList.add("particule");
+  //     el.style.backgroundColor = "#fff"; // Set dots to white
+  //     el.style.width = "1px";
+  //     el.style.height = "1px";
+  //     el.style.borderRadius = "50%"; // Make dots rounded (circle)
+  //     // Position absolutely within container
+  //     el.style.position = "absolute";
 
-      // Animate dots from the center (midX, midY) outward
-      anime({
-        targets: el,
-        width: ["1px", "3px"],
-        height: ["1px", "3px"],
-        left: [midX + "px", Math.cos(angle) * radius + midX + "px"],
-        top: [midY + "px", Math.sin(angle) * radius + midY + "px"],
-        delay: (duration / numberOfEls) * i,
-        duration: duration,
-        easing: "easeInExpo",
-        loop: true,
-      });
-      fragment.appendChild(el);
-    }
+  //     // Animate dots from the center (midX, midY) outward
+  //     anime({
+  //       targets: el,
+  //       width: ["1px", "3px"],
+  //       height: ["1px", "3px"],
+  //       left: [midX + "px", Math.cos(angle) * radius + midX + "px"],
+  //       top: [midY + "px", Math.sin(angle) * radius + midY + "px"],
+  //       delay: (duration / numberOfEls) * i,
+  //       duration: duration,
+  //       easing: "easeInExpo",
+  //       loop: true,
+  //     });
+  //     fragment.appendChild(el);
+  //   }
 
-    container.appendChild(fragment);
-  }, []);
+  //   container.appendChild(fragment);
+  // }, []);
 
   // did: null,
   //   email: null,

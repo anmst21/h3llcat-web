@@ -404,9 +404,10 @@
     padding-bottom: 60px;
 
     @include media-sm {
-        padding: 30px 15px 120px 15px;
+
         gap: 10px;
-        padding-top: 15px;
+        padding: 0;
+
     }
 
     // align-items: center;

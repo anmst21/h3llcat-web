@@ -61,12 +61,56 @@
         background-color: #121621;
     }
 
+
+
+    .footer__app,
+    .footer__container,
+    .footer__links,
+    .footer__art,
+    .footer__form,
+    .footer__team {
+        width: 100%;
+        overflow: hidden;
+    }
+
     .footer__container {
         border: none;
+
     }
 }
 
+#footer {
+    .holes {
+        display: none;
+    }
 
+    .round-holes {
+        display: none;
+    }
+
+    .footer__form__holes__container {
+        border-top: var(--border-footer)
+    }
+
+    .footer__form__container,
+    .footer__form__holes__container {
+        background-color: transparent;
+    }
+
+    .footer__app {
+        border-bottom: var(--border-footer)
+    }
+
+    .footer__app__container {
+        margin: 0;
+    }
+
+    img {
+        background-color: transparent;
+        border-top: var(--border-footer);
+        border-bottom: var(--border-footer)
+    }
+}
 
 .footer {
     --border-footer: 1px solid #FFF8E7;
@@ -81,8 +125,25 @@
     flex-direction: column;
     background-color: #0a0a0a;
 
+
+
+
+
+
     @include media-sm {
-        padding-bottom: 10px;
+        padding: 15px;
+
+
+        .footer__app,
+        .footer__form__text,
+        .footer__reimagine,
+        .footer__team__year,
+        .footer__links__home,
+        .footer__links__contact,
+        .footer__links__blog {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
 
 

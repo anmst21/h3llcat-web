@@ -131,6 +131,11 @@ button {
 }
 
 
+html {
+  width: 100vw;
+}
+
+
 .main {
   background-color: #0a0a0a;
   display: flex;
@@ -139,6 +144,10 @@ button {
   width: 100%;
   border-left: 4px solid #FFF;
   border-right: 4px solid #FFF;
+
+  @include media-sm {
+    border: none;
+  }
 }
 
 

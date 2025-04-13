@@ -11,7 +11,10 @@ const Navigation = () => {
       {menuItems.map((item, index) => (
         <Link
           className={classNames("desktop-header__navigation__item", {
-            "desktop-header__navigation__item--active": pathname === item.href,
+            "desktop-header__navigation__item--active":
+              item.href !== "/"
+                ? pathname.includes(item.href)
+                : pathname === "/",
           })}
           href={item.href}
           key={index}

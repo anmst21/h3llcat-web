@@ -205,10 +205,12 @@
     align-items: center;
     font-family: var(--font-sf-pro);
 
+
+
     &__scroll {
         overflow-y: scroll;
         height: 100%;
-
+        width: 100%;
 
         -ms-overflow-style: none;
         /* IE and Edge */
@@ -242,14 +244,19 @@
         padding-top: 25px;
 
         overflow-y: scroll;
+        padding: 25px;
         padding-bottom: 0px;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-top: 0px;
+
     }
 
     &__menu {
         display: flex;
         flex-direction: column;
+
+        @include media-sm {
+            margin-top: 25px;
+        }
 
         .section-beta__header__logo {
             margin-bottom: 20px;

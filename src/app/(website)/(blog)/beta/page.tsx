@@ -21,9 +21,5 @@ export default async function Beta() {
 
   // const data = (await response.json()) as string;
   const data = undefined;
-  return (
-    <div className="home">
-      <SectionBeta mintsNum={data} />
-    </div>
-  );
+  return <SectionBeta mintsNum={data} />;
 }
