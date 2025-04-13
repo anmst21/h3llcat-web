@@ -112,9 +112,9 @@
 
 .desktop-header {
     display: flex;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
+    position: sticky;
+    //  left: 50%;
+    // transform: translateX(-50%);
     top: 0;
     max-width: 1780px;
     width: 100%;

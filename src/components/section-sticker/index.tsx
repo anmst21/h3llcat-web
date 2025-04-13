@@ -31,7 +31,7 @@ function SectionSticker() {
   return (
     <div className="section-sticker">
       <div className="section-sticker__hollow"></div>
-      <div className="section-sticker__logo">
+      <div className="section-sticker__logo remove-on-desktop">
         <div className="section-sticker__iphone">
           <StickerIphoneIcon />
           <div className="section-sticker__iphone__text">

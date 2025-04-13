@@ -488,7 +488,7 @@
 
     &__hollow {
         display: flex;
-        height: 238px;
+        height: calc(238px + 101px);
         width: 100%;
         background-color: #121621;
 
