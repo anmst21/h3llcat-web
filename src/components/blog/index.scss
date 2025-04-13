@@ -131,14 +131,22 @@
         align-items: center;
         width: 100%;
 
-        @include media-sm {
-            width: fit-content;
-        }
+        // @include media-sm {
+        //     width: fit-content;
+        // }
 
         overflow-x: visible;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
 
         @include media-sm {
-            overflow-x: hidden;
+            overflow-x: scroll;
         }
 
         &__scroll {
@@ -149,9 +157,7 @@
                 overflow-x: scroll;
             }
 
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
+
 
 
             /* Firefox */
@@ -166,14 +172,12 @@
 
                 .divider {
                     display: flex !important;
+                    min-width: 1px !important;
                 }
             }
         }
 
-        &__scroll::-webkit-scrollbar {
-            display: none;
-            /* Chrome, Safari, Opera */
-        }
+
 
         .divider {
             background-color: rgba(255, 248, 231, 0.60);
@@ -182,6 +186,8 @@
             margin-right: 5px;
             margin-left: 15px;
             display: none;
+            min-width: 1px;
+            z-index: 50;
 
             @include media-sm {
                 display: flex;

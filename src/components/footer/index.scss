@@ -253,7 +253,7 @@
 
 
             color: rgba(5, 9, 21, 1);
-            background-color: #27AE60;
+            background-color: #88FF00;
             border-radius: 10px;
             display: flex;
             height: 52px;
@@ -269,14 +269,15 @@
 
             @include media-sm {
                 position: absolute;
-                left: 25px;
-                right: 25px;
-                bottom: 20px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
                 width: auto;
+                height: 42px;
             }
 
             &--error {
-                background-color: #EB5757
+                background-color: #FF2200
             }
         }
 

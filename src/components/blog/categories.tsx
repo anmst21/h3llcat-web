@@ -62,62 +62,58 @@ const Categories = ({ list }: Props) => {
           </span>
         </div>
       </Link>
-      <div className="category__container__scroll">
-        <motion.div className="category__container">
-          <motion.button
-            className="blog-post-page__categories__status"
-            key={buttonText} // Changing key triggers the animation
-            {...dynamicMintProps}
-            onClick={() => router.push(href)}
-          >
-            {buttonText}
-          </motion.button>
+      <motion.div className="category__container">
+        <motion.button
+          className="blog-post-page__categories__status"
+          key={buttonText} // Changing key triggers the animation
+          {...dynamicMintProps}
+          onClick={() => router.push(href)}
+        >
+          {buttonText}
+        </motion.button>
 
-          <div className="divider" />
-          <button
-            key={"mail"}
-            className={classNames("category", {
-              "active-category": !activeCategory && pathname.includes("/blog"),
-            })}
-            onClick={() => router.push("/blog")}
-            // Ensure the button can contain the absolutely positioned background
-            //  style={{ position: "relative", overflow: "hidden" }}
-          >
-            {/* The animated background indicator */}
-            {!activeCategory && pathname.includes("/blog") ? (
-              <motion.div layoutId="underline" className="underline" />
-            ) : null}
-            <span>Main</span>
-          </button>
-          {list.map((category) => {
-            const isActive = activeCategory === category.slug;
-            return (
-              <button
-                key={category._id}
-                className={classNames("category", {
-                  "active-category": isActive,
-                })}
-                onClick={() => {
-                  const newPath =
-                    "/blog" +
-                    "?" +
-                    createQueryString("category", category.slug);
-                  router.push(newPath);
-                  router.refresh();
-                }}
-                // Ensure the button can contain the absolutely positioned background
-                //  style={{ position: "relative", overflow: "hidden" }}
-              >
-                {/* The animated background indicator */}
-                {isActive ? (
-                  <motion.div layoutId="underline" className="underline" />
-                ) : null}
-                <span>{category.title}</span>
-              </button>
-            );
+        <div className="divider" />
+        <button
+          key={"mail"}
+          className={classNames("category", {
+            "active-category": !activeCategory && pathname.includes("/blog"),
           })}
-        </motion.div>
-      </div>
+          onClick={() => router.push("/blog")}
+          // Ensure the button can contain the absolutely positioned background
+          //  style={{ position: "relative", overflow: "hidden" }}
+        >
+          {/* The animated background indicator */}
+          {!activeCategory && pathname.includes("/blog") ? (
+            <motion.div layoutId="underline" className="underline" />
+          ) : null}
+          <span>Main</span>
+        </button>
+        {list.map((category) => {
+          const isActive = activeCategory === category.slug;
+          return (
+            <button
+              key={category._id}
+              className={classNames("category", {
+                "active-category": isActive,
+              })}
+              onClick={() => {
+                const newPath =
+                  "/blog" + "?" + createQueryString("category", category.slug);
+                router.push(newPath);
+                router.refresh();
+              }}
+              // Ensure the button can contain the absolutely positioned background
+              //  style={{ position: "relative", overflow: "hidden" }}
+            >
+              {/* The animated background indicator */}
+              {isActive ? (
+                <motion.div layoutId="underline" className="underline" />
+              ) : null}
+              <span>{category.title}</span>
+            </button>
+          );
+        })}
+      </motion.div>
     </div>
   );
 };
