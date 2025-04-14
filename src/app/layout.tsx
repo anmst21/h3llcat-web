@@ -12,73 +12,7 @@ import { EthPriceProvider } from "@/context/EthPriceProvider";
 import DesktopHeader from "@/components/desktop-header";
 
 const sfPro = localFont({
-  src: [
-    {
-      path: "./fonts/SFPro-CompressedLight.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-ExpandedLight.ttf",
-      weight: "270",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-CompressedLight.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-ExpandedMedium.ttf",
-      weight: "540",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-CompressedMedium.ttf",
-      weight: "550",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-Semibold.ttf",
-      weight: "590",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-Medium.ttf",
-      weight: "510",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-SemiboldItalic.ttf",
-      weight: "590",
-      style: "italic",
-    },
-    {
-      path: "./fonts/SFPro-ExpandedSemibold.ttf",
-      weight: "650",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-ExpandedBold.ttf",
-      weight: "760",
-      style: "normal",
-    },
-    {
-      path: "./fonts/SFPro-ExpandedBlack.ttf",
-      weight: "1000",
-      style: "normal",
-    },
-  ],
+  src: "./fonts/SFPro.ttf",
   variable: "--font-sf-pro",
 });
 

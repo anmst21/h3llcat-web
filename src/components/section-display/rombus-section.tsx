@@ -86,7 +86,6 @@ function RombusSection({ array, colIndex }: Props) {
               ) : (
                 <Image
                   onLoad={() => setLoaded(true)}
-                  unoptimized
                   // onError={() => setLoaded(false)}
                   src={uriDefault + `${item.contract}_${item.id}.jpg`}
                   alt={item.artName || item.name || "Artwork"}
