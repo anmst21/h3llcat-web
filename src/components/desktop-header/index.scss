@@ -1,3 +1,142 @@
+.wallet-dropdown {
+    display: flex;
+    position: fixed;
+    width: 426px;
+    height: 190px;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 10px;
+    background: #1F222C;
+
+    top: 96px;
+    right: 24px;
+
+    z-index: 1000;
+
+
+    &__wrapper {
+        position: relative;
+        display: flex;
+
+
+        .section-beta__header__wallet {
+
+            // Ensure .wallet-chev is the container holding <ChevDown />
+            .wallet-chev {
+                transition: transform 0.3s ease;
+                transform: rotate(0deg);
+            }
+
+            // Hover the entire wallet button or container to rotate the chevron
+            &:hover .wallet-chev {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    h4 {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        color: white;
+        text-align: start;
+        position: relative;
+        overflow: hidden;
+    }
+
+    p {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 540;
+        line-height: normal;
+        color: #A5A29C !important;
+        text-align: start;
+    }
+
+    &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__funds {
+        height: 100%;
+        aspect-ratio: 1;
+        position: relative;
+        padding: 25px 15px;
+        gap: 7px;
+        display: flex;
+        flex-direction: column;
+
+        svg {
+            width: 26px;
+            height: 26px;
+        }
+
+
+        &::before {
+            border-radius: 4px;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(189deg, #0232F8 2.16%, #050915 85.14%);
+            opacity: 1;
+            transition: opacity 0.2s ease;
+            z-index: -1;
+        }
+
+        &:hover::before {
+            opacity: 0.8;
+        }
+
+        &:hover::before {
+            opacity: 0.6;
+        }
+    }
+
+
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+
+    }
+
+    &__chain {}
+
+    &__logout {}
+
+    &__chain,
+    &__logout {
+        padding: 10px;
+        flex: 1;
+        border-radius: 4px;
+        transition: all .2s ease;
+
+        p {
+            width: 100%;
+            text-align: start;
+            padding-right: 30px;
+        }
+
+        &:hover {
+            background-color: rgba(147, 145, 142, 0.10);
+        }
+
+        &:active {
+            background-color: rgba(147, 145, 142, 0.20);
+        }
+    }
+}
+
+
 .section-beta__header {
     display: flex;
     padding: 10px;

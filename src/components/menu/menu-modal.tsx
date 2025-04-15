@@ -49,16 +49,17 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
   useLockBodyScroll(isOpen);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const { user, authenticated, ready, logout, login } = usePrivy();
-  const { wallets } = useWallets();
   const { fundWallet } = useFundWallet();
   const pathname = usePathname();
+  const { wallets } = useWallets();
+
   const userWallet = wallets.find(
     (wallet) => wallet.walletClientType === "coinbase_wallet"
   );
-
-  const { isLoadingBalance, formattedUserBalance } = useBalanceContext();
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
+  const { isLoadingBalance, formattedUserBalance } = useBalanceContext();
+
   const callback = useCallback(() => {
     setIsOpen(false);
   }, []);

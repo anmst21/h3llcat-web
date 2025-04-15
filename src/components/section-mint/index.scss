@@ -151,9 +151,6 @@
     align-items: center;
     margin-left: calc(20% + 406px);
 
-    @include media-sm {
-        display: none;
-    }
 
     &__container {
         height: 1117px;
@@ -163,6 +160,11 @@
         flex-direction: column;
         background-color: white;
         justify-content: flex-start;
+
+
+        @include media-sm {
+            display: none;
+        }
     }
 
 
