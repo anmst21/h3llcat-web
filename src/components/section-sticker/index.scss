@@ -185,7 +185,17 @@
 
         width: 100%;
         background-color: #121621;
-        position: relative;
+        //  position: relative;
+        height: 76px;
+
+        .join-carousel {
+            position: absolute;
+            // width: 100vw;
+            // left: ;
+            width: 100vw;
+            transform: translateX(-50%);
+            left: 50%;
+        }
     }
 
 

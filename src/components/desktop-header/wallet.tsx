@@ -45,7 +45,11 @@ const Wallet = () => {
             <span className="white">
               {truncateEthAddress(user?.wallet?.address)}
             </span>
-            <div className="wallet-chev">
+            <div
+              className={classNames("wallet-chev", {
+                "wallet-chev--hover": isHovered,
+              })}
+            >
               <ChevDown />
             </div>
             <div
@@ -62,7 +66,7 @@ const Wallet = () => {
             key={"connect-wallet"}
             {...dynamicButtonProps}
             className="section-beta__header__wallet"
-            onClick={async () => await login()}
+            onClick={() => login()}
           >
             <span>Connect Wallet</span>
             {/* <div className="divider" />

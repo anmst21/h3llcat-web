@@ -19,19 +19,31 @@
         display: flex;
 
 
-        .section-beta__header__wallet {
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: -50px;
+            z-index: -1;
+        }
 
-            // Ensure .wallet-chev is the container holding <ChevDown />
-            .wallet-chev {
-                transition: transform 0.3s ease;
-                transform: rotate(0deg);
-            }
 
-            // Hover the entire wallet button or container to rotate the chevron
-            &:hover .wallet-chev {
+
+        // Ensure .wallet-chev is the container holding <ChevDown />
+        .wallet-chev {
+            transition: transform 0.3s ease;
+            transform: rotate(0deg);
+
+            &--hover {
                 transform: rotate(180deg);
             }
         }
+
+
+
+
     }
 
     h4 {

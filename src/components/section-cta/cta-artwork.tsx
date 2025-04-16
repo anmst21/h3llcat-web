@@ -194,7 +194,7 @@ const CtaArtwork = ({ isPhone }: { isPhone?: boolean }) => {
       >
         <div className="cta-computer">
           <Image
-            src={"/section-main/computer.png"}
+            src={"/section-main/device-image.png"}
             width={262.287}
             height={362.504}
             alt="Computer image"

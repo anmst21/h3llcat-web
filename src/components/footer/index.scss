@@ -77,6 +77,12 @@
         border: none;
 
     }
+
+    img {
+        background-color: transparent;
+        border-top: var(--border-footer);
+        border-bottom: var(--border-footer)
+    }
 }
 
 #footer {
@@ -105,11 +111,7 @@
         margin: 0;
     }
 
-    img {
-        background-color: transparent;
-        border-top: var(--border-footer);
-        border-bottom: var(--border-footer)
-    }
+
 }
 
 .footer {
