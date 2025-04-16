@@ -10,6 +10,7 @@
 
     @include media-sm {
         border: none;
+        display: none;
     }
 
     &__container {
