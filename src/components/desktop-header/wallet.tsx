@@ -4,19 +4,17 @@ import { AnimatePresence, motion } from "motion/react";
 import { MenuWallet, ChevDown, MenuBase, MenuFunds, MenuLogout } from "../icon";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { useBalanceContext } from "@/context/BalanceProvider";
-import { useMenu } from "@/context/MenuProvider";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useFundWallet, usePrivy, useWallets } from "@privy-io/react-auth";
 import classNames from "classnames";
 import { base } from "viem/chains";
 
 const Wallet = () => {
   const { isLoadingBalance, formattedUserBalance } = useBalanceContext();
-  const { setIsOpenMenu } = useMenu();
   const { user, logout, login } = usePrivy();
   const [isHovered, setIsHovered] = useState(false);
   const { fundWallet } = useFundWallet();
-  const openMenuCallback = useCallback(() => setIsOpenMenu(true), []);
+  // const openMenuCallback = useCallback(() => setIsOpenMenu(true), []);
 
   const { wallets } = useWallets();
 
