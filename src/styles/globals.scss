@@ -157,6 +157,8 @@ html {
   width: 100dvw;
   height: 100dvh;
   justify-content: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   &--active {
     #footer {
