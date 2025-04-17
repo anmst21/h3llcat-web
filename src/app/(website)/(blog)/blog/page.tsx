@@ -28,7 +28,7 @@ export default async function Blog({
 
   const featuredBottom = filteredPosts.slice(0, 4);
   const otherPosts = blogposts.length > 4 ? blogposts.slice(4) : [];
-
+  console.log("otherPosts", blogposts);
   return (
     <>
       <div className="blog-featured">

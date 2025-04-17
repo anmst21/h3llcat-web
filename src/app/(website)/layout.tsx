@@ -1,7 +1,77 @@
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "@/styles/index.scss";
+import PrivyProvider from "@/context/PrivyProvider";
+import { createClient, reservoirChains } from "@reservoir0x/reservoir-sdk";
+import CookieConsentBanner from "@/components/cookie-consent";
+import Footer from "@/components/footer";
+import { CapchaProvider } from "@/context/CapchaProvider";
+import { MenuProvider } from "@/context/MenuProvider";
+import { BalanceProvider } from "@/context/BalanceProvider";
+import { EthPriceProvider } from "@/context/EthPriceProvider";
+import DesktopHeader from "@/components/desktop-header";
+
+const sfPro = localFont({
+  src: "../fonts/SFPro.ttf",
+  variable: "--font-sf-pro",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "Display - Reimagine How You Mint On-Chain",
+    template: "%s | Display",
+  },
+  description:
+    "Experience seamless wallet integration powered by Coinbase, instant NFT minting via Privy-embedded wallets, and a swipe-to-mint UI designed for single-hand navigation. Enjoy perfectly optimized visuals and curated feeds from Rodeo protocol—giving you the ultimate on-chain art discovery experience.",
+  metadataBase: new URL("https://display.app/"),
+  referrer: "origin-when-cross-origin",
+  generator: "Next.js",
+
+  authors: [
+    { name: "Anthony Nazarov", url: "https://www.n3xus.nyc/" },
+    { name: "Vladimir Kokorev", url: "https://www.n3xus.nyc/" },
+  ],
+};
+
+createClient({
+  chains: [
+    {
+      ...reservoirChains.base,
+      active: true,
+    },
+    {
+      ...reservoirChains.baseSepolia,
+      active: true,
+    },
+  ],
+  source: "h3llcat.app",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <html lang="en">
+      <body className={`${sfPro.variable}`}>
+        <CapchaProvider>
+          <PrivyProvider>
+            <EthPriceProvider>
+              <BalanceProvider>
+                <MenuProvider>
+                  <div className="main">
+                    <DesktopHeader />
+                    {children}
+                    <Footer />
+                  </div>
+                </MenuProvider>
+                <CookieConsentBanner />
+              </BalanceProvider>
+            </EthPriceProvider>
+          </PrivyProvider>
+        </CapchaProvider>
+      </body>
+    </html>
+  );
 }

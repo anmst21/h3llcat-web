@@ -2,9 +2,9 @@
 
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import nodemailer from "nodemailer";
-import { emailHtml } from "@/helpers/emails/WelcomingEmail";
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
-
+import { render } from "@react-email/render";
+import WelcomingEmail from "@/emails/welcome";
 const SECRET_KEY = process.env.RECAPCHA_BACKEND_KEY;
 
 mailchimp.setConfig({
@@ -60,13 +60,15 @@ export async function subscribeUser(
       },
     });
 
-    const html = await emailHtml;
+    const html = await render(WelcomingEmail(), { pretty: true });
+    const text = await render(WelcomingEmail(), { plainText: true });
 
     await transporter.sendMail({
       from: `My Newsletter${process.env.GMAIL_USER}`,
       to: email,
-      subject: "Welcome to My Newsletter!",
-      html: html,
+      subject: "Welcome to Diplay's Newsletter!",
+      html,
+      text,
     });
 
     return { success: true };

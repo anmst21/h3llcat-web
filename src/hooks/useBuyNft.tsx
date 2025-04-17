@@ -60,6 +60,7 @@ export function useBuyNFT({
           taker: userWallet.address,
           skipBalanceCheck: false,
         },
+
         chainId: 84532,
         wallet: walletClient,
         onProgress: (steps) => {

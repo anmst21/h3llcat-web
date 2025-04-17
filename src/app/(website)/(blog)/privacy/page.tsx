@@ -1,4 +1,3 @@
-// import { Globe, ChevDown, Bullet, Nexus } from "@/components/icon";
 import { formatBlogDate } from "@/helpers/formatBlogDate";
 import { getPrivacy } from "@/sanity/sanity-utils";
 import { Metadata } from "next";

@@ -49,9 +49,9 @@
     }
 
     .rouded-hole {
-        width: 24px;
+        max-width: 24px;
         height: 24px;
-
+        width: 100%;
         overflow: hidden;
         background-color: transparent;
         position: relative;
@@ -59,7 +59,7 @@
 
         &__gap {
             height: 34px;
-            width: 7px;
+            min-width: 7px;
             background-color: #121621;
         }
 

@@ -7,12 +7,22 @@ const RoundHoles = () => {
       <SectionHole />
       <div className="holes__center">
         <div className="rouded-hole__gap" />
-        {Array.from({ length: 12 }, (_, index) => (
-          <>
-            <div key={`hole-${index}`} className="rouded-hole" />
-            <div key={`gap-${index}`} className="rouded-hole__gap" />
-          </>
-        ))}
+        {Array.from({ length: 12 }, (_, index) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                height: 24,
+                width: "100%",
+                maxWidth: 31,
+              }}
+              key={index}
+            >
+              <div className="rouded-hole" />
+              <div className="rouded-hole__gap" />
+            </div>
+          );
+        })}
       </div>
       <div className="holes__flipped">
         <SectionHole />

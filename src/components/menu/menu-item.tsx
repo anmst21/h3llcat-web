@@ -35,6 +35,7 @@ const MenuItem = ({
 
         callback();
       }}
+      key={href}
       className={classNames("wallet-item wallet-item--hover", {
         "wallet-item--active": isActive,
       })}

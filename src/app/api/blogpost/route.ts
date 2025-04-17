@@ -1,8 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
 import mailchimp from "@mailchimp/mailchimp_marketing";
-import { emailHtml } from "@/helpers/emails/BlogPostEmail";
 import { verifySanitySignature } from "@/helpers/verifySanitySignature";
-
+import { render } from "@react-email/render";
+import NewPost from "@/emails/new-post";
+import { getBlogposts } from "@/sanity/sanity-utils";
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY!,
   server: process.env.MAILCHIMP_SERVER_PREFIX!,
@@ -51,7 +52,10 @@ export async function POST(request: NextRequest) {
   console.log("[POST] Verified webhook data from Sanity:", data);
 
   // Proceed with your business logic (e.g., sending a Mailchimp campaign)
-  const { name, slug } = data;
+  const {
+    name,
+    //  slug
+  } = data;
   try {
     const campaign = await mailchimp.campaigns.create({
       type: "regular",
@@ -65,8 +69,13 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    const newPostHtml = await emailHtml(name, slug.current);
-    await mailchimp.campaigns.setContent(campaign.id, { html: newPostHtml });
+    const { blogposts } = await getBlogposts();
+
+    const html = await render(NewPost({ posts: blogposts }), { pretty: true });
+    const text = await render(NewPost({ posts: blogposts }), {
+      plainText: true,
+    });
+    await mailchimp.campaigns.setContent(campaign.id, { html, text });
     await mailchimp.campaigns.send(campaign.id);
 
     console.log("[POST] Mailchimp campaign sent for new post:", name);

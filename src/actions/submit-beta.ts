@@ -2,8 +2,9 @@
 
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
 import { apiUriSubmitBeta } from "@/helpers/apiUri";
-import { emailHtml } from "@/helpers/emails/WelcomingEmail";
 import nodemailer from "nodemailer";
+import BetaEmail from "@/emails/beta";
+import { render } from "@react-email/render";
 
 export async function submitBeta(
   emailData: SubscribeFormSchema,
@@ -25,7 +26,8 @@ export async function submitBeta(
       },
     });
 
-    const html = await emailHtml;
+    const html = await render(BetaEmail(), { pretty: true });
+    const text = await render(BetaEmail(), { plainText: true });
 
     const transporter = nodemailer.createTransport({
       service: "Gmail",
@@ -38,8 +40,9 @@ export async function submitBeta(
     await transporter.sendMail({
       from: `My Newsletter <${process.env.GMAIL_USER}>`, // Ensure a proper "from" field format
       to: emailData.email, // Use the raw email here
-      subject: "Welcome to My Newsletter!",
-      html: html,
+      subject: "Congratulations! Welcome to Display's Beta raffle",
+      html,
+      text,
     });
 
     // Parse and return the JSON data from the response

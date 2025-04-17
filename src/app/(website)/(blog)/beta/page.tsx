@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import SectionBeta from "@/components/section-beta";
+import { notFound } from "next/navigation";
+import { apiUri } from "@/helpers/apiUri";
 
 export const metadata: Metadata = {
   title: "Join Beta - Mint Your Spot",
@@ -8,18 +10,21 @@ export const metadata: Metadata = {
 };
 
 export default async function Beta() {
-  // const response = await fetch(apiUri, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   cache: "no-cache",
-  // });
-  // if (!response.ok) {
-  //   notFound();
-  // }
+  const response = await fetch(apiUri, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+  });
+  if (!response.ok) {
+    notFound();
+  }
 
-  // const data = (await response.json()) as string;
-  const data = undefined;
+  const data:
+    | {
+        totalMinted: number;
+      }
+    | undefined = await response.json();
   return <SectionBeta mintsNum={data} />;
 }
