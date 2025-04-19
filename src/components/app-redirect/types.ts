@@ -4,7 +4,7 @@ export type CarouselPost = {
   blurhash: string;
   category: string;
   fullUriMd: string;
-  extention: "webp" | "mp4";
+  extention: string;
   hoursRemaining: number;
   filledSticks: number;
 };

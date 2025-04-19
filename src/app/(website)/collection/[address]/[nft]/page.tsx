@@ -16,6 +16,8 @@ import QRCode from "@/components/footer/qr-code";
 import classNames from "classnames";
 import ArtPreview from "@/components/app-redirect/art-preview";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { etherScanUriBase } from "@/components/app-redirect/etherScanUriBase";
 
 export const metadata: Metadata = {
   title: "NFT Details",
@@ -42,11 +44,11 @@ export default async function Nft({
     notFound();
   }
   const data = await res.json();
-
+  console.log("dadada", data);
   const {
     mintEndDatetime,
     image: { name, category, ipfsCid, mimeType, blurhash },
-    collection: { contractAddress, tokenId },
+    collection: { contractAddress, tokenId, creatorAddress },
   } = data.post;
 
   const hash = ipfsCid.split("ipfs://")[1];
@@ -105,10 +107,18 @@ export default async function Nft({
       <div className="section-sticker__reimagine">
         <h3>{name.toUpperCase()}</h3>
 
-        <div className="section-sticker__works__arrows">
-          <span>{truncateEthAddress(contractAddress) || "NFT"}</span>
+        <Link
+          target="_blank"
+          href={
+            etherScanUriBase + "address/" + (creatorAddress || contractAddress)
+          }
+          className="section-sticker__works__arrows"
+        >
+          <span>
+            {truncateEthAddress(creatorAddress || contractAddress) || "NFT"}
+          </span>
           <ArrowSticker />
-        </div>
+        </Link>
       </div>
       <Holes />
       <div className="nft-card__preview">
@@ -142,7 +152,26 @@ export default async function Nft({
           <div key={index} className="nft-card__props__item">
             <span>{item.name}</span>
             <div className="nft-card__props__divider" />
-            <span className="nft-card__props__value">{item.value}</span>
+            <Link
+              href={
+                item.name === MetaItemName.contract
+                  ? etherScanUriBase + "token/" + contractAddress
+                  : item.name === MetaItemName.token
+                    ? etherScanUriBase +
+                      "token/" +
+                      contractAddress +
+                      `?a=${postId}`
+                    : "/"
+              }
+              target="_blank"
+              className={classNames("nft-card__props__value", {
+                disabled:
+                  item.name === MetaItemName.chain ||
+                  item.name === MetaItemName.standard,
+              })}
+            >
+              {item.value}
+            </Link>
           </div>
         ))}
       </div>

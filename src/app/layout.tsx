@@ -12,7 +12,7 @@ import { EthPriceProvider } from "@/context/EthPriceProvider";
 import DesktopHeader from "@/components/desktop-header";
 
 const sfPro = localFont({
-  src: "../fonts/SFPro.ttf",
+  src: "./fonts/SFPro.ttf",
   variable: "--font-sf-pro",
 });
 

@@ -93,7 +93,7 @@ const PreviewCarousel = ({ carouselPosts }: Props) => {
                 blurhash={post.blurhash}
                 fullUriMd={post.fullUriMd}
                 category={post.category}
-                extention={post.extention}
+                extention={post.extention as "webp" | "mp4"}
               />
             </div>
           ))}

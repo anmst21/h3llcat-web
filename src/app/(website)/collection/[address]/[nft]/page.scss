@@ -41,6 +41,17 @@
         background-color: black !important;
     }
 
+    .nft-card__props__value:hover {
+
+        text-decoration: underline;
+
+    }
+
+    .section-sticker__works__arrows:hover {
+        span {
+            text-decoration: underline;
+        }
+    }
 
     @include media-sm {
         margin: 0 10px;

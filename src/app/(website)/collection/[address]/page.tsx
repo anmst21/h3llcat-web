@@ -1,5 +1,4 @@
 import { apiUri, gateway } from "@/helpers/uris";
-import axios from "axios";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { Metadata } from "next";
 import Footer from "@/components/footer";
@@ -18,6 +17,10 @@ import { CarouselPost } from "@/components/app-redirect/types";
 import CollectionHeader from "@/components/app-redirect/collection-header";
 import CollectionProps from "@/components/app-redirect/collection-props";
 import CollectionSticks from "@/components/app-redirect/collection-sticks";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+import { etherScanUriBase } from "@/components/app-redirect/etherScanUriBase";
 
 interface ImageInfo {
   name: string;
@@ -48,76 +51,66 @@ export default async function Nft({
   params: Promise<{ address: string }>;
 }) {
   const contractAddress = (await params).address;
-  const { data } = await axios.get(
-    apiUri + "/anonymous/rodeo/collection/posts",
-    {
-      params: { collectionAddress: contractAddress, limit: 8, offset: 0 },
+
+  // build and call the URL
+  const url = new URL(`${apiUri}/anonymous/rodeo/collection/posts`);
+  url.searchParams.set("collectionAddress", contractAddress);
+  url.searchParams.set("limit", "8");
+  url.searchParams.set("offset", "0");
+
+  const res = await fetch(url.toString(), { method: "GET" });
+  if (!res.ok) notFound();
+
+  // cast to the shape you expect
+  const data: {
+    collection: { creatorAddress: string };
+    posts: RodeoPost[];
+  } = await res.json();
+
+  // map into your CarouselPost[] exactly
+  const carouselPosts: CarouselPost[] = data.posts.map(
+    (post: RodeoPost): CarouselPost => {
+      const { name, ipfsCid, category, mimeType, blurhash } = post.image;
+      const hash = ipfsCid.split("ipfs://")[1];
+
+      // extention will be inferred as the literal union "webp" | "mp4"
+      const extention = mimeType === "image/jpeg" ? "webp" : "mp4";
+      const fullUriMd = `${gateway}/${hash}_Md.${extention}`;
+
+      const nowSec = Math.floor(Date.now() / 1000);
+      const endSec = Math.floor(
+        new Date(post.mintEndDatetime).getTime() / 1000
+      );
+      const remainingSec = Math.max(endSec - nowSec, 0);
+      const hoursRemaining = Math.floor(remainingSec / 3600);
+      const filledSticks = Math.ceil(hoursRemaining / 4);
+
+      return {
+        name,
+        tokenId: post.tokenId,
+        blurhash,
+        category,
+        fullUriMd,
+        extention,
+        hoursRemaining,
+        filledSticks,
+      };
     }
   );
 
-  const carouselPosts = data.posts.map((post: RodeoPost) => {
-    const { name, ipfsCid, category, mimeType, blurhash } = post.image;
-    const hash = ipfsCid.split("ipfs://")[1];
-    const extention = mimeType === "image/jpeg" ? "webp" : "mp4";
-    const fullUriMd = `${gateway}/${hash}_Md.${extention}`;
-    console.log("fullUriSm", data);
+  const clockList = carouselPosts.map((post) => ({
+    hoursRemaining: post.hoursRemaining.toString(), // ← now a string
+    filledSticks: post.filledSticks,
+  }));
 
-    const currentTime = Math.floor(Date.now() / 1000);
-    const endTime = Math.floor(new Date(post.mintEndDatetime).getTime() / 1000);
-    const remainingSeconds = Math.max(endTime - currentTime, 0);
-    const hoursRemaining = Math.floor(remainingSeconds / 3600);
-    const filledSticks = Math.ceil(hoursRemaining / 4);
-    return {
-      name,
-      tokenId: post.tokenId,
-      blurhash,
-      category,
-      fullUriMd,
-      extention,
-      hoursRemaining,
-      filledSticks,
-    };
-  });
+  const headersList = carouselPosts.map((post) => post.name);
+  const idsList = carouselPosts.map((post) => post.tokenId);
 
-  const clockList: { hoursRemaining: string; filledSticks: number }[] =
-    carouselPosts.map((post: CarouselPost) => ({
-      hoursRemaining: post.hoursRemaining,
-      filledSticks: post.filledSticks,
-    }));
-
-  const headersList: string[] = carouselPosts.map(
-    (post: CarouselPost) => post.name
+  console.log(
+    "contractAddress, user",
+    contractAddress,
+    data.collection.creatorAddress
   );
-  const idsList: number[] = carouselPosts.map(
-    (post: CarouselPost) => post.tokenId
-  );
-
-  // const { creatorAddress, contractAddress } = data.collection;
-  // const images = data.posts.map((post: any) => {
-  //   const fullUri = `${gateway}/${
-  //     post.image.ipfsCid.split("ipfs://")[1]
-  //   }_Sm.webp`;
-  //   return fullUri;
-  // });
-
-  // const metaItemData = [
-  //   {
-  //     name: MetaItemName.contract,
-  //     value: truncateEthAddress(contractAddress),
-  //     isBg: true,
-  //   },
-
-  //   {
-  //     name: MetaItemName.chain,
-  //     value: "Base",
-  //     isBg: false,
-  //   },
-  //   {
-  //     name: MetaItemName.standard,
-  //     value: "ERC-1155",
-  //     isBg: true,
-  //   },
-  // ];
 
   return (
     <PreviewCarouselProvider>
@@ -143,10 +136,18 @@ export default async function Nft({
         <div className="section-sticker__reimagine">
           <CollectionHeader headerArray={headersList} />
 
-          <div className="section-sticker__works__arrows">
-            <span>{truncateEthAddress(contractAddress) || "NFT"}</span>
+          <Link
+            target="_blank"
+            href={
+              etherScanUriBase + "address/" + data.collection.creatorAddress
+            }
+            className="section-sticker__works__arrows"
+          >
+            <span>
+              {truncateEthAddress(data.collection.creatorAddress) || "NFT"}
+            </span>
             <ArrowSticker />
-          </div>
+          </Link>
         </div>
         <Holes />
         <div className="nft-card__preview">
@@ -177,10 +178,7 @@ export default async function Nft({
           <CollectionSticks sticksArray={clockList} />
         </div>
         <Holes />
-        <CollectionProps
-          creatorAddress={data.collection.creatorAddress}
-          ids={idsList}
-        />
+        <CollectionProps contractAddress={contractAddress} ids={idsList} />
         <Holes />
         <div className="nft-card__input">
           <label htmlFor="card-input">

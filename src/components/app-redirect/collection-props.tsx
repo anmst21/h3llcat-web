@@ -5,18 +5,21 @@ import React from "react";
 import { MetaItemName } from "../collection/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 import { motion, AnimatePresence } from "motion/react";
+import Link from "next/link";
+import { etherScanUriBase } from "./etherScanUriBase";
+import classNames from "classnames";
 
 type Props = {
-  creatorAddress: string;
+  contractAddress: string;
   ids: number[];
 };
 
-const CollectionProps = ({ creatorAddress, ids }: Props) => {
+const CollectionProps = ({ contractAddress, ids }: Props) => {
   const { selectedIndex } = useCarousel();
   const metaItemData = [
     {
       name: MetaItemName.contract,
-      value: truncateEthAddress(creatorAddress),
+      value: truncateEthAddress(contractAddress),
       isBg: false,
     },
     {
@@ -35,13 +38,31 @@ const CollectionProps = ({ creatorAddress, ids }: Props) => {
       isBg: true,
     },
   ];
+
   return (
     <div className="nft-card__props">
       {metaItemData.map((item, index) => (
         <div key={index} className="nft-card__props__item">
           <span>{item.name}</span>
           <div className="nft-card__props__divider" />
-          <div className="nft-card__props__value-container">
+          <Link
+            href={
+              item.name === MetaItemName.contract
+                ? etherScanUriBase + "token/" + contractAddress
+                : item.name === MetaItemName.token
+                  ? etherScanUriBase +
+                    "token/" +
+                    contractAddress +
+                    `?a=${ids[selectedIndex]}`
+                  : "/"
+            }
+            target="_blank"
+            className={classNames("nft-card__props__value-container", {
+              disabled:
+                item.name === MetaItemName.chain ||
+                item.name === MetaItemName.standard,
+            })}
+          >
             <AnimatePresence initial={false} mode="popLayout">
               <motion.span
                 key={item.value}
@@ -58,7 +79,7 @@ const CollectionProps = ({ creatorAddress, ids }: Props) => {
                 {item.value}
               </motion.span>
             </AnimatePresence>
-          </div>
+          </Link>
         </div>
       ))}
     </div>

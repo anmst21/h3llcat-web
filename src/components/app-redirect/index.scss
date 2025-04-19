@@ -28,7 +28,11 @@
 
 
 
-
+ .nft-card__props__item {
+     .disabled {
+         pointer-events: none;
+     }
+ }
 
 
 
