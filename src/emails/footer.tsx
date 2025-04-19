@@ -1,17 +1,4 @@
-import {
-  Section,
-  Row,
-  Column,
-  Img,
-  Link,
-  Html,
-  Head,
-  Font,
-  Text,
-  Button,
-  Heading,
-  Hr,
-} from "@react-email/components";
+import { Section, Row, Column, Img, Link, Text } from "@react-email/components";
 
 export default function EmailFooter() {
   return (

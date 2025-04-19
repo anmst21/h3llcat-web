@@ -1,5 +1,4 @@
 import PreviewBackground from "@/components/app-redirect/preview-background";
-import ThreeScene from "@/components/three-scene";
 
 export default async function Layout({
   children,

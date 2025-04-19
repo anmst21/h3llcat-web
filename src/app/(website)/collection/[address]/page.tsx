@@ -1,7 +1,6 @@
 import { apiUri, gateway } from "@/helpers/uris";
 import axios from "axios";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
-import { MetaItemName } from "@/components/collection/types";
 import { Metadata } from "next";
 import Footer from "@/components/footer";
 import {
@@ -12,7 +11,6 @@ import {
 } from "@/components/icon";
 import RoundHoles from "@/components/section-sticker/round-holes";
 import Holes from "@/components/section-sticker/holes";
-import classNames from "classnames";
 import QRCode from "@/components/footer/qr-code";
 import PreviewCarousel from "@/components/app-redirect/preview-carousel";
 import { PreviewCarouselProvider } from "@/context/PreviewCarouselProvider";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Collection } from "@/types/CollectionCarousel";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";

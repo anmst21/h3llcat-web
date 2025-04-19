@@ -38,7 +38,7 @@ const CollectionProps = ({ creatorAddress, ids }: Props) => {
   return (
     <div className="nft-card__props">
       {metaItemData.map((item, index) => (
-        <div className="nft-card__props__item">
+        <div key={index} className="nft-card__props__item">
           <span>{item.name}</span>
           <div className="nft-card__props__divider" />
           <div className="nft-card__props__value-container">

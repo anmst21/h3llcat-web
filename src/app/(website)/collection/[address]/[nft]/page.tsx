@@ -1,6 +1,3 @@
-import axios from "axios";
-import Image from "next/image";
-import MetaItem from "@/components/collection/meta-item";
 import { MetaItemName } from "@/components/collection/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 import {
@@ -9,22 +6,15 @@ import {
   ArrowSticker,
   StickerIphoneIcon,
 } from "@/components/icon";
-import { stringToColor } from "@/helpers/stringToColor";
 import Footer from "@/components/footer";
-import Sticks from "@/components/collection/sticks";
 import { apiUri, gateway } from "@/helpers/uris";
-import SidebarBtn from "@/components/header/sidebar-btn";
-import CornerStatus from "@/components/collection/coner-status";
-import ThreeScene from "@/components/three-scene";
-import Header from "@/components/header";
-import { getBlurDataURL } from "@/helpers/getBluhashDataUri";
+
 import { Metadata } from "next";
 import RoundHoles from "@/components/section-sticker/round-holes";
 import Holes from "@/components/section-sticker/holes";
 import QRCode from "@/components/footer/qr-code";
 import classNames from "classnames";
 import ArtPreview from "@/components/app-redirect/art-preview";
-import PreviewBackground from "@/components/app-redirect/preview-background";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -47,8 +37,6 @@ export default async function Nft({
 
   const res = await fetch(url.toString(), {
     method: "GET",
-    // if you need headers, e.g.:
-    // headers: { "Content-Type": "application/json" },
   });
   if (!res.ok) {
     notFound();
@@ -64,15 +52,12 @@ export default async function Nft({
   const hash = ipfsCid.split("ipfs://")[1];
   const extention = mimeType === "image/jpeg" ? "webp" : "mp4";
   const fullUriMd = `${gateway}/${hash}_Md.${extention}`;
-  console.log("fullUriSm", data);
 
   const currentTime = Math.floor(Date.now() / 1000);
   const endTime = Math.floor(new Date(mintEndDatetime).getTime() / 1000);
   const remainingSeconds = Math.max(endTime - currentTime, 0);
   const hoursRemaining = Math.floor(remainingSeconds / 3600);
   const filledSticks = Math.ceil(hoursRemaining / 4);
-
-  console.log("filledSticks", filledSticks, hoursRemaining);
 
   const metaItemData = [
     {
@@ -154,7 +139,7 @@ export default async function Nft({
       <Holes />
       <div className="nft-card__props">
         {metaItemData.map((item, index) => (
-          <div className="nft-card__props__item">
+          <div key={index} className="nft-card__props__item">
             <span>{item.name}</span>
             <div className="nft-card__props__divider" />
             <span className="nft-card__props__value">{item.value}</span>

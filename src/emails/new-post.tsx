@@ -5,7 +5,6 @@ import {
   Head,
   Font,
   Text,
-  Heading,
   Row,
   Column,
   Hr,
@@ -15,7 +14,6 @@ import * as React from "react";
 import Footer from "./footer";
 import Divider from "./divider";
 import Header from "./header";
-import { formatBlogDate } from "@/helpers/formatBlogDate";
 import MailPostDate from "./post-date";
 
 export default function NewPost({ posts }: { posts: any }) {

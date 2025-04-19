@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { CarouselPost } from "./types";
 
