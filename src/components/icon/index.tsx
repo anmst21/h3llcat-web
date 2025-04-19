@@ -95,7 +95,7 @@ import CtaTryNow from "./CtaTryNow";
 import CtaWeb from "./CtaWeb";
 import CtaNft from "./CtaNft";
 import CtaStar from "./CtaStar";
-
+import CollectionUser from "./CollectionUser";
 import MainDiskCar from "./MainDiskCar";
 import MainDiskKiss from "./MainDiskKiss";
 import WalletBeta from "./WalletBeta";
@@ -104,6 +104,7 @@ import LogoFooter from "./LogoFooter";
 import RadioKnob from "./RadioKnob";
 
 export {
+  CollectionUser,
   StickerStar,
   RadioKnob,
   LogoFooter,

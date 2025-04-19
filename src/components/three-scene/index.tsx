@@ -44,7 +44,7 @@ export function Model(props: any) {
         geometry={(nodesCube.Cube as any).geometry}
         material={materialCube["Material.001"]}
         ref={kognacRef}
-        scale={0.2}
+        scale={0}
         position={[0, 0, 0]}
       >
         <MeshTransmissionMaterial
@@ -131,7 +131,7 @@ export default function AnimatedFBX() {
 
   return (
     <Canvas style={{ width: "100%", height: "100%" }} shadows>
-      <color attach="background" args={["#fc0"]} />
+      {/* <color attach="background" args={["#0E1526AD"]} /> */}
       <Environment preset="studio" />
 
       <ambientLight intensity={1} />

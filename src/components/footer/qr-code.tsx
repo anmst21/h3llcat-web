@@ -16,7 +16,7 @@ interface ShowCodeProps {
 
 const ShowCode: React.FC<ShowCodeProps> = ({ uri, sqSize }) => {
   const reservedBit = generateQRCodeData(uri);
-  const size = 100 - 14;
+  const size = 120 - 14;
 
   // Calculate grid dimension (e.g., 21x21 for QR codes with low error correction and version 1)
   const dimension = Math.sqrt(reservedBit.length);
@@ -29,7 +29,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ uri, sqSize }) => {
   const cornerSize = 7;
 
   return (
-    <div className="footer__code">
+    <div style={{ position: "relative" }} className="footer__code">
       <div style={{ position: "relative", display: "flex" }}>
         <div className="sq-top-left">
           <QrSq size={sqSize} />
@@ -83,6 +83,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ uri, sqSize }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          zIndex: 5,
         }}
       >
         <QrLogo />

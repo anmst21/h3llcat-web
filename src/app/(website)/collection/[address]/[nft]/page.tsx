@@ -3,18 +3,29 @@ import Image from "next/image";
 import MetaItem from "@/components/collection/meta-item";
 import { MetaItemName } from "@/components/collection/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
-import { CollectionLock, CoinFade } from "@/components/icon";
+import {
+  CollectionLock,
+  CollectionUser,
+  ArrowSticker,
+  StickerIphoneIcon,
+} from "@/components/icon";
 import { stringToColor } from "@/helpers/stringToColor";
-import Footer from "@/components/footer/qr-footer";
+import Footer from "@/components/footer";
 import Sticks from "@/components/collection/sticks";
 import { apiUri, gateway } from "@/helpers/uris";
 import SidebarBtn from "@/components/header/sidebar-btn";
 import CornerStatus from "@/components/collection/coner-status";
 import ThreeScene from "@/components/three-scene";
-import "@/components/three-scene/index.scss";
 import Header from "@/components/header";
-
+import { getBlurDataURL } from "@/helpers/getBluhashDataUri";
 import { Metadata } from "next";
+import RoundHoles from "@/components/section-sticker/round-holes";
+import Holes from "@/components/section-sticker/holes";
+import QRCode from "@/components/footer/qr-code";
+import classNames from "classnames";
+import ArtPreview from "@/components/app-redirect/art-preview";
+import PreviewBackground from "@/components/app-redirect/preview-background";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "NFT Details",
@@ -29,24 +40,37 @@ export default async function Nft({
 }) {
   const postId = (await params).nft;
   const collectionAddress = (await params).address;
-  const { data } = await axios.get(apiUri + "/anonymous/rodeo/post", {
-    params: { collectionAddress: collectionAddress, tokenId: postId },
+
+  const url = new URL(`${apiUri}/anonymous/rodeo/post`);
+  url.searchParams.set("collectionAddress", collectionAddress);
+  url.searchParams.set("tokenId", postId);
+
+  const res = await fetch(url.toString(), {
+    method: "GET",
+    // if you need headers, e.g.:
+    // headers: { "Content-Type": "application/json" },
   });
+  if (!res.ok) {
+    notFound();
+  }
+  const data = await res.json();
 
   const {
     mintEndDatetime,
-    image: { name, category, ipfsCid },
+    image: { name, category, ipfsCid, mimeType, blurhash },
     collection: { contractAddress, tokenId },
   } = data.post;
 
   const hash = ipfsCid.split("ipfs://")[1];
-  const fullUriSm = `${gateway}/${hash}_Sm.webp`;
+  const extention = mimeType === "image/jpeg" ? "webp" : "mp4";
+  const fullUriMd = `${gateway}/${hash}_Md.${extention}`;
+  console.log("fullUriSm", data);
 
   const currentTime = Math.floor(Date.now() / 1000);
   const endTime = Math.floor(new Date(mintEndDatetime).getTime() / 1000);
   const remainingSeconds = Math.max(endTime - currentTime, 0);
   const hoursRemaining = Math.floor(remainingSeconds / 3600);
-  const filledSticks = Math.ceil(hoursRemaining / 4) - 1;
+  const filledSticks = Math.ceil(hoursRemaining / 4);
 
   console.log("filledSticks", filledSticks, hoursRemaining);
 
@@ -74,106 +98,110 @@ export default async function Nft({
   ];
 
   return (
-    <div className="nft">
-      <Header />
-      <div className="three_wrapper">
-        <ThreeScene />
+    <div className="nft-card">
+      <div className="section-sticker__logo remove-on-desktop">
+        <div className="section-sticker__iphone">
+          <StickerIphoneIcon />
+          <div className="section-sticker__iphone__text">
+            <h5>Display</h5>
+            <span className="section-sticker__iphone__text__sub">
+              swipe. collect. repeat.
+            </span>
+          </div>
+        </div>
       </div>
-      <Header />
-      <div className="nft__corner">
-        <CornerStatus status="nft" />
+      <div className="round-holes__top remove-on-desktop">
+        <RoundHoles />
       </div>
-      <div className="nft__container">
-        <div className="nft__container__status">
-          <Image
-            width={26}
-            height={26}
-            src={"/logo-display.svg"}
-            alt="logo-status"
+      <div className="round-holes__bot ">
+        <RoundHoles />
+      </div>
+
+      <div className="section-sticker__reimagine">
+        <h3>{name.toUpperCase()}</h3>
+
+        <div className="section-sticker__works__arrows">
+          <span>{truncateEthAddress(contractAddress) || "NFT"}</span>
+          <ArrowSticker />
+        </div>
+      </div>
+      <Holes />
+      <div className="nft-card__preview">
+        <div className="nft-card__preview__container">
+          <ArtPreview
+            extention={extention}
+            category={category}
+            blurhash={blurhash}
+            fullUriMd={fullUriMd}
           />
-          <CornerStatus status="nft" />
         </div>
-        <div className="nft__corner">
-          <CornerStatus status="nft" />
-        </div>
-        <div className="nft__container">
-          {/*<BgImages/>*/}
-          <div className="nft__container__status">
-            <Image
-              width={26}
-              height={26}
-              src={"/logo-display.svg"}
-              alt="logo-status"
-            />
-
-            <CornerStatus status="nft" />
+        <div className="nft-card__preview__props">
+          <div className="nft-card__preview__items">
+            {Array.from({ length: 6 }, (_, index) => (
+              <div
+                key={index}
+                className={classNames("nft-card__preview__sticks", {
+                  "nft-card__preview__sticks--active": filledSticks > index,
+                })}
+              />
+            ))}
           </div>
-          <div className="nft__card">
-            <div className="highlight" />
-
-            <div className="nft__card__top">
-              <div className="nft__card__image">
-                <Image
-                  src={fullUriSm}
-                  alt="nft-preview"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <div className="nft__card__text">
-                <span className="nft__card__name">{name}</span>
-                <span className="nft__card__creator">{category}</span>
-              </div>
-            </div>
-
-            <div className="nft__card__comment">
-              <div className="nft__card__comment__item">
-                <div
-                  className="coin-fade"
-                  style={{ color: stringToColor(contractAddress) }}
-                >
-                  <CoinFade />
-                </div>
-                <span>Comment...</span>
-                <CollectionLock />
-              </div>
-
-              <div className="nft__card__sticks">
-                <Sticks
-                  totalSticks={6}
-                  filledSticks={filledSticks}
-                  stickWidth={3}
-                  stickHeight={12}
-                  gap={3}
-                />
-                <span>
-                  {hoursRemaining}
-                  <span>h</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="nft__card__meta">
-              {metaItemData.map((data, index) => {
-                return (
-                  <MetaItem
-                    name={data.name}
-                    value={data.value}
-                    isBg={data.isBg}
-                    key={index}
-                  />
-                );
-              })}
-            </div>
-            {/* <CtaBtn collectionId={contractAddress} /> */}
-          </div>
+          <span className="nft-card__preview__text move-up">
+            <span className="accent-color">{hoursRemaining}</span>H LEFT
+          </span>
         </div>
-        <SidebarBtn />
-        <Footer
-          sqSize={14}
-          uri={`h3llcat:///collection/${collectionAddress}/${postId}`}
-        />
       </div>
+      <Holes />
+      <div className="nft-card__props">
+        {metaItemData.map((item, index) => (
+          <div className="nft-card__props__item">
+            <span>{item.name}</span>
+            <div className="nft-card__props__divider" />
+            <span className="nft-card__props__value">{item.value}</span>
+          </div>
+        ))}
+      </div>
+      <Holes />
+      <div className="nft-card__input">
+        <label htmlFor="card-input">
+          <CollectionUser />
+          <input placeholder="COMMENT..." disabled={true} />
+          <CollectionLock />
+        </label>
+      </div>
+      <div className="round-holes__top ">
+        <RoundHoles />
+      </div>
+
+      <div className="remove-on-mobile reverse-direction">
+        <div className="round-holes__bot ">
+          <RoundHoles />
+        </div>
+
+        <div className="nft-card__code">
+          <div className="section-sticker__iphone section-beta__header__logo">
+            <StickerIphoneIcon />
+            <div className="section-sticker__iphone__text">
+              <h5>Get the app</h5>
+              <span className="section-sticker__iphone__text__sub">
+                Edit all your QR codes
+              </span>
+            </div>
+          </div>
+
+          <QRCode
+            sqSize={18}
+            uri={`h3llcat:///collection/${collectionAddress}/${postId}`}
+          />
+        </div>
+        <div className="round-holes__top ">
+          <RoundHoles />
+        </div>
+      </div>
+      <div className="round-holes__bot remove-on-desktop">
+        <RoundHoles />
+      </div>
+      <Footer isMobile />
     </div>
   );
 }

@@ -3,7 +3,7 @@
     height: 34px;
     width: 100%;
     position: relative;
-
+    color: #121621;
 
     &__top,
     &__bot {
@@ -514,6 +514,10 @@
     position: relative;
     height: 34px;
     width: 100%;
+
+    svg {
+        color: #121621;
+    }
 
     &__flipped {
         transform: scaleX(-1);

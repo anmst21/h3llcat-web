@@ -40,7 +40,8 @@ export const MenuProvider: FC<MenuProviderProps> = ({ children }) => {
 
       <div
         className={classNames("remove-footer", {
-          "remove-footer--active": isMobile && pathname === "/",
+          "remove-footer--active":
+            isMobile && (pathname === "/" || pathname.includes("/collection")),
         })}
       >
         <MenuModal isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
