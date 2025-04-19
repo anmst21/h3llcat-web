@@ -19,7 +19,7 @@ export default function BetaEmail() {
       <Head>
         <Font
           fontFamily="SF Pro Text"
-          fallbackFontFamily="Times New Roman"
+          fallbackFontFamily="Arial"
           webFont={{
             url: "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/apple-fonts/SFProText-Medium.woff2",
             format: "woff2",

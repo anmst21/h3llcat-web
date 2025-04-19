@@ -100,10 +100,11 @@ import MainDiskCar from "./MainDiskCar";
 import MainDiskKiss from "./MainDiskKiss";
 import WalletBeta from "./WalletBeta";
 import LogoFooter from "./LogoFooter";
-
+import CtaGameFallback from "./CtaGameFallback";
 import RadioKnob from "./RadioKnob";
 
 export {
+  CtaGameFallback,
   CollectionUser,
   StickerStar,
   RadioKnob,
