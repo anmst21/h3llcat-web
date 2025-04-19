@@ -90,6 +90,12 @@
         display: none;
     }
 
+    img {
+        background-color: transparent;
+        border-top: var(--border-footer);
+        border-bottom: var(--border-footer);
+    }
+
     .round-holes {
         display: none;
     }

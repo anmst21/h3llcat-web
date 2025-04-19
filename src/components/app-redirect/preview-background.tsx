@@ -5,8 +5,8 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import ThreeScene from "../three-scene";
-import { useMediaQuery } from "react-responsive";
+// import ThreeScene from "../three-scene";
+// import { useMediaQuery } from "react-responsive";
 
 const sdnUri =
   "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/assets-redirect/";
@@ -26,15 +26,15 @@ export default function PreviewBackground({ redirects }: Props) {
   const trimmed = redirects.slice(0, -2);
   const router = useRouter();
 
-  const isMobile = useMediaQuery({ query: "(max-width: 1100px)" });
+  // const isMobile = useMediaQuery({ query: "(max-width: 1100px)" });
 
   return (
     <>
-      {isMobile && (
+      {/* {isMobile && (
         <div className="three_wrapper">
           <ThreeScene />
         </div>
-      )}
+      )} */}
 
       <div className="preview-background">
         {trimmed.map((item, i) => (

@@ -1,6 +1,6 @@
 .wallet-dropdown {
     display: flex;
-    position: fixed;
+    position: absolute;
     width: 426px;
     height: 190px;
     border-radius: 10px;
@@ -8,8 +8,8 @@
     padding: 10px;
     background: #121621;
 
-    top: 96px;
-    right: 24px;
+    top: 70px;
+    right: 0;
 
     z-index: 1000;
 
