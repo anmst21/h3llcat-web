@@ -19,6 +19,7 @@ import CollectionProps from "@/components/app-redirect/collection-props";
 import CollectionSticks from "@/components/app-redirect/collection-sticks";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import img from "./opengraph-image";
 
 import { etherScanUriBase } from "@/components/app-redirect/etherScanUriBase";
 
@@ -112,6 +113,8 @@ export default async function Nft({
     data.collection.creatorAddress
   );
 
+  const og = await img({ params: { slug: "/" } });
+  console.log("ogimage", og);
   return (
     <PreviewCarouselProvider>
       <div className="nft-card">

@@ -64,7 +64,7 @@ const StickerBtn = ({ content, type, large }: Props) => {
         key={content}
         style={{ color: "#050915", fontSize: 17 }}
       >
-        {content}
+        {content.toUpperCase()}
       </motion.span>
 
       <motion.div

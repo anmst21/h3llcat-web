@@ -12,10 +12,16 @@ import { EthPriceProvider } from "@/context/EthPriceProvider";
 import DesktopHeader from "@/components/desktop-header";
 
 const sfPro = localFont({
-  src: "./fonts/SFPro.ttf",
+  // point these at your actual .ttf files, relative to this file
+  src: [
+    { path: "./fonts/SFProText-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/SFProText-Medium.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/SFProText-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "./fonts/SFProText-Bold.ttf", weight: "700", style: "normal" },
+  ],
   variable: "--font-sf-pro",
+  display: "swap",
 });
-
 export const metadata: Metadata = {
   title: {
     default: "Display - Reimagine How You Mint On-Chain",

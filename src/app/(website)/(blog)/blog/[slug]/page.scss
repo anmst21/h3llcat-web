@@ -113,6 +113,7 @@
         color: rgba(147, 145, 142, 1);
         font-variant: all-small-caps;
         margin: 40px 0px 20px 0px;
+        font-weight: 500;
 
         @include media-sm {
             margin: 25px 0px 15px 0px;
@@ -188,6 +189,7 @@
         font-style: normal;
         line-height: 20px;
         gap: 20px;
+        font-weight: 500;
 
         div {
             width: 1px;
@@ -317,7 +319,7 @@
             gap: 15px;
             font-size: 16px;
             font-style: normal;
-            font-weight: 510;
+            font-weight: 500;
             line-height: 20px;
             /* 125% */
             letter-spacing: -1px;
@@ -353,6 +355,7 @@
                 .section-sticker__iphone__text {
                     h5 {
                         color: white;
+
                     }
                 }
 
@@ -376,7 +379,7 @@
                 //  margin-right: auto;
                 font-size: 24px;
                 font-style: normal;
-                font-weight: 510;
+                font-weight: 500;
                 line-height: 28px;
 
                 @include media-sm {

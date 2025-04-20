@@ -63,6 +63,9 @@ body {
 }
 
 
+* {
+  font-family: var(--font-sf-pro);
+}
 
 .grecaptcha-badge {
   display: none !important;

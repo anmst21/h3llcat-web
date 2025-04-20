@@ -92,8 +92,12 @@
 
     img {
         background-color: transparent;
-        border-top: var(--border-footer);
-        border-bottom: var(--border-footer);
+
+        @include media-sm {
+            border-top: var(--border-footer);
+            border-bottom: var(--border-footer);
+        }
+
     }
 
     .round-holes {
@@ -321,7 +325,7 @@
                     width: 100%;
                     font-size: 19px;
                     font-style: normal;
-                    font-weight: 400;
+                    font-weight: 500;
                     line-height: normal;
                     letter-spacing: -0.08px;
                     color: white;
@@ -410,6 +414,7 @@
             height: 72px;
             display: flex;
             align-items: center;
+            justify-content: center;
 
             gap: 10px;
 
@@ -591,7 +596,7 @@
                 color: rgba(255, 248, 231, 0.80);
                 font-size: 16px;
                 font-style: normal;
-                font-weight: 510;
+                font-weight: 500;
                 line-height: 20px;
                 letter-spacing: -1px;
                 white-space: nowrap;
