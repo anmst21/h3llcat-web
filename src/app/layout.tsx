@@ -77,7 +77,6 @@ export const metadata: Metadata = {
     "React Native",
   ],
 
-  colorScheme: "dark",
   viewport: { width: "device-width", initialScale: 1 },
 };
 

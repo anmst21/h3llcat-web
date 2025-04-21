@@ -13,7 +13,7 @@ import Holes from "@/components/section-sticker/holes";
 import QRCode from "@/components/footer/qr-code";
 import PreviewCarousel from "@/components/app-redirect/preview-carousel";
 import { PreviewCarouselProvider } from "@/context/PreviewCarouselProvider";
-import { CarouselPost } from "@/components/app-redirect/types";
+import { CarouselPost, RodeoPost } from "@/components/app-redirect/types";
 import CollectionHeader from "@/components/app-redirect/collection-header";
 import CollectionProps from "@/components/app-redirect/collection-props";
 import CollectionSticks from "@/components/app-redirect/collection-sticks";
@@ -21,23 +21,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { etherScanUriBase } from "@/components/app-redirect/etherScanUriBase";
-
-interface ImageInfo {
-  name: string;
-  ipfsCid: string;
-  category: string;
-  mimeType: string;
-  blurhash: string;
-  width: number;
-  height: number;
-}
-
-interface RodeoPost {
-  id: string;
-  mintEndDatetime: string; // ISO date string; you could use `Date` if you parse it
-  image: ImageInfo;
-  tokenId: number;
-}
 
 export const metadata: Metadata = {
   title: "Explore NFT Collection",
