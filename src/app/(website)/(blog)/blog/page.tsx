@@ -8,7 +8,7 @@ import { BlogBack } from "@/components/icon";
 import Divider from "@/components/blog/divider";
 
 export const metadata: Metadata = {
-  title: "Display Updates - Stay tuned",
+  title: "Updates - Stay tuned",
   description:
     "Stay current on all things Display. From new feature launches to behind-the-scenes insights, our blog is your go-to source for updates and announcements. Subscribe to our newsletter for exclusive news and sneak peeks.",
 };

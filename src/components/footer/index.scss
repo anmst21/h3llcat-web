@@ -185,6 +185,12 @@
                 gap: 10px;
                 padding-bottom: 5px;
 
+                @include media-sm {
+                    h4 {
+                        text-transform: uppercase;
+                    }
+                }
+
                 span {
                     font-size: 14px;
                     font-style: normal;

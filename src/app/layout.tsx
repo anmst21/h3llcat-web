@@ -12,7 +12,6 @@ import { EthPriceProvider } from "@/context/EthPriceProvider";
 import DesktopHeader from "@/components/desktop-header";
 
 const sfPro = localFont({
-  // point these at your actual .ttf files, relative to this file
   src: [
     { path: "./fonts/SFProText-Regular.ttf", weight: "400", style: "normal" },
     { path: "./fonts/SFProText-Medium.ttf", weight: "500", style: "normal" },
@@ -22,6 +21,7 @@ const sfPro = localFont({
   variable: "--font-sf-pro",
   display: "swap",
 });
+
 export const metadata: Metadata = {
   title: {
     default: "Display - Reimagine How You Mint On-Chain",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   description:
     "Experience seamless wallet integration powered by Coinbase, instant NFT minting via Privy-embedded wallets, and a swipe-to-mint UI designed for single-hand navigation. Enjoy perfectly optimized visuals and curated feeds from Rodeo protocol—giving you the ultimate on-chain art discovery experience.",
-  metadataBase: new URL("https://display.app/"),
+  metadataBase: new URL("https://display.app"),
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
 
@@ -37,6 +37,48 @@ export const metadata: Metadata = {
     { name: "Anthony Nazarov", url: "https://www.n3xus.nyc/" },
     { name: "Vladimir Kokorev", url: "https://www.n3xus.nyc/" },
   ],
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Display",
+    images: [
+      {
+        url: "/landing.jpg",
+        width: 1380,
+        height: 840,
+        alt: "Display - Reimagine How You Mint On-Chain",
+      },
+    ],
+  },
+  twitter: {
+    images: ["/contacts.jpg"],
+    card: "summary_large_image",
+    site: "@0xN3XUS",
+    creator: "@Anthony_N2000",
+  },
+
+  keywords: [
+    "NFT",
+    "minting",
+    "web3",
+    "crypto art",
+    "Display app",
+    "swipe to mint",
+    "Coinbase wallet",
+    "Mobile Wallet Protocol",
+    "embedded wallet",
+    "Privy",
+    "Base chain",
+    "TestFlight beta",
+    "on-chain art discovery",
+    "Rodeo protocol",
+    "single-hand navigation",
+    "React Native",
+  ],
+
+  colorScheme: "dark",
+  viewport: { width: "device-width", initialScale: 1 },
 };
 
 createClient({
