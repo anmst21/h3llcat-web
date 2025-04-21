@@ -5,6 +5,8 @@ import { apiUri } from "@/helpers/uris";
 import { RodeoPost } from "@/components/app-redirect/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 
+export const dynamic = "force-dynamic";
+
 // Image metadata
 export const alt = "Preview Display";
 export const size = {

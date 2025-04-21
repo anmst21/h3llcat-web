@@ -4,6 +4,8 @@ import { join } from "node:path";
 import { apiUri } from "@/helpers/uris";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
 
+export const dynamic = "force-dynamic";
+
 const temporaryUri =
   "https://f8n-production-collection-assets.imgix.net/rodeo/8453/0x7E383ECc3C0D70578528c51B6E51037fa2D157b8/13/Qman6xMqNh9WrDbrmTLihSHxh5Apnr9hJPatp5im6hzuHz/nft.jpeg";
 
