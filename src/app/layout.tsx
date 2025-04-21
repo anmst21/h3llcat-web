@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   description:
     "Experience seamless wallet integration powered by Coinbase, instant NFT minting via Privy-embedded wallets, and a swipe-to-mint UI designed for single-hand navigation. Enjoy perfectly optimized visuals and curated feeds from Rodeo protocol—giving you the ultimate on-chain art discovery experience.",
-  metadataBase: new URL("https://display.app"),
+  metadataBase: new URL("https://h3llcat.app"),
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
 
