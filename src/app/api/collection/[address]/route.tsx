@@ -1,58 +1,48 @@
+// src/app/api/collection/[address]/og/route.tsx
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { readFile } from "fs/promises";
+import { join } from "path";
 import { apiUri } from "@/helpers/uris";
-import { RodeoPost } from "@/components/app-redirect/types";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
+import type { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-// Image metadata
-export const alt = "Preview Display";
-export const size = {
+const size = {
   width: 1200,
   height: 630,
 };
-export const contentType = "image/png";
 
-export default async function Image({
-  params,
-}: {
-  params: { address: string };
-}) {
-  // 1) Load your background image
-  const bgBuffer = await readFile(
-    join(process.cwd(), "public/opengraph/collection-og.jpg")
-  );
-  const logoBuffer = await readFile(
-    join(process.cwd(), "public/opengraph/collection-og-logo.jpg")
-  );
-  const logoArrayBuffer = Uint8Array.from(logoBuffer).buffer;
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { address: string } }
+) {
+  const address = params.address;
+
+  // 1) Load your background + logo
+  const [bgBuffer, logoBuffer] = await Promise.all([
+    readFile(join(process.cwd(), "public/opengraph/collection-og.jpg")),
+    readFile(join(process.cwd(), "public/opengraph/collection-og-logo.jpg")),
+  ]);
   const bgArrayBuffer = Uint8Array.from(bgBuffer).buffer;
+  const logoArrayBuffer = Uint8Array.from(logoBuffer).buffer;
 
-  // 2) Fetch your posts (unchanged)
+  // 2) Fetch your posts
   const url = new URL(`${apiUri}/anonymous/rodeo/collection/posts`);
-  url.searchParams.set("collectionAddress", params.address);
+  url.searchParams.set("collectionAddress", address);
   url.searchParams.set("limit", "8");
   url.searchParams.set("offset", "0");
 
   const res = await fetch(url.toString());
-  if (!res.ok) return;
+  if (!res.ok) {
+    return new Response("Failed to fetch posts", { status: 502 });
+  }
   const response = (await res.json()) as {
     collection: { creatorAddress: string; contractAddress: string };
-    posts: RodeoPost[];
+    posts: any[];
   };
-  //   const slicedPosts = response.posts.slice(0, 6);
-  //   const images = slicedPosts.map((post) => {
-  //     const hash = post.image.ipfsCid.split("ipfs://")[1];
-  //     return {
-  //       url: `${gateway}/${hash}_Sm.webp`,
-  //       width: post.image.width,
-  //       height: post.image.height,
-  //     };
-  //   });
 
-  // 3) Load all SF Pro font weights
+  // 3) Load your SF Pro fonts
   const [sfProRegular, sfProMedium, sfProSemibold, sfProBold] =
     await Promise.all([
       readFile(join(process.cwd(), "src/app/fonts/SFProText-Regular.ttf")),

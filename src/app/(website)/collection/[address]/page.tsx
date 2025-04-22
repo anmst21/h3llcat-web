@@ -22,11 +22,48 @@ import Link from "next/link";
 
 import { etherScanUriBase } from "@/components/app-redirect/etherScanUriBase";
 
-export const metadata: Metadata = {
-  title: "Explore NFT Collection",
-  description:
-    "Discover unique NFT collections powered by Rodeo.club. Swipe through curated artwork, explore metadata, and seamlessly mint your favorites directly within the Display app.",
+type Props = {
+  params: {
+    address: string;
+  };
 };
+const DOMAIN = "https://h3llcat.app";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { address } = params;
+
+  const title = "Explore NFT Collection";
+  const description =
+    "Discover unique NFT collections powered by Rodeo.club. Swipe through curated artwork, explore metadata, and seamlessly mint your favorites directly within the Display app.";
+
+  // point at your API‑route edge function:
+  const ogImageUrl = `${DOMAIN}/api/collection/${address}`;
+
+  return {
+    title: "Explore NFT Collection",
+    description:
+      "Discover unique NFT collections powered by Rodeo.club. Swipe through curated artwork, explore metadata, and seamlessly mint your favorites directly within the Display app.",
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Preview Display",
+        },
+      ],
+      siteName: "Display",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default async function Nft({
   params,

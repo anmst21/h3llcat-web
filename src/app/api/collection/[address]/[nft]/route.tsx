@@ -1,54 +1,52 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { readFile } from "fs/promises";
+import { join } from "path";
 import { apiUri } from "@/helpers/uris";
 import { truncateEthAddress } from "@/helpers/truncateAddress";
-
-export const dynamic = "force-dynamic";
+import { NextRequest } from "next/server";
 
 const temporaryUri =
   "https://f8n-production-collection-assets.imgix.net/rodeo/8453/0x7E383ECc3C0D70578528c51B6E51037fa2D157b8/13/Qman6xMqNh9WrDbrmTLihSHxh5Apnr9hJPatp5im6hzuHz/nft.jpeg";
 
-// Image metadata
-export const alt = "Preview Display";
-export const size = {
+const size = {
   width: 1200,
   height: 630,
 };
-export const contentType = "image/png";
 
-export default async function Image({
-  params,
-}: {
-  params: { nft: string; address: string };
-}) {
-  const { nft: postId, address: collectionAddress } = params;
-  // 1) Load your background image
+const headerStyle = {
+  color: "rgba(255, 255, 255, 0.80)",
+  fontFamily: "SFProText",
+  fontSize: 24,
+  fontWeight: 700,
+};
+
+export const dynamic = "force-dynamic";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { address: string; nft: string } }
+) {
+  const { address, nft: postId } = params;
+
+  // 1) load your NFT background
   const nftOgBuffer = await readFile(
     join(process.cwd(), "public/opengraph/nft-og.jpg")
   );
-
   const nftOgArrayBuffer = Uint8Array.from(nftOgBuffer).buffer;
 
+  // 2) fetch a single post
   const url = new URL(`${apiUri}/anonymous/rodeo/post`);
-  url.searchParams.set("collectionAddress", collectionAddress);
+  url.searchParams.set("collectionAddress", address);
   url.searchParams.set("tokenId", postId);
 
-  const res = await fetch(url.toString(), {
-    method: "GET",
-  });
-
+  const res = await fetch(url.toString());
+  if (!res.ok) {
+    return new Response("Failed to fetch post", { status: 502 });
+  }
   const data = await res.json();
+  const { name } = data.post.image;
 
-  const {
-    image: {
-      name,
-      // category, ipfsCid, mimeType, blurhash
-    },
-    //  collection: { contractAddress, tokenId, creatorAddress },
-  } = data.post;
-
-  // 3) Load all SF Pro font weights
+  // 3) load your SF Pro fonts
   const [sfProRegular, sfProMedium, sfProSemibold, sfProBold] =
     await Promise.all([
       readFile(join(process.cwd(), "src/app/fonts/SFProText-Regular.ttf")),
@@ -57,12 +55,7 @@ export default async function Image({
       readFile(join(process.cwd(), "src/app/fonts/SFProText-Bold.ttf")),
     ]);
 
-  const headerStyle = {
-    color: "rgba(255, 255, 255, 0.80)",
-    fontFamily: "SFProText",
-    fontSize: 24,
-    fontWeight: 700,
-  };
+  // 4) return the ImageResponse
 
   return new ImageResponse(
     (
@@ -119,7 +112,7 @@ export default async function Image({
                 color: "white",
               }}
             >
-              {truncateEthAddress(collectionAddress).toUpperCase()}
+              {truncateEthAddress(address).toUpperCase()}
             </div>
           </div>
           <div
@@ -173,7 +166,12 @@ export default async function Image({
     {
       ...size,
       fonts: [
-        { name: "SFProText", data: sfProRegular, style: "normal", weight: 400 },
+        {
+          name: "SFProText",
+          data: sfProRegular,
+          style: "normal",
+          weight: 400,
+        },
         { name: "SFProText", data: sfProMedium, style: "normal", weight: 500 },
         {
           name: "SFProText",
