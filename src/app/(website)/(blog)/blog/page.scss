@@ -274,9 +274,18 @@
         margin-top: 50px;
         transition: all 0.4s;
 
+
+        img {
+            max-height: 420px;
+        }
+
         @include media-sm {
             margin-top: 20px;
             flex-direction: column;
+
+            img {
+                max-height: none;
+            }
         }
 
         &:hover {
