@@ -12,11 +12,11 @@ mailchimp.setConfig({
 export async function POST(request: NextRequest) {
   // Read the raw request body as text (needed for HMAC verification)
   const rawBody = await request.text();
-  console.log("[POST] Raw body:", rawBody);
+  //  console.log("[POST] Raw body:", rawBody);
 
   // Extract the signature header from Sanity (format: "t=timestamp,v1=signature")
   const signatureHeader = request.headers.get("sanity-webhook-signature");
-  console.log("[POST] Signature Header:", signatureHeader);
+  // console.log("[POST] Signature Header:", signatureHeader);
 
   if (!signatureHeader) {
     console.error("[POST] Missing signature header");
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: verification.error }, { status: 401 });
   }
 
-  console.log("[POST] Signature verification succeeded");
+  // console.log("[POST] Signature verification succeeded");
 
   // Now that the signature is verified, parse the JSON payload
   let data;
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  console.log("[POST] Verified webhook data from Sanity:", data);
+  // console.log("[POST] Verified webhook data from Sanity:", data);
 
   // Proceed with your business logic (e.g., sending a Mailchimp campaign)
   const {
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     await mailchimp.campaigns.setContent(campaign.id, { html, text });
     await mailchimp.campaigns.send(campaign.id);
 
-    console.log("[POST] Mailchimp campaign sent for new post:", name);
+    // console.log("[POST] Mailchimp campaign sent for new post:", name);
 
     return NextResponse.json(
       { message: "New-post campaign sent!" },

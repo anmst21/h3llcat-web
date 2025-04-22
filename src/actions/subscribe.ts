@@ -35,7 +35,7 @@ export async function subscribeUser(
       }
     );
 
-    console.log("verificationResponse", verificationResponse);
+    // console.log("verificationResponse", verificationResponse);
 
     const verificationResult = await verificationResponse.json();
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Collection } from "@/types/CollectionCarousel";
@@ -13,7 +13,7 @@ import {
   topRaisedVariantMobile,
 } from "./animation";
 import { useMediaQuery } from "react-responsive";
-import { getBlurDataURL } from "@/helpers/getBluhashDataUri";
+import { useBlurDataURL } from "@/helpers/getBluhashDataUri";
 const repoDefault =
   "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/compressed-assets/";
 
@@ -48,15 +48,12 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
   // Determine file type and repository URI
   const type = item.artUri.split(".").pop();
-  console.log("type", type);
+  // console.log("type", type);
   const finalType = type === "png" || type === "jpeg" ? "jpg" : "mp4";
   const repoUri = repoDefault + `${item.contract}:${item.id}.${finalType}`;
 
   // Wrap the blurhash computation in useMemo to memoize the result
-  const blurhash = useMemo(
-    () => getBlurDataURL(item.blurHash),
-    [item.blurHash]
-  );
+  const blurhash = useBlurDataURL(item.blurHash);
 
   return (
     <motion.div

@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     // url: "/beta",          // optional: canonical path for the page
     images: [
       {
-        url: "/beta.jpg", // resolves to https://display.app/join-beta-og.jpg
-        width: 1380,
-        height: 840,
+        url: "/opengraph/beta-og.jpg", // resolves to https://display.app/join-beta-og.jpg
+        width: 1200,
+        height: 630,
         alt: "Display Beta invitation card",
       },
     ],
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Join Display's Private Beta — 150 Spots Only",
     description:
       "Secure your TestFlight invite and help shape the future of on-chain minting.",
-    images: ["/beta.jpg"],
+    images: ["/opengraph/beta-og.jpg"],
   },
 };
 

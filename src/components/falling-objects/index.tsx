@@ -25,8 +25,8 @@ export default function FallingObjects(): JSX.Element {
   useEffect(() => {
     if (!sceneRef.current) return;
 
-    const width = window.innerWidth;
-    const height = window.innerHeight + 2000;
+    const width = sceneRef.current?.clientWidth;
+    const height = sceneRef.current?.clientHeight + 2000;
     const thickness = 50;
 
     // Create engine and world
@@ -167,7 +167,8 @@ export default function FallingObjects(): JSX.Element {
         position: "absolute",
         top: 0,
         left: 0,
-        right: 0,
+        // right: 0,
+        width: "100%",
         bottom: 0,
         zIndex: 0, // ensure canvas is below the overlay
         display: "flex",

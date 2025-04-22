@@ -28,7 +28,7 @@ export default async function Blog({
 
   const featuredBottom = filteredPosts.slice(0, 4);
   const otherPosts = blogposts.length > 4 ? blogposts.slice(4) : [];
-  console.log("otherPosts", blogposts);
+  //console.log("otherPosts", blogposts);
   return (
     <>
       <div className="blog-featured">
@@ -42,8 +42,8 @@ export default async function Blog({
             <Image
               src={featured.image}
               alt={featured.alt}
-              width={690}
-              height={420}
+              width={1200}
+              height={630}
               style={{ height: "auto", width: "100%" }}
             />
             <div className="blog-featured__text">
@@ -74,7 +74,7 @@ export default async function Blog({
                 </div>
                 <Image
                   width={220}
-                  height={132}
+                  height={115.5}
                   alt={post.alt}
                   src={post.image}
                   //  style={{ height: "auto" }}
@@ -113,10 +113,10 @@ export default async function Blog({
                   </div>
                   <Image
                     width={370}
-                    height={222}
+                    height={194.25}
                     alt={post.alt}
                     src={post.image}
-                    style={{ height: "auto", width: "100%", maxWidth: 400 }}
+                    style={{ height: "100%", width: "auto", maxWidth: 400 }}
                   />
                 </div>
               </Link>

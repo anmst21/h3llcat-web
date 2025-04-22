@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 
 export function useLockBodyScroll(lock: boolean): void {

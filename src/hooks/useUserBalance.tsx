@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { createPublicClient, custom, formatUnits } from "viem";
+import { createPublicClient, custom } from "viem";
 import { base } from "viem/chains";
 import type { Hex } from "viem";
 import { usePrivy } from "@privy-io/react-auth";
@@ -34,7 +34,7 @@ export function useUserBalance(userWallet: any) {
       setIsLoadingBalance(false);
 
       // Log the balance formatted to Ether units for debugging
-      console.log("User balance:", formatUnits(balance, 18));
+      //  console.log("User balance:", formatUnits(balance, 18));
     } catch (error) {
       console.error("Error fetching user balance:", error);
       setIsLoadingBalance(false);

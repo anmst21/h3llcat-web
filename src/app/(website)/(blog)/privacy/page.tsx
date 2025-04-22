@@ -15,7 +15,7 @@ export default async function Privacy() {
 
   const { subheader, content, _createdAt, title, author } = privacy;
 
-  console.log("privacy", subheader);
+  // console.log("privacy", subheader);
   return (
     <div className="blog-post-page__container privacy">
       <div className="blog-post-page__post">

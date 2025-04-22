@@ -93,19 +93,19 @@ const DynamicActionButton: React.FC<Props> = ({
   //   undefined
   // );
 
-  console.log("button", variation, buttonText, disabled);
-  console.log({
-    isLoadingContext,
-    isLoadingUserData,
-    isMinting,
-    authenticated,
-    isCorrectChain,
-    isMintSubmitted,
-    isLoadingSubmit,
-    isEmailSubmitted,
-    isEnoughFunds,
-    ready,
-  });
+  // console.log("button", variation, buttonText, disabled);
+  // console.log({
+  //   isLoadingContext,
+  //   isLoadingUserData,
+  //   isMinting,
+  //   authenticated,
+  //   isCorrectChain,
+  //   isMintSubmitted,
+  //   isLoadingSubmit,
+  //   isEmailSubmitted,
+  //   isEnoughFunds,
+  //   ready,
+  // });
   useEffect(() => {
     const timer = setTimeout(() => {
       if (

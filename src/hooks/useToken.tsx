@@ -38,7 +38,7 @@ export function useToken() {
       }
 
       const data: UserData = await response.json();
-      console.log("Response data:", data);
+      //   console.log("Response data:", data);
       setUserData(data);
       setIsLoadingData(false);
     } catch (err: any) {

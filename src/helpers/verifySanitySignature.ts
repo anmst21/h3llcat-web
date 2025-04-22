@@ -19,7 +19,7 @@ export function verifySanitySignature(
   signatureHeader: string,
   webhookSecret: string
 ): VerificationResult {
-  console.log("[verifySanitySignature] Signature header:", signatureHeader);
+  // console.log("[verifySanitySignature] Signature header:", signatureHeader);
 
   let timestamp = "";
   let signature = "";
@@ -39,7 +39,7 @@ export function verifySanitySignature(
 
   // Construct the string to sign
   const stringToSign = `${timestamp}.${rawBody}`;
-  console.log("[verifySanitySignature] String to sign:", stringToSign);
+  // console.log("[verifySanitySignature] String to sign:", stringToSign);
 
   // Compute the HMAC using SHA-256 with your Sanity webhook secret
   const hmac = crypto.createHmac("sha256", webhookSecret);
@@ -47,20 +47,20 @@ export function verifySanitySignature(
 
   // Compute the digest in Base64 (Sanity uses URL-safe Base64)
   const digestBase64 = hmac.digest("base64");
-  console.log(
-    "[verifySanitySignature] Computed digest (Base64):",
-    digestBase64
-  );
+  // console.log(
+  //   "[verifySanitySignature] Computed digest (Base64):",
+  //   digestBase64
+  // );
 
   // Convert the computed digest to URL-safe Base64 (remove padding and replace characters)
   const computedSignature = digestBase64
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
     .replace(/=+$/, "");
-  console.log(
-    "[verifySanitySignature] Computed signature (URL-safe):",
-    computedSignature
-  );
+  // console.log(
+  //   "[verifySanitySignature] Computed signature (URL-safe):",
+  //   computedSignature
+  // );
 
   // Convert the computed signature and provided signature into Buffers
   const computedBuffer = Buffer.from(computedSignature, "utf8");
@@ -78,28 +78,28 @@ export function verifySanitySignature(
     providedBuffer.byteLength
   );
 
-  console.log(
-    "[verifySanitySignature] Computed array length:",
-    computedArray.length
-  );
-  console.log(
-    "[verifySanitySignature] Provided array length:",
-    providedArray.length
-  );
+  // console.log(
+  //   "[verifySanitySignature] Computed array length:",
+  //   computedArray.length
+  // );
+  // console.log(
+  //   "[verifySanitySignature] Provided array length:",
+  //   providedArray.length
+  // );
 
   if (
     computedArray.length !== providedArray.length ||
     !crypto.timingSafeEqual(computedArray, providedArray)
   ) {
-    console.error("[verifySanitySignature] Signature verification failed");
-    console.log(
-      "[verifySanitySignature] Computed signature:",
-      computedSignature
-    );
-    console.log("[verifySanitySignature] Provided signature:", signature);
+    //   console.error("[verifySanitySignature] Signature verification failed");
+    // console.log(
+    //   "[verifySanitySignature] Computed signature:",
+    //   computedSignature
+    // );
+    // console.log("[verifySanitySignature] Provided signature:", signature);
     return { verified: false, error: "Invalid signature" };
   }
 
-  console.log("[verifySanitySignature] Signature verification succeeded");
+  // console.log("[verifySanitySignature] Signature verification succeeded");
   return { verified: true };
 }

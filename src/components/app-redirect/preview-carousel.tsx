@@ -15,7 +15,7 @@ import { useCarousel } from "@/context/PreviewCarouselProvider";
 import { motion } from "motion/react";
 
 const PreviewCarousel = ({ carouselPosts }: Props) => {
-  console.log("carouselPosts", carouselPosts);
+  // console.log("carouselPosts", carouselPosts);
   const autoplayDelay = 3000;
   const duration = autoplayDelay / 1000;
 
@@ -57,7 +57,7 @@ const PreviewCarousel = ({ carouselPosts }: Props) => {
     };
   }, [emblaApi, onSelect]);
 
-  console.log("selected index", selectedIndex);
+  //  console.log("selected index", selectedIndex);
   return (
     <>
       <div className="preview-carousel__status">

@@ -62,10 +62,10 @@ const ContactsForm = () => {
       setIsSubmitting(true);
       const token = await handleReCaptchaVerify();
       // const token = "kek";
-      console.log(token);
+      //   console.log(token);
       if (token) {
         const result = await sendLetter(data, token);
-        console.log(result);
+        // console.log(result);
         if (!result.success) {
           setIsCaptchaError(true);
           return;
@@ -79,7 +79,7 @@ const ContactsForm = () => {
       }
       reset();
     } catch (err) {
-      console.log("err", err);
+      console.error("err", err);
     } finally {
       setIsSubmitting(false);
     }

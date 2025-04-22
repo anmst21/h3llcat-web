@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useLockBodyScroll } from "@/hooks/useLockByScroll";
+// import { useLockBodyScroll } from "@/hooks/useLockByScroll";
 import {
   MenuWallet,
   MenuFunds,
@@ -46,7 +46,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useLockBodyScroll(isOpen);
+  // useLockBodyScroll(isOpen);
   const [isWalletOpen, setIsWalletOpen] = useState(false);
   const { user, authenticated, ready, logout, login } = usePrivy();
   const { fundWallet } = useFundWallet();

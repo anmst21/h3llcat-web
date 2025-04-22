@@ -26,7 +26,7 @@ const FooterInput: React.FC<FormInputProps> = ({
 }) => {
   const [hasValue, setHasValue] = useState(false);
   const ref = useRef<HTMLTextAreaElement | null>(null);
-  console.log("has value", hasValue);
+  console.warn("has value", hasValue);
   const { onChange, ref: registerRef, ...rest } = register;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

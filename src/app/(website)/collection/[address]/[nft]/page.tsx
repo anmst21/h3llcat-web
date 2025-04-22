@@ -82,7 +82,7 @@ export default async function Nft({
     notFound();
   }
   const data = await res.json();
-  console.log("dadada", data);
+  // console.log("dadada", data);
   const {
     mintEndDatetime,
     image: { name, category, ipfsCid, mimeType, blurhash },

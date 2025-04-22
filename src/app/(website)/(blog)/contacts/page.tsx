@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/contacts.jpg",
-        width: 1380,
-        height: 840,
+        url: "/opengraph/contacts-og.jpg",
+        width: 1200,
+        height: 630,
         alt: "Display — Contacts page cover",
       },
     ],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Contact Display — Shape the Future of On-Chain Experiences",
     description:
       "Have questions or want to collaborate? Let's build the future together.",
-    images: ["/contacts.jpg"],
+    images: ["/opengraph/contacts-og.jpg"],
   },
 };
 
@@ -36,10 +36,10 @@ export default function ContactsPage() {
     <div className="blog-post-page__container blog-post-page__container--contacts">
       <div className="blog-post-page__post">
         <Image
-          src={"/contacts.jpg"}
+          src={"/opengraph/contacts-og.jpg"}
           alt="Contacts image"
-          width={730}
-          height={438}
+          width={1200}
+          height={630}
           className="blog-post-page__image"
           style={{ width: "100%", height: "auto" }}
         />

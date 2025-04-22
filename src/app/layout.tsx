@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     siteName: "Display",
     images: [
       {
-        url: "/landing.jpg",
-        width: 1380,
-        height: 840,
+        url: "/opengraph/main-og.jpg",
+        width: 1200,
+        height: 630,
         alt: "Display - Reimagine How You Mint On-Chain",
       },
     ],
@@ -76,8 +76,6 @@ export const metadata: Metadata = {
     "single-hand navigation",
     "React Native",
   ],
-
-  viewport: { width: "device-width", initialScale: 1 },
 };
 
 createClient({

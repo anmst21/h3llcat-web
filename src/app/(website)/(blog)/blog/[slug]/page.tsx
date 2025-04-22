@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
 
   const { category, name, author, _createdAt: date, subheader } = project;
 
-  console.log("project", project);
+  //console.log("project", project);
 
   // Construct the canonical URL for the blog post
   const postUrl = `https://h3llcat.app/blog/${slug}`;
@@ -88,8 +88,8 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
           <Image
             src={project.image}
             alt={project.alt}
-            width={730}
-            height={438}
+            width={1200}
+            height={630}
             className="blog-post-page__image"
             style={{ width: "100%", height: "auto" }}
           />

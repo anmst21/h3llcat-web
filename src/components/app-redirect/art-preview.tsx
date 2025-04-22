@@ -1,6 +1,6 @@
 "use client";
 
-import { getBlurDataURL } from "@/helpers/getBluhashDataUri";
+import { useBlurDataURL } from "@/helpers/getBluhashDataUri";
 import Image from "next/image";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const ArtPreview = ({ extention, category, blurhash, fullUriMd }: Props) => {
-  const blurhashUri = getBlurDataURL(blurhash);
+  const blurhashUri = useBlurDataURL(blurhash);
 
   return (
     <>

@@ -54,7 +54,7 @@ export const BalanceProvider: React.FC<BalanceProviderProps> = ({
   useEffect(() => {
     fetchBalance();
   }, [fetchBalance]);
-  console.log("ready, wallets", userBalance);
+  // console.log("ready, wallets", userBalance);
 
   return (
     <BalanceContext.Provider

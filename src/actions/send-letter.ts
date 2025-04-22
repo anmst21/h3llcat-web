@@ -77,7 +77,7 @@ export const sendLetter = async (
       };
     }
 
-    console.log("Form Data Submitted to Telegram:", message);
+    // console.log("Form Data Submitted to Telegram:", message);
 
     return { success: true, message: "Form submitted successfully" };
   } catch (error) {

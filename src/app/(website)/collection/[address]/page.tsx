@@ -126,11 +126,11 @@ export default async function Nft({
   const headersList = carouselPosts.map((post) => post.name);
   const idsList = carouselPosts.map((post) => post.tokenId);
 
-  console.log(
-    "contractAddress, user",
-    contractAddress,
-    data.collection.creatorAddress
-  );
+  // console.log(
+  //   "contractAddress, user",
+  //   contractAddress,
+  //   data.collection.creatorAddress
+  // );
 
   return (
     <PreviewCarouselProvider>

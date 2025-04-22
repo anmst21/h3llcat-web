@@ -18,7 +18,7 @@ const Categories = ({ list }: Props) => {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category");
   const pathname = usePathname();
-  console.log("pathname", process.env.NEXT_NOT_FOUND);
+  // console.log("pathname", process.env.NEXT_NOT_FOUND);
   let buttonText = "Blog";
   let href = "/blog";
 
