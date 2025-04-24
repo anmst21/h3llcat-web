@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    images: ["/contacts.jpg"],
+    images: ["/opengraph/main-og.jpg"],
     card: "summary_large_image",
     site: "@0xN3XUS",
     creator: "@Anthony_N2000",
