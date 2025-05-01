@@ -7,6 +7,7 @@ import { featuresCards } from "../section-features/features-cards";
 import { ArrowSticker } from "../icon";
 import { EmblaCarouselType } from "embla-carousel";
 import { AnimatePresence, motion } from "motion/react";
+import Lottie from "lottie-react";
 type UseSelectedSnapDisplayType = {
   selectedSnap: number;
   snapCount: number;
@@ -91,7 +92,12 @@ function FeaturesSticker() {
         <div className="features-sticker__container">
           {featuresCards.map((item, index) => (
             <div key={index} className="features-sticker__slide">
-              {item.header}
+              <Lottie
+                style={{ display: "flex", width: "100%", height: "auto" }}
+                animationData={item.animation}
+                loop
+                autoPlay
+              />
             </div>
           ))}
         </div>

@@ -15,12 +15,13 @@ import {
   useSpring,
   animate,
 } from "framer-motion";
+import Lottie from "lottie-react";
 
 type Props = {
   item: {
     header: string;
     paragraph: string;
-    animation: string;
+    animation: unknown;
   };
   index: number;
   activeItemIndex: number | null;
@@ -98,6 +99,9 @@ const FeaturesCards = ({
       animate(scale, 1, { type: "spring", stiffness: 300, damping: 30 });
     }
   }, [activeItemIndex, num, scale]);
+
+  const isActive = activeItemIndex === index;
+
   return (
     <motion.div
       ref={ref}
@@ -143,7 +147,20 @@ const FeaturesCards = ({
       </div>
 
       <div className="mid-left-side"></div>
-      <div className="mid-center-section"></div>
+      <div className="mid-center-section">
+        <motion.div
+          style={{ width: 270, height: 182 }}
+          animate={{ opacity: isActive ? 1 : 0.3 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <Lottie
+            style={{ display: "flex", width: 270, height: 182 }}
+            animationData={item.animation}
+            loop
+            autoPlay
+          />
+        </motion.div>
+      </div>
       <div className="mid-right-side"></div>
 
       <div className="bot-left-corner">

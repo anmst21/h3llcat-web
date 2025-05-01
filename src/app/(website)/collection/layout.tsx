@@ -17,7 +17,6 @@ export default async function Layout({
   return (
     <div className="nft">
       {children}
-
       <PreviewBackground redirects={posts as Collection[]} />
     </div>
   );

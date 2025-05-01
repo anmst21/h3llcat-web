@@ -27,15 +27,15 @@ const SectionFeatures = () => {
         // On initial mount, start auto-play immediately.
         autoInterval = setInterval(() => {
           setAutoIndex((prev) => (prev + 1) % featuresCards.length);
-        }, 3000);
+        }, 6000);
         initialMountRef.current = false;
       } else {
         // After hover ends, wait 2s before resuming auto-play.
         autoTimeout = setTimeout(() => {
           autoInterval = setInterval(() => {
             setAutoIndex((prev) => (prev + 1) % featuresCards.length);
-          }, 3000);
-        }, 2000);
+          }, 6000);
+        }, 400);
       }
     }
 
