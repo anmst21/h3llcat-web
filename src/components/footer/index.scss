@@ -500,23 +500,23 @@
             grid-area: reimagine;
         }
 
-        font-size: 48px;
+        font-size: 44px;
         font-style: normal;
         font-weight: 540;
-        line-height: 52px;
+        line-height: 48px;
         padding: 20px 25px;
         color: rgba(255, 248, 231, 1);
         border-bottom: var(--border-footer);
 
         @include media-lg {
-            font-size: 38px;
-            line-height: 42px;
+            font-size: 36px;
+            line-height: 40px;
         }
 
-        @include media-md {
-            font-size: 28px;
-            line-height: 32px;
-        }
+        // @include media-lg {
+        //     font-size: 28px;
+        //     line-height: 32px;
+        // }
     }
 
 
