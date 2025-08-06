@@ -1,6 +1,10 @@
 .blog {
     box-sizing: border-box;
     font-family: var(--font-sf-pro);
+    // justify-content: center;
+
+    //   height: 1000px;
+    display: flex;
 }
 
 
@@ -159,6 +163,7 @@
 .blog-sections {
     position: relative;
     // min-height: 100dvh;
+    width: 100%;
     display: flex;
     padding: 60px 75px;
     justify-content: flex-start;

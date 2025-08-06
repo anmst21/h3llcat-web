@@ -193,14 +193,16 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                     Balance
                                   </span>
                                   <AnimatePresence mode="wait">
-                                    {isLoadingBalance || isLoadingPrice ? (
+                                    {isLoadingBalance ||
+                                    isLoadingPrice ||
+                                    isErrorPrice ? (
                                       <motion.div
                                         key="loading-balance"
                                         style={{
                                           zIndex: 1000,
                                           display: "flex",
-                                          width: "100px",
-                                          height: "100%",
+                                          width: "70%",
+                                          height: "20px",
                                           borderRadius: "2px",
                                         }}
                                         initial={{
@@ -229,7 +231,9 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                         <span className="wallet-item__meta__title">
                                           {formattedUserBalance}
                                         </span>
-                                        {`${isErrorPrice && ethPrice ? "" : `/ $${(Number(formattedUserBalance) * Number(ethPrice)).toFixed(2)}`}`}
+                                        <span>
+                                          {`${isErrorPrice && ethPrice ? "" : `/ $${(Number(formattedUserBalance) * Number(ethPrice)).toFixed(2)}`}`}
+                                        </span>
                                         <MenuEth />
                                       </motion.span>
                                     )}

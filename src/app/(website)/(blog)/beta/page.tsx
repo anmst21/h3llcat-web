@@ -54,5 +54,6 @@ export default async function Beta() {
         totalMinted: number;
       }
     | undefined = await response.json();
+
   return <SectionBeta mintsNum={data} />;
 }

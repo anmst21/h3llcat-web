@@ -6,7 +6,7 @@ export const nftProps = {
   creator: "Nexus Technologies",
   contract: "0x439753F6dDAadb6D03Be77C9aabec5673E410a1A",
   artUri:
-    "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?q=80&w=2971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/beta-page-assets/video-thumb.jpg",
   chain: "Base",
   chainId: "84532",
   standard: "ERC-721",

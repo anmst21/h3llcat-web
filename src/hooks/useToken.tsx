@@ -37,9 +37,18 @@ export function useToken() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data: UserData = await response.json();
-      //   console.log("Response data:", data);
-      setUserData(data);
+      const data: {
+        did: string;
+        email: string | null;
+        totalMints: number;
+        yourMintsCount: number;
+      } = await response.json();
+      console.log("Response data:", data);
+      setUserData({
+        did: data.did,
+        email: data.email,
+        isMinted: data.yourMintsCount > 0,
+      });
       setIsLoadingData(false);
     } catch (err: any) {
       setIsLoadingData(false);

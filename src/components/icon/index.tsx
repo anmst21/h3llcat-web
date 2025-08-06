@@ -102,8 +102,30 @@ import WalletBeta from "./WalletBeta";
 import LogoFooter from "./LogoFooter";
 import CtaGameFallback from "./CtaGameFallback";
 import RadioKnob from "./RadioKnob";
+import PlayerMenu from "./PlayerMenu";
+import PlayerFull from "./PlayerFull";
+import PlayerMute from "./PlayerMute";
+import PlayerPause from "./PlayerPause";
+import PlayerPlay from "./PlayerPlay";
+import PlayerUnmute from "./PlayerUnmute";
+import PlayerDownload from "./PlayerDownload";
+import PlayerVideo from "./PlayerVideo";
+import PlayerPoster from "./PlayerPoster";
+import PlayerPauseLg from "./PlayerPauseLg";
+import PlayerPlayLg from "./PlayerPlayLg";
 
 export {
+  PlayerMenu,
+  PlayerPauseLg,
+  PlayerPlayLg,
+  PlayerDownload,
+  PlayerVideo,
+  PlayerPoster,
+  PlayerFull,
+  PlayerMute,
+  PlayerPause,
+  PlayerPlay,
+  PlayerUnmute,
   CtaGameFallback,
   CollectionUser,
   StickerStar,

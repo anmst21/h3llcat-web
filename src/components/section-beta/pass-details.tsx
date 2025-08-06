@@ -24,8 +24,8 @@ const PassDetails = ({ timesMinted }: Props) => {
     <div className="pass-details">
       <div className="pass-details__top">
         <div className="wallet-item__user">
-          <span className="wallet-item__title">Pass Details</span>
-          <span className="wallet-item__address">Learn more</span>
+          <span className="wallet-item__title">Details</span>
+          <span className="wallet-item__address">Beta Pass</span>
         </div>
         <BetaBarCode />
       </div>
@@ -40,8 +40,8 @@ const PassDetails = ({ timesMinted }: Props) => {
                 style={{
                   zIndex: 1000,
                   display: "flex",
-                  width: "45px",
-                  height: "100%",
+                  width: "60%",
+                  height: "20px",
                   borderRadius: "2px",
                 }}
                 initial={{
@@ -69,7 +69,7 @@ const PassDetails = ({ timesMinted }: Props) => {
         </div>
         <div className="pass-details__section">
           <span>Category</span>
-          <h4>Acces Pass</h4>
+          <h4>Access Pass</h4>
           <div className="pass-details__section__icons">
             <BetaRagdoll />
             <BetaRagdoll />

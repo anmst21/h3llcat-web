@@ -46,8 +46,19 @@ export async function submitBeta(
     });
 
     // Parse and return the JSON data from the response
-    const data = await response.json();
-    return data;
+
+    const data: {
+      did: string;
+      email: string | null;
+      totalMints: number;
+      yourMintsCount: number;
+    } = await response.json();
+
+    return {
+      did: data.did,
+      email: data.email,
+      isMinted: data.yourMintsCount > 0,
+    };
   } catch (error: any) {
     // Log the error and rethrow it so calling code can handle it
     console.error("Error submitting beta form:", error);

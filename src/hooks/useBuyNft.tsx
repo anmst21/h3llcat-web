@@ -88,7 +88,12 @@ export function useBuyNFT({
         const response = await fetch(apiUriSubmitMint, {
           method: "POST",
           body: JSON.stringify({
-            data: logMessageRef.current[0],
+            transactions: [
+              {
+                data: { ...logMessageRef.current[0] },
+              },
+            ],
+            totalMints: numToMint,
           }),
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -96,10 +101,19 @@ export function useBuyNFT({
           },
         });
 
-        const data = await response.json();
+        const data: {
+          did: string;
+          email: string | null;
+          totalMints: number;
+          yourMintsCount: number;
+        } = await response.json();
         logMessageRef.current = undefined;
-        setUserData(data);
-        setTimesMinted(data.totalMinted);
+        setUserData({
+          did: data.did,
+          email: data.email,
+          isMinted: data.yourMintsCount > 0,
+        });
+        setTimesMinted(data.totalMints);
       }
     } catch (error: any) {
       console.error("Error buying token:", error);
@@ -118,7 +132,7 @@ export function useBuyNFT({
     setTimesMinted,
     setIsFundsError,
     numToMint,
-    getClient()?.actions.mintToken,
+    //  getClient()?.actions.mintToken,
   ]);
 
   return { buyNFT, isMinting, logMessage: logMessageRef.current };

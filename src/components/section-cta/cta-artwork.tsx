@@ -43,7 +43,7 @@ const CtaArtwork = ({ isPhone }: { isPhone?: boolean }) => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
       className={classNames("section-cta__artwork", {
         "section-cta__artwork--phone": isPhone,
       })}

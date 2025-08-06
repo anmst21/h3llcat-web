@@ -1,10 +1,13 @@
 "use client";
+import { getEthPrice } from "@/actions/get-eth-price";
 import {
   createContext,
   useState,
   useEffect,
   ReactNode,
   useContext,
+  useCallback,
+  useRef,
 } from "react";
 
 type EthPriceContextType = {
@@ -23,32 +26,47 @@ type EthPriceProviderProps = {
 
 export function EthPriceProvider({ children }: EthPriceProviderProps) {
   const [ethPrice, setEthPrice] = useState<number | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchEthPrice = async () => {
+  const isFetchingRef = useRef(false);
+  const mountedRef = useRef(true);
+
+  const fetchEthPrice = useCallback(async () => {
+    if (isFetchingRef.current) return;
+    isFetchingRef.current = true;
+    setError(null);
+    setLoading(true);
     try {
-      const response = await fetch(
-        "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch ETH price");
+      const price = await getEthPrice();
+      if (!mountedRef.current) return;
+      if (typeof price !== "number" || Number.isNaN(price)) {
+        throw new Error("Invalid price received");
       }
-      const data = await response.json();
-      setEthPrice(data.ethereum.usd);
+      setEthPrice(price);
     } catch (err: any) {
-      setError(err.message || "Unknown error");
+      if (!mountedRef.current) return;
+      setError(err?.message ?? "Failed to fetch ETH price");
     } finally {
+      if (!mountedRef.current) return;
       setLoading(false);
+      isFetchingRef.current = false;
     }
-  };
+  }, []);
 
   useEffect(() => {
+    // mark mounted for safety in async
+    mountedRef.current = true;
     fetchEthPrice();
-    // refresh every minute
-    const intervalId = setInterval(fetchEthPrice, 60000);
-    return () => clearInterval(intervalId);
-  }, []);
+
+    // refresh every 60s
+    const iv = setInterval(fetchEthPrice, 60_000);
+
+    return () => {
+      mountedRef.current = false;
+      clearInterval(iv);
+    };
+  }, [fetchEthPrice]);
 
   return (
     <EthPriceContext.Provider value={{ ethPrice, loading, error }}>

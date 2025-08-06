@@ -4,7 +4,7 @@ import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { baseSepolia } from "viem/chains";
-import { useEffect, useCallback, useState, useMemo, useRef } from "react";
+import { useEffect, useCallback, useState, useMemo } from "react";
 import { createClient } from "@reservoir0x/reservoir-sdk";
 import { options } from "@/helpers/reservoirClientOptions";
 import { useWalletClient } from "@/hooks/useWalletClient";
@@ -15,6 +15,8 @@ import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
+import { betaPageHeader } from "@/helpers/beta-page-assets";
+import VideoPlayer from "./video-player";
 // import anime from "animejs";
 
 createClient(options);
@@ -50,6 +52,8 @@ function SectionBeta({
     isLoadingData,
     // error, fetchToken
   } = useToken();
+
+  console.log({ userData });
 
   const setData = useCallback(
     (data: any) => {
@@ -96,27 +100,30 @@ function SectionBeta({
     return getStep();
   }, [userData]);
 
-  const animationRef = useRef<HTMLDivElement>(null);
+  // const animationRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="section-beta">
       <div className="section-beta__top">
         <div className="wallet-item">
           <div className="wallet-item__user">
-            <span className="wallet-item__title">Join our beta raffle</span>
-            <span className="wallet-item__address">Good to know:</span>
+            <span className="wallet-item__title">Secure Your Spot</span>
+            <span className="wallet-item__address">
+              Join our Beta program today
+            </span>
           </div>
         </div>
-        <div className="section-beta__top__section" ref={animationRef} />
+
+        <Image
+          width={2160}
+          height={340}
+          alt="Nft Header"
+          src={betaPageHeader}
+        />
       </div>
       <div className="section-beta__bot">
         <div className="section-beta__left">
-          <Image
-            width={460}
-            height={460}
-            alt={nftProps.name}
-            src={nftProps.artUri}
-          />
+          <VideoPlayer uri={nftProps.artUri} name={nftProps.name} />
           <PassDetails timesMinted={timesMinted} />
         </div>
         <div className="section-beta__right">
