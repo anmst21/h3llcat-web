@@ -33,7 +33,7 @@ const FooterForm = () => {
           <FooterInput
             type="email"
             register={register("email")}
-            placeholder="example@display.app"
+            placeholder="example@displaymint.app"
           />
         </div>
         <div className="footer__form__cta">

@@ -20,7 +20,7 @@ function BlogForm() {
       <FooterInput
         type="email"
         register={register("email")}
-        placeholder="example@display.app"
+        placeholder="example@displaymint.app"
       />
       <div className="subscribe-field__cta">
         <FormStatusBar

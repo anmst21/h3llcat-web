@@ -3,7 +3,7 @@ import { getBlogposts } from "@/sanity/sanity-utils";
 import type { MetadataRoute } from "next";
 
 const baseHellcat = "https://www.h3llcat.app";
-const baseDisplay = "https://www.display.app";
+const baseDisplay = "https://www.displaymint.app";
 
 const staticRoutes = [
   "/",

@@ -236,7 +236,7 @@ const DynamicActionButton: React.FC<Props> = ({
             <ContactInput
               register={register("email")}
               icon={<ContactsMail />}
-              placeholder="example@display.app"
+              placeholder="example@displaymint.app"
               isError={!!errors.email}
               type="email"
               beta

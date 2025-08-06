@@ -110,7 +110,7 @@ export default function EmailFooter() {
                 color: "rgba(0, 0, 0, 0.40)",
               }}
             >
-              support@display.app +1(845)332-40-43
+              support@displaymint.app +1(845)332-40-43
             </Text>
           </Row>
         </Column>
