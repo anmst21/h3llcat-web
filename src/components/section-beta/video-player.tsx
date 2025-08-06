@@ -202,9 +202,9 @@ const VideoPlayer = ({ name, uri }: Props) => {
           onClick={() => {
             if (!isMobile) togglePlay();
 
-            if (isMobile && !isHovered && initialPlay) startHudTimer();
-            if ((isMobile && isHovered) || (isMobile && !initialPlay))
-              togglePlay();
+            // if (isMobile && !isHovered && initialPlay) startHudTimer();
+            // if ((isMobile && isHovered) || (isMobile && !initialPlay))
+            //   togglePlay();
           }}
           ref={videoRef}
           aria-label={name}
@@ -214,6 +214,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
           // playsInline
           loop
           // autoPlay
+
           controls={false}
           // muted // usually needed for autoplay to work
           onError={() => setVideoError(true)}
@@ -226,7 +227,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
         </div>
       )}
       <AnimatePresence mode="wait">
-        {initialPlay && isHovered && (
+        {initialPlay && isHovered && !isMobile && (
           <motion.div
             key="player-top"
             variants={topPlayerVariants}
@@ -264,7 +265,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
         )}
       </AnimatePresence>
       <AnimatePresence mode="sync">
-        {initialPlay && isHovered && (
+        {initialPlay && isHovered && !isMobile && (
           <motion.div
             key="player-bottom"
             variants={bottomPlayerVariants}
