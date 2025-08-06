@@ -482,7 +482,8 @@
             background-color: currentColor;
             transform: translateX(-25px);
             position: relative;
-            transition: color .2s ease-in-out;
+            transition: color .2s ease-in-out,
+                height .2s ease-in-out;
 
             &::before {
                 content: "";
