@@ -11,16 +11,30 @@ type UserData = {
   updatedAt: Date;
 };
 export async function getUserData(did: string): Promise<UserData> {
-  let user = await prisma.userData.findUnique({
-    where: { did },
-  });
-
-  // if user doesn't exist, create it
-  if (!user) {
-    user = await prisma.userData.create({
-      data: { did },
+  try {
+    let user = await prisma.userData.findUnique({
+      where: { did },
     });
-  }
 
-  return user;
+    // if user doesn't exist, create it
+    if (!user) {
+      user = await prisma.userData.create({
+        data: { did },
+      });
+    }
+
+    return user;
+  } catch (error: any) {
+    console.error("[getUserData] Prisma error:", {
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+      meta: error.meta,
+    });
+
+    // rethrow so Next.js shows a digest for this request
+    throw new Error(
+      `[getUserData] Failed to fetch or create user: ${error.message}`
+    );
+  }
 }
