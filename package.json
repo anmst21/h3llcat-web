@@ -7,9 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "email": "email dev --dir src/emails",
-    "postinstall": "prisma generate",
-    "prisma:generate": "prisma generate",
-    "prisma:deploy": "prisma migrate deploy"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -54,7 +52,8 @@
     "sanity": "^3.71.2",
     "sass": "^1.78.0",
     "three": "^0.170.0",
-    "viem": "^2.22.21"
+    "viem": "^2.22.21",
+    "prisma": "^6.18.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -62,7 +61,6 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.11",
-    "prisma": "^6.18.0",
     "react-email": "3.0.6",
     "typescript": "^5"
   }
