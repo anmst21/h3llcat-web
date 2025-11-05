@@ -1,13 +1,15 @@
 {
   "name": "h3llcat-web",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "email": "email dev --dir src/emails"
+    "email": "email dev --dir src/emails",
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:deploy": "prisma migrate deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

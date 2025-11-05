@@ -1,8 +1,15 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { UserData } from "../../../prisma/generated/prisma/client";
 
+type UserData = {
+  id: number;
+  did: string;
+  email: string | null;
+  isMinted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
 export async function getUserData(did: string): Promise<UserData> {
   let user = await prisma.userData.findUnique({
     where: { did },
