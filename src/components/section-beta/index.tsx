@@ -4,10 +4,7 @@ import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { useEffect, useCallback, useState, useMemo } from "react";
-import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
-import { useBuyNFT } from "@/hooks/useBuyNft";
-// import DynamicActionButton from "./dynamic-action-button";
 import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
@@ -28,7 +25,7 @@ const contractAddress = process.env
 const chainId = baseSepolia.id;
 
 function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
-  const { authenticated, getAccessToken, ready, user } = usePrivy();
+  const { authenticated, ready, user } = usePrivy();
 
   const { wallets } = useWallets();
   console.log({ claimCondition });
@@ -130,7 +127,6 @@ function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
 
-  const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
   console.log({ userWallet });
 
   useEffect(() => {
@@ -138,21 +134,6 @@ function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
       setData(null);
     }
   }, [authenticated, setData]);
-  const {
-    // buyNFT,
-    // isMinting,
-    // mintingStatus,
-    // logMessage: mintLogMessage,
-  } = useBuyNFT({
-    userWallet,
-    getWalletClient,
-    getAccessToken,
-    setUserData: setData,
-    setTimesMinted,
-    isFundsError,
-    setIsFundsError,
-    numToMint,
-  });
 
   const currectStep = useMemo(() => {
     const getStep = () => {

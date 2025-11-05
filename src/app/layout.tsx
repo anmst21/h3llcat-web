@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "@/styles/index.scss";
 import PrivyProvider from "@/context/PrivyProvider";
-import { createClient, reservoirChains } from "@reservoir0x/reservoir-sdk";
 import CookieConsentBanner from "@/components/cookie-consent";
 import Footer from "@/components/footer";
 import { CapchaProvider } from "@/context/CapchaProvider";
@@ -77,20 +76,6 @@ export const metadata: Metadata = {
     "React Native",
   ],
 };
-
-createClient({
-  chains: [
-    {
-      ...reservoirChains.base,
-      active: true,
-    },
-    {
-      ...reservoirChains.baseSepolia,
-      active: true,
-    },
-  ],
-  source: "h3llcat.app",
-});
 
 export default function RootLayout({
   children,
