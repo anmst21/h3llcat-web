@@ -45,7 +45,7 @@ const PassMeta = ({ contract, creator, standard }: Props) => {
         </div>
         <div className="wallet-item__meta">
           <span className="wallet-item__meta__title">Media</span>
-          <span className="wallet-item__meta__value">JPEG</span>
+          <span className="wallet-item__meta__value">MP4</span>
         </div>
       </div>
     </div>

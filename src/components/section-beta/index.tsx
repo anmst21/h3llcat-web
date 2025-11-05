@@ -3,48 +3,50 @@
 import { nftProps } from "@/helpers/nftProps";
 import Image from "next/image";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
-import { baseSepolia } from "viem/chains";
 import { useEffect, useCallback, useState, useMemo } from "react";
-import { createClient } from "@reservoir0x/reservoir-sdk";
-import { options } from "@/helpers/reservoirClientOptions";
 import { useWalletClient } from "@/hooks/useWalletClient";
 import { useToken } from "@/hooks/useToken";
 import { useBuyNFT } from "@/hooks/useBuyNft";
-import DynamicActionButton from "./dynamic-action-button";
+// import DynamicActionButton from "./dynamic-action-button";
 import { MenuBeta, BetaDescription } from "../icon";
 import PassDetails from "./pass-details";
 import PassMeta from "./pass-meta";
 import { AnimatePresence, motion } from "motion/react";
 import { betaPageHeader } from "@/helpers/beta-page-assets";
 import VideoPlayer from "./video-player";
+import { usePrivyViem } from "@/hooks/usePrivyViem";
+import { claimWithPrivy } from "@/hooks/useClaim";
+import { Address, formatEther } from "viem";
+import { ClaimCondition } from "@/types/ClaimCondition";
+import { baseSepolia } from "viem/chains";
+import DynamicActionButton from "./dynamic-action-button";
+import { recordMint } from "@/actions/prisma/set-user-data";
 // import anime from "animejs";
+const contractAddress = process.env
+  .NEXT_PUBLIC_CONTRACT_BASE_SEPOLIA as Address;
 
-createClient(options);
+const chainId = baseSepolia.id;
 
-function SectionBeta({
-  mintsNum,
-}: {
-  mintsNum: { totalMinted: number } | undefined;
-}) {
-  const { authenticated, getAccessToken, ready } = usePrivy();
-
-  const [numToMint, setNumToMint] = useState(1);
-
-  const [isFundsError, setIsFundsError] = useState(false);
-
-  const [timesMinted, setTimesMinted] = useState(mintsNum?.totalMinted || 0);
-
-  const disableLogin = !ready || (ready && authenticated);
+function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
+  const { authenticated, getAccessToken, ready, user } = usePrivy();
 
   const { wallets } = useWallets();
-
+  console.log({ claimCondition });
   const userWallet = wallets.find(
     (wallet) => wallet.walletClientType === "coinbase_wallet"
   );
-  const userWalletChain =
-    Number(userWallet?.chainId.split("eip155:")[1]) || null;
 
-  const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
+  const { walletClient, publicClient } = usePrivyViem();
+
+  const [timesMinted, setTimesMinted] = useState(
+    Number(claimCondition.supplyClaimed)
+  );
+  const [numToMint, setNumToMint] = useState(1);
+  const [isFundsError, setIsFundsError] = useState(false);
+  const [isMinting, setIsMinting] = useState(false);
+  const [log, setLog] = useState<string>("");
+
+  console.log({ log, isMinting });
 
   const {
     userData,
@@ -53,8 +55,6 @@ function SectionBeta({
     // error, fetchToken
   } = useToken();
 
-  console.log({ userData });
-
   const setData = useCallback(
     (data: any) => {
       setUserData(data);
@@ -62,14 +62,85 @@ function SectionBeta({
     [setUserData]
   );
 
+  const onClaim = async () => {
+    if (!ready || !walletClient || !publicClient || !userWallet || !user)
+      return;
+
+    try {
+      setIsFundsError(false);
+      setIsMinting(true);
+      setLog("Sending tx…");
+
+      // Your params
+
+      const receiver = userWallet.address as Address; // mint to the connected Privy wallet
+      const quantity = BigInt(numToMint);
+
+      // const balanceWei = await publicClient.getBalance({ address: receiver });
+      // console.log({ balanceWei });
+      // if (claimCondition.pricePerToken * quantity > balanceWei) return;
+      const receipt = await claimWithPrivy({
+        walletClient,
+        publicClient,
+        contractAddress,
+        receiver,
+        quantity,
+        proof: [], // or your Merkle proof if allowlisted
+        data: "0x",
+      });
+      console.log({ receipt });
+
+      const { email, isMinted, did } = await recordMint({
+        did: user.id,
+        receipt: {
+          blockHash: receipt.blockHash,
+          blockNumber: Number(receipt.blockNumber),
+          cumulativeGasUsed: Number(receipt.cumulativeGasUsed),
+          effectiveGasPrice: Number(receipt.effectiveGasPrice),
+          gasUsed: Number(receipt.gasUsed),
+          from: receipt.from,
+          transactionHash: receipt.transactionHash,
+        },
+      });
+      console.log({ receipt });
+
+      setTimesMinted(timesMinted + numToMint);
+      setData({ email, isMinted, did });
+      setIsMinting(false);
+      setIsFundsError(false);
+      setLog(
+        `✅ Mined in block ${receipt.blockNumber}, tx: ${receipt.transactionHash}`
+      );
+      console.log({ receipt });
+    } catch (e: any) {
+      console.error(e);
+      setIsMinting(false);
+      setIsFundsError(false);
+      setLog(`❌ ${e?.shortMessage || e?.message || String(e)}`);
+    }
+  };
+  console.log({ isMinting });
+  //////////////////////////////////////////////////
+
+  const disableLogin = !ready || (ready && authenticated);
+
+  console.log({ wallets });
+
+  console.log({ userWallet });
+  const userWalletChain =
+    Number(userWallet?.chainId.split("eip155:")[1]) || null;
+
+  const { getWalletClient } = useWalletClient(userWallet, ready, authenticated);
+  console.log({ userWallet });
+
   useEffect(() => {
     if (!authenticated) {
       setData(null);
     }
   }, [authenticated, setData]);
   const {
-    buyNFT,
-    isMinting,
+    // buyNFT,
+    // isMinting,
     // mintingStatus,
     // logMessage: mintLogMessage,
   } = useBuyNFT({
@@ -124,7 +195,13 @@ function SectionBeta({
       <div className="section-beta__bot">
         <div className="section-beta__left">
           <VideoPlayer uri={nftProps.artUri} name={nftProps.name} />
-          <PassDetails timesMinted={timesMinted} />
+          <PassDetails
+            mintGoal={Number(claimCondition.maxClaimableSupply)}
+            price={Number(
+              Number(formatEther(claimCondition.pricePerToken)).toFixed(6)
+            )}
+            timesMinted={timesMinted}
+          />
         </div>
         <div className="section-beta__right">
           <div className="pass-description">
@@ -142,7 +219,7 @@ function SectionBeta({
             </div>
           </div>
           <PassMeta
-            contract={nftProps.contract}
+            contract={contractAddress}
             creator={nftProps.creator}
             standard={nftProps.standard}
           />
@@ -165,7 +242,11 @@ function SectionBeta({
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
-                      style={{ color: "#FFF8E7", width: 12, textAlign: "end" }}
+                      style={{
+                        color: "#FFF8E7",
+                        width: 12,
+                        textAlign: "end",
+                      }}
                     >
                       {currectStep}
                     </motion.span>
@@ -174,6 +255,7 @@ function SectionBeta({
                 </span>
               </div>
             </div>
+            {/* <button onClick={onClaim}>Mint!!!</button> */}
             <DynamicActionButton
               numToMint={numToMint}
               setNumToMint={setNumToMint}
@@ -181,14 +263,14 @@ function SectionBeta({
               isLoadingContext={!disableLogin}
               isLoadingUserData={isLoadingData}
               isMinting={isMinting}
-              isCorrectChain={userWalletChain === 84532}
+              isCorrectChain={userWalletChain === chainId}
               isMintSubmitted={userData?.isMinted}
               isEmailSubmitted={userData?.email}
               isEnoughFunds={!isFundsError}
-              buyNFTAction={buyNFT}
+              buyNFTAction={onClaim}
               switchChainAction={async () => {
                 if (userWallet) {
-                  await userWallet.switchChain(baseSepolia.id);
+                  await userWallet.switchChain(chainId);
                 }
               }}
             />

@@ -37,7 +37,7 @@ export function useBetaSubmit({
 
   const { handleSubmit, reset, register, ...rest } = formMethods;
 
-  const { getAccessToken } = usePrivy();
+  const { user } = usePrivy();
 
   const setData = useCallback(
     (data: UserData) => {
@@ -48,11 +48,10 @@ export function useBetaSubmit({
 
   const onSubmit = useCallback(
     async (data: SubscribeFormSchema) => {
+      if (!user) return;
       setIsLoadingSubmit(true);
       try {
-        const accessToken = await getAccessToken();
-
-        const token: UserData = await submitBeta(data, accessToken);
+        const token: UserData = await submitBeta(data, user.id);
         setData(token);
 
         reset();
@@ -62,7 +61,7 @@ export function useBetaSubmit({
         setIsLoadingSubmit(false);
       }
     },
-    [setData, getAccessToken, reset]
+    [setData, reset, user]
   );
 
   useEffect(() => {

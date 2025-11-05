@@ -6,18 +6,17 @@ import { dynamicButtonProps } from "../button/animation";
 
 type Props = {
   timesMinted: number;
+  mintGoal: number;
+  price: number;
 };
 
-const artPrice = 0.0002;
-const mintGoal = 10000;
-
-const PassDetails = ({ timesMinted }: Props) => {
+const PassDetails = ({ timesMinted, price, mintGoal = 10000 }: Props) => {
   const {
     ethPrice,
     loading: isLoadingPrice,
     error: isErrorPrice,
   } = useEthPrice();
-
+  console.log({ price });
   // const isErrorPrice = true;
 
   return (
@@ -32,7 +31,7 @@ const PassDetails = ({ timesMinted }: Props) => {
       <div className="pass-details__bottom">
         <div className="pass-details__section">
           <span>Price</span>
-          <h4>{artPrice} ETH</h4>
+          <h4>{price} ETH</h4>
           <AnimatePresence mode="wait">
             {isLoadingPrice || isErrorPrice ? (
               <motion.div
@@ -62,7 +61,7 @@ const PassDetails = ({ timesMinted }: Props) => {
               />
             ) : (
               <motion.span className="price" {...dynamicButtonProps}>
-                (${(artPrice * Number(ethPrice)).toFixed(2)})
+                (${(price * Number(ethPrice)).toFixed(2)})
               </motion.span>
             )}
           </AnimatePresence>
