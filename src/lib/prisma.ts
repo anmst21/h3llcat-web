@@ -1,5 +1,5 @@
 // Node runtime only (don't import this in edge code)
-import { PrismaClient } from "../../prisma/generated/prisma/client";
+import { PrismaClient } from "../generated/client";
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
