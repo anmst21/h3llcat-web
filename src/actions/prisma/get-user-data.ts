@@ -1,7 +1,5 @@
 "use server";
 
-export const runtime = "nodejs";
-
 import { prisma } from "@/lib/prisma";
 import { UserData } from "../../../prisma/generated/prisma/client";
 
