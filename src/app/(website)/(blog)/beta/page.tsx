@@ -9,6 +9,8 @@ import { readContract } from "viem/actions";
 import { openEdition721Abi as ABI } from "@/helpers/openEdition721Abi";
 import { ClaimCondition } from "@/types/ClaimCondition";
 
+export const runtime = "nodejs";
+
 export const metadata: Metadata = {
   /* ---------- core SEO ---------- */
   title: "Join Beta",

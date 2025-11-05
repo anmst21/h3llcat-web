@@ -1,5 +1,7 @@
 "use server";
 
+export const runtime = "nodejs";
+
 import { SubscribeFormSchema } from "@/components/subscribe-input/subscribe-form-schema";
 import nodemailer from "nodemailer";
 import BetaEmail from "@/emails/beta";

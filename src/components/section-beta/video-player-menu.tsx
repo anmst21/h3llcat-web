@@ -17,7 +17,8 @@ const VideoPlayerMenu = ({
     const fileName = "beta-pass.mp4";
     // create and click an <a download>
     const link = document.createElement("a");
-    link.href = "/beta-video-main-compressed.mp4";
+    link.href =
+      "https://blue-peaceful-squirrel-324.mypinata.cloud/ipfs/bafybeidlqfylwyddvlvhtk24swjsk3b3egmcyq2a5ow6nu46vxui27z4ee";
     link.setAttribute("download", fileName);
     document.body.appendChild(link);
     link.click();
@@ -30,7 +31,11 @@ const VideoPlayerMenu = ({
       value: "Open original poster",
       icon: <PlayerPoster />,
       callback: () =>
-        window.open("/beta-pass-cover.jpg", "_blank", "noopener,noreferrer"),
+        window.open(
+          "https://blue-peaceful-squirrel-324.mypinata.cloud/ipfs/bafkreieiapv6l6bw2gyh2d4ldblgvroljiju64sgsj3lsevkpn773kgt7u",
+          "_blank",
+          "noopener,noreferrer"
+        ),
     },
     {
       id: 2,
@@ -38,7 +43,7 @@ const VideoPlayerMenu = ({
       icon: <PlayerVideo />,
       callback: () =>
         window.open(
-          "/beta-video-main-compressed.mp4",
+          "https://blue-peaceful-squirrel-324.mypinata.cloud/ipfs/bafybeicunfdrhkjsrz3axkhoxhhdz3fbq263m4fvo6lb2dg5c4b77ozrny",
           "_blank",
           "noopener,noreferrer"
         ),

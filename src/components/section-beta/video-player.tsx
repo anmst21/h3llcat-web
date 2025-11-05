@@ -240,7 +240,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
             <div className="video-player__top__header">
               <div className="video-player__top__blur" />
               <span className="video-player__top__header">
-                beta-pass.mp4<span className="regular-mb">(19.71mb)</span>
+                beta-pass.mp4<span className="regular-mb">(26.08mb)</span>
               </span>
             </div>
             <div className="video-player__menu">
