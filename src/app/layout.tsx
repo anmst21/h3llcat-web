@@ -77,6 +77,8 @@ export const metadata: Metadata = {
   ],
 };
 
+// DB URI FIX
+
 export default function RootLayout({
   children,
 }: Readonly<{
