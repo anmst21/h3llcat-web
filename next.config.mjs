@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  serverComponentsExternalPackages: ["@prisma/client", "prisma"],
+
   images: {
     formats: ["image/webp"],
     unoptimized: true,
-    serverComponentsExternalPackages: ["@prisma/client", "prisma"],
     domains: [
       "hellcat.nyc3.cdn.digitaloceanspaces.com",
       "cdn.sanity.io",
