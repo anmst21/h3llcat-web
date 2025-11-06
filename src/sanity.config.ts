@@ -11,5 +11,4 @@ const config = defineConfig({
   plugins: [structureTool()],
   schema: { types: schemas },
 });
-
 export default config;
