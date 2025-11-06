@@ -5,12 +5,11 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider      = "prisma-client-js"
-  // binaryTargets = ["native", "rhel-openssl-3.0.x"]
-  output   = "../src/generated"
-  // previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
+  // Let Prisma manage .prisma/client in node_modules
+  // Optional (safer across CI/OS): include Vercel’s runtime engine
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
