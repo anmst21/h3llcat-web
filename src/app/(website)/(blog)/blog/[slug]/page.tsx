@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params: { slug } }: Slug) {
   const project = await getBlogpost(slug);
-  const postUrl = `https://h3llcat.app/blog/${slug}`;
+  const postUrl = `https://displaymint.app/blog/${slug}`;
   const imageUrl = project.image; // Ensure this is an absolute URL
 
   return {

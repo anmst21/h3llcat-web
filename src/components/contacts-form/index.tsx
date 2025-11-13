@@ -26,7 +26,7 @@ const ContactsForm = () => {
   const [isCaptchaError, setIsCaptchaError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const cookieValue = getCookieConsentValue("cookieConsent");
+  const cookieValue = getCookieConsentValue("cookieConsentDisplay");
 
   const {
     reset,

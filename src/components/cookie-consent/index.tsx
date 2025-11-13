@@ -8,7 +8,7 @@ import { ConsentCross } from "../icon";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CookieConsentBanner = () => {
-  const cookieValue = getCookieConsentValue("cookieConsent");
+  const cookieValue = getCookieConsentValue("cookieConsentDisplay");
   const [showModal, setShowModal] = useState(!cookieValue ? true : false);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -34,7 +34,7 @@ const CookieConsentBanner = () => {
             >
               <CookieConsent
                 onOverlayClick={closeModal}
-                cookieName="cookieConsent"
+                cookieName="cookieConsentDisplay"
                 onAccept={() => setShowModal(false)}
                 onDecline={() => setShowModal(false)}
                 buttonClasses="accept-cookie"
