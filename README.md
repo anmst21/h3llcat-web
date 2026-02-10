@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Display
+
+**Reimagine How You Mint On-Chain**
+
+Display is a mobile-first NFT minting platform featuring swipe-to-mint UI, embedded wallets, and seamless on-chain art discovery. Built on Base.
+
+## Features
+
+- **Swipe-to-Mint** — Browse and mint NFT collections with a single swipe gesture, designed for one-handed mobile use
+- **Embedded Wallet** — Instant onboarding via Privy with Coinbase Wallet integration, no extensions required
+- **On-Chain Minting** — ERC-1155 smart contract minting on Base mainnet with real-time claim condition reads
+- **Interactive 3D** — Three.js-powered visuals and animations throughout the experience
+- **Blog & CMS** — Content-managed blog powered by Sanity with categories, featured posts, and comments
+- **NFT Collections** — Browse curated collections from Rodeo protocol with optimized image loading
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 14, React 18, TypeScript |
+| Styling | SASS, Motion, Lottie |
+| 3D | Three.js, React Three Fiber, Drei |
+| Blockchain | Viem, Privy, Base (ERC-1155) |
+| Database | PostgreSQL (Neon) via Prisma |
+| CMS | Sanity |
+| Email | Nodemailer, React Email, Mailchimp |
+| Deployment | Vercel |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- PostgreSQL database (or [Neon](https://neon.tech) account)
+- [Privy](https://privy.io) app credentials
+- [Alchemy](https://alchemy.com) RPC endpoint for Base
+
+### Setup
 
 ```bash
+# Install dependencies
+npm install --legacy-peer-deps
+
+# Copy environment template and fill in your keys
+cp .env.example .env
+
+# Generate Prisma client
+npx prisma generate
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [`.env.example`](.env.example) for all required variables. You'll need credentials for:
 
-## Learn More
+- Privy (wallet auth)
+- Alchemy (Base RPC)
+- PostgreSQL (database)
+- Sanity (CMS)
+- Gmail / Mailchimp (email)
+- reCAPTCHA (spam protection)
 
-To learn more about Next.js, take a look at the following resources:
+### Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev       # Start dev server
+npm run build     # Production build
+npm run start     # Start production server
+npm run lint      # Run ESLint
+npm run email     # Email template dev mode
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+  app/              # Next.js App Router pages
+    (website)/      # Public routes (home, blog, beta, contacts, collections)
+    admin/          # Sanity Studio admin
+  components/       # React components (sections, UI, 3D)
+  hooks/            # Custom hooks (wallet, claims, tokens)
+  helpers/          # Utilities, ABIs, config
+  context/          # Providers (Privy, Balance, ETH Price)
+  actions/          # Server actions (Prisma, email)
+  sanity/           # Sanity CMS schema & config
+  emails/           # React Email templates
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Authors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Anthony Nazarov**
+- **Vladimir Kokorev**
+
+## License
+
+All rights reserved.
