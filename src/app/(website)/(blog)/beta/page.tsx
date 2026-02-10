@@ -7,6 +7,7 @@ import { ClaimCondition } from "@/types/ClaimCondition";
 import { publicClient, getContractAddress } from "@/helpers/mintHelpers";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   /* ---------- core SEO ---------- */
