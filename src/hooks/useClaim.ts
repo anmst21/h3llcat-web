@@ -1,8 +1,5 @@
-// "use server"; // (or omit if you're calling this client-side)
-
 import type { Address, Hex } from "viem";
 
-import { baseSepolia } from "viem/chains";
 import {
   getChainId,
   switchChain,
@@ -10,7 +7,10 @@ import {
   waitForTransactionReceipt,
   readContract,
 } from "viem/actions";
-import { openEdition721Abi as ABI } from "../helpers/openEdition721Abi";
+import { dropErc1155Abi as ABI } from "../helpers/dropErc1155Abi";
+import { getActiveChain } from "../helpers/mintHelpers";
+
+const TOKEN_ID = 0n;
 
 type AllowlistTuple = [
   Hex[], // proof
@@ -27,27 +27,22 @@ export async function claimWithPrivy({
   quantity,
   proof = [],
   data = "0x",
-
 }: {
-  walletClient: any; // viem WalletClient from your Privy provider
-  publicClient: any; // viem PublicClient
+  walletClient: any;
+  publicClient: any;
   contractAddress: Address;
   receiver: Address;
-  quantity: bigint; // e.g. 1n
+  quantity: bigint;
   proof?: Hex[];
   data?: Hex;
- 
 }) {
-  // 1) Ensure wallet is on Base Sepolia (84532)
+  const activeChain = getActiveChain();
+
+  // 1) Ensure wallet is on the active chain
   const currentChainId = await getChainId(walletClient).catch(() => undefined);
-  if (currentChainId !== baseSepolia.id) {
-    // This will trigger a wallet network switch UI if needed
-    await switchChain(walletClient, { id: baseSepolia.id });
+  if (currentChainId !== activeChain.id) {
+    await switchChain(walletClient, { id: activeChain.id });
   }
-
-  // 2) Build the allowlist tuple (must be an array in exact order)
-
-  // 3) Native ETH payment must include value = price * quantity
 
   const uri = await readContract(publicClient, {
     address: contractAddress,
@@ -60,32 +55,30 @@ export async function claimWithPrivy({
     address: contractAddress,
     abi: ABI,
     functionName: "getActiveClaimConditionId",
-    // no chain: publicClient already knows it
+    args: [TOKEN_ID],
   });
 
-  // Make sure it's a bigint (Viem often returns bigint)
   console.log("Active Claim Condition ID:", activeId);
 
   const cond = await readContract(publicClient, {
     address: contractAddress,
     abi: ABI,
     functionName: "getClaimConditionById",
-    args: [activeId],
+    args: [TOKEN_ID, activeId],
   });
 
   console.log("Active Claim Condition:", cond);
 
   const allowlistProof: AllowlistTuple = [
     proof,
-    cond.quantityLimitPerWallet, // quantityLimitPerWallet (unused)
-    cond.pricePerToken, // price per token
-    cond.currency, // currency = native ETH
+    cond.quantityLimitPerWallet,
+    cond.pricePerToken,
+    cond.currency,
   ];
 
   const value = cond.pricePerToken * quantity;
 
- 
-  // 4) Send tx (locally signed via Privy-provided wallet client)
+  // Send tx (locally signed via Privy-provided wallet client)
   const hash = await writeContract(walletClient, {
     gas: BigInt(300000),
     address: contractAddress,
@@ -93,20 +86,18 @@ export async function claimWithPrivy({
     functionName: "claim",
     args: [
       receiver,
+      TOKEN_ID,
       quantity,
-      cond.currency, // _currency (native)
-      cond.pricePerToken, // _pricePerToken
-      allowlistProof, // tuple as array
-      data, // bytes
+      cond.currency,
+      cond.pricePerToken,
+      allowlistProof,
+      data,
     ],
     value,
-    chain: baseSepolia,
-    // account: receiver,
-    // (optional) explicitly set the signer account if needed:
+    chain: activeChain,
     account: (await walletClient.getAddresses())[0],
   });
 
-  // 5) Wait for mining and return the receipt
   const receipt = await waitForTransactionReceipt(publicClient, { hash });
 
   console.log({ receipt });

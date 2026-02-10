@@ -1,13 +1,10 @@
 import { Metadata } from "next";
 import SectionBeta from "@/components/section-beta";
-// import { notFound } from "next/navigation";
-// import { apiUri } from "@/helpers/apiUri";
-// import { ThirdwebProvider } from "thirdweb/react";
-import { baseSepolia } from "viem/chains";
-import { Address, createPublicClient, http } from "viem";
+import { Address } from "viem";
 import { readContract } from "viem/actions";
-import { openEdition721Abi as ABI } from "@/helpers/openEdition721Abi";
+import { dropErc1155Abi as ABI } from "@/helpers/dropErc1155Abi";
 import { ClaimCondition } from "@/types/ClaimCondition";
+import { publicClient, getContractAddress } from "@/helpers/mintHelpers";
 
 export const runtime = "nodejs";
 
@@ -45,48 +42,27 @@ export const metadata: Metadata = {
   },
 };
 
-const contract = process.env.NEXT_PUBLIC_CONTRACT_BASE_SEPOLIA;
+const contract = getContractAddress();
 
 export default async function Beta() {
-  // const response = await fetch(apiUri, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   cache: "no-cache",
-  // });
-  // if (!response.ok) {
-  //   notFound();
-  // }
+  const TOKEN_ID = 0n;
 
-  // const data:
-  //   | {
-  //       totalMinted: number;
-  //     }
-  //   | undefined = await response.json();
-
-  const publicClientInstance = createPublicClient({
-    chain: baseSepolia,
-    transport: http(),
-  });
-
-  const activeId = await readContract(publicClientInstance, {
+  const activeId = await readContract(publicClient, {
     address: contract as Address,
     abi: ABI,
     functionName: "getActiveClaimConditionId",
-    // no chain: publicClientInstance already knows it
+    args: [TOKEN_ID],
   });
 
-  // Make sure it's a bigint (Viem often returns bigint)
   console.log("Active Claim Condition ID:", activeId);
 
   const claimCondition: ClaimCondition = await readContract(
-    publicClientInstance,
+    publicClient,
     {
       address: contract as Address,
       abi: ABI,
       functionName: "getClaimConditionById",
-      args: [activeId],
+      args: [TOKEN_ID, activeId],
     }
   );
 

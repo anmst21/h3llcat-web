@@ -15,14 +15,13 @@ import { usePrivyViem } from "@/hooks/usePrivyViem";
 import { claimWithPrivy } from "@/hooks/useClaim";
 import { Address, formatEther } from "viem";
 import { ClaimCondition } from "@/types/ClaimCondition";
-import { baseSepolia } from "viem/chains";
+import { getActiveChain, getContractAddress } from "@/helpers/mintHelpers";
 import DynamicActionButton from "./dynamic-action-button";
 import { recordMint } from "@/actions/prisma/set-user-data";
-// import anime from "animejs";
-const contractAddress = process.env
-  .NEXT_PUBLIC_CONTRACT_BASE_SEPOLIA as Address;
 
-const chainId = baseSepolia.id;
+const contractAddress = getContractAddress() as Address;
+const activeChain = getActiveChain();
+const chainId = activeChain.id;
 
 function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
   const { authenticated, ready, user } = usePrivy();

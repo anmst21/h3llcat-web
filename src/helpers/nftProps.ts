@@ -4,10 +4,10 @@ export const nftProps = {
     "This 3D art piece is your exclusive access pass to the Display Beta. Explore and collect digital art, discover new favorite artists, and share your collection with friends. Be part of a select group of testers driving innovation in the world of blockchain.",
   category: "Access Pass",
   creator: "Nexus Technologies",
-  contract: "0x439753F6dDAadb6D03Be77C9aabec5673E410a1A",
+  contract: "0x4747A348B24927308670DFc06F143Db78424951e",
   artUri:
     "https://cryptoiconsstorage.blob.core.windows.net/crypto-icons/beta-page-assets/video-thumb.jpg",
   chain: "Base",
-  chainId: "84532",
-  standard: "ERC-721",
+  chainId: "8453",
+  standard: "ERC-1155",
 };

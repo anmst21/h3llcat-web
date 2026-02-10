@@ -2,6 +2,7 @@
 
 import { PrivyProvider } from "@privy-io/react-auth";
 import { base, baseSepolia } from "viem/chains";
+import { getActiveChain } from "@/helpers/mintHelpers";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -9,7 +10,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       appId={process.env.NEXT_PUBLIC_PRIVY_KEY as string}
       clientId={process.env.NEXT_PUBLIC_CLIENT_ID as string}
       config={{
-        defaultChain: baseSepolia,
+        defaultChain: getActiveChain(),
         supportedChains: [base, baseSepolia],
 
         appearance: {

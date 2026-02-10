@@ -4,8 +4,11 @@
 import { useEffect, useState } from "react";
 import { useWallets } from "@privy-io/react-auth";
 import { createWalletClient, createPublicClient, custom, http } from "viem";
-import { baseSepolia } from "viem/chains";
 import type { Address } from "viem";
+import { getActiveChain, getRpcUrl } from "@/helpers/mintHelpers";
+
+const activeChain = getActiveChain();
+const rpcUrl = getRpcUrl();
 
 export function usePrivyViem() {
   const { wallets, ready } = useWallets();
@@ -22,23 +25,22 @@ export function usePrivyViem() {
       if (!userWallet) return;
 
       const provider = await userWallet.getEthereumProvider();
-      const addr = userWallet.address as Address; // Privy gives it to you
+      const addr = userWallet.address as Address;
       setAddress(addr);
 
-      // (optional) make sure the provider has permission
       try {
         await provider.request?.({ method: "eth_requestAccounts", params: [] });
       } catch {}
 
       const walletClientInstance = createWalletClient({
-        account: addr, // <<— important
-        chain: baseSepolia,
+        account: addr,
+        chain: activeChain,
         transport: custom(provider),
       });
 
       const publicClientInstance = createPublicClient({
-        chain: baseSepolia,
-        transport: http(),
+        chain: activeChain,
+        transport: http(rpcUrl),
       });
 
       setWalletClient(walletClientInstance);
