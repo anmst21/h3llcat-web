@@ -43,7 +43,7 @@ const itemVariants = {
     rotate: rotations[i],
     filter: "blur(20px)", // still blurred until hover
     zIndex: 0,
-    transition: { type: "spring", stiffness: 200, damping: 20 },
+    transition: { type: "spring" as const, stiffness: 200, damping: 20 },
   }),
 };
 

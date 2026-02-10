@@ -77,8 +77,8 @@ const headerVariants = {
     },
   },
 };
-const transition = { duration: 1, type: "spring", bounce: 0.2 };
-const transitionUp = { duration: 0.3, type: "spring", bounce: 0.2 };
+const transition = { duration: 1, type: "spring" as const, bounce: 0.2 };
+const transitionUp = { duration: 0.3, type: "spring" as const, bounce: 0.2 };
 
 const topRaisedVariant = {
   rotate: -65,

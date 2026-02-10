@@ -22,7 +22,7 @@ const AnimatedSticker = () => {
     : {
         initial: { rotate: 0, top: "0px", left: "0px" },
         whileInView: { rotate: 30, top: "-9px", left: "2px" },
-        transition: { type: "spring", stiffness: 100, damping: 10 },
+        transition: { type: "spring" as const, stiffness: 100, damping: 10 },
         viewport: { once: true, amount: 1 },
       };
 

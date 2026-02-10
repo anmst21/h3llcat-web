@@ -18,12 +18,12 @@ const DiskSection = () => {
     animate: {
       scale: 1,
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" as const },
     },
     exit: {
       scale: 0.2,
       opacity: 0,
-      transition: { duration: 0.5, ease: "easeIn" },
+      transition: { duration: 0.5, ease: "easeIn" as const },
     },
   };
   if (isMobile) return null;
