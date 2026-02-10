@@ -10,7 +10,7 @@ import {
 import { dropErc1155Abi as ABI } from "../helpers/dropErc1155Abi";
 import { getActiveChain } from "../helpers/mintHelpers";
 
-const TOKEN_ID = 0n;
+const TOKEN_ID = BigInt(0);
 
 type AllowlistTuple = [
   Hex[], // proof

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const contract = getContractAddress();
 
 export default async function Beta() {
-  const TOKEN_ID = 0n;
+  const TOKEN_ID = BigInt(0);
 
   const activeId = await readContract(publicClient, {
     address: contract as Address,
