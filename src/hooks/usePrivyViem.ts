@@ -16,9 +16,16 @@ export function usePrivyViem() {
   const [publicClient, setPublicClient] = useState<any>(null);
   const [address, setAddress] = useState<Address | null>(null);
 
+  // Derive a stable dependency from the wallets array to avoid infinite loops.
+  // The wallets array gets a new reference on every render, so using it directly
+  // as a dependency causes the effect to re-run endlessly.
+  const coinbaseWalletAddress = wallets.find(
+    (w) => w.walletClientType === "coinbase_wallet"
+  )?.address;
+
   useEffect(() => {
     const setup = async () => {
-      if (!ready) return;
+      if (!ready || !coinbaseWalletAddress) return;
       const userWallet = wallets.find(
         (w) => w.walletClientType === "coinbase_wallet"
       );
@@ -48,7 +55,8 @@ export function usePrivyViem() {
     };
 
     setup();
-  }, [wallets, ready]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coinbaseWalletAddress, ready]);
 
   return { walletClient, publicClient, address };
 }
