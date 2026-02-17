@@ -95,7 +95,7 @@ const jsonLd = [
     name: "Display",
     url: "https://displaymint.app",
     logo: "https://displaymint.app/icon.png",
-    sameAs: ["https://x.com/0xN3XUS"],
+    sameAs: ["https://x.com/nexus_nyc"],
   },
   {
     "@context": "https://schema.org",

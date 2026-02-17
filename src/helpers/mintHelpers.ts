@@ -1,21 +1,17 @@
 // src/lib/viem.ts
 import { createPublicClient, createWalletClient, custom, http } from "viem";
-import { base, baseSepolia } from "viem/chains";
+import { base } from "viem/chains";
 
 export function getActiveChain() {
-  return process.env.NEXT_PUBLIC_ACTIVE_CHAIN === "base" ? base : baseSepolia;
+  return base;
 }
 
 export function getRpcUrl() {
-  return process.env.NEXT_PUBLIC_ACTIVE_CHAIN === "base"
-    ? process.env.NEXT_PUBLIC_BASE_MAINNET_RPC!
-    : process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC!;
+  return process.env.NEXT_PUBLIC_BASE_MAINNET_RPC!;
 }
 
 export function getContractAddress() {
-  return process.env.NEXT_PUBLIC_ACTIVE_CHAIN === "base"
-    ? (process.env.NEXT_PUBLIC_CONTRACT_BASE as `0x${string}`)
-    : (process.env.NEXT_PUBLIC_CONTRACT_BASE_SEPOLIA as `0x${string}`);
+  return process.env.NEXT_PUBLIC_CONTRACT_BASE as `0x${string}`;
 }
 
 export const publicClient = createPublicClient({

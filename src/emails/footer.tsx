@@ -51,7 +51,7 @@ export default function EmailFooter() {
             }}
           >
             <Column style={{ paddingRight: 8 }}>
-              <Link href="https://x.com/0xN3XUS">
+              <Link href="https://x.com/nexus_nyc">
                 <Img
                   alt="Facebook"
                   height="36"

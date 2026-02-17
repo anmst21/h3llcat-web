@@ -2,8 +2,8 @@
 
 import { useCallback } from "react";
 import { createWalletClient, custom } from "viem";
-import { baseSepolia } from "viem/chains";
 import type { Hex } from "viem";
+import { getActiveChain } from "@/helpers/mintHelpers";
 
 export function useWalletClient(
   userWallet: any,
@@ -22,7 +22,7 @@ export function useWalletClient(
     // Create and return the wallet client for the specified chain
     return createWalletClient({
       account: userWallet.address as Hex,
-      chain: baseSepolia,
+      chain: getActiveChain(),
       transport: custom(provider),
     });
   }, [userWallet, ready, authenticated]);

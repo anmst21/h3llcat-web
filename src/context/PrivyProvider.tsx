@@ -1,7 +1,7 @@
 "use client";
 
 import { PrivyProvider } from "@privy-io/react-auth";
-import { base, baseSepolia } from "viem/chains";
+import { base } from "viem/chains";
 import { getActiveChain } from "@/helpers/mintHelpers";
 import { useEffect, useState } from "react";
 
@@ -25,7 +25,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       clientId={process.env.NEXT_PUBLIC_CLIENT_ID as string}
       config={{
         defaultChain: getActiveChain(),
-        supportedChains: [base, baseSepolia],
+        supportedChains: [base],
 
         appearance: {
           loginMessage: "Connect your wallet to Display",
