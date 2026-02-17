@@ -3,7 +3,7 @@ import SectionBeta from "@/components/section-beta";
 import { Address } from "viem";
 import { readContract } from "viem/actions";
 import { dropErc721Abi as ABI } from "@/helpers/dropErc1155Abi";
-import { ClaimCondition } from "@/types/ClaimCondition";
+import { ClaimCondition, SerializedClaimCondition } from "@/types/ClaimCondition";
 import { publicClient, getContractAddress } from "@/helpers/mintHelpers";
 
 export const runtime = "nodejs";
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 const contract = getContractAddress();
 
 export default async function Beta() {
-  let claimCondition: ClaimCondition | null = null;
+  let serialized: SerializedClaimCondition | null = null;
 
   try {
     const activeId = await readContract(publicClient, {
@@ -57,7 +57,7 @@ export default async function Beta() {
 
     console.log("Active Claim Condition ID:", activeId);
 
-    claimCondition = await readContract(publicClient, {
+    const claimCondition: ClaimCondition = await readContract(publicClient, {
       address: contract as Address,
       abi: ABI,
       functionName: "getClaimConditionById",
@@ -65,9 +65,21 @@ export default async function Beta() {
     });
 
     console.log({ mintsData: claimCondition });
+
+    // Convert BigInt → string so data can cross the RSC → client boundary
+    serialized = {
+      startTimestamp: claimCondition.startTimestamp.toString(),
+      maxClaimableSupply: claimCondition.maxClaimableSupply.toString(),
+      supplyClaimed: claimCondition.supplyClaimed.toString(),
+      quantityLimitPerWallet: claimCondition.quantityLimitPerWallet.toString(),
+      merkleRoot: claimCondition.merkleRoot,
+      pricePerToken: claimCondition.pricePerToken.toString(),
+      currency: claimCondition.currency,
+      metadata: claimCondition.metadata,
+    };
   } catch (error) {
     console.error("Failed to fetch claim condition:", error);
   }
 
-  return <SectionBeta claimCondition={claimCondition} />;
+  return <SectionBeta claimCondition={serialized} />;
 }

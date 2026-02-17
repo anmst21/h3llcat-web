@@ -14,7 +14,7 @@ import VideoPlayer from "./video-player";
 import { usePrivyViem } from "@/hooks/usePrivyViem";
 import { claimWithPrivy } from "@/hooks/useClaim";
 import { Address, formatEther } from "viem";
-import { ClaimCondition } from "@/types/ClaimCondition";
+import { SerializedClaimCondition } from "@/types/ClaimCondition";
 import { getActiveChain, getContractAddress } from "@/helpers/mintHelpers";
 import DynamicActionButton from "./dynamic-action-button";
 import { recordMint } from "@/actions/prisma/set-user-data";
@@ -23,7 +23,7 @@ const contractAddress = getContractAddress() as Address;
 const activeChain = getActiveChain();
 const chainId = activeChain.id;
 
-function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition | null }) {
+function SectionBeta({ claimCondition }: { claimCondition: SerializedClaimCondition | null }) {
   const { authenticated, ready, user } = usePrivy();
 
   const { wallets } = useWallets();
@@ -176,7 +176,7 @@ function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition | null
           <PassDetails
             mintGoal={10000}
             price={claimCondition ? Number(
-              Number(formatEther(claimCondition.pricePerToken)).toFixed(6)
+              Number(formatEther(BigInt(claimCondition.pricePerToken))).toFixed(6)
             ) : 0.0025}
             timesMinted={timesMinted}
           />
