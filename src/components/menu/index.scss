@@ -318,11 +318,12 @@
 
 
 .menu {
-    position: sticky;
-    bottom: 20px;
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3000;
     display: none;
-    justify-content: center;
 
     @include media-sm {
         display: flex;
