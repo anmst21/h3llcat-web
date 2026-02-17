@@ -27,7 +27,7 @@ type Props = {
     address: string;
   };
 };
-const DOMAIN = "https://h3llcat.app";
+const DOMAIN = "https://displaymint.app";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { address } = params;
@@ -36,16 +36,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     "Discover unique NFT collections powered by Rodeo.club. Swipe through curated artwork, explore metadata, and seamlessly mint your favorites directly within the Display app.";
 
-  // point at your API‑route edge function:
   const ogImageUrl = `${DOMAIN}/api/collection/${address}`;
+  const pageUrl = `${DOMAIN}/collection/${address}`;
 
   return {
-    title: "Explore NFT Collection",
-    description:
-      "Discover unique NFT collections powered by Rodeo.club. Swipe through curated artwork, explore metadata, and seamlessly mint your favorites directly within the Display app.",
+    title,
+    description,
+    alternates: {
+      canonical: pageUrl,
+    },
     openGraph: {
       title,
       description,
+      url: pageUrl,
       images: [
         {
           url: ogImageUrl,

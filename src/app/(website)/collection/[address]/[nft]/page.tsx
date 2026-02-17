@@ -19,7 +19,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { etherScanUriBase } from "@/components/app-redirect/etherScanUriBase";
 
-const DOMAIN = "https://h3llcat.app";
+const DOMAIN = "https://displaymint.app";
 
 type Props = {
   params: {
@@ -35,15 +35,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     "Dive into the details of this unique NFT powered by Rodeo.club. View metadata, explore artwork, and seamlessly mint or interact with it directly in the Display app.";
 
-  // point at your API‑route edge function:
   const ogImageUrl = `${DOMAIN}/api/collection/${address}/${nft}`;
+  const pageUrl = `${DOMAIN}/collection/${address}/${nft}`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: pageUrl,
+    },
     openGraph: {
       title,
       description,
+      url: pageUrl,
       images: [
         {
           url: ogImageUrl,

@@ -184,11 +184,12 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                         >
                           <AnimatePresence initial={false} mode="wait">
                             {authenticated && ready && (
-                              <>
-                                <motion.div
-                                  {...dynamicButtonProps}
-                                  className="wallet-item__meta"
-                                >
+                              <motion.div
+                                key="wallet-meta"
+                                {...dynamicButtonProps}
+                                style={{ display: "contents" }}
+                              >
+                                <div className="wallet-item__meta">
                                   <span className="wallet-item__meta__title">
                                     Balance
                                   </span>
@@ -238,11 +239,8 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                       </motion.span>
                                     )}
                                   </AnimatePresence>
-                                </motion.div>
-                                <motion.div
-                                  {...dynamicButtonProps}
-                                  className="wallet-item__meta"
-                                >
+                                </div>
+                                <div className="wallet-item__meta">
                                   <span className="wallet-item__meta__title">
                                     Chain
                                   </span>
@@ -274,8 +272,8 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                                       </motion.button>
                                     )}
                                   </AnimatePresence>
-                                </motion.div>
-                              </>
+                                </div>
+                              </motion.div>
                             )}
                           </AnimatePresence>
                         </motion.div>
@@ -285,8 +283,13 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
 
                   <AnimatePresence mode="wait">
                     {authenticated && ready && isWalletOpen && (
-                      <>
+                      <motion.div
+                        key="wallet-actions"
+                        {...dynamicButtonProps}
+                        style={{ display: "contents" }}
+                      >
                         <MenuItem
+                          key="add-funds"
                           buttonProps={dynamicButtonProps}
                           value={"To Your wallet"}
                           icon={<MenuFunds />}
@@ -302,6 +305,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                           }}
                         />
                         <MenuItem
+                          key="sign-out"
                           buttonProps={dynamicButtonProps}
                           value={"From Display"}
                           icon={<MenuLogout />}
@@ -311,7 +315,7 @@ const MenuModal = ({ isOpen, setIsOpen }: Props) => {
                             setIsWalletOpen(false);
                           }}
                         />
-                      </>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </div>

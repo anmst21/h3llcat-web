@@ -23,7 +23,7 @@ const contractAddress = getContractAddress() as Address;
 const activeChain = getActiveChain();
 const chainId = activeChain.id;
 
-function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
+function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition | null }) {
   const { authenticated, ready, user } = usePrivy();
 
   const { wallets } = useWallets();
@@ -35,7 +35,7 @@ function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
   const { walletClient, publicClient } = usePrivyViem();
 
   const [timesMinted, setTimesMinted] = useState(
-    Number(claimCondition.supplyClaimed)
+    claimCondition ? Number(claimCondition.supplyClaimed) : 0
   );
   const [numToMint, setNumToMint] = useState(1);
   const [isFundsError, setIsFundsError] = useState(false);
@@ -136,14 +136,12 @@ function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
 
   const currectStep = useMemo(() => {
     const getStep = () => {
-      if (!userData) {
+      if (!userData || !userData.isMinted) {
         return "1";
-      } else if (userData.did && !userData.email && !userData.isMinted) {
+      } else if (userData.isMinted && !userData.email) {
         return "2";
-      } else if (userData.did && !userData.email && userData.isMinted) {
+      } else if (userData.isMinted && userData.email) {
         return "3";
-      } else if (userData.did && userData.email && userData.isMinted) {
-        return "4";
       } else {
         return "1";
       }
@@ -176,10 +174,10 @@ function SectionBeta({ claimCondition }: { claimCondition: ClaimCondition }) {
         <div className="section-beta__left">
           <VideoPlayer uri={nftProps.artUri} name={nftProps.name} />
           <PassDetails
-            mintGoal={Number(claimCondition.maxClaimableSupply)}
-            price={Number(
+            mintGoal={10000}
+            price={claimCondition ? Number(
               Number(formatEther(claimCondition.pricePerToken)).toFixed(6)
-            )}
+            ) : 0.0025}
             timesMinted={timesMinted}
           />
         </div>

@@ -28,16 +28,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params: { slug } }: Slug) {
   const project = await getBlogpost(slug);
   const postUrl = `https://displaymint.app/blog/${slug}`;
-  const imageUrl = project.image; // Ensure this is an absolute URL
+  const imageUrl = project.image;
 
   return {
     title: project.name,
     description: project.subheader,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: project.name,
       description: project.subheader,
       url: postUrl,
-
       images: [
         {
           url: imageUrl,
@@ -66,8 +68,7 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
 
   //console.log("project", project);
 
-  // Construct the canonical URL for the blog post
-  const postUrl = `https://h3llcat.app/blog/${slug}`;
+  const postUrl = `https://displaymint.app/blog/${slug}`;
 
   // Build dynamic social share URLs using the post metadata
   const twitterShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(
@@ -81,8 +82,31 @@ export default async function BlogPostPage({ params: { slug } }: Slug) {
     `Check out "${name}": 
     ${postUrl}`
   )}`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: name,
+    description: subheader,
+    image: project.image,
+    datePublished: date,
+    author: {
+      "@type": "Person",
+      name: author.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Display",
+      url: "https://displaymint.app",
+    },
+    url: postUrl,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <div className="blog-post-page__container">
         <div className="blog-post-page__post">
           <Image

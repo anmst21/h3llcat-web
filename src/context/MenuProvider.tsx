@@ -46,8 +46,8 @@ export const MenuProvider: FC<MenuProviderProps> = ({ children }) => {
       >
         <MenuModal isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
 
-        <Menu isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
         {children}
+        <Menu isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
       </div>
     </MenuContext.Provider>
   );

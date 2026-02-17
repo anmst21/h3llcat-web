@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
 
   description:
-    "Learn how Display's collects, uses, and safeguards your personal information. This policy covers data retention, user action logs, wallet usage, integrations with third-party services, and more. Stay informed about your rights, our security measures, and how to contact us for any privacy-related inquiries.",
+    "Learn how Display collects, uses, and safeguards your personal information. This policy covers data retention, wallet usage, third-party integrations, and your privacy rights.",
 };
 
 export default async function Privacy() {

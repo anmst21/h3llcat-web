@@ -53,11 +53,20 @@
         display: flex;
         justify-content: space-between;
         gap: 50px;
+        width: 100%;
 
         @include media-sm {
             flex-direction: column;
             gap: 10px;
 
+        }
+
+        img {
+            @include media-sm {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+            }
         }
 
         &:hover {
@@ -171,6 +180,7 @@
     gap: 20px;
     flex-direction: column;
     background-color: #0a0a0a;
+    overflow-x: hidden;
     //  z-index: -2;
 
     @include media-sm {

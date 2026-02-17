@@ -23,12 +23,12 @@ const sfPro = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Display - Reimagine How You Mint On-Chain",
+    default: "Display — Swipe to Mint NFTs on Base",
     template: "%s | Display",
   },
   description:
-    "Experience seamless wallet integration powered by Coinbase, instant NFT minting via Privy-embedded wallets, and a swipe-to-mint UI designed for single-hand navigation. Enjoy perfectly optimized visuals and curated feeds from Rodeo protocol—giving you the ultimate on-chain art discovery experience.",
-  metadataBase: new URL("https://h3llcat.app"),
+    "Display is a mobile app for discovering and minting NFT art on Base. Swipe through curated collections, mint instantly, and build your on-chain gallery.",
+  metadataBase: new URL("https://displaymint.app"),
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
 
@@ -37,16 +37,24 @@ export const metadata: Metadata = {
     { name: "Vladimir Kokorev", url: "https://www.n3xus.nyc/" },
   ],
 
+  alternates: {
+    canonical: "https://displaymint.app",
+  },
+
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: "https://displaymint.app",
     siteName: "Display",
+    title: "Display — Swipe to Mint NFTs on Base",
+    description:
+      "Display is a mobile app for discovering and minting NFT art on Base. Swipe through curated collections, mint instantly, and build your on-chain gallery.",
     images: [
       {
         url: "/opengraph/main-og.jpg",
         width: 1200,
         height: 630,
-        alt: "Display - Reimagine How You Mint On-Chain",
+        alt: "Display — Swipe to Mint NFTs on Base",
       },
     ],
   },
@@ -55,29 +63,41 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@0xN3XUS",
     creator: "@Anthony_N2000",
+    title: "Display — Swipe to Mint NFTs on Base",
+    description:
+      "Display is a mobile app for discovering and minting NFT art on Base. Swipe through curated collections, mint instantly, and build your on-chain gallery.",
   },
 
   keywords: [
-    "NFT",
-    "minting",
-    "web3",
-    "crypto art",
-    "Display app",
+    "NFT minting app",
+    "mint NFTs on Base",
+    "NFT art discovery",
     "swipe to mint",
-    "Coinbase wallet",
-    "Mobile Wallet Protocol",
-    "embedded wallet",
-    "Privy",
-    "Base chain",
-    "TestFlight beta",
-    "on-chain art discovery",
-    "Rodeo protocol",
-    "single-hand navigation",
-    "React Native",
+    "Base chain NFTs",
+    "on-chain art",
+    "NFT gallery",
+    "crypto art app",
+    "digital art minting",
+    "NFT collections",
   ],
 };
 
-// DB URI FIX
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Display",
+    url: "https://displaymint.app",
+    logo: "https://displaymint.app/icon.png",
+    sameAs: ["https://x.com/0xN3XUS"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Display",
+    url: "https://displaymint.app",
+  },
+];
 
 export default function RootLayout({
   children,
@@ -87,6 +107,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sfPro.variable}`}>
+        {jsonLd.map((ld, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+          />
+        ))}
         <CapchaProvider>
           <PrivyProvider>
             <EthPriceProvider>

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import SectionBeta from "@/components/section-beta";
 import { Address } from "viem";
 import { readContract } from "viem/actions";
-import { dropErc1155Abi as ABI } from "@/helpers/dropErc1155Abi";
+import { dropErc721Abi as ABI } from "@/helpers/dropErc1155Abi";
 import { ClaimCondition } from "@/types/ClaimCondition";
 import { publicClient, getContractAddress } from "@/helpers/mintHelpers";
 
@@ -46,27 +46,28 @@ export const metadata: Metadata = {
 const contract = getContractAddress();
 
 export default async function Beta() {
-  const TOKEN_ID = BigInt(0);
+  let claimCondition: ClaimCondition | null = null;
 
-  const activeId = await readContract(publicClient, {
-    address: contract as Address,
-    abi: ABI,
-    functionName: "getActiveClaimConditionId",
-    args: [TOKEN_ID],
-  });
+  try {
+    const activeId = await readContract(publicClient, {
+      address: contract as Address,
+      abi: ABI,
+      functionName: "getActiveClaimConditionId",
+    });
 
-  console.log("Active Claim Condition ID:", activeId);
+    console.log("Active Claim Condition ID:", activeId);
 
-  const claimCondition: ClaimCondition = await readContract(
-    publicClient,
-    {
+    claimCondition = await readContract(publicClient, {
       address: contract as Address,
       abi: ABI,
       functionName: "getClaimConditionById",
-      args: [TOKEN_ID, activeId],
-    }
-  );
+      args: [activeId],
+    });
 
-  console.log({ mintsData: claimCondition });
+    console.log({ mintsData: claimCondition });
+  } catch (error) {
+    console.error("Failed to fetch claim condition:", error);
+  }
+
   return <SectionBeta claimCondition={claimCondition} />;
 }

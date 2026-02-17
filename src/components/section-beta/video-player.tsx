@@ -108,8 +108,11 @@ const VideoPlayer = ({ name, uri }: Props) => {
   const onFullscreen = () => {
     const el = videoRef.current;
     if (!el) return;
-    if (!document.fullscreenElement) el.requestFullscreen();
-    else document.exitFullscreen();
+    if ((el as any).webkitEnterFullscreen) {
+      (el as any).webkitEnterFullscreen();
+    } else if (el.requestFullscreen) {
+      el.requestFullscreen();
+    }
   };
 
   const TimeMarker = ({ time }: { time: number }) => {
@@ -180,7 +183,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
     <div
       onMouseEnter={startHudTimer}
       onMouseMove={startHudTimer}
-      //  onTouchStart={startHudTimer}
+      onTouchStart={startHudTimer}
       onMouseLeave={() => {
         setIsHovered(false);
         if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
@@ -199,21 +202,14 @@ const VideoPlayer = ({ name, uri }: Props) => {
       )}
       {!videoError ? (
         <video
-          onClick={() => {
-            if (!isMobile) togglePlay();
-
-            // if (isMobile && !isHovered && initialPlay) startHudTimer();
-            // if ((isMobile && isHovered) || (isMobile && !initialPlay))
-            //   togglePlay();
-          }}
+          onClick={togglePlay}
           ref={videoRef}
           aria-label={name}
           className="section-beta__video"
           src={"/beta-video-main-compressed.mp4"}
           poster={uri}
-          // playsInline
+          playsInline
           loop
-          // autoPlay
 
           controls={false}
           // muted // usually needed for autoplay to work
@@ -227,7 +223,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
         </div>
       )}
       <AnimatePresence mode="wait">
-        {initialPlay && isHovered && !isMobile && (
+        {initialPlay && isHovered && (
           <motion.div
             key="player-top"
             variants={topPlayerVariants}
@@ -265,7 +261,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
         )}
       </AnimatePresence>
       <AnimatePresence mode="sync">
-        {initialPlay && isHovered && !isMobile && (
+        {initialPlay && isHovered && (
           <motion.div
             key="player-bottom"
             variants={bottomPlayerVariants}

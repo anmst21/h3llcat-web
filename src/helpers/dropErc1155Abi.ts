@@ -1,8 +1,6 @@
-export const dropErc1155Abi = [
+export const dropErc721Abi = [
   {
-    inputs: [
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
-    ],
+    inputs: [],
     name: "getActiveClaimConditionId",
     outputs: [
       { internalType: "uint256", name: "", type: "uint256" },
@@ -12,7 +10,6 @@ export const dropErc1155Abi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
       { internalType: "uint256", name: "conditionId", type: "uint256" },
     ],
     name: "getClaimConditionById",
@@ -39,7 +36,6 @@ export const dropErc1155Abi = [
   {
     inputs: [
       { internalType: "address", name: "receiver", type: "address" },
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
       { internalType: "uint256", name: "quantity", type: "uint256" },
       { internalType: "address", name: "currency", type: "address" },
       { internalType: "uint256", name: "pricePerToken", type: "uint256" },
@@ -50,7 +46,7 @@ export const dropErc1155Abi = [
           { internalType: "uint256", name: "pricePerToken", type: "uint256" },
           { internalType: "address", name: "currency", type: "address" },
         ],
-        internalType: "struct IDrop1155.AllowlistProof",
+        internalType: "struct IDrop.AllowlistProof",
         name: "allowlistProof",
         type: "tuple",
       },
@@ -71,19 +67,8 @@ export const dropErc1155Abi = [
     type: "function",
   },
   {
-    inputs: [
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
-    ],
-    name: "uri",
-    outputs: [
-      { internalType: "string", name: "", type: "string" },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [],
-    name: "nextTokenIdToMint",
+    name: "nextTokenIdToClaim",
     outputs: [
       { internalType: "uint256", name: "", type: "uint256" },
     ],

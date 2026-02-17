@@ -7,10 +7,8 @@ import {
   waitForTransactionReceipt,
   readContract,
 } from "viem/actions";
-import { dropErc1155Abi as ABI } from "../helpers/dropErc1155Abi";
+import { dropErc721Abi as ABI } from "../helpers/dropErc1155Abi";
 import { getActiveChain } from "../helpers/mintHelpers";
-
-const TOKEN_ID = BigInt(0);
 
 type AllowlistTuple = [
   Hex[], // proof
@@ -44,18 +42,10 @@ export async function claimWithPrivy({
     await switchChain(walletClient, { id: activeChain.id });
   }
 
-  const uri = await readContract(publicClient, {
-    address: contractAddress,
-    abi: ABI,
-    functionName: "contractURI",
-  });
-  console.log({ uri });
-
   const activeId = await readContract(publicClient, {
     address: contractAddress,
     abi: ABI,
     functionName: "getActiveClaimConditionId",
-    args: [TOKEN_ID],
   });
 
   console.log("Active Claim Condition ID:", activeId);
@@ -64,7 +54,7 @@ export async function claimWithPrivy({
     address: contractAddress,
     abi: ABI,
     functionName: "getClaimConditionById",
-    args: [TOKEN_ID, activeId],
+    args: [activeId],
   });
 
   console.log("Active Claim Condition:", cond);
@@ -86,7 +76,6 @@ export async function claimWithPrivy({
     functionName: "claim",
     args: [
       receiver,
-      TOKEN_ID,
       quantity,
       cond.currency,
       cond.pricePerToken,

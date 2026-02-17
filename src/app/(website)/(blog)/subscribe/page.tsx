@@ -2,9 +2,19 @@ import { Metadata } from "next";
 import SubscribeInput from "@/components/subscribe-input";
 
 export const metadata: Metadata = {
-  title: "Subscribe To Newsletter",
+  title: "Subscribe — Display Newsletter",
   description:
-    "Get the inside scoop before anyone else—join Display’s newsletter for early beta invites, feature drops, and curated on-chain art updates delivered straight to your inbox.",
+    "Get the inside scoop before anyone else—join Display's newsletter for early beta invites, feature drops, and curated on-chain art updates delivered straight to your inbox.",
+  openGraph: {
+    images: [
+      {
+        url: "/opengraph/main-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Subscribe to Display Newsletter",
+      },
+    ],
+  },
 };
 
 export default function SubscribePage() {

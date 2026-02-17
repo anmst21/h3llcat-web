@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact With Us",
+  title: "Contact Us",
   description:
     "Want to partner, have questions, or just say hello? Drop us a message through the form and the Display team will get back to you. Let's collaborate and build the future of on-chain experiences together.",
   openGraph: {
