@@ -16,7 +16,6 @@ const PassDetails = ({ timesMinted, price, mintGoal = 10000 }: Props) => {
     loading: isLoadingPrice,
     error: isErrorPrice,
   } = useEthPrice();
-  console.log({ price });
   // const isErrorPrice = true;
 
   return (

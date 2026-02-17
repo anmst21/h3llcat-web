@@ -27,7 +27,6 @@ function SectionBeta({ claimCondition }: { claimCondition: SerializedClaimCondit
   const { authenticated, ready, user } = usePrivy();
 
   const { wallets } = useWallets();
-  console.log({ claimCondition });
   const userWallet = wallets.find(
     (wallet) => wallet.walletClientType === "coinbase_wallet"
   );
@@ -41,8 +40,6 @@ function SectionBeta({ claimCondition }: { claimCondition: SerializedClaimCondit
   const [isFundsError, setIsFundsError] = useState(false);
   const [isMinting, setIsMinting] = useState(false);
   const [log, setLog] = useState<string>("");
-
-  console.log({ log, isMinting });
 
   const {
     userData,
@@ -115,18 +112,12 @@ function SectionBeta({ claimCondition }: { claimCondition: SerializedClaimCondit
       setLog(`❌ ${e?.shortMessage || e?.message || String(e)}`);
     }
   };
-  console.log({ isMinting });
   //////////////////////////////////////////////////
 
   const disableLogin = !ready || (ready && authenticated);
 
-  console.log({ wallets });
-
-  console.log({ userWallet });
   const userWalletChain =
     Number(userWallet?.chainId.split("eip155:")[1]) || null;
-
-  console.log({ userWallet });
 
   useEffect(() => {
     if (!authenticated) {

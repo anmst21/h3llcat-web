@@ -66,13 +66,13 @@ const VideoPlayerMenu = ({
 
   useEffect(() => {
     if (!portalContainer) return;
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: PointerEvent) => {
       if (!portalContainer.contains(e.target as Node)) {
         onClose();
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("pointerdown", handleClickOutside);
+    return () => document.removeEventListener("pointerdown", handleClickOutside);
   }, [portalContainer, onClose]);
 
   return portalContainer

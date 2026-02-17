@@ -21,7 +21,12 @@ import {
 } from "../icon";
 import NumberInput from "./number-input";
 import animationBeta from "../icon/animationBeta.json";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+  loading: () => <span style={{ display: "inline-block", width: 32, height: 12 }} />,
+});
 import { arrowVariants, textVariants } from "./dynamic-action-button-variants";
 interface Props {
   isLoadingContext: boolean;
@@ -107,59 +112,68 @@ const DynamicActionButton: React.FC<Props> = ({
   //   ready,
   // });
   useEffect(() => {
+    let nextText: string;
+    let nextDisabled: boolean;
+    let nextVariation: typeof variation;
+
+    if (
+      ready &&
+      authenticated &&
+      isCorrectChain &&
+      !isMinting &&
+      !isMintSubmitted &&
+      !isEmailSubmitted &&
+      !isLoadingUserData &&
+      !isLoadingSubmit &&
+      isEnoughFunds
+    ) {
+      nextText = "Mint";
+      nextDisabled = false;
+      nextVariation = "mint";
+    } else if (ready && (!authenticated || isLoadingContext)) {
+      nextText = "Connect Wallet";
+      nextDisabled = false;
+      nextVariation = "connect";
+    } else if (
+      !isCorrectChain &&
+      ready &&
+      authenticated &&
+      !isLoadingContext
+    ) {
+      nextText = "Switch Chain";
+      nextDisabled = false;
+      nextVariation = "switch";
+    } else if (!isEnoughFunds) {
+      nextText = "Insufficient Balance";
+      nextDisabled = false;
+      nextVariation = "funds";
+    } else if (isMinting) {
+      nextText = "Minting";
+      nextDisabled = true;
+      nextVariation = "loading";
+    } else if (isEmailSubmitted && isMintSubmitted) {
+      nextText = "Mint More";
+      nextDisabled = false;
+      nextVariation = "more";
+    } else if (isMintSubmitted && !isEmailSubmitted && !isLoadingSubmit) {
+      nextText = "Submit";
+      nextDisabled = false;
+      nextVariation = "submit";
+    } else {
+      nextText = isLoadingSubmit ? "Submitting" : "Loading";
+      nextDisabled = true;
+      nextVariation = "loading";
+    }
+
     const timer = setTimeout(() => {
-      if (
-        ready &&
-        authenticated &&
-        isCorrectChain &&
-        !isMinting &&
-        !isMintSubmitted &&
-        !isEmailSubmitted &&
-        !isLoadingUserData &&
-        !isLoadingSubmit &&
-        isEnoughFunds
-      ) {
-        setButtonText("Mint");
-        setDisabled(false);
-        setVariation("mint");
-      } else if (ready && (!authenticated || isLoadingContext)) {
-        setButtonText("Connect Wallet");
-        setDisabled(false);
-        setVariation("connect");
-      } else if (
-        !isCorrectChain &&
-        ready &&
-        authenticated &&
-        !isLoadingContext
-      ) {
-        setButtonText("Switch Chain");
-        setDisabled(false);
-        setVariation("switch");
-      } else if (!isEnoughFunds) {
-        setButtonText("Insufficient Balance");
-        setDisabled(false);
-        setVariation("funds");
-      } else if (isMinting) {
-        setButtonText("Minting");
-        setDisabled(true);
-        setVariation("loading");
-      } else if (isEmailSubmitted && isMintSubmitted) {
-        setButtonText("Mint More");
-        setDisabled(false);
-        setVariation("more");
-      } else if (isMintSubmitted && !isEmailSubmitted && !isLoadingSubmit) {
-        setButtonText("Submit");
-        setDisabled(false);
-        setVariation("submit");
-      } else {
-        setButtonText(isLoadingSubmit ? "Submitting" : "Loading");
-        setDisabled(true);
-        setVariation("loading");
-      }
+      setButtonText((prev) => (prev === nextText ? prev : nextText));
+      setDisabled((prev) => (prev === nextDisabled ? prev : nextDisabled));
+      setVariation((prev) => (prev === nextVariation ? prev : nextVariation));
     }, 200);
 
     return () => clearTimeout(timer);
   }, [
+    ready,
     isLoadingSubmit,
     isLoadingUserData,
     isLoadingContext,

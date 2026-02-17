@@ -55,16 +55,12 @@ export default async function Beta() {
       functionName: "getActiveClaimConditionId",
     });
 
-    console.log("Active Claim Condition ID:", activeId);
-
     const claimCondition: ClaimCondition = await readContract(publicClient, {
       address: contract as Address,
       abi: ABI,
       functionName: "getClaimConditionById",
       args: [activeId],
     });
-
-    console.log({ mintsData: claimCondition });
 
     // Convert BigInt → string so data can cross the RSC → client boundary
     serialized = {

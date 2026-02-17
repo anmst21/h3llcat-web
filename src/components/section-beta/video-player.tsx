@@ -39,8 +39,6 @@ const VideoPlayer = ({ name, uri }: Props) => {
 
   const [volume, setVolume] = useState(1); // <- track 0–1
 
-  console.log({ currentTime, duration });
-
   useEffect(() => {
     const vid = videoRef.current;
 
@@ -59,7 +57,13 @@ const VideoPlayer = ({ name, uri }: Props) => {
     if (!vid) return;
     videoRef.current.volume = 0.7;
     const onLoaded = () => setDuration(vid.duration);
-    const onTimeUpdate = () => setCurrentTime(vid.currentTime);
+    let lastUpdate = 0;
+    const onTimeUpdate = () => {
+      const now = performance.now();
+      if (now - lastUpdate < 500) return; // ~2 updates/sec
+      lastUpdate = now;
+      setCurrentTime(vid.currentTime);
+    };
     const onVolumeChange = () => {
       setVolume(vid.volume);
       // setIsMuted(vid.volume === 0);
@@ -214,7 +218,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
           controls={false}
           // muted // usually needed for autoplay to work
           onError={() => setVideoError(true)}
-          preload="auto"
+          preload="none"
           data-testid="beta-video"
         />
       ) : (
