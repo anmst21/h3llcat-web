@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   PlayerFull,
@@ -23,12 +23,31 @@ type Props = {
   uri: string;
 };
 
+const formatTime = (time: number) => {
+  const s = time.toFixed();
+  return `00:${Number(s) <= 9 ? "0" : ""}${s}`;
+};
+
+const TimeMarker = React.memo(({ time }: { time: number }) => (
+  <div className="video-player__time__wrapper">
+    <span className="video-player__time">
+      00:
+      <span>
+        {Number(time.toFixed()) <= 9 && "0"}
+        {time.toFixed()}
+      </span>
+    </span>
+  </div>
+));
+TimeMarker.displayName = "TimeMarker";
+
 const VideoPlayer = ({ name, uri }: Props) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [initialPlay, setInitialPlay] = useState(false);
 
   const [isHovered, setIsHovered] = useState(false);
+  const isHoveredRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -36,6 +55,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [showCta, setShowCta] = useState(true);
+  const isSeeking = useRef(false);
 
   const [volume, setVolume] = useState(1); // <- track 0–1
 
@@ -59,6 +79,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
     const onLoaded = () => setDuration(vid.duration);
     let lastUpdate = 0;
     const onTimeUpdate = () => {
+      if (isSeeking.current) return;
       const now = performance.now();
       if (now - lastUpdate < 500) return; // ~2 updates/sec
       lastUpdate = now;
@@ -66,7 +87,6 @@ const VideoPlayer = ({ name, uri }: Props) => {
     };
     const onVolumeChange = () => {
       setVolume(vid.volume);
-      // setIsMuted(vid.volume === 0);
     };
 
     vid.addEventListener("loadedmetadata", onLoaded);
@@ -105,8 +125,6 @@ const VideoPlayer = ({ name, uri }: Props) => {
     if (!vid) return;
     vid.muted = !vid.muted;
     setIsMuted(vid.muted);
-    // if (vid.muted) setVolume(0);
-    // if (!vid.muted) setVolume(0.7);
   };
 
   const onFullscreen = () => {
@@ -119,21 +137,6 @@ const VideoPlayer = ({ name, uri }: Props) => {
     }
   };
 
-  const TimeMarker = ({ time }: { time: number }) => {
-    const formattedTime = time.toFixed();
-    return (
-      <div className="video-player__time__wrapper">
-        <span className="video-player__time">
-          00:
-          <span>
-            {Number(formattedTime) <= 9 && "0"}
-            {formattedTime}
-          </span>
-        </span>
-      </div>
-    );
-  };
-
   const sliderVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -144,7 +147,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
   };
 
   const containerVariants = {
-    collapsed: { height: 28 }, // your “normal” height
+    collapsed: { height: 28 }, // your "normal" height
     expanded: { height: 103 }, // height when slider is shown
   };
 
@@ -163,17 +166,21 @@ const VideoPlayer = ({ name, uri }: Props) => {
 
   const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const startHudTimer = () => {
-    // show HUD immediately
-    setIsHovered(true);
+  const startHudTimer = useCallback(() => {
+    // avoid state update if already hovered
+    if (!isHoveredRef.current) {
+      isHoveredRef.current = true;
+      setIsHovered(true);
+    }
     // clear any existing timer
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
     // start a new 3s timer to hide
     hoverTimeout.current = setTimeout(() => {
+      isHoveredRef.current = false;
       setIsHovered(false);
       hoverTimeout.current = null;
     }, 3000);
-  };
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -183,12 +190,25 @@ const VideoPlayer = ({ name, uri }: Props) => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 1100px)" });
 
+  const handleSeekChange = useCallback((value: number) => {
+    isSeeking.current = true;
+    setCurrentTime(value);
+  }, []);
+
+  const handleSeekAfterChange = useCallback((value: number) => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = value;
+    }
+    isSeeking.current = false;
+  }, []);
+
   return (
     <div
       onMouseEnter={startHudTimer}
       onMouseMove={startHudTimer}
       onTouchStart={startHudTimer}
       onMouseLeave={() => {
+        isHoveredRef.current = false;
         setIsHovered(false);
         if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
       }}
@@ -218,7 +238,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
           controls={false}
           // muted // usually needed for autoplay to work
           onError={() => setVideoError(true)}
-          preload="none"
+          preload="metadata"
           data-testid="beta-video"
         />
       ) : (
@@ -240,7 +260,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
             <div className="video-player__top__header">
               <div className="video-player__top__blur" />
               <span className="video-player__top__header">
-                beta-pass.mp4<span className="regular-mb">(26.08mb)</span>
+                beta-pass.mp4<span className="regular-mb">(3.2mb)</span>
               </span>
             </div>
             <div className="video-player__menu">
@@ -287,14 +307,9 @@ const VideoPlayer = ({ name, uri }: Props) => {
                 min={0}
                 value={currentTime}
                 max={duration}
-                //   orientation="vertical"
                 step={0.1}
-                onChange={(value: number) => {
-                  if (videoRef.current) {
-                    videoRef.current.currentTime = value;
-                  }
-                  setCurrentTime(value);
-                }}
+                onChange={handleSeekChange}
+                onAfterChange={handleSeekAfterChange}
               />
               <TimeMarker time={duration} />
             </div>
@@ -352,7 +367,7 @@ const VideoPlayer = ({ name, uri }: Props) => {
       <AnimatePresence mode="sync">
         {(showCta || (!isHovered && !isPlaying)) && (
           <motion.button
-            key={`cta-${isPlaying}`}
+            key="cta"
             onClick={togglePlay}
             className="video-player__cta"
             variants={ctaVariants}
