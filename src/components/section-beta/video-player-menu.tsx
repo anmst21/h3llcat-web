@@ -80,9 +80,9 @@ const VideoPlayerMenu = ({
         <motion.div
           onMouseMove={onMouseMove}
           key="video-dropdown"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+          animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
+          exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
           transition={{ duration: 0.15 }}
           className="video-player-menu"
         >
