@@ -52,26 +52,12 @@
         max-width: 24px;
         height: 24px;
         width: 100%;
-        overflow: hidden;
-        background-color: transparent;
-        position: relative;
-
+        background: radial-gradient(circle at center, transparent 12px, #121621 12px);
 
         &__gap {
             height: 34px;
             min-width: 7px;
             background-color: #121621;
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            left: -10px;
-            top: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 1000px;
-            border: #121621 solid 10px;
         }
     }
 
